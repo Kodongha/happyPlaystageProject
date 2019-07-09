@@ -2,7 +2,7 @@
     <wb-module deploy-name="happyPlaystage">
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/" source-path="/web"/>
-        <property name="context-root" value="happyPlaystage_(1)"/>
         <property name="java-output-path" value="/happyPlaystage/build/classes"/>
+        <property name="context-root" value="happyPlaystage"/>
     </wb-module>
 </project-modules>

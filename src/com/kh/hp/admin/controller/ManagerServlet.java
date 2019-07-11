@@ -1,4 +1,4 @@
-package com.kh.hp.manager.controller;
+package com.kh.hp.admin.controller;
 
 public class ManagerServlet {
 

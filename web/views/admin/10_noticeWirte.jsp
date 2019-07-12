@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -107,10 +106,10 @@ margin-left:1150px;
 				</tbody>
 			</table>
 		</div>
-		
+
 		     <button type="button" class="btn btn-warning" id="searchbutton">등록</button>
 	</div>
-	
+
 <jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

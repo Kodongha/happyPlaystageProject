@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -172,7 +174,7 @@ padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
 
 </head>
 <body>
-
+<jsp:include page="/views/common/header.jsp" />
 	<div id="center" class="fram">
 	<!-- 타이틀 -->
 		<h2 id="text1">
@@ -276,6 +278,7 @@ padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
     </div>
     </div>
     </div>
+    <jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>
 

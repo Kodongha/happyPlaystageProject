@@ -1,18 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
-  
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" 
- integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -43,7 +35,7 @@
 	
 }
 
-#search{
+#area{
 
 	border: 1px solid gray; 
 	width: 1200px;
@@ -61,13 +53,29 @@ width: 500px;
 height:150px;
 margin-left:50px;
 }
+#users2{
 
+width: 100px;
+height:150px;
+margin-left:480px;
+margin-top:-150px;
+
+}
+
+#users3{
+
+width: 100px;
+height:150px;
+margin-left:570px;
+margin-top:-150px;
+
+}
 
 #users4{
 
 width: 100px;
 height:150px;
-margin-left:700px;
+margin-left:150px;
 margin-top:-150px;
 
 }
@@ -76,7 +84,7 @@ margin-top:-150px;
 
 width: 100px;
 height:150px;
-margin-left:800px;
+margin-left:200px;
 margin-top:-150px;
 
 }
@@ -131,27 +139,21 @@ margin-top:-150px;
 	margin-left:-15px;
 	margin-top:25px;
 }
+
 #searchbutton{
 	margin-left:330px;
 	margin-top:40px;
 }
 
-.button{
-width: 35px;
-background: E6E6E6;
-border:none;
-border-radius: 6px 6px 6px 6px;
-
-}
 </style>
 
 </head>
 <body>
-
+<jsp:include page="/views/common/header.jsp" />
 	<div id="center" class="fram">
 	<!-- 타이틀 -->
 		<h2 id="text1">
-			<strong>대관 등록 권한 설정</strong>
+			<strong>회원 관리 내역</strong>
 			
 		</h2>
 		<!-- 회원관리내역과 검색창 사이의 선 -->
@@ -159,7 +161,7 @@ border-radius: 6px 6px 6px 6px;
 		<br>
 		
 		<!--검색영역 -->
-		<div id="search">
+		<div id="area">
 		<div id="users1">
 		<label id="userno">회원번호</label>
 		 <div id="input"><input class="form-control" id="ex1" type="text"style="width:100px;"></div> 
@@ -171,12 +173,23 @@ border-radius: 6px 6px 6px 6px;
 		
 		</div>
 		
-			
+			<div id="users2">
+		<label id="userno">대관등록승인</label>
+
+		</div>
+		
+		<div id="users3">
+		  <div class="col-sm-2" >
+        <select class="form-control" id="gender1">
+          <option>Y</option>
+          <option>N</option>
+        </select>       
+        </div>
         
         
         
         <div id="users4">
-        <label id="userno">등록구분</label>
+        <label id="userno">탈퇴</label>
         </div>
         
         
@@ -188,73 +201,58 @@ border-radius: 6px 6px 6px 6px;
         </select>       
            
 		</div>
-
-
-
-
-
-
-
-
-
           <button type="button" class="btn btn-warning" id="searchbutton">검색</button>
           
-          
+          </div>
         </div> 
 		</div>
 		
 		<br><br>
 <div class="container">
-           
   <table class="table">
     <thead>
       <tr>
         <th>회원번호</th>
+        <th>이메일(아이디)</th>
         <th>이름</th>
         <th>연락처</th>
-        <th>공연장등록증첨부파일</th>
-        <th>등록구분</th>
-        <th>승인유무</th>
+        <th>대관승인여부</th>
+        <th>탈퇴여부</th>
+
+        
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>00001</td>
-        <td>안정웅</td>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
         <td>010-1111-1111</td>
-        <td>an.jpg</td>
-        <td>승인대기</td>
-      	<td>
-      	<input type="button" value="O" class="button">
-      	<input type="button" value="X" class="button">
-      	</td>
- <tr>
-        <td>00001</td>
-        <td>안정웅</td>
+        <td>Y</td>
+        <td>N<td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
         <td>010-1111-1111</td>
-        <td>an.jpg</td>
-        <td>승인대기</td>
-      	<td>
-      	<input type="button" value="O" class="button">
-      	<input type="button" value="X" class="button">
-      	</td>
-        
- <tr>
-        <td>00001</td>
-        <td>안정웅</td>
+        <td>Y</td>
+        <td>N<td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
         <td>010-1111-1111</td>
-        <td>an.jpg</td>
-        <td>승인대기</td>
-      	<td>
-      	<input type="button" value="O" class="button">
-      	<input type="button" value="X" class="button">
-      	</td>
-  
+        <td>Y</td>
+        <td>N<td>
+      </tr>
     </tbody>
   </table>
 </div>
-</div>
 
+		
+		
 		
 		
 
@@ -263,6 +261,6 @@ border-radius: 6px 6px 6px 6px;
 	
 
 
-
+<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

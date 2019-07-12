@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,23 +8,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
-  
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" 
- integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    
-    
-    
     
 <title>Insert title here</title>
-
-
 <style>
 
 
@@ -72,8 +59,8 @@ width: 670px;
 	margin-left:300px;
 }
 #register {
-	margin-left:300px;
-	margin-top:-400px;
+	margin-left:500px;
+	margin-top:-500px;
 }
 #register1 {
 
@@ -83,52 +70,20 @@ width: 150px;
 }
 
 
-#container{
+#t1{
 
 	margin-left:100px;
-	margin-top:-350px;
+	margin-top:-150px;
 }
-#container1{
+
+#t2{
 
 	margin-top:20px;
+
 }
 
-ul {
 
-	list-style:none;
-	float:left;
-	display:inline;
-	text-align: center;
-}
-ul li {
-	float:left;
-}
-ul li a {
-	float:left;
-	padding:4px;
-	margin-right:3px;
-	width:15px;
-	color:#000;
-	font:bold 12px tahoma;
-	border:1px solid #eee;
-	text-align:center;
-	text-decoration:none;
-}
-ul li a:hover, ul li a:focus {
-	color:#fff;
-	border:1px solid #f40;
-	background-color:#f40;
-}
 
-#paging{
-
-	margin-left:200px;
-}
-
-#paging1{
-
- 	margin-left:100px; 
-}
 
 #table1{
 
@@ -158,7 +113,7 @@ padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
 
 </head>
 <body>
-
+<jsp:include page="/views/common/header.jsp" />
 	<div id="center" class="fram">
 	<!-- 타이틀 -->
 		<h2 id="text1">
@@ -168,7 +123,7 @@ padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
 		<!-- 회원관리내역과 검색창 사이의 선 -->
 		<div id="line"></div>
 			<div id="left">
-				<div class="container">
+				<div class="t1">
 				<br>
 				<br>
   <form class="form-horizontal">
@@ -221,6 +176,8 @@ padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
           <option>N</option>
         </select>       
       </div>
+      </div>
+      </div>
       <br>
    <div class="form-group">
       <label class="control-label col-sm-2"id="leave">탈퇴여부</label>
@@ -238,7 +195,7 @@ padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
       <label class="control-label col-sm-2" id=register>대관등록내역</label>
       <div class="col-sm-10">   
       
-      <div class="container" id="container" style="width:500px;" >
+      <div class="t1" id="t1" style="width:500px;" >
           
   <table class="table">
     <thead>
@@ -268,27 +225,14 @@ padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
   </table>
 </div>
       
-      <div id="paging">  <!-- 페이징처리1 -->
-     <ul>  
-    <li><a href="#">1</a></li>  
-    <li><a href="#">2</a></li>  
-    <li><a href="#">3</a></li>  
-    <li><a href="#">4</a></li>  
-    <li><a href="#">5</a></li>  
-    <li><a href="#">6</a></li>  
-    <li><a href="#">7</a></li>  
-    <li><a href="#">8</a></li>  
-    <li><a href="#">9</a></li>  
-    <li><a href="#">10</a></li>  
-</ul> 
-     </div> 
+    
       
-      <div class="container" id="container" style="width:500px;" >
+      <div class="t1" id="t1" style="width:500px;" >
        <div class="form-group">
       <label class="control-label col-sm-2" id=register1>대관사용내역</label>
       <div class="col-sm-10"> 
       
- <div class="container" id="container1" style="width:500px;" >
+ <div class="t1" id="t2" style="width:500px;" >
           
   <table class="table">
     <thead>
@@ -318,20 +262,7 @@ padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
   </table>
 </div>
       
-      <div id="paging1">  <!-- 페이징처리1 -->
-     <ul>  
-    <li><a href="#">1</a></li>  
-    <li><a href="#">2</a></li>  
-    <li><a href="#">3</a></li>  
-    <li><a href="#">4</a></li>  
-    <li><a href="#">5</a></li>  
-    <li><a href="#">6</a></li>  
-    <li><a href="#">7</a></li>  
-    <li><a href="#">8</a></li>  
-    <li><a href="#">9</a></li>  
-    <li><a href="#">10</a></li>  
-</ul> 
-     </div> 
+    
       </div>  
       </div>
       
@@ -343,6 +274,7 @@ padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
     
       </div>
     </div>
+    </div>
    </form> 
    <button type="button" class="btn btn-warning" id="searchbutton">수정</button>
       <button type="button" class="btn btn-warning" id="searchbutton1">취소</button>
@@ -351,6 +283,7 @@ padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
     </div>
     
     </div>
+    <jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>
 

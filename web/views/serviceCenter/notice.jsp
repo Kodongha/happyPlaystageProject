@@ -1,13 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>공지사항</title>
-<!-- 검색 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<!-- 아코디언메뉴 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -28,7 +25,7 @@ body {
 	/* margin-left:10%; */
 	margin:auto;
 }
-.input-group {
+#notice {
 	width: 80%;
 	padding-left:45px;
 }
@@ -53,6 +50,7 @@ body {
 
 </head>
 <body>
+<jsp:include page="/views/common/header.jsp" />
 	<h3 id="header">
 		<b>공지사항</b>
 	</h3>
@@ -198,6 +196,6 @@ body {
 			</div>
 		</div>
 	</div>
-
+<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

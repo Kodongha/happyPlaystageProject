@@ -6,7 +6,7 @@
 	    <div class="navbar-header">
 	      <a class="navbar-brand" href="#">Happay PlayStage</a>
 	    </div>
-	    
+
 	    <ul class="nav navbar-nav">
 
 	      <!-- 대관 관련 -->
@@ -16,7 +16,7 @@
 	          <li><a href="#">대관 신청하기</a></li>
 	        </ul>
 	      </li>
-		
+
 		  <!-- 리뷰 관련 -->
 	      <li><a href="#">리뷰</a></li>
 
@@ -30,7 +30,7 @@
 	          <li><a href="#">약관 및 개인정보 보호</a></li>
 	        </ul>
 	      </li>
-		  
+
 		  <!-- 관리자 관련 -->
 	      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">관리자<span class="caret"></span></a>
 	        <ul class="dropdown-menu">
@@ -45,7 +45,7 @@
 	        </ul>
 	      </li>
 	    </ul>
-		
+
 		<!-- 검색 관련 -->
 		<ul class="nav navbar-nav navbar-right">
 			<li>
@@ -60,11 +60,11 @@
 					</div>
 				</form>
 			</li>
-			
+
 			<!-- 회원가입 및 로그인 관련 -->
 			<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 			<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 		</ul>
-		
+
 	  </div>
 	</nav>

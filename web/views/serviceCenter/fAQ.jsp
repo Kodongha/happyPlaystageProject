@@ -1,22 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>자주묻는질문</title>
-<!-- 검색 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <!-- 아코디언메뉴 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-<!-- 셀렉트박스 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 <style>
 body {
@@ -35,7 +29,7 @@ body {
 	margin: auto;
 }
 
-.input-group {
+.search1 {
 	width: 60%;
 	/* padding-left: 45px; */
 }
@@ -53,6 +47,7 @@ body {
 
 </head>
 <body>
+<jsp:include page="/views/common/header.jsp" />
 	<h3 id="header">
 		<b>자주 묻는 질문</b>
 	</h3>
@@ -73,7 +68,7 @@ body {
 						</div>
 					</form>
 					<label for="sel2">도움말 검색</label>
-					<div class="input-group search col-sm-7" id="sel2">
+					<div class="input-group search col-sm-7 search1" id="sel2">
 					<input type="text" class="form-control" placeholder="검색어를 입력해주세요."
 						name="search">
 					<div class="input-group-btn">
@@ -211,6 +206,6 @@ body {
 			</div>
 		</div>
 	</div>
-
+<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

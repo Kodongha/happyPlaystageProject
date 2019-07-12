@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,10 +8,11 @@
 <!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 <!-- 버튼 -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 <style type="text/css">
 body {
@@ -19,7 +22,7 @@ body {
 #d1 {
 	width: 100%;
 	height: 330px;
-	background-image: url(views/images/serviceCenter/1.PNG);
+	background-image: url(../../images/serviceCenter/1.PNG);
 	background-size: 100% 100%;
 }
 
@@ -32,7 +35,7 @@ body {
 #d3 {
 	width: 100%;
 	height: 330px;
-	background-image: url(views/images/serviceCenter/2.PNG);
+	background-image: url(../../images/serviceCenter/2.PNG);
 	background-size: 100% 100%;
 }
 
@@ -69,13 +72,14 @@ body {
 	color: white;
 	margin-left: 70px;
 }
-button {
+.btns {
 	width:45%;
 	height:50px;
 }
 </style>
 </head>
 <body>
+<jsp:include page="/views/common/header.jsp" />
 	<div id="d1">
 		<div id="text1" class="text">공연장이 필요할땐</div>
 		<div id="text2" class="text">Happy Playstage</div>
@@ -102,11 +106,12 @@ button {
 		</p>
 		<br>
 		<div class="container">
-			<button type="button" class="btn btn-outline-dark">공연장 찾아보기</button>
+			<button type="button" class="btn btn-outline-dark btns">공연장 찾아보기</button>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<button type="button" class="btn btn-outline-dark">공연장 등록하기</button>
+			<button type="button" class="btn btn-outline-dark btns">공연장 등록하기</button>
 		</div>
 		<br><br>
 	</div>
+	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

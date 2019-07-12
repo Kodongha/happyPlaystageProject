@@ -1,8 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <style>
    
 
@@ -70,7 +75,7 @@ h2{
 
 
 <body>
-
+<jsp:include page="/views/common/header.jsp" />
 <div class= "findId" id= "findid1">
 <h2>아이디 찾기</h2>
 <hr>
@@ -118,6 +123,6 @@ h2{
 
 </div>
 </form>
-
+<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

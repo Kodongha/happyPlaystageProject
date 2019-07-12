@@ -1,16 +1,11 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
 
-
-<!-- input 박스 -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  
 <!-- 리스트 -->  
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -94,7 +89,7 @@
 
 </head>
 <body>
-
+<jsp:include page="/views/common/header.jsp" />
  
    <h2><b>회원가입</b></h2>
  
@@ -152,6 +147,6 @@
         </div>
         
    </form>
-   
+   <jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

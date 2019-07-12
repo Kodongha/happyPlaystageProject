@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,7 +85,7 @@ margin-top:-150px;
 
 width: 100px;
 height:150px;
-margin-left:150px;
+margin-left:100px;
 margin-top:-150px;
 
 }
@@ -98,11 +100,27 @@ margin-top:-150px;
 }
 
 
-#userno{
+#searchtitle{
 	width: 100px;
 	margin-left:10px;
 	margin-top:30px;
 	
+}
+
+
+
+#condition{
+	width: 100px;
+	margin-left:10px;
+	margin-top:30px;
+	
+}
+
+#approval{
+width: 100px;
+	margin-left:23px;
+	margin-top:30px;
+
 }
 #input{
 	width: 110px;
@@ -116,12 +134,7 @@ margin-top:-150px;
 	margin-top:-26px;
 }
 
-#wave{ 
-	width: 10px;
-	margin-left:220px;
-	margin-top:-28px;
-	
-}
+
 
 #assent{
 	background:red;
@@ -142,10 +155,16 @@ margin-top:-150px;
 	margin-top:25px;
 }
 
-#select{
-	width: 100px;
+#select1{
+	width: 110px;
 	margin-left:-15px;
-	margin-top:25px;
+
+}
+
+#select2{
+	width: 110px;
+	margin-left:-15px;
+	
 }
 #searchbutton{
 	margin-left:330px;
@@ -160,11 +179,11 @@ margin-top:-150px;
 
 </head>
 <body>
-
+<jsp:include page="/views/common/header.jsp" />
 	<div id="center" class="fram">
 	<!-- 타이틀 -->
 		<h2 id="text1">
-			<strong>회원 관리 내역</strong>
+			<strong>대관 등록 검수 리스트</strong>
 			
 		</h2>
 		<!-- 회원관리내역과 검색창 사이의 선 -->
@@ -174,41 +193,40 @@ margin-top:-150px;
 		<!--검색영역 -->
 		<div id="search">
 		<div id="users1">
-		<label id="userno">회원번호</label>
-		 <div id="input"><input class="form-control" id="ex1" type="text"style="width:100px;"></div> 
-		 <div id="wave">~</div>
-		 <div id="input1"><input class="form-control" id="ex1" type="text"style="width:100px;"></div> 
+		<label id="searchtitle">공연장명</label>
+		 <div id="input"><input class="form-control" id="ex1" type="text"style="width:250px;"></div> 
+	 
 		
-		<label id="userno">회원명</label>
+		<label id="searchtitle">회원명</label>
 		 <div id="input"><input class="form-control" id="ex1" type="text"style="width:250px;"></div> 
 		
 		</div>
 		
 			<div id="users2">
-		<label id="userno">대관등록승인</label>
+		<label id="condition">검수상태</label>
 
 		</div>
 		
 		<div id="users3">
 		  <div class="col-sm-2" >
-        <select class="form-control" id="gender1">
-          <option>Y</option>
-          <option>N</option>
+        <select class="form-control" id="select1">
+          <option>검수대기</option>
+          <option>검수완료</option>
         </select>       
         </div>
         
         
         
         <div id="users4">
-        <label id="userno">탈퇴</label>
+        <label id="approval">승인유무</label>
         </div>
         
         
         <div id="users5">
           <div class="col-sm-2" id="select" >
-        <select class="form-control" id="gender1">
-          <option>Y</option>
-          <option>N</option>
+        <select class="form-control" id="select2">
+          <option>승인</option>
+          <option>거절</option>
         </select>       
            
 		</div>
@@ -229,47 +247,56 @@ margin-top:-150px;
 		
 		<br><br>
 <div class="container">
+           
   <table class="table">
     <thead>
       <tr>
-        <th>회원번호</th>
-        <th>이메일(아이디)</th>
-        <th>이름</th>
+        <th>대관고유번호</th>
+        <th>공연장명</th>
+        <th>세부공연장명</th>
+        <th>이메일</th>
         <th>연락처</th>
-        <th>대관승인여부</th>
-        <th>탈퇴여부</th>
-
-        
+        <th>공연장등록증첨부파일</th>
+        <th>검수상태</th>
+        <th>승인여부</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
+        <td>00001</td>
+        <td>정보홀</td>
+        <td>c홀</td>
+        <td>kh@naver.com</td>
         <td>010-1111-1111</td>
-        <td>Y</td>
-        <td>N<td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
+        <td>kh@jpg</td>
+	    <td>검수대기</td>
+	    <td>승인대기</td>
+	</tr>
+        <tr>
+        <td>00002</td>
+        <td>홀홀홀</td>
+        <td>개나리홀</td>
+        <td>kh@naver.com</td>
         <td>010-1111-1111</td>
-        <td>Y</td>
-        <td>N<td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
+        <td>kh@jpg</td>
+	    <td>검수완료</td>
+	    <td>승인완료</td>
+	</tr>
+<tr>
+        <td>00003</td>
+        <td>냠냠</td>
+        <td>c홀</td>
+        <td>kh@naver.com</td>
         <td>010-1111-1111</td>
-        <td>Y</td>
-        <td>N<td>
-      </tr>
+        <td>kh@jpg</td>
+	    <td>검수완료</td>
+	    <td>승인거절</td>
+	</tr>
+  
     </tbody>
   </table>
 </div>
+
 
 		
 		</div>
@@ -280,7 +307,8 @@ margin-top:-150px;
 		
 	
 
+</div>
 
-
+<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

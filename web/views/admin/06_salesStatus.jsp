@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -119,7 +121,7 @@ margin-top:30px;
 
 </head>
 <body>
-
+<jsp:include page="/views/common/header.jsp" />
 	<div id="center" class="fram">
 		<!-- 타이틀 -->
 		<h2 id="text1">
@@ -221,5 +223,7 @@ margin-top:30px;
 		<!-- 그래프 들어갈 자리 -->	
 	</div>
 
+
+<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

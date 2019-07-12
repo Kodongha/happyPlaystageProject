@@ -1,3 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,14 +8,13 @@
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script
+<script>
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
@@ -22,11 +24,7 @@
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>대관 등록 수정 연결</title>
 <style>
 #mainframe {
 
@@ -94,7 +92,7 @@
 	margin-top: -501px;
 }
 
-.btn {
+.btn1 {
 	margin-left: 450px;
 	margin-top: -30px;
 	width: 70px;
@@ -102,6 +100,7 @@
 </style>
 </head>
 <body>
+<jsp:include page="/views/common/header.jsp" />
 	<div id=mainframe>
 		<div align="center">
 			<h1>
@@ -118,7 +117,7 @@
 				<div id="info1">기본정보</div>
 				<div id="info2">공간에 대한 기본 정보를 입력하세요</div>
 				<div class="container">
-					<button type="button" class="btn">수정</button>
+					<button type="button" class="btn1">수정</button>
 				</div>
 			</div>
 			<br> <br>
@@ -126,7 +125,7 @@
 				<div id="userinfo1">이용안내</div>
 				<div id="userinfo2">운영시간 및 주의사항을 입력하세요</div>
 				<div class="container">
-					<button type="button" class="btn">수정</button>
+					<button type="button" class="btn1">수정</button>
 				</div>
 			</div>
 		</div>
@@ -135,7 +134,7 @@
 				<div id="info1">연락처정보</div>
 				<div id="info2">문의 및 알림을 받을 연락처를 입력하세요</div>
 				<div class="container">
-					<button type="button" class="btn">수정</button>
+					<button type="button" class="btn1">수정</button>
 				</div>
 			</div>
 			<br> <br>
@@ -143,11 +142,11 @@
 				<div id="userinfo1">이용안내</div>
 				<div id="userinfo2">운영시간 및 주의사항을 입력하세요</div>
 				<div class="container">
-					<button type="button" class="btn">수정</button>
+					<button type="button" class="btn1">수정</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

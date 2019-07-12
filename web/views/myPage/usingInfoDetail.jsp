@@ -1,12 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <style>
-  div {margin:auto};
-  
-  thead tr {
+div {
+		margin:auto;
+	}
+	
+	thead tr {
     background-color: gray;
   
   } 
@@ -22,78 +30,39 @@
   tbody tr:nth-child(1) {
     background-color: #b4b4b4;
   }
-  
 </style>
 </head>
 <body>
-	<h1 align="center" style="color:gray">대관 등록 내역 상세정보</h1>
+<jsp:include page="/views/common/header.jsp" />
+	<h1 align=center>대관 사용 내역 상세정보</h1>
 	
-	
-	<div style="width:790px;">
-	<h5>대관정보</h5>
-	<table style="width:790px; height:113px; text-align:center; margin:auto; border-collapse: collapse;">
-		<tr>
-		<td>등록공간 고유번호</td>
-		<td>등록공간 이름</td>
-		<td>등록공간 상태</td>
-		</tr>
-		<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		</tr>
-		<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		</tr>
-	</table>
-	</div>
-		
-	
-	<div style="width:790px;">
-	<h5>검수진행상황</h5>
 	<hr>
-	<div style="width:240px;">
-	<input type="radio" value="검수진행중">검수진행중&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="radio" value="검수완료">검수완료</div>
-	<hr>
-	</div>
+	<br>
 	
 	<div style="width:790px;">
-	<h5>신청자 리스트</h5>
+	
 	<table style="width:790px; height:113px; text-align:center; margin:auto; border-collapse: collapse;">
 		<tr>
-		<td>신청자 닉네임</td>
-		<td>신청공간 이름</td>
-		<td>신청공간 상태</td>
+		<td>공연장명</td>
+		<td>이용시간</td>
+		<td>예약정보</td>
+		<td>정산정보</td>
+		<td>정산정보</td>
+		<td>상호명</td>
+		<td>대표자명</td>
 		</tr>
 		<tr>
 		<td></td>
 		<td></td>
 		<td></td>
-		</tr>
-		<tr>
+		<td></td>
 		<td></td>
 		<td></td>
 		<td></td>
 		</tr>
 	</table>
 	</div>
-	
-	<div style="width:790px;">
-	<h5>계약자 정보</h5>
-	<table style="width:790px; height:113px; text-align:center; margin:auto; border-collapse: collapse;">
-		<tr>
-		<td>계약계좌정보</td>
-		<td>계약정보</td>
-		</tr>
-		<tr>
-		<td></td>
-		<td></td>
-		</tr>
-	</table>
-	</div>
+	<br>
 	
 	<hr>
 	
@@ -169,7 +138,6 @@
 	<br><br>
 	
 	<div style="width:790px; height:380px; border:1px solid black">지도</div>
-	
-	
+	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

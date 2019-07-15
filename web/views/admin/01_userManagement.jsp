@@ -250,7 +250,7 @@ margin-top:-150px;
     </tbody>
   </table>
 </div>
-
+</div>
 		
 		
 		

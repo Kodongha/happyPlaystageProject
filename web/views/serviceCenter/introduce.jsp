@@ -81,7 +81,7 @@ body {
 <body>
 <jsp:include page="/views/common/header.jsp" />
 	<div id="d1">
-		<div id="text1" class="text">공연장이 필요할땐</div>
+		<div id="text1" class="text">공연장이 필요할 땐</div>
 		<div id="text2" class="text">Happy Playstage</div>
 	</div>
 	<div id="d2">
@@ -93,7 +93,7 @@ body {
 	<br>
 	<br>
 	<div id="d3">
-		<div id="text3" class="text">색다른 무대, 취향저격 공연장</div>
+		<div id="text3" class="text">색다른 무대, 취향 저격 공연장</div>
 	</div>
 	<br>
 	<br>

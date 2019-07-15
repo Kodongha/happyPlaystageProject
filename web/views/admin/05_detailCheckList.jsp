@@ -5,33 +5,22 @@
 <head>
 <meta charset="UTF-8">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" 
  integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    
-    
-    
-    
-<title>Insert title here</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
+<title>Insert title here</title>
 
 <style>
 
 
 #center {
 
-	width: 1300px;
-	height: 800px;
 	margin: auto;
 }
 
@@ -40,136 +29,16 @@
 	width: 1300px;
 	margin: auto;
 }
-<!--회원관리내역-->
+
 #text1 {
-	width: 180px;
+	width: 500px;
 	height: 30px;
-	margin-left: 70px;
+	margin-left: 120px;
 }
-#left{
-	width: 600px;
-	height: 450px;
-}
-
-#left-bottom{
-	width: 600px;
-	height: 280px;
-}
-
-#leave{
-	margin-left:-280px;
-	margin-top:30px
-}
-
-#select1{
-	margin-left:-116px;
-	margin-top:30px;
-}
-
-#right{
-	
-	width: 670px;
-	height:800px;
-	margin-top:-400px;
-	margin-left:350px;
-}
-#register {
-	margin-left:300px;
-	margin-top:-370px;
-}
-#register1 {
-
-width: 150px;
-	margin-left:150px;
-	margin-top:40px;
-}
-
-
-#container{
-
-	margin-left:100px;
-	margin-top:-350px;
-}
-#container1{
-
-	margin-top:20px;
-}
-
-ul {
-
-	list-style:none;
-	float:left;
-	display:inline;
-	text-align: center;
-}
-ul li {
-	float:left;
-}
-ul li a {
-	float:left;
-	padding:4px;
-	margin-right:3px;
-	width:15px;
-	color:#000;
-	font:bold 12px tahoma;
-	border:1px solid #eee;
-	text-align:center;
-	text-decoration:none;
-}
-ul li a:hover, ul li a:focus {
-	color:#fff;
-	border:1px solid #f40;
-	background-color:#f40;
-}
-
-#paging{
-
-	margin-left:200px;
-}
-
-#paging1{
-
- 	margin-left:100px; 
-}
-
-#table1{
-
-weigth:200px;
-}
-
-#searchbutton{
-weigth:300px;
-margin-left:1050px;
-}
-#title{
-margin-left:70px;
-}
-#license{
-margin-left:310px;
+.btn-default{
+	margin-left: 800px;
 
 }
-#license1{
-margin-left:200px;
-
-}
-
-#innerimg{
-margin-left:70px;
-}
-.filebox input[type="file"] { position: absolute; width: 1px; height: 1px; 
-padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
-
- .filebox label { display: inline-block; padding: .5em .75em; color: #999; font-size: inherit;
-  line-height: normal; vertical-align: middle; background-color: #fdfdfd; cursor: pointer;
-   border: 1px solid #ebebeb; border-bottom-color: #e2e2e2; border-radius: .25em; } /* named upload */
-   
-  .filebox .upload-name { display: inline-block; padding: .5em .75em; 
-  /* label의 패딩값과 일치 */ font-size: inherit; font-family: inherit; line-height: normal;
-   vertical-align: middle; background-color: #f5f5f5; border: 1px solid #ebebeb;
-    border-bottom-color: #e2e2e2; border-radius: .25em; -webkit-appearance: none; 
-    /* 네이티브 외형 감추기 */ -moz-appearance: none; appearance: none; }
-
-
 </style>
 
 </head>
@@ -177,7 +46,7 @@ padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
 <jsp:include page="/views/common/header.jsp" />
 	<div id="center" class="fram">
 	<!-- 타이틀 -->
-		<h2 id="text1">
+		<h2 id="text1" >
 			<strong>대관 등록 검수 리스트 상세</strong>
 			
 		</h2>
@@ -189,37 +58,37 @@ padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
 				<br>
   <form class="form-horizontal">
     <div class="form-group">
-      <label class="control-label col-sm-2" for="userno">공연장명</label>
+      <label class="control-label col-sm-2" for="Performancename">공연장명</label>
       <div class="col-sm-10">
-        <input type="email" class="form-control" id="userno"  name="userno" style="width:300px;">
+        <input type="text" class="form-control" id="Performancename"  name="Performancename" style="width:500px;">
       </div>
     </div>
     <br>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="nickname ">주소</label>
+      <label class="control-label col-sm-2" for="address ">주소</label>
       <div class="col-sm-10">          
-        <input type="password" class="form-control" id="nickname "name="nickname " style="width:300px;">
+        <input type="text" class="form-control" id="address "name="address " style="width:500px;">
       </div>
     </div>
         <br>
      <div class="form-group">
-      <label class="control-label col-sm-2" for="name">공연장상세소개</label>
+      <label class="control-label col-sm-2" for="Detailedintroduction">공연장상세소개</label>
       <div class="col-sm-10">          
-        <input type="password" class="form-control" id="name" name="name" style="width:300px;">
+        <input type="text" class="form-control" id="Detailedintroduction" name="namDetailedintroductione" style="width:500px;">
       </div>
     </div>
         <br>
       <div class="form-group">
-      <label class="control-label col-sm-2" for="phone">공연장주의사항</label>
+      <label class="control-label col-sm-2" for="caution">공연장주의사항</label>
       <div class="col-sm-10">          
-        <input type="password" class="form-control" id="phone" name="phone" style="width:300px;">
+        <input type="text" class="form-control" id="caution" name="phcautionone" style="width:500px;">
       </div>
     </div>
         <br>
       <div class="form-group">
-      <label class="control-label col-sm-2" for="email">웹사이트</label>
+      <label class="control-label col-sm-2" for="Website">웹사이트</label>
       <div class="col-sm-10">          
-        <input type="password" class="form-control" id="email" name="email" style="width:300px;">
+        <input type="text" class="form-control" id="Website" name="Website" style="width:500px;">
       </div>
     </div>
    
@@ -233,51 +102,46 @@ padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
           <option>Y</option>
           <option>N</option>
         </select>      
-         
+         <br>
       </div>
-      <br>
+        
   
-      <div id="right">
-      <div class="container1">
-  
-  <br><br><br>        
-  <label id="title">대표이미지</label> 
-   <label id="license">공연장등록증</label>
-  <br><br>
- 	 <img src="/sm/images/palbc.png" class="img-rounded" width="200" height="200">  
-  	
-  	
-    <img src="/sm/images/jjm.png" class="img-rounded" width="200" height="200" id="license1"> 
-    <br>
-   <br>
-     <label id="innerimg">내부이미지</label>
-     <br><br>
-     <img src="/sm/images/palbc.png" class="img-rounded" width="200" height="200">  
- 	<img src="/sm/images/palbc.png" class="img-rounded" width="200" height="200">  
-    <img src="/sm/images/jjm.png" class="img-rounded" width="200" height="200"> 
-     <img src="/sm/images/palbc.png" class="img-rounded" width="200" height="200">  
-  	<img src="/sm/images/palbc.png" class="img-rounded" width="200" height="200">  
-    <img src="/sm/images/jjm.png" class="img-rounded" width="200" height="200"> 
-</div>
-      
-    
-    
-    
-    
-    
-    
-      </div>  
+    </div>
+    </div>
+       <div class="form-group">
+      <label class="control-label col-sm-2" for="mainimg">대표이미지</label>
+      <div class="col-sm-10">          
+        	<img src="images/myPage/kakao.png"> 
       </div>
-      
-      
+    </div>
+     <div class="form-group">
+      <label class="control-label col-sm-2" for="Registration">공연장등록증</label>
+      <div class="col-sm-10">          
+        <img src="images/myPage/kakao.png"> 
+      </div>
+    </div>
+     <div class="form-group">
+      <label class="control-label col-sm-2" for="img">내부이미지</label>
+      <div class="col-sm-10">          
+           <img src="images/myPage/kakao.png"> 
+               <img src="images/myPage/kakao.png"> 
+                   <img src="images/myPage/kakao.png"> 
+                       <img src="images/myPage/kakao.png"> 
+                           <img src="images/myPage/kakao.png"> 
+                               <img src="images/myPage/kakao.png"> 
+                               
+      </div>
+    </div>
+      <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">검수완료</button>
+      </div>
+      </div>
+    </form>
+    </div>
+    </div>
+    </div>
    
-   <button type="button" class="btn btn-warning" id="searchbutton">수정</button>
-      <button type="button" class="btn btn-warning" id="searchbutton1">취소</button>
-      </div>
- </form>
-    </div>
-    </div>
-    </div>
     <jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

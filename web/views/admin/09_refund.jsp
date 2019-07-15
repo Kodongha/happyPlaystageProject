@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,33 +11,18 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
 	integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
 	crossorigin="anonymous">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
 <title>Insert title here</title>
 
 
-
 <style>
-
-
 #center {
-/* 	border: 1px solid black; */
+	/* 	border: 1px solid black; */
 	width: 1300px;
 	height: 800px;
 	margin: auto;
@@ -48,121 +33,105 @@
 	width: 1300px;
 	margin: auto;
 }
-<!--회원관리내역-->
-#text1 {
+
+<!--
+회원관리내역-->#text1 {
 	width: 180px;
 	height: 30px;
 	margin-left: 70px;
-	
 }
 
-#search{
-
-	border: 1px solid gray; 
+#search {
+	border: 1px solid gray;
 	width: 1200px;
-	height:150px;
-	margin-left:50px;
-	border-top-left-radius:8px;
-	border-top-right-radius:8px;
-	border-bottom-left-radius:8px;
-	border-bottom-right-radius:8px;
-	
+	height: 150px;
+	margin-left: 50px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
 }
 
-
-
-#users4{
-
-width: 100px;
-height:150px;
-margin-left:500px;
-margin-top:-100px;
-
-}
-
-
-
-
-#userno{
+#userno {
 	width: 100px;
-	margin-left:10px;
-	margin-top:30px;
-	
-}
-#input{
-	width: 110px;
-	margin-left:100px;
-	margin-top:-32px;
+	margin-left: 10px;
+	margin-top: 30px;
 }
 
-#input1{
+#input {
 	width: 110px;
-	margin-left:250px;
-	margin-top:-26px;
+	margin-left: 100px;
+	margin-top: -32px;
 }
 
-#wave{ 
+#input1 {
+	width: 110px;
+	margin-left: 250px;
+	margin-top: -26px;
+}
+
+#wave {
 	width: 10px;
-	margin-left:220px;
-	margin-top:-28px;
-	
+	margin-left: 220px;
+	margin-top: -28px;
 }
 
-#assent{
-	background:red;
+#assent {
+	background: red;
 	width: 100px;
-	margin-left:0px;
-	margin-bottom:30px;
-	
+	margin-left: 0px;
+	margin-bottom: 30px;
 }
 
-#leave{
+#leave {
 	width: 100px;
-	margin-left:100px;
-	margin-top:-30px;
+	margin-left: 100px;
+	margin-top: -30px;
 }
 
-.col-sm-2{
+.col-sm-2 {
 	width: 100px;
-	margin-top:25px;
+	margin-top: 25px;
 }
 
-#select{
+#selects {
 	width: 100px;
-	margin-left:-15px;
-	margin-top:25px;
-}
-#searchbutton{
-	margin-left:1100px;
-	margin-top:-10px;
+	margin-left: 319px;
+	margin-top: -10px;
 }
 
-.button{
-width: 40px;
-background: E6E6E6;
-border:none;
-border-radius: 6px 6px 6px 6px;
-
-}
-#jungsan{
-width:400px;
-margin-left:500px;
-margin-top:-200px;
-
-}
-#gender1{
-margin-left:630px;
-margin-top:-680px;
+#searchbutton {
+	margin-left: 1100px;
+	margin-top: -10px;
 }
 
-.container{
-	margin-top:-500px;
+.button {
+	width: 40px;
+	background: E6E6E6;
+	border: none;
+	border-radius: 6px 6px 6px 6px;
+}
+
+#jungsan {
+	width: 400px;
+	margin-left: 500px;
+	margin-top: -140px;
+}
+
+#condition {
+	width: 400px;
+	margin-left: 551px;
+	margin-top: -100px;
+}
+.tables{
+margin-top: 70px;
+
 }
 </style>
 
 </head>
 <body>
-<jsp:include page="/views/common/header.jsp" />
+	<jsp:include page="/views/common/header.jsp" />
 	<div id="center" class="fram">
 		<!-- 타이틀 -->
 		<h2 id="text1">
@@ -191,32 +160,36 @@ margin-top:-680px;
 
 			<button type="button" class="btn btn-warning" id="searchbutton">검색</button>
 
+
+
+
+
+
+			<div id="jungsan">
+				<label id="userno">환불기간</label>
+				<div id="input">
+					<input class="form-control" id="ex1" type="text"
+						style="width: 100px;">
+				</div>
+				<div id="wave">~</div>
+				<div id="input1">
+					<input class="form-control" id="ex1" type="text"
+						style="width: 100px;">
+				</div>
+			</div>
 		</div>
 
-
-
-   <div id="users4">
-        <label id="userno">처리상태</label>
-        </div>
-    
- 		<div id="jungsan">
-		<label id="userno">환불기간</label>
-		 <div id="input"><input class="form-control" id="ex1" type="text"style="width:100px;"></div> 
-		 <div id="wave">~</div>
-		 <div id="input1"><input class="form-control" id="ex1" type="text"style="width:100px;"></div> 
+		<div id="condition">
+			<label id="userno">처리상태</label>
 		</div>
-        </div>
-        
-        
-      
-          <div class="col-sm-2" id="select" >
-        <select class="form-control" id="gender1">
-          <option>Y</option>
-          <option>N</option>
-        </select>       
-       	</div>
-		<div class="container">
+		<div class="col-sm-2" id="selects">
+			<select class="form-control" id="selects">
+				<option>Y</option>
+				<option>N</option>
+			</select>
+		</div>
 
+		<div class="tables">
 			<table class="table">
 				<thead>
 					<tr>
@@ -224,11 +197,12 @@ margin-top:-680px;
 						<th>회원명</th>
 						<th>은행명</th>
 						<th>계좌</th>
+						<th>예금주</th>
 						<th>금액</th>
 						<th>수수료</th>
 						<th>정산금액</th>
 						<th>처리상태</th>
-						<th>환불</th>
+						<th>정산</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -237,52 +211,52 @@ margin-top:-680px;
 						<td>안정웅</td>
 						<td>국민</td>
 						<td>352685-02-55685</td>
+								<td>안정웅</td>
 						<td>55,000</td>
+				
 						<td>5500</td>
 						<td>49,500</td>
 						<td>Y</td>
 						<td><input type="button" value="환불" class="button"></td>
-					</tr>
 					<tr>
 						<td>00002</td>
 						<td>고동하</td>
 						<td>국민</td>
 						<td>352685-02-55685</td>
+											<td>고동하</td>
 						<td>55,000</td>
+	
 						<td>5500</td>
 						<td>49,500</td>
-						<td>N</td>
+						<td>Y</td>
 						<td><input type="button" value="환불" class="button"></td>
-					</tr>
-
 					<tr>
 						<td>00003</td>
 						<td>하민희</td>
 						<td>국민</td>
 						<td>352685-02-55685</td>
+							<td>하민희</td>
 						<td>55,000</td>
 						<td>5500</td>
 						<td>49,500</td>
 						<td>Y</td>
 						<td><input type="button" value="환불" class="button"></td>
-					</tr>
-					<tr>
-						<td>00004</td>
-						<td>강인우</td>
-						<td>국민</td>
-						<td>352685-02-55685</td>
-						<td>55,000</td>
-						<td>5500</td>
-						<td>49,500</td>
-						<td>N</td>
-						<td><input type="button" value="환불" class="button"></td>
-
-					</tr>
 				</tbody>
 			</table>
+
+
+
+</div>
 		</div>
 
-	
-<jsp:include page="/views/common/footer.jsp" />
+
+
+
+
+
+
+
+
+		<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

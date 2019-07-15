@@ -216,6 +216,7 @@
 </style>
 </head>
 <body>
+<jsp:include page="/views/common/header.jsp" />
 	<div id=mainframe>
 		<div align="center">
 			<h1>
@@ -266,5 +267,6 @@
 		
 	</div>
 
+<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

@@ -82,6 +82,7 @@ label {
 	width: 400px;
 	height: 30px;
 	border-radius : 5px;
+
 }
 
 h2 {
@@ -98,9 +99,6 @@ h2 {
 		<h2>비밀번호 찾기</h2>
 		<hr>
 	</div>
-
-
-
 	<form>
 		<div class="findId" id="findid2">
 			<table>

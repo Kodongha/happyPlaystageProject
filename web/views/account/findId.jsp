@@ -24,10 +24,10 @@ h3{
 
 h5{
 
-   text-align: left;
+   text-align: center;
 }
 #findid1{
-   width: 550PX;
+   width: 700PX;
    text-align: center;
    display: inline-block;
     height: 100px;
@@ -47,7 +47,7 @@ td{
 #findid2{
    padding: 20px;
    border: 1px solid black;
-   width: 500px;
+   width: 700px;
    margin-right: auto;
    margin-left: auto;
  
@@ -57,7 +57,7 @@ label{
    font-weight: bold;
 }
 
-h2{
+h4{
 	
 	text-align: left;
 	font-size: large;
@@ -77,7 +77,7 @@ h2{
 <body>
 <jsp:include page="/views/common/header.jsp" />
 <div class= "findId" id= "findid1">
-<h2>아이디 찾기</h2>
+<h4>아이디 찾기</h4>
 <hr>
 </div>
 

@@ -8,6 +8,7 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <style rel="stylesheet">
 @charset "UTF-8";
@@ -24,9 +25,9 @@ body {
 }
 body .container {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 700px;
-  height: 500px;
+  height: 650px;
   margin: 80px auto 0;
   background-color: #ffffff;
   -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
@@ -86,8 +87,8 @@ body .container .tabs .tab.active {
   border-bottom: 1px solid #263238;
 }
 body .container .content form {
-  position: relative;
-  height: 287px;
+  /* position: relative; */
+  height: 100%;
 }
 body .container .content label:first-of-type, body .container .content input:first-of-type, body .container .content .more:first-of-type {
   -moz-animation: slideIn 0.4s cubic-bezier(0.37, 0.82, 0.2, 1);
@@ -219,7 +220,7 @@ body .container .content .checkbox:checked + label:before {
   content: "✓";
 }
 body .container .content .submit-wrap {
-  position: absolute;
+  /* position: absolute; */
   bottom: 0;
   width: 100%;
 }
@@ -279,6 +280,8 @@ body .container .content .signup-cont {
   text-decoration: none;
 }
 
+
+
 </style>
 </head>
 <body>
@@ -288,7 +291,7 @@ body .container .content .signup-cont {
                  <h1>Happy playStage</h1>
                  <div class="tabs">
                         <span class="tab signin active"><a href="#signin">Sign in</a></span>
-                     
+                     	
                  </div>
                  <div class="content">
                         <div class="signin-cont cont">
@@ -297,21 +300,52 @@ body .container .content .signup-cont {
                                       <label for="email">Your email</label>
                                       <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Your password">
                                       <label for="password">Your password</label>
+                                      <div class="submit-wrap">
                                       <input type="checkbox" id="remember" class="checkbox" checked>
                                       <label for="remember">Remember me</label>
-                                      <div class="submit-wrap">
-                                             <input type="submit" value="Sign in" class="submit">
+                                            
                                              <a href="#" class="more">Forgot your Id?</a>
                                              <a href="#" class="more">Forgot your password?</a>
                                              <a href="#" class="more">Sign Up</a>
+                                             
+   												 <input type="submit" value="Sign in" class="submit">
+   												
+   												<div class="f1">
+ 												<a id="kakao-login-btn"></a>
+												<a href="http://developers.kakao.com/logout"></a>
+   												</div>												
+   											
+                                           
+
+
                                       </div>
                                </form>
                         </div>
-       
                  </div>
           </article>
           <div class="half bg"></div>
    </section>
+
+     <script type='text/javascript'>
+     Kakao.init('d371ecdcb455e35b072949c209feab4b');
+     
+     Kakao.Auth.createLoginButton({
+         container: '#kakao-login-btn',
+         success: function(authObj) {
+           alert(JSON.stringify(authObj));
+         },
+         fail: function(err) {
+            alert(JSON.stringify(err));
+         }
+       });
+     
+     
+     </script>
+  
+                                             
+											
+                                            
+   
 
 
 
@@ -337,6 +371,5 @@ $('.container .bg').mousemove(function(e){
     $(this).css('background-position', amountMovedX + 'px ' + amountMovedY + 'px');
 });
 </script>
-<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<%@page import="com.kh.hp.account.model.vo.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	UserVO user = (UserVO) session.getAttribute("user");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +15,7 @@
 <title>마이페이지</title>
 <style>
 	.btn1 { text-align: center; }
-	
+
 	#first {
 		margin-left:46.4%;
 		border:1.5px solid lightgray;
@@ -23,10 +27,10 @@
 	  display: inline-block;
 	  width: 60px;
 	  height: 30px;
-	  
+
 	}
-	
-	
+
+
 	.slider {
 	  position: absolute;
 	  cursor: pointer;
@@ -37,9 +41,9 @@
 	  background-color: #ccc;
 	  -webkit-transition: .4s;
 	  transition: .4s;
-	  
+
 	}
-	
+
 	.slider:before {
 	  position: absolute;
 	  content: "";
@@ -50,35 +54,35 @@
 	  background-color: white;
 	  -webkit-transition: .4s;
 	  transition: .4s;
-	  
+
 	}
-	
+
 	input:checked + .slider {
 	  background-color: #2196F3;
-	  
+
 	}
-	
+
 	input:checked + .slider:before {
 	  -webkit-transform: translateX(26px);
 	  -ms-transform: translateX(26px);
 	  transform: translateX(26px);
 	}
-	
+
 	/* Rounded sliders */
 	.slider.round {
 	  border-radius: 34px;
 	}
-	
+
 	.slider.round:before {
 	  border-radius: 50%;
 	}
-	
+
 	#revise {
 		border:0px;
 		background:white;
 		text-decoration: underline;
 	}
-	
+
 	#out {
 		border:0px;
 		background:white;
@@ -111,17 +115,18 @@
 <jsp:include page="/views/common/header.jsp" />
 	<h1 align=center style="color:gray">마이페이지</h1>
 	<div class="btn1">
-	<img src="/semi/image/person.png">
+	<img src="../../images/myPage/person.png">
 	</div>
-	<h3 align=center>NINANO</h3>
+	<h3 align=center><%= user.getUserNick() %></h3>
 	<button id="first"><strong>프로필사진변경</strong></button>
 	<br><br>
 	<hr>
 	<br>
+		<form action="<%=request.getContextPath() %>/updateUser.mp" method="post">
 		<table class="information">
 			<tr>
 				<td class="information-detail">이름</td>
-				<td class="information-detail2">name</td>
+				<td class="information-detail2"><%=user.getUserNm() %></td>
 			</tr>
 			<tr>
 				<td class="information-detail">닉네임</td>
@@ -138,7 +143,7 @@
 			<tr></tr>
 			<tr>
 				<td class="information-detail">이메일연동</td>
-				<td><img src="/semi/image/google.png" id="google">구글</td>
+				<td><img src="../../images/myPage/google.png" id="google">구글</td>
 				<td class="information-detail2">
 				<label class="switch">
   					<input type="checkbox" checked>
@@ -148,7 +153,7 @@
 			</tr>
 			<tr>
 				<td></td>
-				<td><img src="/semi/image/kakao.png" id="kakao">카카오</td>
+				<td><img src="../../images/myPage/kakao.png" id="kakao">카카오</td>
 				<td class="information-detail2">
 				<label class="switch">
   					<input type="checkbox" checked>
@@ -162,9 +167,10 @@
 		</table>
 		<hr>
 			<div class="btn1">
-			<input type=button style="WIDTH:180pt; height:25pt; background-color:#777; border:0px; color:white;  border-radius: 6px;" value="취소">
-			<input type=button style="width:180pt; height:25pt; background-color:#ff471a; border:0px; color:white;  border-radius: 6px;" value="확인">
+			<input type="reset" style="WIDTH:180pt; height:25pt; background-color:#777; border:0px; color:white;  border-radius: 6px;" value="취소">
+			<input type="submit" style="width:180pt; height:25pt; background-color:#ff471a; border:0px; color:white;  border-radius: 6px;" value="확인">
   			</div>
+  		</form>
   		<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

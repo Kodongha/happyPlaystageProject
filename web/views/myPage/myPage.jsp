@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<%@page import="com.kh.hp.account.model.vo.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	UserVO user = (UserVO) session.getAttribute("user");
+%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,23 +15,23 @@
 <title>마이페이지</title>
 <style>
 	.ima { text-align: center; }
-	
+
 	#first {
 		margin-left:46.4%;
 		border:1.5px solid lightgray;
 		background:white;
 		height:40px;
 	}
-	
+
 	.switch {
 	  position: absolute;
 	  display: inline-block;
 	  width: 60px;
 	  height: 30px;
-	  
+
 	}
-	
-	
+
+
 	.slider {
 	  position: absolute;
 	  cursor: pointer;
@@ -38,9 +42,9 @@
 	  background-color: #ccc;
 	  -webkit-transition: .4s;
 	  transition: .4s;
-	  
+
 	}
-	
+
 	.slider:before {
 	  position: absolute;
 	  content: "";
@@ -51,35 +55,35 @@
 	  background-color: white;
 	  -webkit-transition: .4s;
 	  transition: .4s;
-	  
+
 	}
-	
+
 	input:checked + .slider {
 	  background-color: #2196F3;
-	  
+
 	}
-	
+
 	input:checked + .slider:before {
 	  -webkit-transform: translateX(26px);
 	  -ms-transform: translateX(26px);
 	  transform: translateX(26px);
 	}
-	
+
 	/* Rounded sliders */
 	.slider.round {
 	  border-radius: 34px;
 	}
-	
+
 	.slider.round:before {
 	  border-radius: 50%;
 	}
-	
+
 	#revise {
 		border:0px;
 		background:white;
 		text-decoration: underline;
 	}
-	
+
 	#out {
 		border:0px;
 		background:white;
@@ -112,9 +116,9 @@
 <jsp:include page="/views/common/header.jsp" />
 	<h1 align=center style="color:gray">마이페이지</h1>
 	<div class="ima">
-	<img src="/semi/image/person.png">
+	<img src="../../images/myPage/person.png">
 	</div>
-	<h3 align=center>NINANO</h3>
+	<h3 align=center><%= user.getUserNick() %></h3>
 	<button id="first"><strong>프로필사진변경</strong></button>
 	<br><br>
 	<hr>
@@ -122,24 +126,30 @@
 		<table class="information">
 			<tr>
 				<td class="information-detail">이름</td>
-				<td class="information-detail2">name</td>
+				<td class="information-detail2"><%= user.getUserNm() %></td>
 			</tr>
 			<tr>
 				<td class="information-detail">닉네임</td>
-				<td class="information-detail2">nickname</td>
+				<td class="information-detail2"><%= user.getUserNick() %></td>
 			</tr>
 			<tr>
 				<td class="information-detail">이메일</td>
-				<td class="information-detail2">email</td>
+				<td class="information-detail2"><%= user.getUserEmail() %></td>
 			</tr>
 			<tr>
 				<td class="information-detail">연락처정보</td>
-				<td class="information-detail2">phone</td>
+				<td class="information-detail2">
+				<% if (user.getUserPhone() == null) { %>
+					<p>연락처를 입력해 주세요</p>
+				<% } else { %>
+				<%=	user.getUserPhone() %>
+				<% } %>
+				</td>
 			</tr>
 			<tr></tr>
 			<tr>
 				<td class="information-detail">이메일연동</td>
-				<td><img src="/semi/image/google.png" id="google">구글</td>
+				<td><img src="../../images/myPage/google.png" id="google">구글</td>
 				<td class="information-detail2">
 				<label class="switch">
   					<input type="checkbox" checked>
@@ -149,7 +159,7 @@
 			</tr>
 			<tr>
 				<td></td>
-				<td><img src="/semi/image/kakao.png" id="kakao">카카오</td>
+				<td><img src="../../images/myPage/kakao.png" id="kakao">카카오</td>
 				<td class="information-detail2">
 				<label class="switch">
   					<input type="checkbox" checked>
@@ -162,11 +172,11 @@
 			</tr>
 			<tr>
 				<td class="information-detail">회원정보</td>
-				<td class="information-detail2"><button id="revise">변경하기</button></td>
+				<td class="information-detail2"><button id="revise"><a href="<%=request.getContextPath() %>/views/myPage/revise.jsp">변경하기</a></button></td>
 			</tr>
 			<tr class="information-detail">
 				<td></td>
-				<td class="information-detail2"><button id="out">탈퇴하기</button></td>
+				<td class="information-detail2"><button id="out"><a href="<%=request.getContextPath() %>/views/myPage/revisePassword.jsp">탈퇴하기</button></td>
 			</tr>
 		</table>
 		<jsp:include page="/views/common/footer.jsp" />

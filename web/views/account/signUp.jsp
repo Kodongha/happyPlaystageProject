@@ -97,25 +97,25 @@
        <div class="form-group">
         <table>
            <tr>
-              <td><input class="form-control" id="inputdefault1" type="email" placeholder="이메일"></td>
+              <td><input class="form-control" id="inputdefault1" type="email" name="userId" placeholder="이메일"></td>
            </tr>
            <tr>
-              <td> <input class="form-control" id="inputdefault2" type="password" placeholder="비밀번호"></td>
+              <td> <input class="form-control" id="inputdefault2" type="password" name="password" placeholder="비밀번호"></td>
            </tr>
            <tr>
-              <td><input class="form-control" id="inputdefault3" type="password" placeholder="비밀번호 확인"></td>
+              <td><input class="form-control" id="inputdefault3" type="password" name="password2"placeholder="비밀번호 확인"></td>
            </tr>
            <tr>
-              <td><input class="form-control" id="inputdefault4" type="text" placeholder="이름"></td>
+              <td><input class="form-control" id="inputdefault4" type="text" name="userName" placeholder="이름"></td>
            </tr>
            <tr>
-              <td><input class="form-control" id="inputdefault5" type="text" placeholder="닉네임"></td>
+              <td><input class="form-control" id="inputdefault5" type="text" name="userNick" placeholder="닉네임"></td>
            </tr>
            <tr>
-              <td><input class="form-control" id="inputdefault6" type="tel" placeholder="연락처"></td>
+              <td><input class="form-control" id="inputdefault6" type="tel" name="userPhone" placeholder="연락처"></td>
            </tr>
            <tr>
-              <td><input class="form-control" id="inputdefault" type="password" placeholder="인증번호 6자리 숫자 입력"></td>
+              <td><input class="form-control" id="inputdefault" type="password" name="cNumber" placeholder="인증번호 6자리 숫자 입력"></td>
               <td id="inj"><input id="injbu" type="button" value="인증번호 받기"></td>
            </tr>
            

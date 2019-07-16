@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script
+<script 
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -17,7 +17,6 @@
 	div {margin:auto;}
 	table {margin-top:auto;}
 </style>
-
 <body>
 <jsp:include page="/views/common/header.jsp" />
 	<div style="width:700px; height:500px;">
@@ -26,7 +25,7 @@
 			<table class="table table-condensed" style="width:700px; height:400px;">
 					<tr>
 						<td>아이디</td>
-						<td>jogn@naver.com</td>
+						<td>jong@naver.com</td>
 						<td></td>
 					</tr>
 					<tr>

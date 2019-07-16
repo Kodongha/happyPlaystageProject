@@ -13,17 +13,13 @@
 	div {
 		margin:auto;
 	}
-	#tab2{
+	#tab1{
 		background-color: darkgray;
 		 border: 1px solid lightgray;
 	}
-	#tab1 {
+	#tab2 {
 	 border: 1px solid lightgray;
-  
   } 
-  
-  
-  
 </style>
 </head>
 <body>
@@ -55,31 +51,31 @@
 	
 	<table style="width:790px; height:113px; text-align:center; margin:auto; border-collapse: collapse;">
 		<tr>
-		<td id="tab2">공연장 고유번호</td>
-		<td id="tab2">상호명</td>
-		<td id="tab2">사용일자</td>
-		<td id="tab2">사용공간 이름</td>
+		<td id="tab1">공연장 고유번호</td>
+		<td id="tab1">상호명</td>
+		<td id="tab1">사용일자</td>
+		<td id="tab1">사용공간 이름</td>
 		</tr>
 		<tr>
-		<td id="tab1"></td>
-		<td id="tab1"></td>
-		<td id="tab1"></td>
-		<td id="tab1"></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
 		</tr>
 		<tr>
-		<td id="tab1"></td>
-		<td id="tab1"></td>
-		<td id="tab1"></td>
-		<td id="tab1"></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
 		</tr>
 		<tr>
-		<td id="tab1"></td>
-		<td id="tab1"></td>
-		<td id="tab1"></td>
-		<td id="tab1"></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
 		</tr>
 	</table>
 	</div>
 	<jsp:include page="/views/common/footer.jsp" />
 </body>
-</html>
+</html> 

@@ -57,6 +57,7 @@ public class AccountDao {
 				responseUserVO.setSnsCd(rset.getInt("SNS_CD"));
 				responseUserVO.setLeaveTf(rset.getString("LEAVE_TF").charAt(0));
 				responseUserVO.setLeaveDt(rset.getDate("LEAVE_DT"));
+				responseUserVO.setUserGradeCd(rset.getInt("USER_GRADE_CD"));
 			}
 
 		} catch (SQLException e) {

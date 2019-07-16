@@ -10,6 +10,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
 <style>
 	#picture {
 		width:100%;
@@ -27,6 +30,9 @@
 	.btns {
 		width:300px;
 	}
+	.ui.cards {
+    padding-left: 14%;
+}
 </style>
 
 </head>
@@ -55,7 +61,7 @@
 
       <div class="item" style="height:400px; width:100%; background-image:url(../../images/main/main3.jpg)">
       	<div id="d4">
-      	<br><br><br>
+      	<br><br><br><br><br>
 		<p id="text4">
 			<b>우리에게 꼭 맞는 공연장이 필요할땐!</b>
 		</p>
@@ -85,10 +91,179 @@
     </a>
   </div>
 </div>
-	<br>
+
+<!-- 새로 등록된 공간 -->
+<hr>
+	<br><br>
 	<div>
-		<h3 align="center"><b>새로 등록된 공간!</b></h3>
+		<h2 align="center"><b>새로 등록된 공간!</b></h2>
 	</div>
+	<br><br>
+	<div class="ui special cards">
+  <div class="card">
+    <div class="blurring dimmable image">
+      <div class="ui dimmer">
+        <div class="content">
+          <div class="center">
+            <div class="ui inverted button">상세보기</div>
+          </div>
+        </div>
+      </div>
+      <img src="../../images/rent/rent3.jpg">
+    </div>
+    <div class="content">
+      <a class="header">Team Fu</a>
+      <div class="meta">
+        <span class="date">Created in Sep 2014</span>
+      </div>
+    </div>
+    <div class="extra content">
+      <a>
+        <i class="users icon"></i>
+        2 Members
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="blurring dimmable image">
+      <div class="ui inverted dimmer">
+        <div class="content">
+          <div class="center">
+            <div class="ui primary button">상세보기</div>
+          </div>
+        </div>
+      </div>
+      <img src="../../images/rent/rent3.jpg">
+    </div>
+    <div class="content">
+      <a class="header">Team Hess</a>
+      <div class="meta">
+        <span class="date">Created in Aug 2014</span>
+      </div>
+    </div>
+    <div class="extra content">
+      <a>
+        <i class="users icon"></i>
+        2 Members
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="blurring dimmable image">
+      <div class="ui dimmer">
+        <div class="content">
+          <div class="center">
+            <div class="ui inverted button">상세보기</div>
+          </div>
+        </div>
+      </div>
+      <img src="../../images/rent/rent3.jpg">
+    </div>
+    <div class="content">
+      <a class="header">Team Fu</a>
+      <div class="meta">
+        <span class="date">Created in Sep 2014</span>
+      </div>
+    </div>
+    <div class="extra content">
+      <a>
+        <i class="users icon"></i>
+        2 Members
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- 리뷰 -->
+<hr>
+	<br><br>
+	<div>
+		<h2 align="center"><b>Review</b></h2>
+	</div>
+	<br><br>
+	<!-- 카드 -->
+	<div class="ui link cards" align="center">
+  <div class="card" align="center">
+    <div class="image">
+      <img src="../../images/rent/rent1.jpg">
+    </div>
+    <div class="content">
+      <div class="header">엘지 아트센터</div>
+      <div class="meta">
+      	<span class="date">Coworker</span>
+      </div>
+      <div class="description">
+     	  역삼동 679번지 강남구 서울특별시
+      </div>
+    </div>
+    <div class="extra content">
+      <span class="right floated">
+        2019.07.15
+      </span>
+      <span>
+        <i class="user icon"></i>
+        450,000 원 /일
+      </span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image">
+      <img src="../../images/rent/rent2.jpg">
+    </div>
+    <div class="content">
+      <div class="header">Molly</div>
+      <div class="meta">
+        <span class="date">Coworker</span>
+      </div>
+      <div class="description">
+        Molly is a personal assistant living in Paris.
+      </div>
+    </div>
+    <div class="extra content">
+      <span class="right floated">
+        Joined in 2011
+      </span>
+      <span>
+        <i class="user icon"></i>
+        35 Friends
+      </span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image">
+      <img src="../../images/rent/rent3.jpg">
+    </div>
+    <div class="content">
+      <div class="header">Elyse</div>
+      <div class="meta">
+        <a>Coworker</a>
+      </div>
+      <div class="description">
+        Elyse is a copywriter working in New York.
+      </div>
+    </div>
+    <div class="extra content">
+      <span class="right floated">
+        Joined in 2014
+      </span>
+      <span>
+        <i class="user icon"></i>
+        151 Friends
+      </span>
+    </div>
+  </div>
+</div>
+
+<script>
+$('.special.cards .image').dimmer({
+	  on: 'hover'
+	});
+</script>
+
+
+
+
 <jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

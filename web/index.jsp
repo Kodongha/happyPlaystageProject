@@ -6,6 +6,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<script type="text/javascript">
+	location.href="/happyPlaystage/views/main/main.jsp";
+</script>
 </body>
 </html>

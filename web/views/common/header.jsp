@@ -59,9 +59,6 @@
 	      </li>
 		<%} %>
 	    </ul>
-	    <script type="text/javascript">
-	    	console.log(<%=user.getUserGradeCd() %>);
-	    </script>
 
 		<!-- 검색 관련 -->
 		<ul class="nav navbar-nav navbar-right">
@@ -99,7 +96,7 @@
 	          <li><a href="<%=request.getContextPath() %>/views/myPage/07_statistics.jsp">등업 신청</a></li>
 	        </ul>
 	      </li>
- 			<li><a href="<%=request.getContextPath() %>/views/account/logout.jsp"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+ 			<li><a href="<%=request.getContextPath() %>/logout.acc"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
  			<%} %>
 		</ul>
 

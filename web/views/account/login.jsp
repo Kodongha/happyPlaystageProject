@@ -1,3 +1,4 @@
+<%@page import="com.kh.hp.account.model.vo.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -279,10 +280,15 @@ body .container .content .signup-cont {
   font-weight: 700;
   text-decoration: none;
 }
-
-
-
 </style>
+<script type="text/javascript">
+	<%
+		Boolean loginFlag = (Boolean) request.getAttribute("loginFlag");
+		if(loginFlag != null && loginFlag == false){
+	%>
+		alert("로그인 정보를 확인해주세요.");
+	<%	}%>
+</script>
 </head>
 <body>
 <jsp:include page="/views/common/header.jsp" />
@@ -291,31 +297,31 @@ body .container .content .signup-cont {
                  <h1>Happy playStage</h1>
                  <div class="tabs">
                         <span class="tab signin active"><a href="#signin">Sign in</a></span>
-                     	
+
                  </div>
                  <div class="content">
                         <div class="signin-cont cont">
-                               <form action="#" method="post" enctype="multipart/form-data">
-                                      <input type="email" name="email" id="email" class="inpt" required="required" placeholder="Your email">
-                                      <label for="email">Your email</label>
-                                      <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Your password">
-                                      <label for="password">Your password</label>
+                               <form action="<%=request.getContextPath() %>/checkLogin.acc" method="post">
+                                      <input type="email" name="userEmail" id="userEmail" class="inpt" placeholder="Your email">
+                                      <label>Your email</label>
+                                      <input type="password" name="userPwd" id="userPwd" class="inpt" required="required" placeholder="Your password">
+                                      <label>Your password</label>
                                       <div class="submit-wrap">
                                       <input type="checkbox" id="remember" class="checkbox" checked>
                                       <label for="remember">Remember me</label>
-                                            
+
                                              <a href="#" class="more">Forgot your Id?</a>
                                              <a href="#" class="more">Forgot your password?</a>
                                              <a href="#" class="more">Sign Up</a>
-                                             
+
    												 <input type="submit" value="Sign in" class="submit">
-   												
+
    												<div class="f1">
  												<a id="kakao-login-btn"></a>
 												<a href="http://developers.kakao.com/logout"></a>
-   												</div>												
-   											
-                                           
+   												</div>
+
+
 
 
                                       </div>
@@ -328,7 +334,7 @@ body .container .content .signup-cont {
 
      <script type='text/javascript'>
      Kakao.init('d371ecdcb455e35b072949c209feab4b');
-     
+
      Kakao.Auth.createLoginButton({
          container: '#kakao-login-btn',
          success: function(authObj) {
@@ -338,18 +344,18 @@ body .container .content .signup-cont {
             alert(JSON.stringify(err));
          }
        });
-     
-     
+
+
      </script>
-  
-                                             
-											
-                                            
-   
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
 $('.tabs .tab').click(function(){
     if ($(this).hasClass('signin')) {
@@ -357,7 +363,7 @@ $('.tabs .tab').click(function(){
         $(this).addClass('active');
         $('.cont').hide();
         $('.signin-cont').show();
-    } 
+    }
     if ($(this).hasClass('signup')) {
         $('.tabs .tab').removeClass('active');
         $(this).addClass('active');

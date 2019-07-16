@@ -13,31 +13,21 @@
 	div {
 		margin:auto;
 	}
-	
-	thead tr {
-    background-color: gray;
-  
+	#tab1{
+		background-color: darkgray;
+		 border: 1px solid lightgray;
+	}
+	#tab2 {
+	 border: 1px solid lightgray;
   } 
-  td {
-    border: 1px solid lightgray;
-  }
-  
-  label {
-  	margin-left:auto;
-  	margin-right:auto;
-  }
-  
-  tbody tr:nth-child(1) {
-    background-color: #b4b4b4;
-  }
 </style>
 </head>
 <body>
 <jsp:include page="/views/common/header.jsp" />
 	<h1 align=center style="color:gray">대관 사용 내역</h1>
 	
-	<div style="width:650px;border:1.5px solid black">
-	<table align=center>
+	<div class="tab1" style="width:650px;border:1.5px solid black">
+	<table align="center">
 		<tr>
 			<td>공연장 고유번호</td>
 			<td>공연장 이름</td>
@@ -57,35 +47,35 @@
 	<hr>
 	
 	<br>
-	<div style="width:790px;">
+	<div class="tab2" style="width:790px;">
 	
 	<table style="width:790px; height:113px; text-align:center; margin:auto; border-collapse: collapse;">
 		<tr>
-		<td>공연장 고유번호</td>
-		<td>상호명</td>
-		<td>사용일자</td>
-		<td>사용공간 이름</td>
+		<td id="tab1">공연장 고유번호</td>
+		<td id="tab1">상호명</td>
+		<td id="tab1">사용일자</td>
+		<td id="tab1">사용공간 이름</td>
 		</tr>
 		<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
 		</tr>
 		<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
 		</tr>
 		<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
+		<td id="tab2"></td>
 		</tr>
 	</table>
 	</div>
 	<jsp:include page="/views/common/footer.jsp" />
 </body>
-</html>
+</html> 

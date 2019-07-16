@@ -1,4 +1,8 @@
+<%@page import="com.kh.hp.account.model.vo.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	UserVO user = (UserVO) session.getAttribute("user");
+%>
 <!DOCTYPE html>
 	<!-- Header_Navigator -->
 	<nav class="navbar navbar-inverse">
@@ -29,14 +33,17 @@
 	      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">고객센터<span class="caret"></span></a>
 	        <ul class="dropdown-menu">
 	          <li><a href="<%=request.getContextPath() %>/views/serviceCenter/notice.jsp">공지사항</a></li>
-	          <li><a href="<%=request.getContextPath() %>/views/serviceCenter/fAQ.jsp">자주 묻는 질물</a></li>
+	          <li><a href="<%=request.getContextPath() %>/views/serviceCenter/fAQ.jsp">자주 묻는 질문</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/serviceCenter/introduce.jsp">회사 소개</a></li>
 	          <li><a href="#">1:1 문의</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/serviceCenter/terms.jsp">약관 및 개인정보 보호</a></li>
 	        </ul>
 	      </li>
 
+
+
 		  <!-- 관리자 관련 -->
+		  <%if(user != null && user.getUserGradeCd() == 0){ %>
 	      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">관리자<span class="caret"></span></a>
 	        <ul class="dropdown-menu">
 	          <li><a href="<%=request.getContextPath() %>/views/admin/01_userManagement.jsp">회원 관리</a></li>
@@ -46,10 +53,15 @@
 	          <li><a href="<%=request.getContextPath() %>/views/admin/07_statistics.jsp">회원 수 통계</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/admin/08_calculate.jsp">매출 정산</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/admin/09_refund.jsp">환불 정산</a></li>
+	          <li><a href="<%=request.getContextPath() %>/views/admin/10_noticeWirte.jsp">공지사항 등록</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/admin/11_1vs1.jsp">1:1 문의 관리</a></li>
 	        </ul>
 	      </li>
+		<%} %>
 	    </ul>
+	    <script type="text/javascript">
+	    	console.log(<%=user.getUserGradeCd() %>);
+	    </script>
 
 		<!-- 검색 관련 -->
 		<ul class="nav navbar-nav navbar-right">
@@ -67,8 +79,28 @@
 			</li>
 
 			<!-- 회원가입 및 로그인 관련 -->
+
+
+			<!-- 로그인이 안됐을 경우 -->
+ 			<%if(user == null){ %>
 			<li><a href="<%=request.getContextPath() %>/views/account/signUp.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-			<li><a href="<%=request.getContextPath() %>/views/account/login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+ 			<li><a href="<%=request.getContextPath() %>/views/account/login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+			<!-- 로그인 됐을 경우 -->
+			<%} else { %>
+			<%-- <li><a href="<%=request.getContextPath() %>/views/account/signUp.jsp"><span class="glyphicon glyphicon-user"></span> <%=user.getUserNick() %>님 환영합니다. </a></li> --%>
+
+			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-pencil"></span> <%=user.getUserNick() %></a>
+	        <ul class="dropdown-menu">
+	          <li><a href="<%=request.getContextPath() %>/views/myPage/myPage.jsp">마이 페이지</a></li>
+	          <li><a href="<%=request.getContextPath() %>/views/myPage/registrationList.jsp">대관 등록 내역</a></li>
+	          <li><a href="<%=request.getContextPath() %>/views/myPage/usingInfo.jsp">대관 사용 내역</a></li>
+	          <li><a href="<%=request.getContextPath() %>/views/myPage/06_salesStatus.jsp">대관 신청 내역</a></li>
+	          <li><a href="<%=request.getContextPath() %>/views/myPage/07_statistics.jsp">등업 신청</a></li>
+	        </ul>
+	      </li>
+ 			<li><a href="<%=request.getContextPath() %>/views/account/logout.jsp"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+ 			<%} %>
 		</ul>
 
 	  </div>

@@ -11,11 +11,14 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+
 <style type="text/css">
 	label {
 		font-size: 1.5em;
 	}
-	
+
 	.necessary {
 		color: red;
 	}
@@ -23,28 +26,28 @@
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	
+
 	<div class="container">
 		<h2>정산 정보를 입력해주세요.</h2>
 		<hr style="background: black">
 		<form action="#">
-			
+
 			<!-- 상호명 -->
 			<div class="form-group">
 				<label class="necessary">*</label><label for="hallName">상호명 (개인/법인)</label> <br><br>
 				<input type="text" class="form-control" id="hallName" placeholder="상호명을 입력해주세요." name="hallName">
 			</div>
-			
+
 			<br>
-			
+
 			<!-- 공연장명 -->
 			<div class="form-group">
 				<label class="necessary">*</label><label for="hallName">대표자명</label> <br><br>
 				<input type="text" class="form-control" id="hallName" placeholder="대표자명을 입력해주세요." name="hallName">
 			</div>
-			
+
 			<br>
-			
+
 			<!-- 사업자 등록번호 -->
 			<div class="form-group">
 				<label class="necessary">*</label><label for="phone1">사업자 등록번호</label>
@@ -55,9 +58,9 @@
 				<label>-</label>
 				<input id="phone3" type="tel" class="form-control" name="phone3" style="width: 100px; min-width: 100px; display:inline; margin: 0 0% 0 1%">
 			</div>
-			
+
 			<br>
-			
+
 			<!-- 사업자 등록증 첨부 -->
 			<div class="form-group">
 				<label class="necessary">*</label><label for="hallInfo">사업자 등록증 첨부</label> <br><br>
@@ -66,30 +69,30 @@
 					<button type="button" id="cautionAddBtn" class="col-sm-2 col-xs-2 btn btn btn-primary" style="width: 15%; float: right;">첨부</button>
 				</div>
 			</div>
-			
+
 			<br><br><br>
-			
+
 			<!-- 사업장 주소 -->
 			<div class="form-group">
 				<label class="necessary">*</label><label for="hallInfo">사업장 주소</label> <br><br>
 				<div class="form-group">
-					<input type="text" class="col-sm-10 col-xs-10 form-control" id="caution" placeholder="주소를 입력해주세요." name="caution" readonly="readonly" style="width: 80%">
-					<button type="button" id="cautionAddBtn" class="col-sm-2 col-xs-2 btn btn btn-primary" style="width: 15%; float: right;">추가</button>
+					<input type="text" class="col-sm-10 col-xs-10 form-control postcodify_address" id="address" placeholder="주소를 입력해주세요." name="address" readonly="readonly" style="width: 80%">
+					<button type="button" id="search_button" class="col-sm-2 col-xs-2 btn btn btn-primary" style="width: 15%; float: right;">주소등록</button>
 					<br><br>
 					<input type="text" class="form-control" id="caution" placeholder="상세주소를 입력해주세요." name="caution" style="width: 100%;">
 				</div>
 			</div>
-			
+
 			<br>
-			
+
 			<!-- 정산용 이메일 -->
 			<div class="form-group">
 				<label class="necessary">*</label><label for="email">정산용 이메일</label> <br><br>
 				<input id="email" type="text" class="form-control" name="email" placeholder="Email">
 			</div>
-			
+
 			<br>
-			
+
 			<!-- 정산용 연락처 -->
 			<div class="form-group">
 				<label class="necessary">*</label><label for="mailTel1">정산용 연락처</label> <br>
@@ -106,12 +109,12 @@
 				<label>-</label>
 				<input id="mailTel3" type="tel" class="form-control" name="mailTel3" style="width: 100px; min-width: 100px; display:inline; margin: 0 1% 0 1%">
 			</div>
-			
+
 			<br><br>
-			
+
 			<h2>계좌 정보를 입력해주세요.</h2>
 			<hr>
-			
+
 			<!-- 은행명 -->
 			<div class="form-group" style="display: inline; float: left; margin: 0 3% 0 0">
 				<label class="necessary">*</label><label for="mailTel1">은행명</label> <br>
@@ -142,37 +145,41 @@
 						<option>한국은행</option>
 				</select>
 			</div>
-			
+
 			<div class="form-group" style="display: inline; float:left; margin: 0 3% 0 3%">
 				<label class="necessary">*</label><label for="mailTel1">계좌번호</label> <br><br>
 				<input id="email" type="text" class="form-control" name="email" placeholder="Email" style="width: 400px">
 				<br>
 			</div>
-			
+
 			<div class="form-group" style="display: inline; float: left; margin: 0 3% 0 3%">
 				<label class="necessary">*</label><label for="mailTel1">예금주</label> <br><br>
 				<input id="email" type="text" class="form-control" name="email" placeholder="Email" style="width: 200px">
 				<br>
 			</div>
-			
+
 			<br clear="all"><br>
 
 			<h2>환불 기준을 입력해주세요.</h2>
 			<hr>
 
-			<label class="radio-inline"><input type="radio" name="optradio" checked>유형 1</label> 
-			<label class="radio-inline"><input type="radio" name="optradio">유형 2</label> 
+			<label class="radio-inline"><input type="radio" name="optradio" checked>유형 1</label>
+			<label class="radio-inline"><input type="radio" name="optradio">유형 2</label>
 			<label class="radio-inline"><input type="radio" name="optradio">유형 3</label>
 			<label class="radio-inline"><input type="radio" name="optradio">유형 4</label>
 
-			
-			
+
+
 			<br><br>
 			<button type="button" class="btn btn-danger" style="width: 49%;">취소</button>
 			<button type="button" class="btn btn-success" style="width: 49%; float: right;">신청</button>
 		</form>
 	</div>
-	
+
+	<script type="text/javascript">
+		$("#search_button").postcodifyPopUp();
+	</script>
+
 	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*,  com.kh.hp.admin.model.vo.*"%>
+ 
+ <%
+ ArrayList<User> list = (ArrayList<User>) request.getAttribute("list");
+ User u = (User) session.getAttribute("User");
+ 
+ %>   
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -151,16 +158,16 @@ margin-top:-150px;
 <body>
 <jsp:include page="/views/common/header.jsp" />
 	<div id="center" class="fram">
-	<!-- 타이틀 -->
+
 		<h2 id="text1">
 			<strong>회원 관리 내역</strong>
 			
 		</h2>
-		<!-- 회원관리내역과 검색창 사이의 선 -->
+
 		<div id="line"></div>
 		<br>
 		
-		<!--검색영역 -->
+		<form action="<%=request.getContextPath() %>/selectAllUser.ad" method="get">
 		<div id="area">
 		<div id="users1">
 		<label id="userno">회원번호</label>
@@ -250,6 +257,7 @@ margin-top:-150px;
     </tbody>
   </table>
 </div>
+</form>
 </div>
 		
 		

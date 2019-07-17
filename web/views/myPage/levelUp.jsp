@@ -15,53 +15,53 @@
 </head>
 <style>
 	div {margin:auto;}
-	table {margin-top:auto;}
+	#lev1{vertical-align: middle;}
 </style>
 <body>
 <jsp:include page="/views/common/header.jsp" />
-	<div style="width:700px; height:500px;">
+<br><br>
+	<div style="width:600px; height:500px; ">
 		<form>
 			<h3>대관 관련 등업 신청</h3>
-			<table class="table table-condensed" style="width:700px; height:400px;">
+			<table class="table table-condensed" style="width:600px; height:400px; vertical-align:middle">
 					<tr>
-						<td>아이디</td>
-						<td>jong@naver.com</td>
-						<td></td>
+						<td id="lev1">아이디</td>
+						<td id="lev1">HP@naver.com</td>
+						<td id="lev1"></td>
 					</tr>
 					<tr>
-						<td>이름</td>
-						<td>홍길동</td>
-						<td></td>
+						<td id="lev1">이름</td>
+						<td id="lev1">홍길동</td>
+						<td id="lev1"></td>
 					</tr>
 					<tr>
-						<td>닉네임</td>
-						<td>NINANO</td>
-						<td></td>
+						<td id="lev1">닉네임</td>
+						<td id="lev1">NINANO</td>
+						<td id="lev1"></td>
 					</tr>
 					<tr>
-						<td>이메일</td>
-						<td>3837479@naver.com</td>
-						<td></td>
+						<td id="lev1">이메일</td>
+						<td id="lev1">12345@naver.com</td>
+						<td id="lev1"></td>
 					</tr>
 					<tr>
-						<td>연락처</td>
-						<td>010-4159-7898</td>
-						<td></td>
+						<td id="lev1">연락처</td>
+						<td id="lev1">010-4159-7898</td>
+						<td id="lev1"></td>
 					</tr>
 					<tr>
-						<td>공연장 등록증</td>
-						<td><input type="text" name="perfomer"><button>이미지첨부</button></td>
-						<td></td>
+						<td id="lev1">공연장 등록증</td>
+						<td id="lev1"><input type="text" name="perfomer"><button>이미지첨부</button></td>
+						<td id="lev1"></td>
 					</tr>
 					<tr>
-						<td></td>
-						<td></td>
-						<td><input type=button style="width:100pt; height:35pt; background-color:#ffd014; border:0px; color:black; border-radius: 3px;" value="신청"></td>
+						<td id="lev1"></td>
+						<td id="lev1"></td>
+						<td id="lev1"><input type=button style="width:100pt; height:30pt; background-color:#ffd014; border:0px; color:black; border-radius: 3px; float:right;" value="신청"></td>
 					</tr>
 			</table>
 		</form>
 	</div>
-	
 <jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

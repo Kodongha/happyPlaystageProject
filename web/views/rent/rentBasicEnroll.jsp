@@ -167,6 +167,19 @@
 	        left: 35%;
 	    }
 	}
+
+	#titleImgDiv, #subImgSpan{
+		width: 350px;
+		height: 200px;
+		border: 2px dashed darkgray;
+		color: darkgray;
+		font-size: 5em;
+		display: table-cell;
+		text-align: center;
+    	vertical-align: middle;
+
+	}
+
 </style>
 
 <script type="text/javascript">
@@ -397,15 +410,92 @@
 								<input type="text" class="form-control" name="website" id="website" placeholder="웹사이트 주소를 입력해주세요.">
 							</div>
 
-							<!-- 이미지 -->
+							<br>
+<!-- !!!!!!!!!!!!!!!!!!! -->
+							<!-- 대표 이미지 -->
+							<div class="form-group">
+								<label class="necessary">*</label><label for="titleImgDiv">대표 이미지</label><br><br>
+								<div id="titleImgDiv">
+									<span id="titleImgSpan">+</span>
+								</div>
+
+							</div>
 
 							<br>
+
+							<!-- 추가 이미지 -->
+							<div class="form-group">
+								<label class="necessary">*</label><label for="subImgDiv">추가 이미지</label><br><br>
+								<div id="subImgDiv">
+									<span id="subImgSpan">+</span>
+								</div>
+
+							</div>
+
+							<div class="fileArea">
+								<input type="file" id="titleImgInput" name="titleImgInput" onchange="titleLoadImg(this);">
+							</div>
+								<input type="file" class="subImg" id="subImgInput1" name="subImgInput1" onchange="subLoadImg(this,1);">
+								<input type="file" class="subImg" id="subImgInput2" name="subImgInput2" onchange="subLoadImg(this,2);">
+								<input type="file" class="subImg" id="subImgInput3" name="subImgInput3" onchange="subLoadImg(this,3);">
+								<input type="file" class="subImg" id="subImgInput4" name="subImgInput4" onchange="subLoadImg(this,4);">
+								<input type="file" class="subImg" id="subImgInput5" name="subImgInput5" onchange="subLoadImg(this,5);">
+
+							<br>
+
+							<script type="text/javascript">
+								var i = 1;
+
+								$(".fileArea").hide();
+								$("#titleImgDiv").click(function(){
+									$("#titleImgInput").click();
+								});
+								$("#subImgDiv").click(function(){
+									$("#subImgInput"+i).click();
+									i++;
+								});
+
+								function titleLoadImg(value){
+									if(value.files && value.files[0]){
+										var reader = new FileReader();
+
+										reader.onload = function(e){
+											$("#titleImgSpan").remove();
+											$("#titleImgDiv").append("<img id='titleImg' width='100%' height='100%'>");
+											$("#titleImg").attr("src", e.target.result);
+											$("#titleImgDiv").css("border","0px");
+										}
+									}
+
+									reader.readAsDataURL(value.files[0]);
+								}
+
+
+
+								function subLoadImg(value){
+									if(value.files && value.files[0]){
+										var reader = new FileReader();
+
+										reader.onload = function(e){
+
+											$("#titleImgSpan").clone(true).after($("#titleImgSpan"));
+											$("#subImgSpan").after("<img id='subImg' width='350px' height='200px'>");
+											$("#subImg").attr("src", e.target.result);
+										}
+									}
+
+									reader.readAsDataURL(value.files[0]);
+								}
+
+							</script>
+
+
 
 							<!-- 주소 -->
 							<div class="form-group">
 								<label class="necessary">*</label><label for="address">주소</label><br><br>
 								<div class="form-group">
-									<input type="text" class="col-sm-10 col-xs-10 form-control postcodify_address" name="address" id="address" placeholder="주소를 입력해주세요." style="width: 80%" readonly="readonly">
+									<input type="text" class="col-sm-10 col-xs-10 form-control" name="address" id="address" placeholder="주소를 입력해주세요." style="width: 80%" readonly="readonly">
 									<button type="button" id="search_button" class="col-sm-2 col-xs-2 btn btn btn-primary" style="width: 15%; float: right;">등록</button>
 								</div>
 							</div>
@@ -735,8 +825,8 @@
 								<div class="form-group">
 									<label class="necessary">*</label><label for="hallInfo">사업장 주소</label> <br><br>
 									<div class="form-group">
-										<input type="text" class="col-sm-10 col-xs-10 form-control postcodify_address" id="address" placeholder="주소를 입력해주세요." name="address" readonly="readonly" style="width: 80%">
-										<button type="button" id="search_button" class="col-sm-2 col-xs-2 btn btn btn-primary" style="width: 15%; float: right;">주소등록</button>
+										<input type="text" class="col-sm-10 col-xs-10 form-control" id="address2" placeholder="주소를 입력해주세요." name="address2" readonly="readonly" style="width: 80%">
+										<button type="button" id="search_button2" class="col-sm-2 col-xs-2 btn btn btn-primary" style="width: 15%; float: right;">주소등록</button>
 										<br><br>
 										<input type="text" class="form-control" id="caution" placeholder="상세주소를 입력해주세요." name="caution" style="width: 100%;">
 									</div>
@@ -827,8 +917,6 @@
 								<label class="radio-inline"><input type="radio" name="optradio">유형 3</label>
 								<label class="radio-inline"><input type="radio" name="optradio">유형 4</label>
 
-
-
 								<br><br>
 								<button type="button" class="btn btn-danger prev-step" style="width: 49%;">취소</button>
 								<button type="button" class="btn btn-success next-step" style="width: 49%; float: right;">신청</button>
@@ -844,7 +932,15 @@
 	</div>
 
 	<script type="text/javascript">
-		$("#search_button").postcodifyPopUp();
+
+		$("#search_button").postcodifyPopUp({
+			insertAddress : $("#address")
+		});
+
+		$("#search_button2").postcodifyPopUp({
+			insertAddress : $("#address2")
+		});
+
 	</script>
 
 	<jsp:include page="/views/common/footer.jsp" />

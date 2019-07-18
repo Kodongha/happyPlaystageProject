@@ -93,7 +93,7 @@
 	          <li><a href="<%=request.getContextPath() %>/views/myPage/registrationList.jsp">대관 등록 내역</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/myPage/usingInfo.jsp">대관 사용 내역</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/myPage/06_salesStatus.jsp">대관 신청 내역</a></li>
-	          <li><a href="<%=request.getContextPath() %>/views/myPage/07_statistics.jsp">등업 신청</a></li>
+	          <li><a href="<%=request.getContextPath() %>/levelUp">등업 신청</a></li>
 	        </ul>
 	      </li>
  			<li><a href="<%=request.getContextPath() %>/logout.acc"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>

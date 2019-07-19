@@ -310,9 +310,9 @@ body .container .content .signup-cont {
                                       <input type="checkbox" id="remember" class="checkbox" checked>
                                       <label for="remember">Remember me</label>
 
-                                             <a href="views/account/findId.jsp" class="more">Forgot your Id?</a>
-                                             <a href="views/account/findPassword.jsp" class="more">Forgot your password?</a>
-                                             <a href="views/account/signUp.jsp" class="more">Sign Up</a>
+                                             <a href="findId.jsp" class="more">Forgot your Id?</a>
+                                             <a href="findPassword.jsp" class="more">Forgot your password?</a>
+                                             <a href="signUp.jsp" class="more">Sign Up</a>
 
    												 <input type="submit" value="Sign in" class="submit">
 

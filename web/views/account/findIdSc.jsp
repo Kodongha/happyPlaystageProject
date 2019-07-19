@@ -1,7 +1,9 @@
+<%@page import="com.kh.hp.account.model.vo.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"import="com.kh.hp.account.model.vo.UserVO"%>
+    pageEncoding="UTF-8"%>
 <%
 	UserVO uv = (UserVO) request.getAttribute("uv");
+	System.out.println("views:::" + uv);
 %>
 <!DOCTYPE html>
 <html>

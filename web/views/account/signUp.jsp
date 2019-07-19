@@ -25,14 +25,14 @@
         height:50px;
         margin:0 auto;
      }
-     #login a{text-decoration: none;}
+     #signUpBtn a{text-decoration: none;}
      
      h2 {
         text-align:center;
         padding: 20px;
      }
      
-     #login{
+     #signUpBtn{
    position: relative;
    vertical-align: top;
    width: 100%;
@@ -86,6 +86,21 @@
 
   </style>
 
+<script type="text/javascript">
+	$(function(){
+		
+	});
+
+</script>
+
+<script>
+      $( document ).ready( function() {
+        $( '.check-all' ).click( function() {
+          $( '.ab' ).prop( 'checked', this.checked );
+        } );
+      } );
+</script>
+
 
 </head>
 <body>
@@ -93,26 +108,26 @@
  
    <h2><b>회원가입</b></h2>
  
-   <form>
+   <form action="<%=request.getContextPath()%>/signUp.acc" method="post">
        <div class="form-group">
         <table>
            <tr>
-              <td><input class="form-control" id="inputdefault1" type="email" name="userId" placeholder="이메일"></td>
+              <td><input class="form-control" id="userEmail" type="email" name="userEmail" placeholder="이메일"></td>
            </tr>
            <tr>
-              <td> <input class="form-control" id="inputdefault2" type="password" name="password" placeholder="비밀번호"></td>
+              <td> <input class="form-control" id="userPwd" type="password" name="userPwd" placeholder="비밀번호"></td>
            </tr>
            <tr>
-              <td><input class="form-control" id="inputdefault3" type="password" name="password2"placeholder="비밀번호 확인"></td>
+              <td><input class="form-control" id="userPwd2" type="password" name="userPwd2"placeholder="비밀번호 확인"></td>
            </tr>
            <tr>
-              <td><input class="form-control" id="inputdefault4" type="text" name="userName" placeholder="이름"></td>
+              <td><input class="form-control" id="userNm" type="text" name="userNm" placeholder="이름"></td>
            </tr>
            <tr>
-              <td><input class="form-control" id="inputdefault5" type="text" name="userNick" placeholder="닉네임"></td>
+              <td><input class="form-control" id="userNick" type="text" name="userNick" placeholder="닉네임"></td>
            </tr>
            <tr>
-              <td><input class="form-control" id="inputdefault6" type="tel" name="userPhone" placeholder="연락처"></td>
+              <td><input class="form-control" id="userPhone" type="tel" name="userPhone" placeholder="연락처"></td>
            </tr>
            <tr>
               <td><input class="form-control" id="inputdefault" type="password" name="cNumber" placeholder="인증번호 6자리 숫자 입력"></td>
@@ -121,20 +136,20 @@
            
            <tr>
 
-              <td id="hr"><input type="checkbox"> 아래 약관에 모두 동의합니다.</td>
+              <td id="hr"><input type="checkbox" name="all" class="check-all"> 아래 약관에 모두 동의합니다.</td>
               
            </tr>
            
            <tr>
-              <td><input type="checkbox"> 서비스 이용약관(필수)</td>
+              <td><input type="checkbox" class="ab"> 서비스 이용약관(필수)</td>
               
            </tr>
            <tr>
-              <td><input type="checkbox"> 개인정보 처리 방침(필수)</td>
+              <td><input type="checkbox" class="ab"> 개인정보 처리 방침(필수)</td>
               
            </tr>
            <tr>
-              <td> <button onclick="alert('회원가입을 축하합니다');" id="login" type="button" class="btn btn-default btn-lg btn-block"><a href="index.html">회원가입</a></button></td>
+              <td> <button id="signUpBtn" type="submit" class="btn btn-default btn-lg btn-block"><a>회원가입</a></button></td>
               
            </tr>
  </table>

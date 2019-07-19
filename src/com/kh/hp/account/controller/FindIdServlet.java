@@ -32,16 +32,18 @@ public class FindIdServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userName = request.getParameter("userName");
 		String userPhone = request.getParameter("userPhone");
-
+		
+		System.out.println("userName:::"+userName);
+		System.out.println("userPhone:::"+userPhone);
+		
 		UserVO uv = new FindIdService().findId(userName, userPhone);
 		
 		System.out.println("인증!");
-	
-		String page = "";
+		System.out.println("uv::::" + uv);
 		
-
+		String page = "";
 		if(uv != null) {
-			page = "views/common/findIdSc.jsp";
+			page = "views/account/findIdSc.jsp";
 			request.setAttribute("uv", uv);
 			System.out.println("");
 		} else {

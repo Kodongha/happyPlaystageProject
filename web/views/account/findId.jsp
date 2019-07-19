@@ -81,7 +81,7 @@ h4{
 <hr>
 </div>
 
-<form>
+<form action="<%=request.getContextPath()%>/findId.acc" method="post">
 <div class = "findId" id= "findid2">
 <h3>회원정보에 등록한 휴대전화로 인증</h3>
    <h5>회원정보에 등록한 휴대전화 번호와 입력한 휴대전화 번호가 같아야, 인증번호를 받을 수 있습니다.</h5>
@@ -94,12 +94,12 @@ h4{
    <tr>
    <td class="td1"><label> 이름 :</label></td>
 
-     <td> <input class="form-control" id="t1" type="text" placeholder="이름을 입력 하세요"></td>
+     <td> <input name="userName" class="form-control" id="t1" type="text" placeholder="이름을 입력 하세요"></td>
    </tr>
    <tr>
    <td class="td1"><label>휴대 전화 :</label></td>
 
-     <td><input class="form-control" id="t3" type="tel" placeholder="전화번호를 입력 하세요"></td>
+     <td><input name="userPhone" class="form-control" id="t3" type="tel" placeholder="전화번호를 입력 하세요"></td>
    <td id="inj"><input id="injbu" type="button" value="인증번호 받기"></td>
    </tr>
  
@@ -112,7 +112,7 @@ h4{
    <tr>
 
      <td>
-   <td> <button>다음</button></td>
+   <td><button>아이디 찾기</button></td>
    </tr>
 
 </table>

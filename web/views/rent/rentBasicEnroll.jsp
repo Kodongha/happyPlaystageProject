@@ -168,7 +168,7 @@
 	    }
 	}
 
-	#titleImgDiv, #subImgSpan{
+	#titleImgDiv, .subImgDiv{
 		width: 350px;
 		height: 200px;
 		border: 2px dashed darkgray;
@@ -177,7 +177,9 @@
 		display: table-cell;
 		text-align: center;
     	vertical-align: middle;
-
+	}
+	#titleImgDiv:hover, .subImgDiv:hover{
+		cursor:pointer;
 	}
 
 </style>
@@ -225,7 +227,7 @@
 			var facInfoContent = $.trim($("#facInfoContent").val())
 			if(facInfoContent != "" && facInfoContent != null && facSeq < 5){
 				facSeq++;
-				$("#facInfoContent").clone(true).attr({"name" : "facInfoContent"+facSeq, "id" : "facInfoContent"+facSeq, "value" : $("facInfoContent").val(), "readonly" : "true"}).appendTo($(".facInfo"));
+				$("#facInfoContent").clone(true).attr({"name" : "facInfoContentReq", "id" : "facInfoContent"+facSeq, "value" : $("facInfoContent").val(), "readonly" : "true"}).appendTo($(".facInfo"));
 
 				$("#facInfoContent").val("");
 				$("#facInfoContent").focus();
@@ -254,7 +256,7 @@
 			var facInfoContent = $.trim($("#cautionContent").val())
 			if(facInfoContent != "" && facInfoContent != null && coutionSeq < 5){
 				coutionSeq++;
-				$("#cautionContent").clone(true).attr({"name" : "cautionContent"+coutionSeq, "id" : "cautionContent"+coutionSeq, "value" : $("cautionContent").val(), "readonly" : "true"}).appendTo($(".caution"));
+				$("#cautionContent").clone(true).attr({"name" : "cautionContentReq", "id" : "cautionContent"+coutionSeq, "value" : $("cautionContent").val(), "readonly" : "true"}).appendTo($(".caution"));
 				$("#cautionContent").val("");
 				$("#cautionContent").focus();
 				/* $("#facInfoContentAddBtn").append($("<br>")); */
@@ -276,7 +278,7 @@
 			var facInfoContent = $.trim($("#detAddress").val())
 			if(facInfoContent != "" && facInfoContent != null && detAddrSeq < 5){
 				detAddrSeq++;
-				$("#detAddress").clone(true).attr({"name" : "detAddress"+detAddrSeq, "id" : "detAddress"+detAddrSeq, "value" : $("detAddress").val(), "readonly" : "true"}).appendTo($(".detAddr"));
+				$("#detAddress").clone(true).attr({"name" : "detAddressReq", "id" : "detAddress"+detAddrSeq, "value" : $("detAddress").val(), "readonly" : "true"}).appendTo($(".detAddr"));
 				$("#detAddress").val("");
 				$("#detAddress").focus();
 				/* $("#facInfoContentAddBtn").append($("<br>")); */
@@ -353,7 +355,7 @@
 	                </ul>
 	            </div>
 
-	           <form action="<%=request.getContextPath() %>/moveRentBasicInfo.rent" method="post">
+	           <%-- <form action="<%=request.getContextPath() %>/moveRentBasicInfo.rent" method="post" enctype="multipart/form-data"> --%>
 	                <div class="tab-content">
 <!-- step1 -->
 	                    <div class="tab-pane active" role="tabpanel" id="step1">
@@ -380,7 +382,7 @@
 							</div>
 
 							<br>
-				<!--  -->
+
 							<!-- 시설 안내 -->
 							<div class="form-group facInfo">
 								<label class="necessary">*</label><label for="facInfoContent">시설 안내</label><br><br>
@@ -392,7 +394,6 @@
 
 							<br><br><br><br><br>
 
-				<!--  -->
 							<!-- 예약시 주의사항 -->
 							<div class="form-group caution">
 								<label class="necessary">*</label><label for="cautionContent">예약시 주의사항</label><br><br>
@@ -418,7 +419,6 @@
 								<div id="titleImgDiv">
 									<span id="titleImgSpan">+</span>
 								</div>
-
 							</div>
 
 							<br>
@@ -426,70 +426,20 @@
 							<!-- 추가 이미지 -->
 							<div class="form-group">
 								<label class="necessary">*</label><label for="subImgDiv">추가 이미지</label><br><br>
-								<div id="subImgDiv">
-									<span id="subImgSpan">+</span>
+								<div class="subImgDiv" id="subImgDiv1">
+									<span id="subImgSpan1">+</span>
+								</div>
+								<div class="subImgDiv" id="subImgDiv2">
+									<span id="subImgSpan2">+</span>
+								</div>
+								<div class="subImgDiv" id="subImgDiv3">
+									<span id="subImgSpan3">+</span>
 								</div>
 
-							</div>
 
-							<div class="fileArea">
-								<input type="file" id="titleImgInput" name="titleImgInput" onchange="titleLoadImg(this);">
 							</div>
-								<input type="file" class="subImg" id="subImgInput1" name="subImgInput1" onchange="subLoadImg(this,1);">
-								<input type="file" class="subImg" id="subImgInput2" name="subImgInput2" onchange="subLoadImg(this,2);">
-								<input type="file" class="subImg" id="subImgInput3" name="subImgInput3" onchange="subLoadImg(this,3);">
-								<input type="file" class="subImg" id="subImgInput4" name="subImgInput4" onchange="subLoadImg(this,4);">
-								<input type="file" class="subImg" id="subImgInput5" name="subImgInput5" onchange="subLoadImg(this,5);">
 
 							<br>
-
-							<script type="text/javascript">
-								var i = 1;
-
-								$(".fileArea").hide();
-								$("#titleImgDiv").click(function(){
-									$("#titleImgInput").click();
-								});
-								$("#subImgDiv").click(function(){
-									$("#subImgInput"+i).click();
-									i++;
-								});
-
-								function titleLoadImg(value){
-									if(value.files && value.files[0]){
-										var reader = new FileReader();
-
-										reader.onload = function(e){
-											$("#titleImgSpan").remove();
-											$("#titleImgDiv").append("<img id='titleImg' width='100%' height='100%'>");
-											$("#titleImg").attr("src", e.target.result);
-											$("#titleImgDiv").css("border","0px");
-										}
-									}
-
-									reader.readAsDataURL(value.files[0]);
-								}
-
-
-
-								function subLoadImg(value){
-									if(value.files && value.files[0]){
-										var reader = new FileReader();
-
-										reader.onload = function(e){
-
-											$("#titleImgSpan").clone(true).after($("#titleImgSpan"));
-											$("#subImgSpan").after("<img id='subImg' width='350px' height='200px'>");
-											$("#subImg").attr("src", e.target.result);
-										}
-									}
-
-									reader.readAsDataURL(value.files[0]);
-								}
-
-							</script>
-
-
 
 							<!-- 주소 -->
 							<div class="form-group">
@@ -501,7 +451,7 @@
 							</div>
 
 							<br><br>
-				<!--  -->
+
 							<!-- 상세 주소(세부 공간) -->
 							<div class="form-group detAddr">
 								<label class="necessary">*</label><label for="detAddress">상세 주소</label><br><br>
@@ -515,12 +465,11 @@
 
 							<br>
 
-				<!--  -->
 							<div class="form-group">
 								<label class="necessary">*</label><label for="hallRegisCerPath">공연장 등록증 첨부</label><br><br>
 								<div class="form-group">
 									<input type="text" class="col-sm-10 col-xs-10 form-control" name="hallRegisCerPath" id="hallRegisCerPath" placeholder="공연장 등록증을 첨부해주세요." style="width: 80%">
-									<button type="button" id="cautionAddBtn" class="col-sm-2 col-xs-2 btn btn btn-primary" style="width: 15%; float: right;">첨부</button>
+									<button type="button" id="hallRegisCerPathAddBtn" class="col-sm-2 col-xs-2 btn btn btn-primary" style="width: 15%; float: right;">첨부</button>
 								</div>
 							</div>
 
@@ -542,7 +491,68 @@
 	                            <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
 	                        </ul>
 	                         -->
+	                         <div class="fileArea">
+								<input type="file" id="titleImgInput" name="titleImgInput" accept="image/*" onchange="titleLoadImg(this);">
+								<input type="file" class="subImg" id="subImgInput1" name="subImgInput1" accept="image/*" onchange="subLoadImg(this,1);">
+								<input type="file" class="subImg" id="subImgInput2" name="subImgInput2" accept="image/*" onchange="subLoadImg(this,2);">
+								<input type="file" class="subImg" id="subImgInput3" name="subImgInput3" accept="image/*" onchange="subLoadImg(this,3);">
+								<input type="file" id="hallRegisCerPathInput" name="hallRegisCerPathInput">
+							</div>
 	                    </div>
+
+						<script type="text/javascript">
+							var i = 1;
+
+							$(".fileArea").hide();
+							$("#titleImgDiv").click(function(){
+								$("#titleImgInput").click();
+							});
+							$(".subImgDiv").click(function(){
+								$("#subImgInput"+i).click();
+								i++;
+							});
+
+							/* 공연장 등록증 첨부 */
+							$("#hallRegisCerPathAddBtn").click(function(){
+								$("#hallRegisCerPathInput").click();
+							});
+
+							$("#hallRegisCerPathInput").change(function(){
+								$("#hallRegisCerPath").val($(this).val());
+							});
+
+
+							/* 이미지 미리보기 */
+							function titleLoadImg(value){
+								if(value.files && value.files[0]){
+									var reader = new FileReader();
+
+									reader.onload = function(e){
+										$("#titleImgSpan").remove();
+										$("#titleImgDiv").append("<img id='titleImg' width='100%' height='100%'>");
+										$("#titleImg").attr("src", e.target.result);
+										$("#titleImgDiv").css("border","0px");
+									}
+								}
+
+								reader.readAsDataURL(value.files[0]);
+							}
+
+							function subLoadImg(value, num){
+								if(value.files && value.files[0]){
+									var reader = new FileReader();
+
+									reader.onload = function(e){
+										var addImgTag = "<img id='titleImg" + num + "' width='100%' height='100%'>"
+										$("#subImgSpan" + num).remove();
+										$("#subImgDiv" + num).append(addImgTag);
+										$("#titleImg"  + num).attr("src", e.target.result);
+										$("#subImgDiv" + num).css("border","0px");
+									}
+								}
+								reader.readAsDataURL(value.files[0]);
+							}
+						</script>
 
 <!-- Step2 -->
 	                    <div class="tab-pane" role="tabpanel" id="step2">
@@ -601,9 +611,9 @@
 										<option>019</option>
 									</select>
 									<label>-</label>
-									<input id="rentMainTel12" type="tel" class="form-control" name="rentMainTel12" style="width: 100px; min-width: 100px; display:inline; margin: 0 2% 0 2%">
+									<input id="rentMainTel12" type="tel" class="form-control" name="rentMainTel2" style="width: 100px; min-width: 100px; display:inline; margin: 0 2% 0 2%">
 									<label>-</label>
-									<input id="rentMainTel13" type="tel" class="form-control" name="rentMainTel13" style="width: 100px; min-width: 100px; display:inline; margin: 0 2% 0 2%">
+									<input id="rentMainTel13" type="tel" class="form-control" name="rentMainTel3" style="width: 100px; min-width: 100px; display:inline; margin: 0 2% 0 2%">
 								</div>
 
 								<br><br>
@@ -617,15 +627,17 @@
 	                        </ul>
                              -->
 	                    </div>
+
 <!-- step3 -->
+	                    <form action="<%=request.getContextPath() %>/moveRentBasicInfo.rent" method="post" enctype="multipart/form-data">
 	                    <div class="tab-pane" role="tabpanel" id="step3">
 	                        <div class="container">
 								<h2>A관의 이용 정보를 입력해주세요.</h2>
 								<hr style="background: black">
 
-								<!-- 대표번호 -->
+								<!-- 이용 가능 시간 -->
 								<div class="form-group">
-									<label class="necessary">*</label><label for="startTime">이용 가능 시간</label>
+									<label class="necessary">*</label><label for="availStartTm">이용 가능 시간</label>
 									<br>
 
 									<div class="ui checkbox">
@@ -633,22 +645,22 @@
 									</div>
 
 									<br>
-									<select class="form-control" id="startTime" style="width: 200px; min-width: 200px; display:inline; margin: 0 2% 0 0">
+									<select class="form-control" name="availStartTm" id="availStartTm" style="width: 150px; min-width: 150px; display:inline; margin: 0 2% 0 0">
 										<%for(int i=0; i<=24; i++){ %>
 											<%if (i / 10 == 0){%>
-												<option><%="0" + i + " 시" %></option>
+												<option><%="0" + i + ":00" %></option>
 											<%} else {%>
-												<option><%=i + " 시" %></option>
+												<option><%=i + ":00" %></option>
 											<%} %>
 										<%}%>
 									</select>
-									<label> ~ </label>
-									<select class="form-control" id="endTime" style="width: 200px; min-width: 200px; display:inline; margin: 0 2% 0 2%">
+									<label>~</label>
+									<select class="form-control" name="availEndTm" id="availEndTm" style="width: 150px; min-width: 150px; display:inline; margin: 0 2% 0 2%">
 										<%for(int i=0; i<=24; i++){ %>
 											<%if (i / 10 == 0){%>
-												<option><%="0" + i + " 시" %></option>
+												<option><%="0" + i + ":00" %></option>
 											<%} else {%>
-												<option><%=i + " 시" %></option>
+												<option><%=i + ":00" %></option>
 											<%} %>
 										<%}%>
 									</select>
@@ -658,25 +670,28 @@
 
 								<!-- 최소 예약 시간 -->
 								<div class="form-group" style="display: inline; width: 49%; float: left;">
-									<label class="necessary">*</label><label for="avilTime">이용 가능 시간</label>
+									<label class="necessary">*</label><label for="minRsvTm">최소 예약 시간</label>
 									<br><br>
-									<select class="form-control" id="avilTime" style="width: 200px; min-width: 200px; display:inline; margin: 0 2% 0 0">
+									<select class="form-control" name="minRsvTm" id="minRsvTm" style="width: 200px; min-width: 200px; display:inline; margin: 0 2% 0 0">
 										<%for(int i=0; i<=24; i++){ %>
 											<%if (i / 10 == 0){%>
-												<option><%="0" + i + " 시간" %></option>
+												<option value="<%=i %>"><%=i  %> 시간</option>
 											<%} else {%>
-												<option><%=i + " 시간" %></option>
+												<option value="<%=i %>"><%=i %> 시간</option>
 											<%} %>
 										<%}%>
 									</select>
 									<p style="margin-top: 2%">* 최소 예약 가능한 시간을 입력해주세요.</p>
 								</div>
 
-								<!-- 최소 예약 시간 -->
+								<!-- 최소 예약 가능 인원 수 -->
 								<div class="form-group" style="display: inline; width: 49%; float: right;">
-									<label class="necessary">*</label><label for="avilCount">예약 가능 인원 수</label>
+									<label class="necessary">*</label><label for="maxHeadCount">예약 가능 인원 수</label>
 									<br><br>
-									<select class="form-control" id="avilCount" style="width: 200px; min-width: 200px; display:inline; margin: 0 2% 0 0">
+									<input id="maxHeadCount" type="number" class="form-control" name="maxHeadCount" style="width: 200px; min-width: 200px; display:inline; margin: 0 2% 0 0" placeholder="예약 가능 인원 수">
+
+									<%--
+									<select class="form-control" name="maxHeadCount" id="maxHeadCount" style="width: 200px; min-width: 200px; display:inline; margin: 0 2% 0 0">
 										<%for(int i=0; i<=24; i++){ %>
 											<%if (i / 10 == 0){%>
 												<option><%="0" + i + " 시간" %></option>
@@ -685,6 +700,8 @@
 											<%} %>
 										<%}%>
 									</select>
+									 --%>
+
 									<br>
 									<p style="margin-top: 2%">* 예약 가능한 최대 인원수를 입력해주세요.</p>
 								</div>
@@ -699,6 +716,7 @@
 								<h2>휴무일 설정</h2>
 								<hr style="background: black">
 
+								<!-- 정기 휴무일 -->
 								<div class="form-group">
 									<label class="necessary">*</label><label for="regHoliday">정기 휴무</label>
 									<br>
@@ -708,16 +726,24 @@
 									</div>
 
 									<br>
-									<select class="form-control" id="regHoliday" style="width: 200px; min-width: 200px;">
-										<%for(int i=0; i<=24; i++){ %>
-											<%if (i / 10 == 0){%>
-												<option><%="0" + i + " 시" %></option>
-											<%} else {%>
-												<option><%=i + " 시" %></option>
-											<%} %>
-										<%}%>
+									<select class="form-control" name="regCloseCd" id=regCloseCd style="width: 200px; min-width: 200px;">
+										<option value="1">휴무 없음</option>
+										<option value="2">매주</option>
+										<option value="3">격주(홀수주)</option>
+										<option value="4">격주(짝수주)</option>
+										<option value="5">매월 첫째주</option>
+										<option value="6">매월 둘째두</option>
+										<option value="7">매월 셋째주</option>
+										<option value="8">매월 넷째주</option>
+										<option value="9">매월 마지막주</option>
+										<option value="10">매월 말일</option>
+										<option value="11">매월 직접 입력</option>
 									</select>
 								</div>
+
+								<script type="text/javascript">
+
+								</script>
 
 								<br><br>
 
@@ -771,10 +797,10 @@
 
 								<br><br>
 								<button type="button" class="btn btn-danger prev-step" style="width: 49%;">취소</button>
-								<button type="button" class="btn btn-success next-step" style="width: 49%; float: right;">다음</button>
+								<button type="submit" class="btn btn-success next-step" style="width: 49%; float: right;">다음</button>
 							</div>
 	                    </div>
-
+						</form>
 <!-- step4 -->
 	                    <div class="tab-pane" role="tabpanel" id="step4">
 	                        <div class="container">
@@ -925,7 +951,7 @@
 	                    </div>
 	                    <div class="clearfix"></div>
 	                </div>
-	            </form>
+	            <!-- </form> -->
 	        </div>
 	    </section>
 	   </div>

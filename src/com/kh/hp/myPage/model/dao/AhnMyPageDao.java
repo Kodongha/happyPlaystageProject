@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.hp.myPage.model.vo.AhnLevelupVO;
 import com.kh.hp.myPage.model.vo.AhnMyPageVO;
 
 import static com.kh.hp.common.JDBCTemplate.*;
@@ -62,5 +63,40 @@ public class AhnMyPageDao {
 		
 		return responseUserVO;
 	}
+	public AhnLevelupVO updateLevelOne(Connection con, int levelUpInfo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		AhnLevelupVO responseUserVO = null;
+		
+		String query = prop.getProperty("selectOne");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, levelUpInfo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				responseUserVO = new AhnLevelupVO();
+				
+				responseUserVO.setUserEmail(rset.getString("USER_EMAIL"));
+				responseUserVO.setUserPwd(rset.getString("USER_PWD"));
+				responseUserVO.setUserNm(rset.getString("USER_NM"));
+				responseUserVO.setUserNick(rset.getString("USER_NICK"));
+				responseUserVO.setUserPhone(rset.getString("USER_PHONE"));
+				responseUserVO.setEnrollDt(rset.getDate("ENROLL_DT"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		System.out.println("responseUserVO : " + responseUserVO);
+		
+		return responseUserVO;
+	}
+	
 
 }

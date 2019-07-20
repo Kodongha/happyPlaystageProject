@@ -1,35 +1,28 @@
 package com.kh.hp.myPage.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
-
 import com.kh.hp.account.model.vo.UserVO;
 import com.kh.hp.myPage.model.service.AhnMyPageService;
+import com.kh.hp.myPage.model.vo.AhnLevelupVO;
 import com.kh.hp.myPage.model.vo.AhnMyPageVO;
-import com.oreilly.servlet.MultipartRequest;
-
 
 /**
- * Servlet implementation class MyPageServlet
+ * Servlet implementation class LevelUpInfoServlet
  */
-@WebServlet("/levelUp")
-public class LevelUpServlet extends HttpServlet {
+@WebServlet("/levelUpInfo")
+public class LevelUpInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LevelUpServlet() {
+    public LevelUpInfoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,21 +31,21 @@ public class LevelUpServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int userSeq = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
-		AhnMyPageVO responseUserVO = new AhnMyPageService().selectOne(userSeq);
-		 
-		 
-		 String page = "";
-		 if(responseUserVO != null) {
-			 request.setAttribute("responseUserVO", responseUserVO);
-			 page = "views/myPage/levelUp.jsp";
-		 }else {
-			 request.setAttribute("msg", "조회된 정보가 없습니다.");
-			 page = "views/common/errorPage.jsp";
-		 }
-		 
-		 request.getRequestDispatcher(page).forward(request, response);
-	
+		int levelUpInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
+		AhnLevelupVO responseUserVO = new AhnMyPageService().updateLevelOne(levelUpInfo);
+		
+		String page = "";
+		if(responseUserVO != null) {
+			request.setAttribute("msg", "신청이 완료되었습니다.");
+			page = "views/common/errorPage.jsp";
+			
+		}else {
+			request.setAttribute("msg", "신청이 불가합니다.");
+			page = "views/common/errorPage.jsp";
+		}
+		
+		request.getRequestDispatcher(page).forward(request, response);
+		
 	}
 
 	/**

@@ -65,7 +65,7 @@
 				<tr>
 					<td id="lev1"></td>
 					<td id="lev1"></td>
-					<td id="lev1"><input type="button" style="width:100pt; height:30pt; background-color:#ffd014; border:0px; color:black; border-radius: 3px; float:right;" value="신청" onclick="location.href='<%=request.getContextPath() %>/transfomer'"></td>
+					<td id="lev1"><input type="button" style="width:100pt; height:30pt; background-color:#ffd014; border:0px; color:black; border-radius: 3px; float:right;" value="신청" onclick="location.href='<%=request.getContextPath() %>/levelUpInfo'"></td>
 				</tr>
 			</table>
 		<!-- </form> -->

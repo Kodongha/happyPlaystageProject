@@ -18,7 +18,17 @@ public class AhnMyPageVO implements Serializable {
 	private Date leaveDt;
 
 	public AhnMyPageVO() {}
-
+	
+	public AhnMyPageVO(String userEmail, String userPwd, String userNm, String userNick, String userPhone, Date enrollDt) {
+		super();
+		this.userEmail = userEmail;
+		this.userPwd = userPwd;
+		this.userNm = userNm;
+		this.userNick = userNick;
+		this.userPhone = userPhone;
+		this.enrollDt = enrollDt;
+	}
+	
 	public AhnMyPageVO(int userSeq, String userEmail, String userPwd, String userNm, String userNick, String userPhone,
 			int userGradeCd, Date enrollDt, int snsCd, char leaveTf, Date leaveDt) {
 		super();

@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%! public int getRandom(){
+int random=0;
+random = (int)Math.floor((Math.random()*(99999-10000+1)))+10000;
+return random;
+}%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,12 +104,12 @@ h2 {
 		<h2>비밀번호 찾기</h2>
 		<hr>
 	</div>
-	<form>
+	<form action="<%=request.getContextPath()%>/findPassword.acc" method="post">
 		<div class="findId" id="findid2">
 			<table>
 
 				<tr>
-					<td><input class="form-control" id="t1" type="text"
+					<td><input class="form-control" id="t1" type="text" name="receiver"
 						placeholder="이메일">
 						<h6>가입시 사용한 이메일 주소를 입력해주시면 비밀번호 재설정 링크를 보내드립니다.<br>
 							카카오톡, 구글로 가입하신 경우 비밀번호 찾기가 불가능 합니다.</h6></td>
@@ -114,7 +119,7 @@ h2 {
 				<tr>
 					<td>
 						<button onclick="alert('임시 비밀번호를 이메일로 전송 하였습니다.');" id="success"
-							type="button" class="btn btn-default btn-lg btn-block">
+							type="submit" class="btn btn-default btn-lg btn-block" value="<%=getRandom()%>">
 							비밀번호 재설정 링크 이메일로 보내기</button>
 					</td>
 				</tr>

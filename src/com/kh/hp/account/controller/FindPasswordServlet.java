@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
 
-import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
-import javax.mail.internet.AddressException;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.RequestDispatcher;
@@ -18,83 +18,77 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.hp.account.util.MyAuthentication;
-
 /**
  * Servlet implementation class FindPasswordServlet
  */
 @WebServlet("/findPassword.acc")
 public class FindPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public FindPasswordServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private final String AUTH_ID = "happyPlaystage@gmail.com";
+	private final String AUTH_PASSWORD = "1q2w3e4r@";
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public FindPasswordServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Properties props = System.getProperties();
-		props.put("mail.smtp.user", "inwoo226@gmail.com");
-		
-		props.put("mail.smtp.host", "smtp.gomail.com");
-		
-		props.put("mail.smtp.port", "465");
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.auth", "ture");
-		props.put("mail.smtp.socketFactory.port","465");
-		props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
-		props.put("mail.smtp.socketFactory.fallback","false");
+		String receiver = request.getParameter("receiver");
+		System.out.println("receiver::::"+receiver);
 
-		Authenticator auth = new MyAuthentication();
-		
-		Session session = Session.getDefaultInstance(props, auth);
-		MimeMessage msg = new MimeMessage(session);
-		
+		Properties properties = System.getProperties();
+		properties.put("mail.smtp.host", "smtp.gmail.com");
+		properties.put("mail.smtp.port", "465");
+		properties.put("mail.smtp.auth", "true");
+		properties.put("mail.smtp.ssl.enable", "true");
+		properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+		//		Authenticator authenticator = new MailAuth();
+
+		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(AUTH_ID, AUTH_PASSWORD);
+			}
+		});
+
+		MimeMessage mimeMessage = new MimeMessage(session);
+
 		try {
-			msg.setSentDate(new Date());
-			
-			InternetAddress from = new InternetAddress("inwoo226@gmail.com");
-			
-			msg.setFrom(from);
-			
-			String email = request.getParameter("receiver");
 
-			InternetAddress to = new InternetAddress("inwoo226@gmail.com");
-			
-			msg.setRecipient(Message.RecipientType.TO, to);
-			
-			msg.setSubject("비밀번호 인증번호", "UTF-8");
-			
-			String code = request.getParameter("success");
-			
-			request.setAttribute("code", code);
-			msg.setText(code,"UTF-8");
-			
-			msg.setHeader("content-Type", "text/html");
-			System.out.println(msg);
-			javax.mail.Transport.send(msg);
-			System.out.println("보냄");
-			
-			
-		} catch(AddressException addr_e) {
-			addr_e.printStackTrace();
+			// 시간 설정
+			mimeMessage.setSentDate(new Date());
+
+			// 발신자 설정
+			mimeMessage.setFrom(new InternetAddress(AUTH_ID));
+
+			// 수신자 설정
+			mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
+
+			// 제목 입력 <<< 여기에 재목 입력하면 돼!!!
+			mimeMessage.setSubject("제목입니다!!!!", "UTF-8");
+
+			// 내용 입력 <<< 여기에 내용 입력하면 돼!
+			mimeMessage.setText("안녕하세요. 테스트 메일입니다.", "UTF-8");
+
+			// 메일 전송
+			Transport.send(mimeMessage);
+
 
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		
 		RequestDispatcher rd = request.getRequestDispatcher("views/account/findPassword2.jsp");
 		rd.forward(request, response);
-		
+
 	}
 
 	/**

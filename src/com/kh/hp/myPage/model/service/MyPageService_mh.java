@@ -43,9 +43,12 @@ public class MyPageService_mh {
 		MyPageDao_mh myPageDao_mh = new MyPageDao_mh();
 		// 1. seq를 가지고 dao에서 해당 유저 정보 VO에 담아서 가져오기
 		MyPageUserVO responseMyPageUserVO = myPageDao_mh.selectMyPageInfo(con, myPageUserVO.getUserSeq());
+		myPageUserVO.setUserPwd(responseMyPageUserVO.getUserPwd());
 
 		System.out.println("변경 전 : " + responseMyPageUserVO);
 		System.out.println("변경 후 : " + myPageUserVO);
+
+
 
 		// 2. myPageUserVO(요청VO)와 responseMyPageUserVO(응답VO - DB값)과 비교
 		// 2-1. 값이 모두 같으면(변경 값이 없으면) - update문 실행 안함
@@ -53,6 +56,7 @@ public class MyPageService_mh {
 		boolean type1 = responseMyPageUserVO.getUserNm().equals(myPageUserVO.getUserNm());
 		boolean type2 = responseMyPageUserVO.getUserNick().equals(myPageUserVO.getUserNick());
 		boolean type3 = responseMyPageUserVO.getUserPhone().equals(myPageUserVO.getUserPhone());
+		boolean type4 = responseMyPageUserVO.getUserPwd().equals(myPageUserVO.getUserPwd());
 
 
 		/*변경 사항이 없을 경우 - 업데이트 안함*/
@@ -106,9 +110,42 @@ public class MyPageService_mh {
 	}
 
 
+	/** 유저 비밀번호 변경
+	 * @param myPageUserVO
+	 * @return
+	 */
+	public MyPageUserVO updateUserPwd(MyPageUserVO myPageUserVO) {
+		Connection con = getConnection();
+		int updateResult = 0;
+		int insertResult = 0;
+
+		MyPageDao_mh MyPageDao = new MyPageDao_mh();
+
+		MyPageUserVO responseMyPageUserVO = MyPageDao.selectMyPageInfo(con, myPageUserVO.getUserSeq());
+
+
+		boolean type1 = responseMyPageUserVO.getUserPwd().equals(myPageUserVO.getUserPwd());
+
+		if(type1) {
+			System.out.println("변경사항이 없습니다.");
+		}else {
+			updateResult = MyPageDao.updateUserPwd(con, myPageUserVO);
+			if(updateResult > 0) {
+				insertResult = MyPageDao.insertUpdatedUserPwd(con, myPageUserVO);
+			}
+		}
+
+		if(updateResult > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+
+		close(con);
+
+		return responseMyPageUserVO;
+	}
+
+
 }
 
-
-/*			(myPageUserVO.getUserNick().equals(responseMyPageUserVO.getUserNick() &&
-myPageUserVO.getUserNm().equals(responseMyPageUserVO.getUserNm() &&
-		myPageUserVO.getUserPhone().equals(responseMyPageUserVO.getUserPhone())		)	))*/

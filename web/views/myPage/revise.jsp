@@ -112,7 +112,7 @@ input {
 </form>
 		<script>
 		function goRevisePwd(){
-			location.href="#";
+			location.href="<%=request.getContextPath()%>/reviseaPwd.mp";
 		}
 		function goMyPage(){
 			location.href="<%=request.getContextPath() %>/myPage.mp";

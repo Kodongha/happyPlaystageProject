@@ -37,7 +37,7 @@ public class MyFileRenamePolicy implements FileRenamePolicy{
 			ext = "";
 		}
 
-		String fileName = ft.format(new Date(currentTime)) + randomNumber + ext;
+		String fileName = userSeq + "_" + ft.format(new Date(currentTime)) + "_" + randomNumber + ext;
 
 		File newFile = new File(oldFile.getParent(), fileName);
 

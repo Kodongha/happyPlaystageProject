@@ -162,4 +162,21 @@
 	#titleImgDiv:hover, .subImgDiv:hover{
 		cursor:pointer;
 	}
+
+	.detFacIcon {
+		font-size: 4em;
+		color: black;
+		align-content: center;
+		display: table-cell;
+    	vertical-align: middle;
+    	display:inline;
+    	float: left;
+    	padding: 2% 2% 2% 2%;
+		background:white;
+	}
+
+	.detFacIcon:hover, .detFacIcon.changeColor {
+		background: #D4D9DD;
+	}
+
 </style>

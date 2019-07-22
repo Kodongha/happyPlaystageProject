@@ -98,39 +98,137 @@ public class AhnMyPageDao {
 		
 		return responseUserVO;
 	}
-	public AhnUsingInfoVO updateUsingOne(Connection con, int usingInfo) {
+	
+	/*public ArrayList<AhnUsingInfoVO> searchCheck(Connection con, int usingInfo) {
+		ArrayList<AhnUsingInfoVO> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		AhnUsingInfoVO responseUserVO = null;
 		
-		String query = prop.getProperty("updateUsingOne");
+		String query = prop.getProperty("searchCheck");
 		
 		try {
 			pstmt = con.prepareStatement(query);
+			
 			pstmt.setInt(1, usingInfo);
+			
 			rset = pstmt.executeQuery();
 			
-			while(rset.next()) {
+			list = new ArrayList<AhnUsingInfoVO>();
+			
+			if(rset.next()) {
+				AhnUsingInfoVO u = new AhnUsingInfoVO();
+				
+				u.setPropSeq(rset.getInt("PROP_SEQ"));
+				u.setRentSeq(rset.getInt("RENT_SEQ"));
+				u.setUserSeq(rset.getInt("USER_SEQ"));
+				u.setPropNm(rset.getString("PROP_NM"));
+				u.setPropPhone(rset.getString("PROP_PHONE"));
+				u.setPropEmail(rset.getString("PROP_EMAIL"));
+				u.setPropReqContent(rset.getString("PROP_REQ_CONTENT"));
+				u.setPropDt(rset.getDate("PROP_DT"));
+				u.setPropStatus(rset.getString("PROP_STATUS"));
+				u.setUseStartDt(rset.getDate("USE_START_DT"));
+				u.setUseEndDt(rset.getDate("USE_END_DT"));
+				u.setUseStartTm(rset.getInt("USE_START_TM"));
+				u.setUseEndTm(rset.getInt("USE_END_TM"));
+				u.setPayAmount(rset.getInt("PAY_AMOUNT"));
+				
+				list.add(u);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}*/
+	
+	
+	
+	public AhnUsingInfoVO searchCheck(Connection con, int usingInfo) {
+		AhnUsingInfoVO responseUserVO = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("searchCheck");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, usingInfo);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			if(rset.next()) {
+				
 				responseUserVO = new AhnUsingInfoVO();
 				
+				responseUserVO.setPropSeq(rset.getInt("PROP_SEQ"));
 				responseUserVO.setRentSeq(rset.getInt("RENT_SEQ"));
+				responseUserVO.setUserSeq(rset.getInt("USER_SEQ"));
 				responseUserVO.setPropNm(rset.getString("PROP_NM"));
+				responseUserVO.setPropPhone(rset.getString("PROP_PHONE"));
 				responseUserVO.setPropEmail(rset.getString("PROP_EMAIL"));
+				responseUserVO.setPropReqContent(rset.getString("PROP_REQ_CONTENT"));
+				responseUserVO.setPropDt(rset.getDate("PROP_DT"));
+				responseUserVO.setPropStatus(rset.getString("PROP_STATUS"));
 				responseUserVO.setUseStartDt(rset.getDate("USE_START_DT"));
+				responseUserVO.setUseEndDt(rset.getDate("USE_END_DT"));
+				responseUserVO.setUseStartTm(rset.getInt("USE_START_TM"));
+				responseUserVO.setUseEndTm(rset.getInt("USE_END_TM"));
+				responseUserVO.setPayAmount(rset.getInt("PAY_AMOUNT"));
 				
 				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rset);
+			close(pstmt);
 		}
-		
-		System.out.println("responseUserVO : " + responseUserVO);
 		
 		return responseUserVO;
 	}
+	
+	
+	
+	
+	/*public AhnUsingInfoVO searchCheck(Connection con, AhnUsingInfoVO reqAhnUsingInfoVO) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("searchCheck");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, reqAhnUsingInfoVO.getPropNm());
+			
+			rset = pstmt.executeQuery();
+			
+			int rentSeq;
+			String propNm;
+			String propEmail;
+			String useStartDt;
+			
+			if(rset.next()) {
+				propNm = rset.getString("PROP_NM");
+				propEmail = rset.getString("PROP_EMAIL");
+				useStartDt = rset.getString("USE_START_DT");
+			}
+			
+			if(reqAhnUsingInfoVO.getPropNm().equals(propNm) && reqAhnUsingInfoVO.getPropEmail().equals(propEmail)
+						&& reqAhnUsingInfoVO.getPropNm().equals(useStartDt)) {
+				
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}*/
 	
 
 }

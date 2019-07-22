@@ -29,12 +29,45 @@ public class AhnMyPageService {
 		return responseUserVO;
 	}
 
-	public AhnUsingInfoVO updateUsingOne(int usingInfo) {
+	/*public ArrayList<AhnUsingInfoVO> searchCheck(int usingInfo) {
+
+		Connection con = getConnection();
+		
+		ArrayList<AhnUsingInfoVO> list = new AhnMyPageDao().searchCheck(con, usingInfo);
+		
+		close(con);
+		
+		return list;
+	}*/
+
+	
+	
+	
+	
+	
+	
+	public AhnUsingInfoVO searchCheck(int usingInfo) {
+		Connection con = getConnection();
+		AhnUsingInfoVO responseUserVO = new AhnMyPageDao().searchCheck(con, usingInfo);
+		close(con);
+		
+		return responseUserVO;
+	}
+
+	/*public AhnUsingInfoVO updateUsingOne(int usingInfo) {
 		Connection con = getConnection();
 		AhnUsingInfoVO responseUserVO = new AhnMyPageDao().updateUsingOne(con, usingInfo);
 		close(con);
 		
 		return responseUserVO;
-	}
+	}*/
+
+	/*public AhnUsingInfoVO searchCheck(AhnUsingInfoVO reqAhnUsingInfoVO) {
+		Connection con = getConnection();
+		AhnUsingInfoVO responseUserVO = new AhnMyPageDao().searchCheck(con, reqAhnUsingInfoVO);
+		close(con);
+		
+		return responseUserVO;
+	}*/
 	
 }

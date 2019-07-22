@@ -86,8 +86,35 @@
 		<span style="font-size: 3em; color: black;">
 		  <i class="fas fa-camera"></i>
 		</span>
-		<span style="font-size: 3em; color: gray;">
-			<i class="fas fa-camera"></i>
+		<span style="font-size: 3em; color: black;">
+			<i class="fas fa-car-side"></i>
+		</span>
+		<span style="font-size: 3em; color: black;">
+			<i class="fas fa-couch"></i>
+		</span>
+		<span style="font-size: 3em; color: black;">
+			<i class="fas fa-bath"></i>
+		</span>
+		<span style="font-size: 3em; color: black;">
+			<i class="fas fa-smoking-ban"></i>
+		</span>
+		<span style="font-size: 3em; color: black;">
+			<i class="fas fa-desktop"></i>
+		</span>
+		<span style="font-size: 3em; color: black;">
+			<i class="fas fa-wifi"></i>
+		</span>
+		<span style="font-size: 3em; color: black;">
+			<i class="fas fa-toilet"></i>
+		</span>
+		<span style="font-size: 3em; color: black;">
+			<i class="fas fa-microphone-alt"></i>
+		</span>
+		<span style="font-size: 3em; color: black;">
+			<i class="fas fa-print"></i>
+		</span>
+		<span style="font-size: 3em; color: black;">
+			<i class="fas fa-chalkboard"></i>
 		</span>
 
 

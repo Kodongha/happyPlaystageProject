@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import com.kh.hp.myPage.model.vo.AhnLevelupVO;
 import com.kh.hp.myPage.model.vo.AhnMyPageVO;
+import com.kh.hp.myPage.model.vo.AhnUsingInfoVO;
 
 import static com.kh.hp.common.JDBCTemplate.*;
 
@@ -84,6 +85,39 @@ public class AhnMyPageDao {
 				responseUserVO.setUserNick(rset.getString("USER_NICK"));
 				responseUserVO.setUserPhone(rset.getString("USER_PHONE"));
 				responseUserVO.setEnrollDt(rset.getDate("ENROLL_DT"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		System.out.println("responseUserVO : " + responseUserVO);
+		
+		return responseUserVO;
+	}
+	public AhnUsingInfoVO updateUsingOne(Connection con, int usingInfo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		AhnUsingInfoVO responseUserVO = null;
+		
+		String query = prop.getProperty("updateUsingOne");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, usingInfo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				responseUserVO = new AhnUsingInfoVO();
+				
+				responseUserVO.setRentSeq(rset.getInt("RENT_SEQ"));
+				responseUserVO.setPropNm(rset.getString("PROP_NM"));
+				responseUserVO.setPropEmail(rset.getString("PROP_EMAIL"));
+				responseUserVO.setUseStartDt(rset.getDate("USE_START_DT"));
+				
 				
 			}
 		} catch (SQLException e) {

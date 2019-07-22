@@ -112,7 +112,7 @@ table {
  				location.href="<%=request.getContextPath() %>/revise.mp";
 			}
 			function goWithdrawForm(){
-				location.href="views/myPage/revise.jsp";
+				location.href="<%=request.getContextPath() %>/withdrawal.mp";
 			}
 		</script>
 

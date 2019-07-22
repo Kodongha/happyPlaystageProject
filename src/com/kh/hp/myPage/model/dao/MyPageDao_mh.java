@@ -37,7 +37,7 @@ public class MyPageDao_mh {
 		ResultSet rset = null;
 		MyPageUserVO myPageInfo = null;
 
-		String query = prop.getProperty("selectMyPageInfo");
+		String query = prop.getProperty("selectOne");
 
 		try {
 			pstmt = con.prepareStatement(query);
@@ -85,7 +85,8 @@ public class MyPageDao_mh {
 			pstmt.setString(1, myPageUserVO.getUserNick());
 			pstmt.setString(2, myPageUserVO.getUserNm());
 			pstmt.setString(3, myPageUserVO.getUserPhone());
-			pstmt.setInt(4, myPageUserVO.getUserSeq());
+			pstmt.setString(4, myPageUserVO.getUserPwd());
+			pstmt.setInt(5, myPageUserVO.getUserSeq());
 
 			result = pstmt.executeUpdate();
 
@@ -100,6 +101,11 @@ public class MyPageDao_mh {
 		return result;
 	}
 
+	/** 업데이트 후 수정내역 insert
+	 * @param con
+	 * @param myPageUserVO
+	 * @return
+	 */
 	public int insertUpdatedMyPageInfo(Connection con, MyPageUserVO myPageUserVO) {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt = null;
@@ -110,6 +116,7 @@ public class MyPageDao_mh {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, myPageUserVO.getUserSeq());
+/*			pstmt.setString(2, myPageUserVO.getUserPwd());*/
 			pstmt.setString(2, myPageUserVO.getUserNm());
 			pstmt.setString(3, myPageUserVO.getUserNick());
 			pstmt.setString(4, myPageUserVO.getUserPhone());
@@ -122,6 +129,63 @@ public class MyPageDao_mh {
 		} finally {
 			close(pstmt);
 		}
+
+		return result;
+	}
+
+	/** 비밀번호 수정
+	 * @param con
+	 * @param myPageUserVO
+	 * @return
+	 */
+	public int updateUserPwd(Connection con, MyPageUserVO myPageUserVO) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("updateUserPwd");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, myPageUserVO.getUserPwd());
+			pstmt.setInt(2, myPageUserVO.getUserSeq());
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	/** 비밀번호 수정내역 INSERT
+	 * @param con
+	 * @param myPageUserVO
+	 * @return
+	 */
+	public int insertUpdatedUserPwd(Connection con, MyPageUserVO myPageUserVO) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertUpdatedUserPwd");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, myPageUserVO.getUserSeq());
+			pstmt.setString(2, myPageUserVO.getUserPwd());
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
 
 		return result;
 	}

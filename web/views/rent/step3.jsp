@@ -116,6 +116,15 @@
 		<span style="font-size: 3em; color: black;">
 			<i class="fas fa-chalkboard"></i>
 		</span>
+		<span style="font-size: 3em; color: black;">
+			<i class="fas fa-tshirt"></i>
+		</span>
+		<span style="font-size: 3em; color: black;">
+			<i class="fas fa-hamburger"></i>
+		</span>
+		<span style="font-size: 3em; color: black;">
+			<i class="fas fa-beer"></i>
+		</span>
 
 
 

@@ -67,6 +67,7 @@ input {
 </style>
 
 <title>내 정보 수정</title>
+
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />

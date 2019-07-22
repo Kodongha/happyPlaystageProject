@@ -58,9 +58,7 @@ table {
 <body>
 	<jsp:include page="/views/common/header.jsp" />
 	<br>
-	<h2 align="center">
-		<b>마이페이지</b>
-	</h2>
+	<h2 align="center"><b>마이페이지</b></h2>
 
 	<div id="mainArea" align="center">
 		<br>

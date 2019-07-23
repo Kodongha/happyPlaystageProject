@@ -1,74 +1,127 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@page import="com.kh.hp.myPage.model.vo.MyPageUserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%
 	MyPageUserVO mypageInfo = (MyPageUserVO) request.getAttribute("mypageInfo");
+	String flag = request.getParameter("flag");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- js -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<!-- semantic ui -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+<!-- jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <title>Insert title here</title>
 <style>
-<!-- 고쳐야 할것 :목록 중앙정렬, h태그와 텍스트상자사이 거리 좁히기-->
-	div { text-align: center; }
+body {
+	background-color: #f5f5f5;
+}
 
-	.revisepassword {
-		width:600px;
-		height:400px;
-		margin-left:auto;
-		margin-right:auto;
-	}
+#mainArea {
+	width: 50%;
+	height: 400px;
+	background-color: white;
+	margin: 0 auto;
+	margin-top: 50px;
+}
 
-	.btn {
-		margin:auto;
-	}
-	#btn1 {
-		width:200pt;
-		height:35pt;
-		background-color:white;
-		border:1px solid gray;
-		color:gray;
-	}
-	#btn2 {
-		width:200pt;
-		height:35pt;
-		background-color:#ffd014;
-		border:0px;
-		color:gray;
-	}
+#mainArea input {
+	width: 70%;
+}
+#btn1 {
+	background-color:#f5c242;
+	color:#303030;
+}
+#btn1:hover {
+	background-color:#ffc430;
+	color:black;
+}
+#inputArea {
+	padding-top : 50px;
+}
+#alerts {
+	width:70%;
+}
 </style>
+<SCRIPT type="text/javascript">
+	$(function(){
+		<%if(flag != null && flag.equals("N")){ %>
+			alert("비밀번호가 일치하지 않습니다.");
+		<%} %>
+	});
+
+</SCRIPT>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	<h1 align=center>비밀번호 변경</h1>
-<form action="<%=request.getContextPath()%>/updatePwd.mp" method="post">
-	<fieldset class="revisepassword">
-		<div>
-			<h4>현재 비밀번호</h4>
-			<input type="text" style="width:400pt; height:30px;" name="originPwd">
-			<h4>새 비밀번호</h4>
-			<input type="text" style="width:400pt; height:30px" name="changePwd1">
-			<h4>새 비밀번호 확인</h4>
-			<input type="text" style="width:400pt; height:30px" name="changePwd2">
-		</div>
-		<br>
-		<div>
-			<input type=reset value="취소" id="btn1" onclick="goRevisePage();">
-			<input type=submit value="확인" id="btn2">
-	  	</div>
-	</fieldset>
-</form>
+	<br>
+	<h2 align="center"><b>비밀번호 변경하기</b></h2>
 
-<script>
+	<form action="<%=request.getContextPath()%>/updatePwd.mp" method="post">
+		<div id="mainArea" align="center">
+			<div id="inputArea">
+			<div id="inputs">
+					<label for="originPwd">현재 비밀번호</label><br>
+					<input type="password" class="form-control" name="originPwd" id="originPwd">
+					<br>
+					<label for="newPwd1">새 비밀번호</label><br>
+					<input type="password" class="form-control" name="newPwd1" id="newPwd1" required>
+					<br>
+					<label for="newPwd2">새 비밀번호 재입력</label><br>
+					<input type="password" class="form-control" name="newPwd2"id="newPwd2" required>
+					<div id="alerts">
+					<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+					<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+					</div>
+			</div>
+			<br>
+			<div id="btns" align="center">
+				<button type="reset" class="ui button" onclick="goRevisePage();"> 취소하기 </button>&nbsp;&nbsp;&nbsp;
+				<button type="submit" class="ui secondary button" id="btn1"> 변경하기 </button>
+			</div>
+			</div>
+		</div>
+	</form>
+
+	<script type="text/javascript">
+    $(function(){
+        $("#alert-success").hide();
+        $("#alert-danger").hide();
+        $("input").keyup(function(){
+            var newPwd1=$("#newPwd1").val();
+            var newPwd2=$("#newPwd2").val();
+            if(newPwd1 != "" || newPwd2 != ""){
+                if(newPwd1 == newPwd2){
+                    $("#alert-success").show();
+                    $("#alert-danger").hide();
+                    $("#btn1").removeAttr("disabled");
+                }else{
+                    $("#alert-success").hide();
+                    $("#alert-danger").show();
+                    $("#btn1").attr("disabled", "disabled");
+                }
+            }
+        });
+    });
+</script>
+
+	<script>
+	/* 취소하기 버튼 눌렀을 때 */
 	function goRevisePage(){
 		location.href="<%=request.getContextPath()%>/revise.mp";
-	}
-</script>
+		}
+	</script>
 
 	<jsp:include page="/views/common/footer.jsp" />
 </body>

@@ -136,9 +136,10 @@ public class MyPageDao_mh {
 	/** 비밀번호 수정
 	 * @param con
 	 * @param myPageUserVO
+	 * @param newPwd1
 	 * @return
 	 */
-	public int updateUserPwd(Connection con, MyPageUserVO myPageUserVO) {
+	public int updateUserPwd(Connection con, MyPageUserVO myPageUserVO, String newPwd1) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 
@@ -146,7 +147,7 @@ public class MyPageDao_mh {
 
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, myPageUserVO.getUserPwd());
+			pstmt.setString(1, newPwd1);
 			pstmt.setInt(2, myPageUserVO.getUserSeq());
 
 			result = pstmt.executeUpdate();
@@ -164,9 +165,10 @@ public class MyPageDao_mh {
 	/** 비밀번호 수정내역 INSERT
 	 * @param con
 	 * @param myPageUserVO
+	 * @param newPwd1
 	 * @return
 	 */
-	public int insertUpdatedUserPwd(Connection con, MyPageUserVO myPageUserVO) {
+	public int insertUpdatedUserPwd(Connection con, MyPageUserVO myPageUserVO, String newPwd) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 
@@ -175,12 +177,11 @@ public class MyPageDao_mh {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, myPageUserVO.getUserSeq());
-			pstmt.setString(2, myPageUserVO.getUserPwd());
+			pstmt.setString(2, newPwd);
 
 			result = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(pstmt);

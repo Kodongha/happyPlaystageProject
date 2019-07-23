@@ -112,27 +112,28 @@ public class MyPageService_mh {
 
 	/** 유저 비밀번호 변경
 	 * @param myPageUserVO
+	 * @param newPwd1
 	 * @return
 	 */
-	public MyPageUserVO updateUserPwd(MyPageUserVO myPageUserVO) {
+	public int updateUserPwd(MyPageUserVO myPageUserVO, String newPwd) {
 		Connection con = getConnection();
 		int updateResult = 0;
 		int insertResult = 0;
 
 		MyPageDao_mh MyPageDao = new MyPageDao_mh();
 
+		// DB 정보
 		MyPageUserVO responseMyPageUserVO = MyPageDao.selectMyPageInfo(con, myPageUserVO.getUserSeq());
 
-
+		// DB정보와 입력받은 originPwd 비교
 		boolean type1 = responseMyPageUserVO.getUserPwd().equals(myPageUserVO.getUserPwd());
 
 		if(type1) {
-			System.out.println("변경사항이 없습니다.");
-		}else {
-			updateResult = MyPageDao.updateUserPwd(con, myPageUserVO);
+			updateResult = MyPageDao.updateUserPwd(con, myPageUserVO, newPwd);
 			if(updateResult > 0) {
-				insertResult = MyPageDao.insertUpdatedUserPwd(con, myPageUserVO);
+				insertResult = MyPageDao.insertUpdatedUserPwd(con, myPageUserVO, newPwd);
 			}
+		}else {
 		}
 
 		if(updateResult > 0) {
@@ -143,7 +144,7 @@ public class MyPageService_mh {
 
 		close(con);
 
-		return responseMyPageUserVO;
+		return updateResult + insertResult;
 	}
 
 

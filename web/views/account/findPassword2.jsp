@@ -129,7 +129,7 @@ h2 {
 
 
 
-	<form>
+	<form action="<%=request.getContextPath()%>/findPassword2.acc" method="post">
 		<div class="findId" id="findid2">
 			<table>
 

@@ -213,6 +213,7 @@
 
 	<script type="text/javascript">
 		$("#search_button").postcodifyPopUp();
+		$("#corpAddress1").postcodifyPopUp();
 	</script>
 
 	<jsp:include page="/views/common/footer.jsp" />

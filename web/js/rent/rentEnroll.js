@@ -3,7 +3,8 @@
  */
 
 
-$(document).ready(function () {
+$(function(){
+
     //Initialize tooltips
 	var facSeq = 0;
 	var coutionSeq = 0;
@@ -107,7 +108,33 @@ $(document).ready(function () {
 		}
 	});
 
-	
+	$(".fileArea").hide();
+	$("#titleImgDiv").click(function(){
+		$("#titleImgInput").click();
+	});
+	$(".subImgDiv").click(function(){
+		$("#subImgInput"+i).click();
+		i++;
+	});
+
+	/* 공연장 등록증 첨부 */
+	$("#hallRegisCerPathAddBtn").click(function(){
+		$("#hallRegisCerPathInput").click();
+	});
+
+	$("#hallRegisCerPathInput").change(function(){
+		$("#hallRegisCerPath").val($(this).val());
+	});
+
+	$("#corpRegisCerPathInput").hide();
+
+	$("#corpRegisCerPathAddBtn").click(function(){
+		$("#corpRegisCerPathInput").click();
+	});
+
+	$("#corpRegisCerPathInput").change(function(){
+		$("#corpRegisCerPath").val($(this).val());
+	});
 
 	function nextTab(elem) {
 	    $(elem).next().find('a[data-toggle="tab"]').click();
@@ -117,3 +144,5 @@ $(document).ready(function () {
 	}
 
 });
+
+

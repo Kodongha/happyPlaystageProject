@@ -16,7 +16,7 @@
 	      <!-- 대관 관련 -->
 	      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">대관<span class="caret"></span></a>
 	        <ul class="dropdown-menu">
-	          <li><a href="<%=request.getContextPath() %>/views/rent/rentBasicEnroll.jsp">대관 등록하기</a></li>
+	          <li><a href="<%=request.getContextPath() %>/MoveRentEnroll.rt">대관 등록하기</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/rent/rentalList.jsp">대관 신청하기</a></li>
 	        </ul>
 	      </li>

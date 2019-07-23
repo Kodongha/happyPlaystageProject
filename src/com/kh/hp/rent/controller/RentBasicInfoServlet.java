@@ -45,8 +45,8 @@ public class RentBasicInfoServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		if(ServletFileUpload.isMultipartContent(request)) {
-			/*#################################### S T E P - 1 ####################################*/
 
+			/*#################################### S T E P - 1 ####################################*/
 			int userSeq = ((UserVO)request.getSession().getAttribute("user")).getUserSeq(); // 작성자 회원번호
 			int maxSize = 1024 * 1024 * 10; // 제한 MB
 
@@ -57,13 +57,13 @@ public class RentBasicInfoServlet extends HttpServlet {
 
 			MultipartRequest multipartRequest = new MultipartRequest(request, profileSavePath, maxSize, "UTF-8", new MyFileRenamePolicy(userSeq));
 
-			String hallNm = multipartRequest.getParameter("hallNm");			// 공연장 명
-			String hallSimIntro = multipartRequest.getParameter("hallSimIntro"); // 한줄 소개
-			String hallDetIntro = multipartRequest.getParameter("hallDetIntro"); // 상세 소개
+			String hallNm = multipartRequest.getParameter("hallNm");				// 공연장 명
+			String hallSimIntro = multipartRequest.getParameter("hallSimIntro"); 	// 한줄 소개
+			String hallDetIntro = multipartRequest.getParameter("hallDetIntro"); 	// 상세 소개
 
 			String [] facInfoContentArray = multipartRequest.getParameterValues("facInfoContentReq");	// 시설 안내
 			String [] cautionContentArray = multipartRequest.getParameterValues("cautionContentReq");	// 주의사항
-			String [] detAddressArray = multipartRequest.getParameterValues("detAddressReq");	// 주의사항
+			String [] detAddressArray = multipartRequest.getParameterValues("detAddressReq");			// 주의사항
 
 
 			String website = multipartRequest.getParameter("website");	// 웹사이트

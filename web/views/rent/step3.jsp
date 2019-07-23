@@ -1,5 +1,11 @@
+<%@page import="com.kh.hp.rent.model.vo.DetFacVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+	ArrayList<DetFacVO> detFacVOList = (ArrayList<DetFacVO>) request.getAttribute("detFacVOList");
+%>
 
 <div class="tab-pane" role="tabpanel" id="step3">
 	<div class="container">
@@ -79,54 +85,34 @@
 
 		<br><br><br><br><br><br><br><br>
 
+
+
 		<!-- 시설 세부항목 -->
 		<h2>시설 세부항목 설정</h2>
 		<hr style="background: black">
+		<div class="container">
+			<%for(int i=0; i<detFacVOList.size(); i++) {%>
+			<div class="detFacIcon" align="center" id="detFacIcon + <%=detFacVOList.get(i).getDetFacSeq() %>">
+				<div style="display:inline;" align="center">
+					<i class="detFacIconITag <%=detFacVOList.get(i).getDetFacImgPath() %>" style="width: 120px; height: 120px;"></i>
+					<div>
+						<label style="font-size: 15px;"><%=detFacVOList.get(i).getDetFacNm() %></label>
+					</div>
+				</div>
+			</div>
+			<%} %>
+			<input type="hidden" name="selectedDetFacIcon">
+		</div>
 
-		<span style="font-size: 3em; color: black;">
-		  <i class="fas fa-camera"></i>
-		</span>
-		<span style="font-size: 3em; color: black;">
-			<i class="fas fa-car-side"></i>
-		</span>
-		<span style="font-size: 3em; color: black;">
-			<i class="fas fa-couch"></i>
-		</span>
-		<span style="font-size: 3em; color: black;">
-			<i class="fas fa-bath"></i>
-		</span>
-		<span style="font-size: 3em; color: black;">
-			<i class="fas fa-smoking-ban"></i>
-		</span>
-		<span style="font-size: 3em; color: black;">
-			<i class="fas fa-desktop"></i>
-		</span>
-		<span style="font-size: 3em; color: black;">
-			<i class="fas fa-wifi"></i>
-		</span>
-		<span style="font-size: 3em; color: black;">
-			<i class="fas fa-toilet"></i>
-		</span>
-		<span style="font-size: 3em; color: black;">
-			<i class="fas fa-microphone-alt"></i>
-		</span>
-		<span style="font-size: 3em; color: black;">
-			<i class="fas fa-print"></i>
-		</span>
-		<span style="font-size: 3em; color: black;">
-			<i class="fas fa-chalkboard"></i>
-		</span>
-		<span style="font-size: 3em; color: black;">
-			<i class="fas fa-tshirt"></i>
-		</span>
-		<span style="font-size: 3em; color: black;">
-			<i class="fas fa-hamburger"></i>
-		</span>
-		<span style="font-size: 3em; color: black;">
-			<i class="fas fa-beer"></i>
-		</span>
+		<script type="text/javascript">
+			$(function(){
 
+				$(".detFacIcon").click(function(){
+					$(this).toggleClass("changeColor");
+				});
 
+			});
+		</script>
 
 		<br><br><br><br><br><br><br><br>
 

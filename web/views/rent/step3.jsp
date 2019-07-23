@@ -7,7 +7,7 @@
 	ArrayList<DetFacVO> detFacVOList = (ArrayList<DetFacVO>) request.getAttribute("detFacVOList");
 %>
 
-<div class="tab-pane" role="tabpanel" id="step3">
+
 	<div class="container">
 		<h2>A관의 이용 정보를 입력해주세요.</h2>
 		<hr style="background: black">
@@ -65,7 +65,7 @@
 		<div class="form-group" style="display: inline; width: 49%; float: right;">
 			<label class="necessary">*</label><label for="maxHeadCount">예약 가능 인원 수</label>
 			<br><br>
-			<input id="maxHeadCount" type="number" class="form-control" name="maxHeadCount" style="width: 200px; min-width: 200px; display:inline; margin: 0 2% 0 0" placeholder="예약 가능 인원 수">
+			<input id="maxHeadCount" type="number" class="form-control" name="maxHeadCount" style="width: 200px; min-width: 200px; display:inline; margin: 0 2% 0 0" placeholder="예약 가능 인원 수" value="0">
 
 			<%--
 			<select class="form-control" name="maxHeadCount" id="maxHeadCount" style="width: 200px; min-width: 200px; display:inline; margin: 0 2% 0 0">
@@ -92,16 +92,16 @@
 		<hr style="background: black">
 		<div class="container">
 			<%for(int i=0; i<detFacVOList.size(); i++) {%>
-			<div class="detFacIcon" align="center" id="detFacIcon + <%=detFacVOList.get(i).getDetFacSeq() %>">
+			<div class="detFacIcon" align="center" id="detFacIcon_<%=detFacVOList.get(i).getDetFacSeq() %>">
 				<div style="display:inline;" align="center">
-					<i class="detFacIconITag <%=detFacVOList.get(i).getDetFacImgPath() %>" style="width: 120px; height: 120px;"></i>
+					<i class="detFacIconITag <%=detFacVOList.get(i).getDetFacImgPath() %>" style="width: 90px; height: 50px;"></i>
 					<div>
-						<label style="font-size: 15px;"><%=detFacVOList.get(i).getDetFacNm() %></label>
+						<label style="font-size: 12px;"><%=detFacVOList.get(i).getDetFacNm() %></label>
 					</div>
 				</div>
 			</div>
 			<%} %>
-			<input type="hidden" name="selectedDetFacIcon">
+			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
 		</div>
 
 		<script type="text/javascript">
@@ -111,10 +111,19 @@
 					$(this).toggleClass("changeColor");
 				});
 
+				$("#step3NextBtn").click(function(){
+					var changeColorClass = "";
+					$(".changeColor").each(function(index, item){
+						changeColorClass += $(this).attr("id") + ",";
+					});
+					changeColorClass = changeColorClass.substr(0,changeColorClass.lastIndexOf(","));
+					$("#selectedDetFacIcon").val(changeColorClass);
+					console.log($("#selectedDetFacIcon").val());
+				});
 			});
 		</script>
 
-		<br><br><br><br><br><br><br><br>
+		<br><br>
 
 		<h2>휴무일 설정</h2>
 		<hr style="background: black">
@@ -144,14 +153,10 @@
 			</select>
 		</div>
 
-		<script type="text/javascript">
-
-		</script>
-
 		<br><br>
 
 		<div class="form-group">
-			<label class="necessary">*</label><label for="startTime">사용자 지정 휴무일</label>
+			<label for="startTime">사용자 지정 휴무일</label>
 			<br><br>
 
 			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="width: 100%;">휴무일 추가 +</button>
@@ -168,13 +173,19 @@
 						</div>
 						<div class="modal-body">
 							<p style="color: red; font-weight: bold ">* 휴무일 명</p>
-							<input id="holTitle" type="text" class="form-control" name="holTitle" placeholder="휴무일 명을 입력하세요.">
+							<input name="cusCloseNm" id="cusCloseNm" type="text" class="form-control" placeholder="휴무일 명을 입력하세요.">
 
 							<hr>
 
-							<p style="color: red; font-weight: bold ">* 날짜</p>
-							<input id="holTitle" type="text" class="form-control" name="holTitle" placeholder="휴무일 명을 입력하세요.">
-
+							<p style="color: red; font-weight: bold ">* 지정휴무 날짜</p>
+							<input name="cusClosedate" class="form-control" id="cusClosedate" placeholder="휴무일자를 선택하세요.">
+							<script type="text/javascript">
+								$('#cusClosedate').dateRangePicker({
+									inline:true,
+									container: '.modal-body',
+									alwaysOpen:true
+								});
+							</script>
 							<hr>
 							<p style="color: red; font-weight: bold ">* 요일</p>
 							<select class="form-control" id="regHoliday">
@@ -187,8 +198,6 @@
 								<option>토요일</option>
 								<option>일요일</option>
 							</select>
-
-
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-success" data-dismiss="modal" style="width: 100%;">저장</button>
@@ -201,6 +210,5 @@
 
 		<br><br>
 		<button type="button" class="btn btn-danger prev-step" style="width: 49%;">취소</button>
-		<button type="button" class="btn btn-success next-step" style="width: 49%; float: right;">다음</button>
+		<button type="submit" class="btn btn-success next-step" id="step3NextBtn" style="width: 49%; float: right;">다음</button>
 	</div>
-</div>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<div class="tab-pane active" role="tabpanel" id="step1">
+
 	<div class="form-group">
 		<label class="necessary">*</label><label for="hallNm">공연장 명</label><br><br>
 		<input type="text" class="form-control" name="hallNm" id="hallNm" placeholder="공연장 명을 입력해주세요.">
@@ -135,7 +135,7 @@
 		<input type="file" class="subImg" id="subImgInput3" name="subImgInput3" accept="image/*" onchange="subLoadImg(this,3);">
 		<input type="file" id="hallRegisCerPathInput" name="hallRegisCerPathInput">
 	</div>
-</div>
+
 
 <script type="text/javascript">
 	var i = 1;

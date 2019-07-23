@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<div class="tab-pane" role="tabpanel" id="step2">
+
 	<div class="container">
 		<h2>연락처 정보를 입력해주세요.</h2>
 		<hr style="background: black">
@@ -65,4 +65,3 @@
 		<button type="button" class="btn btn-danger prev-step" style="width: 49%;">취소</button>
 		<button type="button" class="btn btn-success next-step" style="width: 49%; float: right;">다음</button>
 	</div>
-</div>

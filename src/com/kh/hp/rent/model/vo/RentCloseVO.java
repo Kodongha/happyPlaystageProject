@@ -7,7 +7,7 @@ public class RentCloseVO implements Serializable {
 
 	private int rentCloseSeq;
 	private int regCloseCd;
-	private String cusCloseCd;
+	private String cusCloseNm;
 	private Date cusCloseStart;
 	private Date cusCloseEnd;
 	private String cusCloseWeekOkDay;
@@ -19,12 +19,12 @@ public class RentCloseVO implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RentCloseVO(int rentCloseSeq, int regCloseCd, String cusCloseCd, Date cusCloseStart, Date cusCloseEnd,
+	public RentCloseVO(int rentCloseSeq, int regCloseCd, String cusCloseNm, Date cusCloseStart, Date cusCloseEnd,
 			String cusCloseWeekOkDay, String regCloseWeekOfDay, String regCloseDt, int rentSeq) {
 		super();
 		this.rentCloseSeq = rentCloseSeq;
 		this.regCloseCd = regCloseCd;
-		this.cusCloseCd = cusCloseCd;
+		this.cusCloseNm = cusCloseNm;
 		this.cusCloseStart = cusCloseStart;
 		this.cusCloseEnd = cusCloseEnd;
 		this.cusCloseWeekOkDay = cusCloseWeekOkDay;
@@ -49,12 +49,12 @@ public class RentCloseVO implements Serializable {
 		this.regCloseCd = regCloseCd;
 	}
 
-	public String getCusCloseCd() {
-		return cusCloseCd;
+	public String getCusCloseNm() {
+		return cusCloseNm;
 	}
 
-	public void setCusCloseCd(String cusCloseCd) {
-		this.cusCloseCd = cusCloseCd;
+	public void setCusCloseNm(String cusCloseNm) {
+		this.cusCloseNm = cusCloseNm;
 	}
 
 	public Date getCusCloseStart() {
@@ -107,7 +107,7 @@ public class RentCloseVO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "RentCloseVO [rentCloseSeq=" + rentCloseSeq + ", regCloseCd=" + regCloseCd + ", cusCloseCd=" + cusCloseCd
+		return "RentCloseVO [rentCloseSeq=" + rentCloseSeq + ", regCloseCd=" + regCloseCd + ", cusCloseNm=" + cusCloseNm
 				+ ", cusCloseStart=" + cusCloseStart + ", cusCloseEnd=" + cusCloseEnd + ", cusCloseWeekOkDay="
 				+ cusCloseWeekOkDay + ", regCloseWeekOfDay=" + regCloseWeekOfDay + ", regCloseDt=" + regCloseDt
 				+ ", rentSeq=" + rentSeq + "]";

@@ -2,12 +2,12 @@
  *
  */
 
-var facSeq = 0;
-var coutionSeq = 0;
-var detAddrSeq = 0;
 
 $(document).ready(function () {
     //Initialize tooltips
+	var facSeq = 0;
+	var coutionSeq = 0;
+	var detAddrSeq = 0;
     $('.nav-tabs > li a[title]').tooltip();
 
     //Wizard
@@ -34,7 +34,7 @@ $(document).ready(function () {
 
     });
 
-
+    /*시설 안내 추가 관련*/
 	$("#facInfoContentAddBtn").click(function(){
 
 		console.log("facInfoContentAddBtn");
@@ -63,7 +63,7 @@ $(document).ready(function () {
 		}
 	});
 
-
+	/*주의사항 추가 관련*/
 	$("#cautionContentAddBtn").click(function(){
 
 		console.log("cautionContentAddBtn");
@@ -85,7 +85,7 @@ $(document).ready(function () {
 		}
 	});
 
-
+	/*상세 주소 추가 관련*/
 	$("#detAddressAddBtn").click(function(){
 
 		console.log("detAddressAddBtn");
@@ -107,12 +107,13 @@ $(document).ready(function () {
 		}
 	});
 
+	
+
+	function nextTab(elem) {
+	    $(elem).next().find('a[data-toggle="tab"]').click();
+	}
+	function prevTab(elem) {
+	    $(elem).prev().find('a[data-toggle="tab"]').click();
+	}
+
 });
-
-function nextTab(elem) {
-    $(elem).next().find('a[data-toggle="tab"]').click();
-}
-function prevTab(elem) {
-    $(elem).prev().find('a[data-toggle="tab"]').click();
-}
-

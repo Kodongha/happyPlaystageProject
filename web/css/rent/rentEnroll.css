@@ -176,7 +176,11 @@
 	}
 
 	.detFacIcon:hover, .detFacIcon.changeColor {
-		background: #D4D9DD;
+		background: #e6f2ff;
+	}
+
+	.detFacIcon.changeColor {
+		background: #cce6ff;
 	}
 
 </style>

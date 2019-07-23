@@ -139,5 +139,7 @@ public class AhnMyPageVO implements Serializable {
 				+ ", userNick=" + userNick + ", userPhone=" + userPhone + ", userGradeCd=" + userGradeCd + ", enrollDt="
 				+ enrollDt + ", snsCd=" + snsCd + ", leaveTf=" + leaveTf + ", leaveDt=" + leaveDt + "]";
 	}
+	
+	
 
 }

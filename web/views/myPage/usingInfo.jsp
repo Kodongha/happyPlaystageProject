@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.hp.myPage.model.vo.AhnUsingInfoVO"%>
+    pageEncoding="UTF-8" import="com.kh.hp.myPage.model.vo.AhnUsingInfoVO, java.util.*"%>
 <%
-	AhnUsingInfoVO responseUserVO = (AhnUsingInfoVO) request.getAttribute("responseUserVO");
+/* ArrayList<AhnUsingInfoVO> list = (ArrayList<AhnUsingInfoVO>)request.getAttribute("list"); */
+AhnUsingInfoVO responseUserVO = (AhnUsingInfoVO) request.getAttribute("responseUserVO");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -32,9 +34,9 @@
 	<div class="tab1" style="width:650px;border:1.5px solid black">
 	<table align="center">
 		<tr>
-			<td>공연장 고유번호</td>
-			<td>공연장 이름</td>
-			<td>일자</td>
+			<td id="rentSeq">공연장 고유번호</td>
+			<td id="propNm">공연장 이름</td>
+			<td id="useStartDt">일자</td>
 			<td></td>
 		</tr>
 		<tr>
@@ -62,8 +64,8 @@
 		<tr>
 		<td id="tab2"><%= responseUserVO.getRentSeq() %></td>
 		<td id="tab2"><%= responseUserVO.getPropNm() %></td>
-		<td id="tab2"><%= responseUserVO.getPropEmail() %></td>
 		<td id="tab2"><%= responseUserVO.getUseStartDt() %></td>
+		<td id="tab2"><%= responseUserVO.getRentSeq() %></td>
 		</tr>
 		<tr>
 		<td id="tab2"></td>

@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.hp.myPage.model.dao.AhnMyPageDao;
+import com.kh.hp.myPage.model.vo.AhnApplyInfoVO;
+import com.kh.hp.myPage.model.vo.AhnAttachmentVO;
 import com.kh.hp.myPage.model.vo.AhnLevelupVO;
 import com.kh.hp.myPage.model.vo.AhnMyPageVO;
 import com.kh.hp.myPage.model.vo.AhnUsingInfoVO;
@@ -21,24 +23,65 @@ public class AhnMyPageService {
 		return responseUserVO;
 	}
 
-	public AhnLevelupVO updateLevelOne(int levelUpInfo) {
+	/*public AhnLevelupVO insertLevelOne(int levelUpInfo) {
 		Connection con = getConnection();
-		AhnLevelupVO responseUserVO = new AhnMyPageDao().updateLevelOne(con, levelUpInfo);
+		AhnLevelupVO responseUserVO = new AhnMyPageDao().insertLevelOne(con, levelUpInfo);
+		close(con);
+		
+		return responseUserVO;
+	}*/
+	
+	public AhnAttachmentVO insertLevelOne(int levelUpInfo, AhnAttachmentVO reqAhnAttachmentVO) {
+		Connection con = getConnection();
+		AhnAttachmentVO responseUserVO = new AhnMyPageDao().insertLevelOne(con, levelUpInfo, reqAhnAttachmentVO);
 		close(con);
 		
 		return responseUserVO;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
-	/*public ArrayList<AhnUsingInfoVO> searchCheck(int usingInfo) {
+/*	public ArrayList<AhnApplyInfoVO> searchCheck(int usingInfo) {
 
 		Connection con = getConnection();
 		
-		ArrayList<AhnUsingInfoVO> list = new AhnMyPageDao().searchCheck(con, usingInfo);
+		ArrayList<AhnApplyInfoVO> list = new AhnMyPageDao().searchCheck(con, usingInfo);
 		
 		close(con);
 		
 		return list;
 	}*/
+	
+	public int getListCount(int usingInfo) {
+		Connection con = getConnection();
+		
+		int listCount = new AhnMyPageDao().getListCount(con, usingInfo);
+		
+		close(con);
+		
+		return listCount;
+	}
+
+	public ArrayList<AhnApplyInfoVO> selectList(int usingInfo, int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<AhnApplyInfoVO> list = new AhnMyPageDao().selectList(con, usingInfo, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}
+
 
 	
 	
@@ -46,13 +89,13 @@ public class AhnMyPageService {
 	
 	
 	
-	public AhnUsingInfoVO searchCheck(int usingInfo) {
+	/*public AhnUsingInfoVO searchCheck(int usingInfo) {
 		Connection con = getConnection();
 		AhnUsingInfoVO responseUserVO = new AhnMyPageDao().searchCheck(con, usingInfo);
 		close(con);
 		
 		return responseUserVO;
-	}
+	}*/
 
 	/*public AhnUsingInfoVO updateUsingOne(int usingInfo) {
 		Connection con = getConnection();

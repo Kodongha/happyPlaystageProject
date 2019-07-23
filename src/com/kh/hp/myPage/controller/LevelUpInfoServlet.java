@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.hp.account.model.vo.UserVO;
 import com.kh.hp.myPage.model.service.AhnMyPageService;
+import com.kh.hp.myPage.model.vo.AhnAttachmentVO;
 import com.kh.hp.myPage.model.vo.AhnLevelupVO;
 import com.kh.hp.myPage.model.vo.AhnMyPageVO;
 
@@ -31,8 +32,28 @@ public class LevelUpInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*int levelUpInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
+		AhnLevelupVO responseUserVO = new AhnMyPageService().insertLevelOne(levelUpInfo);
+		
+		String page = "";
+		if(responseUserVO != null) {
+			request.setAttribute("msg", "신청이 완료되었습니다.");
+			page = "views/common/errorPage.jsp";
+			
+		}else {
+			request.setAttribute("msg", "신청이 불가합니다.");
+			page = "views/common/errorPage.jsp";
+		}
+		
+		request.getRequestDispatcher(page).forward(request, response);*/
+		
 		int levelUpInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
-		AhnLevelupVO responseUserVO = new AhnMyPageService().updateLevelOne(levelUpInfo);
+		
+		String filePath = request.getParameter("filePath");
+		AhnAttachmentVO reqAhnAttachmentVO = new AhnAttachmentVO();
+		reqAhnAttachmentVO.setFilePath(filePath);
+		System.out.println("filePath : " + filePath);
+		AhnAttachmentVO responseUserVO = new AhnMyPageService().insertLevelOne(levelUpInfo, reqAhnAttachmentVO);
 		
 		String page = "";
 		if(responseUserVO != null) {

@@ -10,7 +10,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- js -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -53,6 +52,7 @@ body {
 #alerts {
 	width:70%;
 }
+
 </style>
 <SCRIPT type="text/javascript">
 	$(function(){
@@ -73,13 +73,14 @@ body {
 			<div id="inputArea">
 			<div id="inputs">
 					<label for="originPwd">현재 비밀번호</label><br>
-					<input type="password" class="form-control" name="originPwd" id="originPwd">
+					<input type="password" class="form-control" name="originPwd" id="originPwd" required>
 					<br>
 					<label for="newPwd1">새 비밀번호</label><br>
 					<input type="password" class="form-control" name="newPwd1" id="newPwd1" required>
 					<br>
 					<label for="newPwd2">새 비밀번호 재입력</label><br>
 					<input type="password" class="form-control" name="newPwd2"id="newPwd2" required>
+					</div>
 					<div id="alerts">
 					<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
 					<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>

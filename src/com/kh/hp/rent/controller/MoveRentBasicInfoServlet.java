@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.hp.rent.model.service.RentService;
 import com.kh.hp.rent.model.vo.DetFacVO;
+import com.kh.hp.rent.model.vo.RefundTypeVO;
 
 /**
  * Servlet implementation class MoveRentBasicInfoServlet
@@ -33,13 +34,22 @@ public class MoveRentBasicInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("in!!!");
-		ArrayList<DetFacVO> detFacVOList = new RentService().selectDetFacAll();
+
+		RentService rentService = new RentService();
+
+		/*세부 시설 정보 가져오기*/
+		ArrayList<DetFacVO> detFacVOList = rentService.selectDetFacAll();
 		System.out.println("detFacVOList:::" + detFacVOList);
 
+		/*환불 유형 정보 가져오기*/
+		ArrayList<RefundTypeVO> refundTypeVOList = rentService.selectRefunctTypeAll();
+		System.out.println("refundTypeVOList:::" + refundTypeVOList);
+
 		String page = "";
-		if(detFacVOList != null) {
+		if(detFacVOList != null && refundTypeVOList != null) {
 			page = "views/rent/rentBasicEnroll.jsp";
 			request.setAttribute("detFacVOList", detFacVOList);
+			request.setAttribute("refundTypeVOList", refundTypeVOList);
 		} else {
 			page = "views/common/errorPage.jsp";
 		}

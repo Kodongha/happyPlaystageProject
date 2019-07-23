@@ -140,24 +140,6 @@
 <script type="text/javascript">
 	var i = 1;
 
-	$(".fileArea").hide();
-	$("#titleImgDiv").click(function(){
-		$("#titleImgInput").click();
-	});
-	$(".subImgDiv").click(function(){
-		$("#subImgInput"+i).click();
-		i++;
-	});
-
-	/* 공연장 등록증 첨부 */
-	$("#hallRegisCerPathAddBtn").click(function(){
-		$("#hallRegisCerPathInput").click();
-	});
-
-	$("#hallRegisCerPathInput").change(function(){
-		$("#hallRegisCerPath").val($(this).val());
-	});
-
 
 	/* 이미지 미리보기 */
 	function titleLoadImg(value){

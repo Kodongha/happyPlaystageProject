@@ -133,7 +133,6 @@ public class MyPageService_mh {
 			if(updateResult > 0) {
 				insertResult = MyPageDao.insertUpdatedUserPwd(con, myPageUserVO, newPwd);
 			}
-		}else {
 		}
 
 		if(updateResult > 0) {
@@ -145,6 +144,39 @@ public class MyPageService_mh {
 		close(con);
 
 		return updateResult + insertResult;
+	}
+
+
+	/** 회원탈퇴
+	 * @param userSeq
+	 * @param pwd1
+	 * @return
+	 */
+	public int updateLeaveTF(int userSeq, String pwd1) {
+		Connection con = getConnection();
+		int result = 0;
+
+		MyPageDao_mh MyPageDao = new MyPageDao_mh();
+
+		// DB 정보
+		MyPageUserVO responseMyPageUserVO = MyPageDao.selectMyPageInfo(con, userSeq);
+
+		// DB정보와 입력받은 pwd 비교
+		boolean type1 = responseMyPageUserVO.getUserPwd().equals(pwd1);
+
+		if(type1) {
+			result = MyPageDao.updateLeaveTF(con, userSeq);
+		}
+
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+
+		close(con);
+
+		return result;
 	}
 
 

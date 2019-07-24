@@ -91,59 +91,65 @@ table {
 </style>
 
 <script type="text/javascript">
-	$(function(){
-		
+	$(function() {
+
 	});
-
 </script>
 
 <script>
-      $( document ).ready( function() {
-        $( '.check-all' ).click( function() {
-          $( '.ab' ).prop( 'checked', this.checked );
-        } );
-      } );
+	$(document).ready(function() {
+		$('.check-all').click(function() {
+			$('.ab').prop('checked', this.checked);
+		});
+	});
 </script>
 
 <script>
-	function check(){
-		if(fr.userPwd.value != fr.userPwd2.value){
+	function check() {
+		if (fr.userPwd.value != fr.userPwd2.value) {
 			alert("비밀번호를 다르게 입력하셨습니다.");
-		    return false;
+			return false;
 		}
-		
-		if(fr.userEmail.value=="" || fr.userPwd.value==""|| fr.userPwd2.value=="" ||fr.userNm.value==""||fr.userNick.value==""
-				||fr.userPhone.value==""){
+
+		if (fr.userEmail.value == "" || fr.userPwd.value == ""
+				|| fr.userPwd2.value == "" || fr.userNm.value == ""
+				|| fr.userNick.value == "" || fr.userPhone.value == "" 
+				|| fr.ab1.checked == false || fr.ab2.checked == false) {
 			alert("모두 입력하세요.");
-			if(fr.userEmail.value==""){
+			if (fr.userEmail.value == "") {
 				fr.userEmail.focus();
 			}
-			if(fr.userPwd.value==""){
+			if (fr.userPwd.value == "") {
 				fr.userPwd.focus();
 			}
-			if(fr.userPwd2.value==""){
+			if (fr.userPwd2.value == "") {
 				fr.userPwd2.focus();
 			}
-			if(fr.userNm.value==""){
+			if (fr.userNm.value == "") {
 				fr.userNm.focus();
 			}
-			if(fr.userNick.value==""){
+			if (fr.userNick.value == "") {
 				fr.userNick.focus();
 			}
-			if(fr.userPhone.value==""){
+			if (fr.userPhone.value == "") {
 				fr.userPhone.focus();
 			}
+			if (fr.ab1.checked){
+				
+			}
+			if (fr.ab2.checked){
+				
+			}
 			
+			console.log(fr.ab1.checked);
+			
+			return false;
 
-		    return false;
-			
-		}else{
-			return true;	
+		} else {
+			return true;
 		}
-		
-		
-	}
 
+	}
 </script>
 
 
@@ -162,6 +168,8 @@ table {
 				<tr>
 					<td><input class="form-control" id="userEmail" type="email"
 						name="userEmail" placeholder="이메일"></td>
+					<td><input type="button" value="중복확인" onclick="idCheck()">
+					<td>
 				</tr>
 				<tr>
 					<td><input class="form-control" id="userPwd" type="password"
@@ -197,11 +205,11 @@ table {
 				</tr>
 
 				<tr>
-					<td><input type="checkbox" class="ab"> 서비스 이용약관(필수)</td>
+					<td><input type="checkbox" class="ab" id="ab1" name="ab1"> 서비스 이용약관(필수)</td>
 
 				</tr>
 				<tr>
-					<td><input type="checkbox" class="ab"> 개인정보 처리 방침(필수)</td>
+					<td><input type="checkbox" class="ab" id="ab2" name="ab2"> 개인정보 처리 방침(필수)</td>
 
 				</tr>
 				<tr>

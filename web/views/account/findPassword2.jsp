@@ -116,6 +116,27 @@ h2 {
 
 }
 </style>
+
+<script>
+	$(function(){
+		$("#success").click(function(){
+			console.log("check in!");
+			var t2 = $("#t2").val();
+			if(t2){
+				alert('인증 완료!');
+				$("#t2").submit();
+			} else {
+				$("#t2").focus();
+				alert("인증번호를 입력해 주세요.");
+			}
+		});
+	});
+	
+	
+</script>
+
+
+
 </head>
 
 
@@ -129,12 +150,12 @@ h2 {
 
 
 
-	<form action="<%=request.getContextPath()%>/findPassword2.acc" method="post">
+	<form action="<%=request.getContextPath()%>/findPasswordTw.acc" method="post">
 		<div class="findId" id="findid2">
 			<table>
 
 				<tr>
-					<td><input class="form-control" id="t1" type="text"
+					<td><input class="form-control" id="receiver" type="email" name="receiver"
 						placeholder="이메일">
 						<h6>가입시 사용한 이메일 주소를 입력해주시면 비밀번호 재설정 링크를 보내드립니다.<br>
 							카카오톡, 구글로 가입하신 경우 비밀번호 찾기가 불가능 합니다.</h6></td>
@@ -142,7 +163,7 @@ h2 {
 
 				<tr>
 				
-					<td><h5>인증번호 입력</h5><input class="form-control" id="t2" type="text"
+					<td><h5>인증번호 입력</h5><input class="form-control" id="t2" type="text" name="t2"
 						placeholder="인증번호 입력">
 				</td>
 			
@@ -156,7 +177,7 @@ h2 {
 				
 			
 				
-						<button onclick="alert('인증완료');" id="success"
+						<button id="success"
 							type="button" class="btn btn-default btn-lg btn-block">
 							확인</button>
 					</td>

@@ -143,7 +143,7 @@ public class AhnMyPageDao {
 		return responseUserVO;
 	}
 	
-	public ArrayList<AhnApplyInfoVO> searchCheck(Connection con, int usingInfo) {
+	/*public ArrayList<AhnApplyInfoVO> searchCheck(Connection con, int usingInfo) {
 		ArrayList<AhnApplyInfoVO> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -189,7 +189,7 @@ public class AhnMyPageDao {
 		}
 		
 		return list;
-	}
+	}*/
 	public int getListCount(Connection con, int usingInfo) {
 		PreparedStatement pstmt = null;
 		int listCount = 0;
@@ -243,6 +243,120 @@ public class AhnMyPageDao {
 			
 			while(rset.next()) {
 				AhnApplyInfoVO b = new AhnApplyInfoVO();
+				
+				/*b.setRentSeq(rset.getInt("RENT_SEQ"));
+				b.setUserSeq(rset.getInt("USER_SEQ"));
+				b.setHallNm(rset.getString("HALL_NM"));
+				b.setHallSimIntro(rset.getString("HALL_SIM_INTRO"));
+				b.setHallDetIntro(rset.getString("HALL_DET_INTRO"));
+				b.setWebsite(rset.getString("WEBSITE"));
+				b.setAddress(rset.getString("ADDRESS"));
+				b.setHallRegisCerPath(rset.getString("HALL_REGIS_CER_PATH"));
+				b.setPrefPlanTf(rset.getString("PERF_PLAN_TF").charAt(0));
+				b.setRentEmail(rset.getString("RENT_EMAIL"));
+				b.setRentMainTel(rset.getString("RENT_MAIN_TEL"));
+				b.setRentPhone(rset.getString("RENT_PHONE"));
+				b.setRentPhoneSub(rset.getString("RENT_PHONE_SUB"));
+				b.setAvailStartTm(rset.getString("AVAIL_START_TM"));
+				b.setAvailEndTm(rset.getString("AVAIL_END_TM"));
+				b.setMinRsvTm(rset.getInt("MIN_RSV_TM"));
+				b.setUseTimeUnit(rset.getString("USE_TIME_UNIT"));
+				b.setRentEnrollStatus(rset.getString("RENT_ENROLL_STATUS"));
+				b.setInspTf(rset.getString("INSP_TF").charAt(0));
+				b.setCompNm(rset.getString("COMP_NM"));
+				b.setCeoNm(rset.getString("CEO_NM"));
+				b.setCorpNo(rset.getString("CORP_NO"));
+				b.setCorpAddress(rset.getString("CORP_ADDRESS"));
+				b.setSettleEmail(rset.getString("SETTLE_EMAIL"));
+				b.setSettlePhone(rset.getString("SETTLE_PHONE"));
+				b.setBankNm(rset.getString("BANK_NM"));
+				b.setAccNo(rset.getString("ACC_NO"));
+				b.setAccHolder(rset.getString("ACC_HOLDER"));
+				b.setRentEnrollDt(rset.getDate("RENT_ENROLL_DT"));*/
+				
+				b.setPropSeq(rset.getInt("PROP_SEQ"));
+				b.setRentSeq(rset.getInt("RENT_SEQ"));
+				b.setUserSeq(rset.getInt("USER_SEQ"));
+				b.setPropNm(rset.getString("PROP_NM"));
+				b.setPropPhone(rset.getString("PROP_PHONE"));
+				b.setPropEmail(rset.getString("PROP_EMAIL"));
+				b.setPropReqContent(rset.getString("PROP_REQ_CONTENT"));
+				b.setPropDt(rset.getDate("PROP_DT"));
+				b.setPropStatus(rset.getString("PROP_STATUS"));
+				b.setUseStartDt(rset.getDate("USE_START_DT"));
+				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				b.setUseStartTm(rset.getInt("USE_START_TM"));
+				b.setUseEndTm(rset.getInt("USE_END_TM"));
+				b.setPayAmount(rset.getInt("PAY_AMOUNT"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		
+		return list;
+	}
+	public int getListCount1(Connection con, int usingInfo) {
+		PreparedStatement pstmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectListCount1");
+		System.out.println("usingInfoDAO:::"+usingInfo);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, String.valueOf(usingInfo));
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return listCount;
+	}
+	
+	public ArrayList<AhnUsingInfoVO> selectList1(Connection con, int usingInfo, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AhnUsingInfoVO> list = null;
+		
+		String query = prop.getProperty("selectListWithPaging1");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+
+			//조회를 시작할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			
+			pstmt.setInt(1, usingInfo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<AhnUsingInfoVO>();
+			
+			while(rset.next()) {
+				AhnUsingInfoVO b = new AhnUsingInfoVO();
 				
 				b.setPropSeq(rset.getInt("PROP_SEQ"));
 				b.setRentSeq(rset.getInt("RENT_SEQ"));

@@ -82,6 +82,26 @@ public class AhnMyPageService {
 		return list;
 	}
 
+	public int getListCount1(int usingInfo) {
+		Connection con = getConnection();
+		
+		int listCount = new AhnMyPageDao().getListCount1(con, usingInfo);
+		
+		close(con);
+		
+		return listCount;
+	}
+
+	public ArrayList<AhnUsingInfoVO> selectList1(int usingInfo, int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<AhnUsingInfoVO> list = new AhnMyPageDao().selectList1(con, usingInfo, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}
+
 
 	
 	

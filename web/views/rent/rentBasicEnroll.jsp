@@ -127,13 +127,13 @@
 	</div>
 
 	<script type="text/javascript">
-
+		/*주소 API 관련*/
 		$("#search_button").postcodifyPopUp({
 			insertAddress : $("#address")
 		});
 
 		$("#search_button2").postcodifyPopUp({
-			insertAddress : $("#address2")
+			insertAddress : $("#corpAddress1")
 		});
 
 	</script>

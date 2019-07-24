@@ -64,6 +64,9 @@ input {
 	background-color:#ffc430;
 	color:black;
 }
+.btns {
+	width:180px;
+}
 </style>
 
 <title>내 정보 수정</title>
@@ -82,7 +85,7 @@ input {
 		<div id="imgArea"></div>
 		<div>
 			<h3>
-				<input type="text" class="form-control" value="<%= mypageInfo.getUserNick() %>" style="width:200px;" name="userNick">
+				<input type="text" class="form-control" value="<%= mypageInfo.getUserNick() %>" style="width:200px;" name="userNick" required>
 			</h3>
 		</div>
 		<br>
@@ -94,11 +97,11 @@ input {
 					<th>이메일</th><td><%= mypageInfo.getUserEmail() %></td>
 				</tr>
 				<tr>
-					<th>이름</th><td><input type="text" class="form-control" value="<%= mypageInfo.getUserNm() %>" name="userNm"></td>
+					<th>이름</th><td><input type="text" class="form-control" value="<%= mypageInfo.getUserNm() %>" name="userNm" required></td>
 				</tr>
 				<tr>
 					<th>연락처</th>
-					<td><input type="text" class="form-control" value="<%= mypageInfo.getUserPhone() %>" name="userPhone"></td>
+					<td><input type="text" class="form-control" value="<%= mypageInfo.getUserPhone() %>" name="userPhone" required></td>
 				</tr>
 				<tr>
 					<th>비밀번호</th><td><p onclick="goRevisePwd()" id="revisePwd">변경하기</p></td>
@@ -107,8 +110,8 @@ input {
 		</div>
 		<hr style="width: 750px;">
 
-		<button type="reset" class="ui button" onclick="goMyPage();"> 취소하기 </button>&nbsp;&nbsp;&nbsp;
-		<button type="submit" class="ui secondary button" id="btn1" onclick="goRevise();"> 변경하기 </button>
+		<button type="reset" class="ui button btns" onclick="goMyPage();"> 취소하기 </button>&nbsp;&nbsp;&nbsp;
+		<button type="submit" class="ui secondary button btns" id="btn1" onclick="goRevise();"> 변경하기 </button>
 	</div>
 </form>
 		<script>

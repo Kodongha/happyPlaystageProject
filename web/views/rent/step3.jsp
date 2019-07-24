@@ -43,6 +43,12 @@
 			</select>
 		</div>
 
+		<!-- 사용 시간 단위 -->
+		<div class="form-group">
+			<label class="necessary">*</label><label for="availStartTm">사용 시간 단위</label>
+
+		</div>
+
 		<br>
 
 		<!-- 최소 예약 시간 -->
@@ -155,6 +161,7 @@
 
 		<br><br>
 
+		<!-- 지정 휴무일 -->
 		<div class="form-group">
 			<label for="startTime">사용자 지정 휴무일</label>
 			<br><br>
@@ -210,5 +217,5 @@
 
 		<br><br>
 		<button type="button" class="btn btn-danger prev-step" style="width: 49%;">취소</button>
-		<button type="submit" class="btn btn-success next-step" id="step3NextBtn" style="width: 49%; float: right;">다음</button>
+		<button type="button" class="btn btn-success next-step" id="step3NextBtn" style="width: 49%; float: right;">다음</button>
 	</div>

@@ -94,9 +94,34 @@ h2 {
 	font-size: large;
 }
 </style>
+
+<script>
+	$(function(){
+		$("#success").click(function(){
+			console.log("check in!");
+			var receiver = $("#receiver").val();
+			var regExp = "/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/";
+			
+			if(receiver.match(regExp) != null){
+				console.log("성공");
+			}
+			
+			if(receiver && receiver.match(regExp) != null){
+				alert('임시 비밀번호를 이메일로 전송 하였습니다.');
+				$("#fr").submit();
+			} else {
+				$("#receiver").focus();
+				alert("이메일을 입력해주세요");
+			}
+			
+			
+		});
+	});
+	
+	
+</script>
+
 </head>
-
-
 <body>
 <jsp:include page="/views/common/header.jsp" />
 
@@ -104,13 +129,13 @@ h2 {
 		<h2>비밀번호 찾기</h2>
 		<hr>
 	</div>
-	<form action="<%=request.getContextPath()%>/findPassword.acc" method="post">
+	<form action="<%=request.getContextPath()%>/findPassword.acc" method="post" name="fr" id="fr">
 		<div class="findId" id="findid2">
 			<table>
 
 				<tr>
-					<td><input class="form-control" id="t1" type="text" name="receiver"
-						placeholder="이메일">
+					<td>
+					<input class="form-control" id="receiver" type="email" name="receiver"placeholder="이메일">
 						<h6>가입시 사용한 이메일 주소를 입력해주시면 비밀번호 재설정 링크를 보내드립니다.<br>
 							카카오톡, 구글로 가입하신 경우 비밀번호 찾기가 불가능 합니다.</h6></td>
 				</tr>
@@ -118,8 +143,8 @@ h2 {
 
 				<tr>
 					<td>
-						<button onclick="alert('임시 비밀번호를 이메일로 전송 하였습니다.');" id="success"
-							type="submit" class="btn btn-default btn-lg btn-block" value="<%=getRandom()%>">
+						<button id="success" name="success"
+							type="button" class="btn btn-default btn-lg btn-block" value="<%=getRandom()%>">
 							비밀번호 재설정 링크 이메일로 보내기</button>
 					</td>
 				</tr>

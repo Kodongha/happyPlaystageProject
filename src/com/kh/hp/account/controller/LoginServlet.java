@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
 		String page = "";
 
 		if(responseUserVO != null) {
-			page = "views/main/main.jsp";
+			page = request.getContextPath() + "/moveMain.main";
 			response.sendRedirect(page);
 		} else {
 			page = "views/account/login.jsp";

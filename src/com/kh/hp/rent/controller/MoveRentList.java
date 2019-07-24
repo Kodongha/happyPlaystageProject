@@ -1,4 +1,4 @@
-package com.kh.hp.account.controller;
+package com.kh.hp.rent.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class MoveRentList
  */
-@WebServlet("/logout.acc")
-public class LogoutServlet extends HttpServlet {
+@WebServlet("/moveRentList.rt")
+public class MoveRentList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public MoveRentList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,9 +27,7 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getSession().invalidate();
-
-		response.sendRedirect(request.getContextPath() + "/moveMain.main");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

@@ -74,8 +74,8 @@ public class RentService {
 		ArrayList<RentDetFacVO> requestRentDetFacVOList = new ArrayList<RentDetFacVO>();	// 대관세부시설 테이블
 		ArrayList<RentImgVO> rentImgVOList = new ArrayList<RentImgVO>();	// 대관이미지 파일 테이블
 		ArrayList<AttachmentVO> attachmentVOList = new ArrayList<AttachmentVO>();	// 첨부파일 테이블
-
 		RentCloseVO requestRentCloseVO = new RentCloseVO();	// 대관별 휴무일 테이블
+
 		RentRefundTypeVO requestRentRefundTypeVO = new RentRefundTypeVO();	// 대관별 환불유형
 		*/
 
@@ -88,10 +88,11 @@ public class RentService {
 		int insertRentDetFacResult = 0;	// 대관세부시설 테이블 삽입 결과
 		int insertrentImgResult = 0;	// 대관이미지 테이블 삽입 결과
 		int insertAttachmentResult = 0;	// 첨부파일 테이블 삽입 결과
+		int insertRentCloseResult = 0;	// 대관별 휴무일 테이블 삽입 결과
+		int insertRentRefundTypeResult = 0;	// 대관별 환불유형 테이블 삽입 결과
+		int result = 0;
 
 		insertRentBasicResult = rentDao.insertRentBasic(con, requestRentBasicVO);
-		System.out.println("insertRentBasicResult::::" + insertRentBasicResult);
-
 
 		// RENT_BASIC 테이블에 삽입을 성공하면,
 		if(insertRentBasicResult == 1){
@@ -136,13 +137,43 @@ public class RentService {
 				insertAttachmentResult = rentDao.insertAttachment(con, attachmentVO, rentSeq);
 			}
 
+			// 대관별 휴무일 삽입
+			insertRentCloseResult = rentDao.insertRentClose(con, requestRentCloseVO, rentSeq);
+
+
+			insertRentRefundTypeResult = rentDao.insertRentRefundType(con, requestRentRefundTypeVO, rentSeq);
+
+
+			System.out.println("insertRentBasicResult:::" + insertRentBasicResult);
+			System.out.println("insertfacInfoResult:::" + insertfacInfoResult);
+			System.out.println("insertRentDetResult:::" + insertRentDetResult);
+			System.out.println("insertCautionsResult:::" + insertCautionsResult);
+			System.out.println("insertRentDetFacResult:::" + insertRentDetFacResult);
+			System.out.println("insertrentImgResult:::" + insertrentImgResult);
+			System.out.println("insertAttachmentResult:::" + insertAttachmentResult);
+			System.out.println("insertRentCloseResult:::" + insertRentCloseResult);
+			System.out.println("insertRentRefundTypeResult:::" + insertRentRefundTypeResult);
 
 		}
 
-		commit(con);
+		/*모든 insert 성공 시 commit*/
+		if(insertRentBasicResult > 0
+				&& insertfacInfoResult > 0
+				&& insertRentDetResult > 0
+				&& insertCautionsResult > 0
+				&& insertRentDetFacResult > 0
+				&& insertrentImgResult > 0
+				&& insertAttachmentResult > 0
+				&& insertRentCloseResult > 0
+				&& insertRentRefundTypeResult > 0) {
+			commit(con);
+			result = 1;
+		} else {
+			rollback(con);
+		}
 		close(con);
 
-		return 0;
+		return result;
 	}
 
 

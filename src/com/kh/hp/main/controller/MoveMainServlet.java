@@ -1,23 +1,28 @@
-package com.kh.hp.account.controller;
+package com.kh.hp.main.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.hp.main.model.service.MainService;
+import com.kh.hp.main.model.vo.MainRentVO;
+
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class MoveMainServlet
  */
-@WebServlet("/logout.acc")
-public class LogoutServlet extends HttpServlet {
+@WebServlet("/moveMain.main")
+public class MoveMainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public MoveMainServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,9 +32,31 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getSession().invalidate();
 
-		response.sendRedirect(request.getContextPath() + "/moveMain.main");
+		System.out.println("moveMain.main in!!");
+
+		MainService mainService = new MainService();
+
+		// 데이터 가져오기
+		ArrayList<MainRentVO> responseMainRentVOList = mainService.selectMainData();
+
+		for(MainRentVO mainRentVO : responseMainRentVOList) {
+			System.out.println(mainRentVO);
+			System.out.println(mainRentVO.getFilePath() + mainRentVO.getChangeNm());
+		}
+
+
+
+		String page = "";
+		if(responseMainRentVOList != null) {
+			page = "views/main/main.jsp";
+			request.setAttribute("responseMainRentVOList", responseMainRentVOList);
+			request.getRequestDispatcher(page).forward(request, response);
+		} else {
+
+		}
+
+
 	}
 
 	/**

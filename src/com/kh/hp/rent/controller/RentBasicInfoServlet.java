@@ -363,6 +363,13 @@ public class RentBasicInfoServlet extends HttpServlet {
 
 			int result = new RentService().insertRentInfo(requestRentBasicVO, facInfoVOList, rentDetVOList, cautionsVOList, requestRentDetFacVOList, rentImgVOList, attachmentVOList, requestRentCloseVO, requestRentRefundTypeVO);
 
+			System.out.println("result:::::::" + result);
+
+			String page = "";
+			if(result == 1) {
+				page = request.getContextPath() + "/moveMain.main";
+				response.sendRedirect(page);
+			}
 
 		}
 	}

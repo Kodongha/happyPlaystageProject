@@ -18,9 +18,11 @@ import com.kh.hp.rent.model.vo.DetFacVO;
 import com.kh.hp.rent.model.vo.FacInfoVO;
 import com.kh.hp.rent.model.vo.RefundTypeVO;
 import com.kh.hp.rent.model.vo.RentBasicVO;
+import com.kh.hp.rent.model.vo.RentCloseVO;
 import com.kh.hp.rent.model.vo.RentDetFacVO;
 import com.kh.hp.rent.model.vo.RentDetVO;
 import com.kh.hp.rent.model.vo.RentImgVO;
+import com.kh.hp.rent.model.vo.RentRefundTypeVO;
 
 public class RentDao {
 
@@ -363,7 +365,6 @@ public class RentDao {
 		int result = 0;
 
 		String query = prop.getProperty("insertAttachment");
-		/*INSERT INTO ATTACHMENT VALUES (ATTCH_SEQ.NEXTVAL, ?, ?, ?, DEFAULT, ?, ?, null, ?, ?)*/
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, attachmentVO.getOriginNm());
@@ -372,6 +373,72 @@ public class RentDao {
 			pstmt.setInt(4, attachmentVO.getFileType());
 			pstmt.setInt(5, rentSeq);
 			pstmt.setInt(6, attachmentVO.getSubType());
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	/**
+	 * RENT_CLOSE 테이블 정보 삽입
+	 * @param con
+	 * @param requestRentCloseVO
+	 * @param rentSeq
+	 * @return
+	 */
+	public int insertRentClose(Connection con, RentCloseVO requestRentCloseVO, int rentSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertRentClose");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, requestRentCloseVO.getRegCloseCd());
+			pstmt.setString(2, requestRentCloseVO.getCusCloseNm());
+			pstmt.setDate(3, requestRentCloseVO.getCusCloseStart());
+			pstmt.setDate(4, requestRentCloseVO.getCusCloseEnd());
+			pstmt.setString(5, "");
+			pstmt.setString(6, "");
+			pstmt.setString(7, "");
+			pstmt.setInt(8, rentSeq);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	/**
+	 * RENT_REFUND_TYPE 테이블 정보 삽입
+	 * @param con
+	 * @param requestRentRefundTypeVO
+	 * @param rentSeq
+	 * @return
+	 */
+	public int insertRentRefundType(Connection con, RentRefundTypeVO requestRentRefundTypeVO, int rentSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertRentRefundType");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, requestRentRefundTypeVO.getRefundSeq());
+			pstmt.setInt(2, rentSeq);
 
 			result = pstmt.executeUpdate();
 

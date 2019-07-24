@@ -8,7 +8,7 @@
 	<nav class="navbar navbar-inverse">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" href="<%=request.getContextPath() %>/views/main/main.jsp">Happay PlayStage</a>
+	      <a class="navbar-brand" href="<%=request.getContextPath() %>/moveMain.main">Happay PlayStage</a>
 	    </div>
 
 	    <ul class="nav navbar-nav">
@@ -17,7 +17,7 @@
 	      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">대관<span class="caret"></span></a>
 	        <ul class="dropdown-menu">
 	          <li><a href="<%=request.getContextPath() %>/MoveRentEnroll.rt">대관 등록하기</a></li>
-	          <li><a href="<%=request.getContextPath() %>/views/rent/rentalList.jsp">대관 신청하기</a></li>
+	          <li><a href="<%=request.getContextPath() %>/moveRentList.rt">대관 신청하기</a></li>
 	        </ul>
 	      </li>
 

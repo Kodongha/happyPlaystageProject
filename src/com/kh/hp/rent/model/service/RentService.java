@@ -15,6 +15,7 @@ import com.kh.hp.rent.model.vo.RentCloseVO;
 import com.kh.hp.rent.model.vo.RentDetFacVO;
 import com.kh.hp.rent.model.vo.RentDetVO;
 import com.kh.hp.rent.model.vo.RentImgVO;
+import com.kh.hp.rent.model.vo.RentListVO;
 import com.kh.hp.rent.model.vo.RentRefundTypeVO;
 
 public class RentService {
@@ -176,6 +177,30 @@ public class RentService {
 		return result;
 	}
 
+	/**
+	 * 리스트 페이징을 위해 카운트 가져오기
+	 * @return
+	 */
+	public int selectCountRentList() {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		int count = 0;
+		count = new RentDao().selectCountRentList(con);
 
+		close(con);
+
+		return count;
+	}
+
+	public ArrayList<RentListVO> selectRentList(int currentPage, int limit) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		ArrayList<RentListVO> rentListVOList = new RentDao().selectRentList(con, currentPage, limit);
+
+		close(con);
+
+		return rentListVOList;
+	}
 
 }

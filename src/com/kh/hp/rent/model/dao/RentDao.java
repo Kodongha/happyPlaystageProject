@@ -22,6 +22,7 @@ import com.kh.hp.rent.model.vo.RentCloseVO;
 import com.kh.hp.rent.model.vo.RentDetFacVO;
 import com.kh.hp.rent.model.vo.RentDetVO;
 import com.kh.hp.rent.model.vo.RentImgVO;
+import com.kh.hp.rent.model.vo.RentListVO;
 import com.kh.hp.rent.model.vo.RentRefundTypeVO;
 
 public class RentDao {
@@ -452,5 +453,78 @@ public class RentDao {
 		return result;
 	}
 
+	public int selectCountRentList(Connection con) {
+		// TODO Auto-generated method stub
+		Statement stmt = null;
+		ResultSet rset = null;
+		int result = 0;
+
+		String query = prop.getProperty("selectCountRentList");
+
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+		}
+		return result;
+	}
+
+	public ArrayList<RentListVO> selectRentList(Connection con, int currentPage, int limit) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<RentListVO> RentListVOList = null;
+
+		String query = prop.getProperty("selectRentList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			System.out.println("Start : " + startRow + "//// End : " + endRow);
+
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+
+			rset = pstmt.executeQuery();
+
+			RentListVOList = new ArrayList<RentListVO>();
+			while(rset.next()) {
+				RentListVO rentListVO = new RentListVO();
+				rentListVO.setSeq(rset.getInt("RANKING"));
+				rentListVO.setRentSeq(rset.getInt("RENT_SEQ"));
+				rentListVO.setHallNm(rset.getString("HALL_NM"));
+				rentListVO.setAddress(rset.getString("ADDRESS"));
+				rentListVO.setRentEnrollDt(rset.getDate("RENT_ENROLL_DT"));
+				rentListVO.setRentPrice(rset.getInt("RENT_PRICE"));
+				rentListVO.setOriginNm(rset.getString("ORIGIN_NM"));
+				rentListVO.setChangeNm(rset.getString("CHANGE_NM"));
+				rentListVO.setFilePath(rset.getString("FILE_PATH"));
+
+				RentListVOList.add(rentListVO);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+
+		return RentListVOList;
+	}
 
 }

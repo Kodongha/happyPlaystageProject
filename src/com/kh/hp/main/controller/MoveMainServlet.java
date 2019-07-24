@@ -45,8 +45,6 @@ public class MoveMainServlet extends HttpServlet {
 			System.out.println(mainRentVO.getFilePath() + mainRentVO.getChangeNm());
 		}
 
-
-
 		String page = "";
 		if(responseMainRentVOList != null) {
 			page = "views/main/main.jsp";

@@ -1,5 +1,12 @@
+<%@page import="com.kh.hp.rent.model.vo.PageInfo"%>
+<%@page import="com.kh.hp.rent.model.vo.RentListVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%
+ 	ArrayList<RentListVO> list = (ArrayList<RentListVO>) request.getAttribute("list");
+	PageInfo pi = (PageInfo) request.getAttribute("pi");
+ %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,162 +59,85 @@
 
 </div>
 <hr>
+	<div class="container" align="center">
+		<div class="ui link cards">
+			<%for(RentListVO rentListVO : list) { %>
+			<div class="card" align="center">
+				<div class="image" style="width: 290px; height: 210px">
+					<img src="<%=request.getContextPath() %>/images/profilePhotos/<%=rentListVO.getChangeNm() %>" style="width:100%; height: 100%">
+				</div>
+				<div class="content">
+					<div class="header"><%=rentListVO.getHallNm() %></div>
+					<div class="description"><%=rentListVO.getAddress() %></div>
+				</div>
+				<div class="extra content">
+					<span class="right floated"><%=rentListVO.getRentEnrollDt() %></span>
+					<span>
+						<i class="user icon"></i> <%=rentListVO.getRentPrice() %>
+					</span>
+				</div>
+			</div>
+			<%} %>
+		</div>
+	</div>
+	<script>
+		var currentPage = 1;
 
-	<div class="ui special cards">
-  <div class="card">
-    <div class="blurring dimmable image">
-      <div class="ui dimmer">
-        <div class="content">
-          <div class="center">
-            <div class="ui inverted button">상세보기</div>
-          </div>
-        </div>
-      </div>
-      <img src="../../images/rent/rent3.jpg">
-    </div>
-    <div class="content">
-      <a class="header">Team Fu</a>
-      <div class="meta">
-        <span class="date">Created in Sep 2014</span>
-      </div>
-    </div>
-    <div class="extra content">
-      <a>
-        <i class="users icon"></i>
-        2 Members
-      </a>
-    </div>
-  </div>
-  <div class="card">
-    <div class="blurring dimmable image">
-      <div class="ui inverted dimmer">
-        <div class="content">
-          <div class="center">
-            <div class="ui primary button">상세보기</div>
-          </div>
-        </div>
-      </div>
-      <img src="../../images/rent/rent3.jpg">
-    </div>
-    <div class="content">
-      <a class="header">Team Hess</a>
-      <div class="meta">
-        <span class="date">Created in Aug 2014</span>
-      </div>
-    </div>
-    <div class="extra content">
-      <a>
-        <i class="users icon"></i>
-        2 Members
-      </a>
-    </div>
-  </div>
-  <div class="card">
-    <div class="blurring dimmable image">
-      <div class="ui dimmer">
-        <div class="content">
-          <div class="center">
-            <div class="ui inverted button">상세보기</div>
-          </div>
-        </div>
-      </div>
-      <img src="../../images/rent/rent3.jpg">
-    </div>
-    <div class="content">
-      <a class="header">Team Fu</a>
-      <div class="meta">
-        <span class="date">Created in Sep 2014</span>
-      </div>
-    </div>
-    <div class="extra content">
-      <a>
-        <i class="users icon"></i>
-        2 Members
-      </a>
-    </div>
-  </div>
-</div>
+		$('.special.cards .image').dimmer({
+			  on: 'hover'
+		});
 
-	<div class="ui special cards">
-  <div class="card">
-    <div class="blurring dimmable image">
-      <div class="ui dimmer">
-        <div class="content">
-          <div class="center">
-            <div class="ui inverted button">상세보기</div>
-          </div>
-        </div>
-      </div>
-      <img src="../../images/rent/rent3.jpg">
-    </div>
-    <div class="content">
-      <a class="header">Team Fu</a>
-      <div class="meta">
-        <span class="date">Created in Sep 2014</span>
-      </div>
-    </div>
-    <div class="extra content">
-      <a>
-        <i class="users icon"></i>
-        2 Members
-      </a>
-    </div>
-  </div>
-  <div class="card">
-    <div class="blurring dimmable image">
-      <div class="ui inverted dimmer">
-        <div class="content">
-          <div class="center">
-            <div class="ui primary button">상세보기</div>
-          </div>
-        </div>
-      </div>
-      <img src="../../images/rent/rent3.jpg">
-    </div>
-    <div class="content">
-      <a class="header">Team Hess</a>
-      <div class="meta">
-        <span class="date">Created in Aug 2014</span>
-      </div>
-    </div>
-    <div class="extra content">
-      <a>
-        <i class="users icon"></i>
-        2 Members
-      </a>
-    </div>
-  </div>
-  <div class="card">
-    <div class="blurring dimmable image">
-      <div class="ui dimmer">
-        <div class="content">
-          <div class="center">
-            <div class="ui inverted button">상세보기</div>
-          </div>
-        </div>
-      </div>
-      <img src="../../images/rent/rent3.jpg">
-    </div>
-    <div class="content">
-      <a class="header">Team Fu</a>
-      <div class="meta">
-        <span class="date">Created in Sep 2014</span>
-      </div>
-    </div>
-    <div class="extra content">
-      <a>
-        <i class="users icon"></i>
-        2 Members
-      </a>
-    </div>
-  </div>
-</div>
+		$(window).scroll(function (){
+			if($(window).scrollTop() == ($(document).height() - $(window).height())){
+				currentPage++;
+				$.ajax({
+					url:"moveRentListAjax.rt",
+					data:{type:"ajax", currentPage:currentPage},
+					type:"post",
+					success:function(data){
+						console.log("succ");
 
-<script>
-$('.special.cards .image').dimmer({
-	  on: 'hover'
-	});
-</script>
+						var $linkDiv = $(".link");
+
+						for(var key in data){
+							var $carDiv = $("<div class='card' align='center'>");
+							var $imageDiv = $('<div class="image" style="width: 290px; height: 210px">');
+							var $img = $('<img src="" style="width:100%; height: 100%">');
+							var $contentDiv = $('<div class="content">');
+							var $headDiv = $('<div class="header"></div>');
+							var $descriptionDiv = $('<div class="description"></div>');
+							var $extraDiv = $('<div class="extra content">');
+							var $rightSpan = $('<span class="right floated"></span>');
+							var $span = $('<span>');
+							var $i = $('<i class="user icon"></i>');
+							$img.attr("src", "<%=request.getContextPath()%>/images/profilePhotos/" + data[key].changeNm);
+							$headDiv.text(data[key].hallNm);
+							$descriptionDiv.text(data[key].address);
+							$rightSpan.text(data[key].rentEnrollDt);
+
+
+							$span.append($i);
+							$span.append(data[key].rentPrice);
+							$extraDiv.append($span);
+							$extraDiv.append($rightSpan);
+							$carDiv.append($imageDiv);
+							$contentDiv.append($headDiv);
+							$contentDiv.append($descriptionDiv);
+							$carDiv.append($contentDiv);
+							$imageDiv.append($img);
+							$carDiv.append($extraDiv);
+							$linkDiv.append($carDiv);
+						}
+
+					},
+					error:function(){
+						console.log("fail");
+					}
+				})
+			}
+		});
+
+	</script>
 
 <jsp:include page="/views/common/footer.jsp" />
 </body>

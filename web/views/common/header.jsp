@@ -32,7 +32,7 @@
 		  <!-- 고객센터 관련 -->
 	      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">고객센터<span class="caret"></span></a>
 	        <ul class="dropdown-menu">
-	          <li><a href="<%=request.getContextPath() %>/views/serviceCenter/notice.jsp">공지사항</a></li>
+	          <li><a href="<%=request.getContextPath() %>/notice.sc">공지사항</a></li>
 	          <li><a href="<%=request.getContextPath() %>/faq.sc">자주 묻는 질문</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/serviceCenter/introduce.jsp">회사 소개</a></li>
 	          <li><a href="#">1:1 문의</a></li>

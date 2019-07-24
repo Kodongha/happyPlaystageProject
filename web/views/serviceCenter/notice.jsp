@@ -1,5 +1,17 @@
+<%@page import="com.kh.hp.serviceCenter.model.vo.PageInfo"%>
+<%@page import="com.kh.hp.serviceCenter.model.vo.Notice"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%
+ 	ArrayList<Notice> list = (ArrayList<Notice>) request.getAttribute("list");
+	PageInfo pi = (PageInfo) request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+ %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,129 +85,61 @@ body {
 	</div>
 	<br>
 	<div class="container">
+		<% for(int i=0; i<list.size(); i++) {%>
 		<div class="panel-group" id="accordion">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
+						<span>[<%= list.get(i).getNoticeCate() %>]</span>&nbsp;&nbsp;&nbsp;
 						<a data-toggle="collapse" data-parent="#accordion"
-							href="#collapse1">Collapsible Group 1</a>
+							href="#content<%=i %>"><%= list.get(i).getNoticeTitle() %></a>
 					</h4>
 				</div>
-				<div id="collapse1" class="panel-collapse collapse">
-					<div class="panel-body">Lorem ipsum dolor sit amet,
-						consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-						labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-						nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat.</div>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion"
-							href="#collapse2">Collapsible Group 2</a>
-					</h4>
-				</div>
-				<div id="collapse2" class="panel-collapse collapse">
-					<div class="panel-body">Lorem ipsum dolor sit amet,
-						consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-						labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-						nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat.Lorem ipsum dolor sit amet, consectetur adipisicing
-						elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-						aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-						laboris nisi ut aliquip ex ea commodo consequat.</div>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion"
-							href="#collapse3">Collapsible Group 3</a>
-					</h4>
-				</div>
-				<div id="collapse3" class="panel-collapse collapse">
-					<div class="panel-body">Lorem ipsum dolor sit amet,
-						consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-						labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-						nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat.</div>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion"
-							href="#collapse4">Collapsible Group 4</a>
-					</h4>
-				</div>
-				<div id="collapse4" class="panel-collapse collapse">
-					<div class="panel-body">Lorem ipsum dolor sit amet,
-						consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-						labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-						nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat.Lorem ipsum dolor sit amet, consectetur adipisicing
-						elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-						aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-						laboris nisi ut aliquip ex ea commodo consequat.</div>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion"
-							href="#collapse5">Collapsible Group 5</a>
-					</h4>
-				</div>
-				<div id="collapse5" class="panel-collapse collapse">
-					<div class="panel-body">Lorem ipsum dolor sit amet,
-						consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-						labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-						nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat.Lorem ipsum dolor sit amet, consectetur adipisicing
-						elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-						aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-						laboris nisi ut aliquip ex ea commodo consequat.</div>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion"
-							href="#collapse6">Collapsible Group 6</a>
-					</h4>
-				</div>
-				<div id="collapse6" class="panel-collapse collapse">
-					<div class="panel-body">Lorem ipsum dolor sit amet,
-						consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-						labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-						nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat.Lorem ipsum dolor sit amet, consectetur adipisicing
-						elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-						aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-						laboris nisi ut aliquip ex ea commodo consequat.</div>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion"
-							href="#collapse7">Collapsible Group 7</a>
-					</h4>
-				</div>
-				<div id="collapse7" class="panel-collapse collapse">
-					<div class="panel-body">Lorem ipsum dolor sit amet,
-						consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-						labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-						nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat.Lorem ipsum dolor sit amet, consectetur adipisicing
-						elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-						aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-						laboris nisi ut aliquip ex ea commodo consequat.</div>
+				<div id="content<%=i %>" class="panel-collapse collapse">
+					<div class="panel-body"><%= list.get(i).getNoticeContent() %></div>
 				</div>
 			</div>
 		</div>
+		<% } %>
 	</div>
+
+	<%-- 페이징처리 --%>
+		<div class="pagingArea" align="center">
+			<!-- 가장 첫 페이지로 이동 -->
+			<button onclick="location.href='<%=request.getContextPath()%>/notice.sc?currentPage=1'"><<</button>
+
+			<!-- 이전페이지 -->
+			<% if(currentPage <= 1){ %>
+			<button disabled><</button>
+			<% } else { %>
+			<button onclick="location.href='<%=request.getContextPath()%>/notice.sc?currentPage=<%=currentPage -1%>'"><</button>
+			<% } %>
+
+			<!-- 숫자 버튼 -->
+			<% for(int p = startPage; p <= endPage; p++){
+            if(currentPage == p){
+        	 %>
+               <button disabled><%= p %></button>
+         	<% }else{ %>
+               <button onclick="location.href='<%=request.getContextPath()%>/notice.sc?currentPage=<%=p%>'"><%= p %></button>
+         	<%
+               }
+            }
+         	%>
+
+			<!-- 다음 페이지 -->
+			<% if(currentPage >= maxPage){ %>
+			<button disabled>></button>
+			<% } else { %>
+			<button onclick="location.href='<%=request.getContextPath()%>/notice.sc?currentPage=<%=currentPage + 1%>'">></button>
+			<% } %>
+
+			<!-- 가장 마지막 페이지로 이동 -->
+			<button onclick="location.href='<%=request.getContextPath()%>/notice.sc?currentPage=<%=maxPage%>'">>></button>
+
+		</div>
+
+
 <jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

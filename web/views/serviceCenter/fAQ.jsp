@@ -94,7 +94,7 @@ body {
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<span><%= list.get(i).getFnqCate() %></span>&nbsp;&nbsp;&nbsp;
+						<span>[<%= list.get(i).getFnqCate() %>]</span>&nbsp;&nbsp;&nbsp;
 						<a data-toggle="collapse" data-parent="#accordion" href="#content<%=i %>" id="title"><%= list.get(i).getFnqQuestion() %></a>
 					</h4>
 				</div>

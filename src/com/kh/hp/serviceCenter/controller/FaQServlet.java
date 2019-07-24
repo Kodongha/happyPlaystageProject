@@ -31,10 +31,8 @@ public class FaQServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String category = request.getParameter("category");
-		String content = request.getParameter("content");
 
-		ArrayList<FaQVO> list = new ServiceCenterService().selectFaQ();
+		ArrayList<FaQVO> list = new ServiceCenterService().selectAllFaQ();
 
 		String page = "";
 		if(list != null) {

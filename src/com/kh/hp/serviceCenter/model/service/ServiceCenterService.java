@@ -7,16 +7,63 @@ import static com.kh.hp.common.JDBCTemplate.*;
 
 import com.kh.hp.serviceCenter.model.dao.ServiceCenterDao;
 import com.kh.hp.serviceCenter.model.vo.FaQVO;
+import com.kh.hp.serviceCenter.model.vo.Notice;
 
 public class ServiceCenterService {
 
-	public ArrayList<FaQVO> selectFaQ() {
+	/** 자주묻는질문 전체 조회
+	 * @return
+	 */
+	public ArrayList<FaQVO> selectAllFaQ() {
 		Connection con = getConnection();
 
-		ArrayList<FaQVO> faq = new ServiceCenterDao().selectFaQ(con);
+		ArrayList<FaQVO> faq = new ServiceCenterDao().selectAllFaQ(con);
 
+		close(con);
 
 		return faq;
+	}
+
+	/** 공지사항 전체 조회
+	 * @return
+	 */
+	public ArrayList<Notice> selectAllNotice() {
+		Connection con = getConnection();
+
+		ArrayList<Notice> list = new ServiceCenterDao().selectAllNotice(con);
+
+		close(con);
+
+		return list;
+	}
+
+	/** 공지사항 전체 게시물 수 조회용 메소드
+	 * @return
+	 */
+	public int getListCount() {
+		Connection con = getConnection();
+
+		int listCount = new ServiceCenterDao().getListCount(con);
+
+		close(con);
+
+		return listCount;
+	}
+
+
+	/** 페이징 처리 후 게시물 목록 조회 메소드
+	 * @param currentPage
+	 * @param limit
+	 * @return
+	 */
+	public ArrayList<Notice> selectNoticeList(int currentPage, int limit) {
+		Connection con = getConnection();
+
+		ArrayList<Notice> list = new ServiceCenterDao().selectNoticeList(con, currentPage, limit);
+
+		close(con);
+
+		return list;
 	}
 
 }

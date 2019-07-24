@@ -49,15 +49,23 @@ public class UserService {
 		return list;
 	}
 
-	public ArrayList<User> userSearch(String userSeqStart, String userSeqEnd, User requestUser) {
-		// TODO Auto-generated method stub
+	//회원조회용 메소드
+	public User selectOne(int userSeq) {
+		
+		System.out.println("selectone 서비스까지는 들어왔나요/");
 		Connection con = getConnection();
+		User oneUser = null;
+		
+		oneUser = new UserDao().selectOne(con, userSeq);
 		
 		
 		
-		return null;
+		return oneUser;
 	}
 
+
+
+	
 }
 
 

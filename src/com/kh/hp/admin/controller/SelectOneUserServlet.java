@@ -2,6 +2,7 @@ package com.kh.hp.admin.controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.hp.admin.model.service.UserService;
+import com.kh.hp.admin.model.vo.User;
 
 /**
  * Servlet implementation class SelectOneUserServlet
@@ -31,21 +33,27 @@ public class SelectOneUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("selectOne으로 들어왔나요??");
+	
+
+		int userSeq  = Integer.parseInt(request.getParameter("userSeq"));
 		
-		//simpleDateFormat format = new  simpleDateFormat format("yyyy-MM-dd");
+		System.out.println(userSeq);
+		
+		
+		User oneUser = new UserService().selectOne(userSeq);
+		
+		System.out.println("oneUser:::" + oneUser);
+	
+		String page = "";
+		
+		if(oneUser != null) {
+			request.setAttribute("oneUser", oneUser);
+			page = "views/admin/02_userDetailPage.jsp";
+		}else {
+			page = "views/main/main.jsp";
+		}
 
-		int userSeq = Integer.parseInt(request.getParameter("userSeq"));
-		String userEmail = request.getParameter("userEmail");
-		String userPwd = request.getParameter("userPwd");
-		String userNm = request.getParameter("userNm");
-		String userNick = request.getParameter("userNick");
-		String userPhone = request.getParameter("userPhone");
-		int userGradeCd = Integer.parseInt(request.getParameter("userGradeCd"));
-		//Date enrollDt = request.getParameter("enrollDt");	
-		int snsCd = Integer.parseInt(request.getParameter("snsCd"));
-		//char leaveTf = request.getParameter("leaveTf");
-		//Date leaveDt
-
+		request.getRequestDispatcher(page).forward(request, response);
 
 	}
 

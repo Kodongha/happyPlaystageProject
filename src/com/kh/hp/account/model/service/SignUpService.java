@@ -33,6 +33,16 @@ public class SignUpService {
 		return result;
 	}
 
+	public int idCheck(String userEmail) {
+		Connection con = getConnection();
+		
+		int result = new SignUpDao().idCheck(con,userEmail);
+		
+		close(con);
+		
+		return result;
+	}
+
 	
 	
 	

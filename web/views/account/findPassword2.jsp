@@ -150,7 +150,7 @@ h2 {
 
 
 
-	<form action="<%=request.getContextPath()%>/findPasswordTw.acc" method="post">
+	<form action="<%=request.getContextPath()%>/fp.acc" method="post">
 		<div class="findId" id="findid2">
 			<table>
 
@@ -178,7 +178,7 @@ h2 {
 			
 				
 						<button id="success"
-							type="button" class="btn btn-default btn-lg btn-block">
+							type="button" class="btn btn-default btn-lg btn-block" onclick="location.href='login.jsp'">
 							확인</button>
 					</td>
 				</tr>

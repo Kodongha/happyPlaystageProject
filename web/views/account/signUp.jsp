@@ -90,21 +90,15 @@ table {
 }
 </style>
 
-<script type="text/javascript">
-	$(function() {
-
-	});
-</script>
-
 <script>
+	//체크박스 all
 	$(document).ready(function() {
 		$('.check-all').click(function() {
 			$('.ab').prop('checked', this.checked);
 		});
 	});
-</script>
-
-<script>
+	
+	//유효성
 	function check() {
 		if (fr.userPwd.value != fr.userPwd2.value) {
 			alert("비밀번호를 다르게 입력하셨습니다.");
@@ -149,7 +143,33 @@ table {
 			return true;
 		}
 
-	}
+	};
+	
+	//아이디 중복
+	$(function(){
+		$("#idCheck").click(function(){
+			var userEmail = $("#userEmail").val();
+		
+			$.ajax({
+				url:"<%=request.getContextPath()%>/idCheck.acc",
+				type:"post",
+				data:{userEmail:userEmail},
+				success:function(data){
+					console.log(data);
+					
+					if(data === "fail"){
+						alert("중복된 이메일 입니다.")
+					}else{
+						alert("사용 가능합니다.")
+					}
+				},
+				error:function(){
+					console.log("실패!")
+				}
+			});
+		});
+	});
+	
 </script>
 
 
@@ -168,7 +188,7 @@ table {
 				<tr>
 					<td><input class="form-control" id="userEmail" type="email"
 						name="userEmail" placeholder="이메일"></td>
-					<td><input type="button" value="중복확인" onclick="idCheck()">
+					<td><input type="button" value="중복확인" onclick="idCheck" id="idCheck">
 					<td>
 				</tr>
 				<tr>

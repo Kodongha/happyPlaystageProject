@@ -1,15 +1,16 @@
 package com.kh.hp.account.model.dao;
 
+import static com.kh.hp.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
 import com.kh.hp.account.model.vo.UserVO;
-
-import static com.kh.hp.common.JDBCTemplate.close;
 
 public class SignUpDao {
 	private Properties prop = new Properties();
@@ -56,6 +57,35 @@ public class SignUpDao {
 		return result;
 	
 
+	}
+
+	public int idCheck(Connection con, String userEmail) {
+		// TODO Auto-generated method stub
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("idCheck");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userEmail);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 	

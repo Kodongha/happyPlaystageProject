@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -190,6 +191,8 @@ public class AhnMyPageDao {
 		
 		return list;
 	}*/
+	
+	//검색 전 신청내역 페이징카운트에 대한 DAO메소드
 	public int getListCount(Connection con, int usingInfo) {
 		PreparedStatement pstmt = null;
 		int listCount = 0;
@@ -218,10 +221,13 @@ public class AhnMyPageDao {
 		
 		return listCount;
 	}
+	
+	//검색 전 전체신청내역에 대한 DAO메소드
 	public ArrayList<AhnApplyInfoVO> selectList(Connection con, int usingInfo, int currentPage, int limit) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<AhnApplyInfoVO> list = null;
+		
 		
 		String query = prop.getProperty("selectListWithPaging");
 		
@@ -243,7 +249,7 @@ public class AhnMyPageDao {
 			
 			while(rset.next()) {
 				AhnApplyInfoVO b = new AhnApplyInfoVO();
-				
+		
 				/*b.setRentSeq(rset.getInt("RENT_SEQ"));
 				b.setUserSeq(rset.getInt("USER_SEQ"));
 				b.setHallNm(rset.getString("HALL_NM"));
@@ -274,7 +280,7 @@ public class AhnMyPageDao {
 				b.setAccHolder(rset.getString("ACC_HOLDER"));
 				b.setRentEnrollDt(rset.getDate("RENT_ENROLL_DT"));*/
 				
-				b.setPropSeq(rset.getInt("PROP_SEQ"));
+				/*b.setPropSeq(rset.getInt("PROP_SEQ"));
 				b.setRentSeq(rset.getInt("RENT_SEQ"));
 				b.setUserSeq(rset.getInt("USER_SEQ"));
 				b.setPropNm(rset.getString("PROP_NM"));
@@ -287,9 +293,21 @@ public class AhnMyPageDao {
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
 				b.setUseStartTm(rset.getInt("USE_START_TM"));
 				b.setUseEndTm(rset.getInt("USE_END_TM"));
-				b.setPayAmount(rset.getInt("PAY_AMOUNT"));
+				b.setPayAmount(rset.getInt("PAY_AMOUNT"));*/
+				
+				b.setHallNm(rset.getString("HALL_NM"));
+				b.setPropSeq(rset.getInt("PROP_SEQ"));
+				b.setRentSeq(rset.getInt("RENT_SEQ"));
+				b.setUserSeq(rset.getInt("USER_SEQ"));
+				b.setPropNm(rset.getString("PROP_NM"));
+				b.setPropDt(rset.getDate("PROP_DT"));
+				b.setPropStatus(rset.getString("PROP_STATUS"));
+				b.setUseStartDt(rset.getDate("USE_START_DT"));
+				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				
 				
 				list.add(b);
+				
 			}
 			
 		} catch (SQLException e) {
@@ -301,8 +319,12 @@ public class AhnMyPageDao {
 		
 		
 		
+		
+		
 		return list;
 	}
+	
+	//검색 전 사용내역 페이징카운트에 대한 DAO메소드
 	public int getListCount1(Connection con, int usingInfo) {
 		PreparedStatement pstmt = null;
 		int listCount = 0;
@@ -332,6 +354,7 @@ public class AhnMyPageDao {
 		return listCount;
 	}
 	
+	//검색 전 전체사용내역에 대한 DAO메소드
 	public ArrayList<AhnUsingInfoVO> selectList1(Connection con, int usingInfo, int currentPage, int limit) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -358,7 +381,7 @@ public class AhnMyPageDao {
 			while(rset.next()) {
 				AhnUsingInfoVO b = new AhnUsingInfoVO();
 				
-				b.setPropSeq(rset.getInt("PROP_SEQ"));
+				/*b.setPropSeq(rset.getInt("PROP_SEQ"));
 				b.setRentSeq(rset.getInt("RENT_SEQ"));
 				b.setUserSeq(rset.getInt("USER_SEQ"));
 				b.setPropNm(rset.getString("PROP_NM"));
@@ -371,7 +394,18 @@ public class AhnMyPageDao {
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
 				b.setUseStartTm(rset.getInt("USE_START_TM"));
 				b.setUseEndTm(rset.getInt("USE_END_TM"));
-				b.setPayAmount(rset.getInt("PAY_AMOUNT"));
+				b.setPayAmount(rset.getInt("PAY_AMOUNT"));*/
+				
+				b.setHallNm(rset.getString("HALL_NM"));
+				b.setCompNm(rset.getString("COMP_NM"));
+				b.setPropSeq(rset.getInt("PROP_SEQ"));
+				b.setRentSeq(rset.getInt("RENT_SEQ"));
+				b.setUserSeq(rset.getInt("USER_SEQ"));
+				b.setPropNm(rset.getString("PROP_NM"));
+				b.setPropDt(rset.getDate("PROP_DT"));
+				b.setPropStatus(rset.getString("PROP_STATUS"));
+				b.setUseStartDt(rset.getDate("USE_START_DT"));
+				b.setUseEndDt(rset.getDate("USE_END_DT"));
 				
 				list.add(b);
 			}
@@ -387,6 +421,112 @@ public class AhnMyPageDao {
 		
 		return list;
 	}
+	
+	//검색후 신청내역 페이징카운트에 대한 DAO메소드
+	public int getListCount2(Connection con, int userInfo, int rentSeq) {
+		PreparedStatement pstmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectListCount2");
+		System.out.println("userInfo : " + userInfo);
+		System.out.println("rentSeq : " + rentSeq);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, rentSeq);
+			pstmt.setInt(2, userInfo);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			if(rset.next()) {
+				System.out.println("결과 있음");
+				listCount = rset.getInt(1);
+			} else {
+				System.out.println("결과 없음");
+			}
+			
+			System.out.println("DAO listCount : " + listCount);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return listCount;
+	}
+	
+	//검색후 신청내역에 대한 DAO메소드
+	public ArrayList<AhnApplyInfoVO> searchCheck(Connection con, int userInfo, int rentSeq, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AhnApplyInfoVO> list = null;
+		
+		String query = prop.getProperty("searchCheck");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+
+			//조회를 시작할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, userInfo);
+			pstmt.setInt(2, rentSeq);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<AhnApplyInfoVO>();
+			
+			while(rset.next()) {
+				AhnApplyInfoVO b = new AhnApplyInfoVO();
+				
+				/*b.setPropSeq(rset.getInt("PROP_SEQ"));
+				b.setRentSeq(rset.getInt("RENT_SEQ"));
+				b.setUserSeq(rset.getInt("USER_SEQ"));
+				b.setPropNm(rset.getString("PROP_NM"));
+				b.setPropPhone(rset.getString("PROP_PHONE"));
+				b.setPropEmail(rset.getString("PROP_EMAIL"));
+				b.setPropReqContent(rset.getString("PROP_REQ_CONTENT"));
+				b.setPropDt(rset.getDate("PROP_DT"));
+				b.setPropStatus(rset.getString("PROP_STATUS"));
+				b.setUseStartDt(rset.getDate("USE_START_DT"));
+				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				b.setUseStartTm(rset.getInt("USE_START_TM"));
+				b.setUseEndTm(rset.getInt("USE_END_TM"));
+				b.setPayAmount(rset.getInt("PAY_AMOUNT"));*/
+				
+				b.setHallNm(rset.getString("HALL_NM"));
+				b.setPropSeq(rset.getInt("PROP_SEQ"));
+				b.setRentSeq(rset.getInt("RENT_SEQ"));
+				b.setUserSeq(rset.getInt("USER_SEQ"));
+				b.setPropNm(rset.getString("PROP_NM"));
+				b.setPropDt(rset.getDate("PROP_DT"));
+				b.setPropStatus(rset.getString("PROP_STATUS"));
+				b.setUseStartDt(rset.getDate("USE_START_DT"));
+				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		
+		return list;
+	}
+	
 	
 	
 	

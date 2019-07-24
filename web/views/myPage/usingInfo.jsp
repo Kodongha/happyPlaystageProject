@@ -10,7 +10,6 @@
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
-
 %>
 <!DOCTYPE html>
 <html>
@@ -19,7 +18,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>대관 사용 내역</title>
 <style>
 	div {
 		margin:auto;
@@ -72,9 +71,9 @@
 		%>
 			<tr>
 			<td id="tab2"><%= list.get(i).getRentSeq() %></td>
-			<td id="tab2"><%= list.get(i).getPropNm() %></td>
-			<td id="tab2"><%= list.get(i).getUseStartDt() %></td>
-			<td id="tab2"><%= list.get(i).getPropNm() %></td>
+			<td id="tab2"><%= list.get(i).getCompNm() %></td>
+			<td id="tab2"><%= list.get(i).getUseStartDt() %> ~ <%= list.get(i).getUseEndDt() %></td>
+			<td id="tab2"><%= list.get(i).getHallNm() %></td>
 			</tr>		
 		<% } %>
 		

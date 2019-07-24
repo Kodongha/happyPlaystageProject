@@ -39,6 +39,7 @@ public class ApplyInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("들어옴");
 		int usingInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
 
 		int currentPage;		//현재 페이지를 표시할 변수
@@ -84,13 +85,19 @@ public class ApplyInfoServlet extends HttpServlet {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "신청내역 조회 실패!");
 		}
+		System.out.println("CONTROLLER LIST : " + list);
 		
 		request.getRequestDispatcher(page).forward(request, response);
-		/*int usingInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
+		
+		
+	}
+
+	
+	/*int usingInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
 		
 		ArrayList<AhnApplyInfoVO> list = new AhnMyPageService().searchCheck(usingInfo);*/
-		
-		/*System.out.println("controller list : " + list);
+	
+	/*System.out.println("controller list : " + list);
 		
 		String page = "";
 		
@@ -101,14 +108,8 @@ public class ApplyInfoServlet extends HttpServlet {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "사용내역 조회 실패!");
 		}
-		*/
-		
-		
-	
-		
-	}
-
-	
+		}
+	 */
 		
 		
 		/*System.out.println("들어옴");

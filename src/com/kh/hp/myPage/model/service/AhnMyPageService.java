@@ -62,6 +62,7 @@ public class AhnMyPageService {
 		return list;
 	}*/
 	
+	//검색 전 신청내역 페이징카운트에 대한 서비스메소드
 	public int getListCount(int usingInfo) {
 		Connection con = getConnection();
 		
@@ -72,6 +73,7 @@ public class AhnMyPageService {
 		return listCount;
 	}
 
+	//검색 전 전체신청내역에 대한 서비스메소드
 	public ArrayList<AhnApplyInfoVO> selectList(int usingInfo, int currentPage, int limit) {
 		Connection con = getConnection();
 		
@@ -81,7 +83,8 @@ public class AhnMyPageService {
 		
 		return list;
 	}
-
+	
+	//검색 전 사용내역 페이징카운트에 대한 서비스메소드
 	public int getListCount1(int usingInfo) {
 		Connection con = getConnection();
 		
@@ -91,7 +94,8 @@ public class AhnMyPageService {
 		
 		return listCount;
 	}
-
+	
+	//검색 전 전체사용내역에 대한 서비스메소드
 	public ArrayList<AhnUsingInfoVO> selectList1(int usingInfo, int currentPage, int limit) {
 		Connection con = getConnection();
 		
@@ -101,6 +105,32 @@ public class AhnMyPageService {
 		
 		return list;
 	}
+	
+	//검색후 신청내역 페이징카운트에 대한 서비스메소드
+	public int getListCount2(int userInfo, int rentSeq) {
+		Connection con = getConnection();
+		
+		int listCount = new AhnMyPageDao().getListCount2(con, userInfo, rentSeq);
+		
+		System.out.println("Service listCount : " + listCount);
+		
+		close(con);
+		
+		return listCount;
+	}
+	
+	//검색후 신청내역에 대한 서비스메소드
+	public ArrayList<AhnApplyInfoVO> searchCheck(int userInfo, int rentSeq, int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<AhnApplyInfoVO> list = new AhnMyPageDao().searchCheck(con, userInfo, rentSeq, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}
+
+	
 
 
 	

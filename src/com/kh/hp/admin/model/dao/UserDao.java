@@ -3,7 +3,7 @@ package com.kh.hp.admin.model.dao;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,14 +14,13 @@ import com.kh.hp.account.model.vo.UserVO;
 import com.kh.hp.admin.model.vo.User;
 
 import static com.kh.hp.common.JDBCTemplate.*;
-
 public class UserDao {
 
 	Properties prop = new Properties();
 
 	public UserDao() {
 
-		String fileName = UserDao.class.getResource("/sql/account/admin-query.properties").getPath();
+		String fileName = UserDao.class.getResource("/sql/admin/admin-query.properties").getPath();
 
 		try {
 			prop.load(new FileReader(fileName));
@@ -31,7 +30,7 @@ public class UserDao {
 		}
 	}
 
-	public ArrayList<User> selectAll(Connection con) {
+	/*public ArrayList<User> selectAll(Connection con) {
 		ArrayList<User> list = null;
 		Statement stmt = null;
 		ResultSet rset = null;
@@ -60,8 +59,8 @@ public class UserDao {
 				u.setSnsCd(rset.getInt("SNS_CD"));
 				u.setLeaveTf(rset.getString("LEAVE_TF").charAt(0));
 				u.setLeaveDt(rset.getDate("LEAVE_DT"));
-				
-			
+
+
 				list.add(u);
 			}
 
@@ -73,6 +72,95 @@ public class UserDao {
 		}
 
 
+		return list;
+	}*/
+
+	//회원수 전체 조회용 메소드
+
+	public int getListCount(Connection con) {
+		System.out.println(" listCount!!!!");
+		Statement stmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+
+		String query  = prop.getProperty("selectListCount");
+
+		try {
+			stmt = con.createStatement();
+
+			rset = stmt.executeQuery(query);
+
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(stmt);
+			close(rset);
+		}
+		return listCount;
+	}
+
+	//페이징 처리후 전체 회원 조회용 메소드
+	public ArrayList<User> selectList(Connection con, int currentPage, int limit) {
+		System.out.println(" selectListWithPaging!!!!");
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<User> list = null;
+
+		String query = prop.getProperty("selectListWithPaging");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			//조회를 시작할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<User>();
+
+			while(rset.next()) {
+				User user = new User();
+				
+			
+				user.setUserSeq(rset.getInt("USER_SEQ"));
+				user.setUserEmail(rset.getString("USER_EMAIL"));
+				user.setUserNm(rset.getString("USER_NM"));
+				user.setUserNick(rset.getString("USER_NICK"));
+				user.setUserPhone(rset.getString("USER_PHONE"));
+				user.setEnrollDt(rset.getDate("ENROLL_DT"));
+				user.setSnsCd(rset.getInt("SNS_CD"));
+				user.setLeaveTf(rset.getString("LEAVE_TF").charAt(0));
+				user.setLeaveDt(rset.getDate("LEAVE_DT"));
+				
+				
+				
+				user.setUserGradeCd(rset.getInt("USER_GRADE_CD"));
+				
+			
+				
+				
+
+				list.add(user);
+				System.out.println("리스트를 보여죵");
+				
+				System.out.println(user);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
 		return list;
 	}
 

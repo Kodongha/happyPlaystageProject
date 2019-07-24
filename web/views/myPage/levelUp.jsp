@@ -25,7 +25,7 @@
 <jsp:include page="/views/common/header.jsp" />
 <br><br>
 	<div style="width:600px; height:500px; ">
-		<%-- <form action="<%=request.getContextPath()%>/insert.tn" method="post"> --%>
+		<form action="<%=request.getContextPath()%>/levelUpInfo" method="post">
 			<h3>대관 관련 등업 신청</h3>
 			<table class="table table-condensed" style="width:600px; height:400px; vertical-align:middle">
 				<tr>
@@ -55,20 +55,20 @@
 				</tr>
 				<tr>
 					<td id="lev1">공연장 등록증</td>
-					<td id="lev1">
-						<input type="text" id="perfomer" name="perfomer">
-						<input type="button" id="imgBtn" style="width:50pt; height:20pt; border:0px; color:black; border-radius: 3px;" value="첨부">
-						<input type="file" id="upload">
+					<td id="lev1" name="filePath">
+						<input type="text" id="perfomer" name="filePath">
+						<input type="button" id="imgBtn" name="filePath" style="width:50pt; height:20pt; border:0px; color:black; border-radius: 3px;" value="첨부">
+						<input type="file" id="upload" name="filePath">
 					</td>
 					<td id="lev1"></td>
 				</tr>
 				<tr>
 					<td id="lev1"></td>
 					<td id="lev1"></td>
-					<td id="lev1"><input type="button" style="width:100pt; height:30pt; background-color:#ffd014; border:0px; color:black; border-radius: 3px; float:right;" value="신청" onclick="location.href='<%=request.getContextPath() %>/levelUpInfo'"></td>
+					<td id="lev1"><input type="button" name="filePath" style="width:100pt; height:30pt; background-color:#ffd014; border:0px; color:black; border-radius: 3px; float:right;" value="신청" onclick="location.href='<%=request.getContextPath() %>/levelUpInfo'"></td>
 				</tr>
 			</table>
-		<!-- </form> -->
+		</form>
 	</div>
 	<script>
 		$("#upload").hide();

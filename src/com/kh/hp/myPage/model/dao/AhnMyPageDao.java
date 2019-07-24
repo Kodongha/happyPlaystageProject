@@ -11,6 +11,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.hp.myPage.model.vo.AhnApplyInfoVO;
+import com.kh.hp.myPage.model.vo.AhnAttachmentVO;
 import com.kh.hp.myPage.model.vo.AhnLevelupVO;
 import com.kh.hp.myPage.model.vo.AhnMyPageVO;
 import com.kh.hp.myPage.model.vo.AhnUsingInfoVO;
@@ -64,12 +66,12 @@ public class AhnMyPageDao {
 		
 		return responseUserVO;
 	}
-	public AhnLevelupVO updateLevelOne(Connection con, int levelUpInfo) {
+	/*public AhnLevelupVO insertLevelOne(Connection con, int levelUpInfo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		AhnLevelupVO responseUserVO = null;
 		
-		String query = prop.getProperty("selectOne");
+		String query = prop.getProperty("insertLevelOne");
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -79,12 +81,54 @@ public class AhnMyPageDao {
 			while(rset.next()) {
 				responseUserVO = new AhnLevelupVO();
 				
+				responseUserVO.setUserSeq(rset.getInt("USER_SEQ"));
 				responseUserVO.setUserEmail(rset.getString("USER_EMAIL"));
-				responseUserVO.setUserPwd(rset.getString("USER_PWD"));
 				responseUserVO.setUserNm(rset.getString("USER_NM"));
 				responseUserVO.setUserNick(rset.getString("USER_NICK"));
 				responseUserVO.setUserPhone(rset.getString("USER_PHONE"));
-				responseUserVO.setEnrollDt(rset.getDate("ENROLL_DT"));
+				
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		System.out.println("responseUserVO : " + responseUserVO);
+		
+		return responseUserVO;
+	}*/
+	
+	public AhnAttachmentVO insertLevelOne(Connection con, int levelUpInfo, AhnAttachmentVO reqAhnAttachmentVO) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		AhnAttachmentVO responseUserVO = null;
+		
+		String query = prop.getProperty("insertLevelOne");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, levelUpInfo);
+			pstmt.setString(2, reqAhnAttachmentVO.getFilePath());
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				responseUserVO = new AhnAttachmentVO();
+				
+				
+				responseUserVO.setAttchSeq(rset.getInt("ATTCH_SEQ"));
+				responseUserVO.setOriginNm(rset.getString("ORIGIN_NM"));
+				responseUserVO.setChangeNm(rset.getString("CHANGE_NM"));
+				responseUserVO.setFilePath(rset.getString("FILE_PATH"));
+				responseUserVO.setUploadDt(rset.getDate("UPLOAD_DT"));
+				responseUserVO.setFileType(rset.getInt("FILE_TYPE"));
+				responseUserVO.setRentSeq(rset.getInt("RENT_SEQ"));
+				responseUserVO.setPropSeq(rset.getInt("PROP_SEQ"));
+				responseUserVO.setUserSeq(rset.getInt("USER_SEQ"));
+				responseUserVO.setSubType(rset.getInt("SUB_TYPE"));
+				
 				
 			}
 		} catch (SQLException e) {
@@ -99,8 +143,8 @@ public class AhnMyPageDao {
 		return responseUserVO;
 	}
 	
-	/*public ArrayList<AhnUsingInfoVO> searchCheck(Connection con, int usingInfo) {
-		ArrayList<AhnUsingInfoVO> list = null;
+	public ArrayList<AhnApplyInfoVO> searchCheck(Connection con, int usingInfo) {
+		ArrayList<AhnApplyInfoVO> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -113,10 +157,12 @@ public class AhnMyPageDao {
 			
 			rset = pstmt.executeQuery();
 			
-			list = new ArrayList<AhnUsingInfoVO>();
+			list = new ArrayList<AhnApplyInfoVO>();
 			
-			if(rset.next()) {
-				AhnUsingInfoVO u = new AhnUsingInfoVO();
+			System.out.println("controller list : " + list);
+			
+			while(rset.next()) {
+				AhnApplyInfoVO u = new AhnApplyInfoVO();
 				
 				u.setPropSeq(rset.getInt("PROP_SEQ"));
 				u.setRentSeq(rset.getInt("RENT_SEQ"));
@@ -143,11 +189,94 @@ public class AhnMyPageDao {
 		}
 		
 		return list;
-	}*/
+	}
+	public int getListCount(Connection con, int usingInfo) {
+		PreparedStatement pstmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectListCount");
+		System.out.println("usingInfoDAO:::"+usingInfo);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, String.valueOf(usingInfo));
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return listCount;
+	}
+	public ArrayList<AhnApplyInfoVO> selectList(Connection con, int usingInfo, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AhnApplyInfoVO> list = null;
+		
+		String query = prop.getProperty("selectListWithPaging");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+
+			//조회를 시작할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			
+			pstmt.setInt(1, usingInfo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<AhnApplyInfoVO>();
+			
+			while(rset.next()) {
+				AhnApplyInfoVO b = new AhnApplyInfoVO();
+				
+				b.setPropSeq(rset.getInt("PROP_SEQ"));
+				b.setRentSeq(rset.getInt("RENT_SEQ"));
+				b.setUserSeq(rset.getInt("USER_SEQ"));
+				b.setPropNm(rset.getString("PROP_NM"));
+				b.setPropPhone(rset.getString("PROP_PHONE"));
+				b.setPropEmail(rset.getString("PROP_EMAIL"));
+				b.setPropReqContent(rset.getString("PROP_REQ_CONTENT"));
+				b.setPropDt(rset.getDate("PROP_DT"));
+				b.setPropStatus(rset.getString("PROP_STATUS"));
+				b.setUseStartDt(rset.getDate("USE_START_DT"));
+				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				b.setUseStartTm(rset.getInt("USE_START_TM"));
+				b.setUseEndTm(rset.getInt("USE_END_TM"));
+				b.setPayAmount(rset.getInt("PAY_AMOUNT"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		
+		return list;
+	}
 	
 	
 	
-	public AhnUsingInfoVO searchCheck(Connection con, int usingInfo) {
+	/*public AhnUsingInfoVO searchCheck(Connection con, int usingInfo) {
 		AhnUsingInfoVO responseUserVO = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -191,7 +320,7 @@ public class AhnMyPageDao {
 		}
 		
 		return responseUserVO;
-	}
+	}*/
 	
 	
 	

@@ -3,24 +3,33 @@ package com.kh.hp.myPage.model.vo;
 import java.sql.Date;
 
 public class AhnLevelupVO implements java.io.Serializable{
+	private int userSeq;
 	private String userEmail;
 	private String userPwd;
 	private String userNm;
 	private String userNick;
 	private String userPhone;
-	private Date enrollDt;
+	
 	
 	public AhnLevelupVO() {}
 
-	public AhnLevelupVO(String userEmail, String userPwd, String userNm, String userNick, String userPhone,
-			Date enrollDt) {
+	public AhnLevelupVO(int userSeq, String userEmail, String userPwd, String userNm, String userNick, String userPhone) {
 		super();
+		this.userSeq = userSeq;
 		this.userEmail = userEmail;
 		this.userPwd = userPwd;
 		this.userNm = userNm;
 		this.userNick = userNick;
 		this.userPhone = userPhone;
-		this.enrollDt = enrollDt;
+		
+	}
+	
+	public int getUserSeq() {
+		return userSeq;
+	}
+	
+	public void setUserSeq(int userSeq) {
+		this.userSeq = userSeq;
 	}
 
 	public String getUserEmail() {
@@ -63,19 +72,11 @@ public class AhnLevelupVO implements java.io.Serializable{
 		this.userPhone = userPhone;
 	}
 
-	public Date getEnrollDt() {
-		return enrollDt;
-	}
-
-	public void setEnrollDt(Date enrollDt) {
-		this.enrollDt = enrollDt;
-	}
-
 	@Override
 	public String toString() {
-		return "AhnLevelupVO [userEmail=" + userEmail + ", userPwd=" + userPwd + ", userNm=" + userNm + ", userNick="
-				+ userNick + ", userPhone=" + userPhone + ", enrollDt=" + enrollDt + "]";
+		return "AhnLevelupVO [userSeq=" + userSeq + ", userEmail=" + userEmail + ", userPwd=" + userPwd + ", userNm="
+				+ userNm + ", userNick=" + userNick + ", userPhone=" + userPhone + "]";
 	}
-	
+
 	
 }

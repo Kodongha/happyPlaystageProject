@@ -21,7 +21,7 @@ body {
 
 #mainArea {
 	width: 70%;
-	height: 640px;
+	height: 700px;
 	background-color: white;
 	margin: 0 auto;
 	margin-top: 50px;
@@ -97,6 +97,18 @@ table {
 						<p>휴대폰 정보 없음</p>
 						<% } else { %>
 						<%=	mypageInfo.getUserPhone() %>
+						<% } %>
+					</td>
+				</tr>
+				<tr>
+					<th>SNS 연동 여부</th>
+					<td>
+						<% if (mypageInfo.getSnsCd() == 1) { %>
+						<img src="images/myPage/person.png" width="50px" height="50px">
+						<p>카카오</p>
+						<% } %>
+						<% if (mypageInfo.getSnsCd() == 2) { %>
+						<p>구글</p>
 						<% } %>
 					</td>
 				</tr>

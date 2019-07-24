@@ -10,12 +10,6 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	
-	System.out.println("listCount:::"+listCount);
-	System.out.println("currentPage:::"+currentPage);
-	System.out.println("maxPage:::"+maxPage);
-	System.out.println("startPage:::"+startPage);
-	System.out.println("endPage:::"+endPage);
-	
  %>
 
 <!DOCTYPE html>
@@ -206,6 +200,7 @@ margin-left: 600px;
 				<div id="users3">
 					<div class="col-sm-2">
 						<select class="form-control" id="userGradeStatus" name="userGradeStatus">
+							<option>선택</option>
 							<option>Y</option>
 							<option>N</option>
 						</select>
@@ -221,6 +216,7 @@ margin-left: 600px;
 					<div id="users5">
 						<div class="col-sm-2" id="select">
 							<select class="form-control" id="leaveTf" name="leaveTf">
+								<option>선택</option>
 								<option>Y</option>
 								<option>N</option>
 							</select>
@@ -245,7 +241,7 @@ margin-left: 600px;
 					<%for(User u : list ) {%>
 				</thead>
 				<tbody>
-					<tr onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad'"  method="get">
+					<tr onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=u.getUserSeq() %>'">
 						<th><%=u.getUserSeq() %></th>
 						<th><%=u.getUserEmail() %>/</th>
 						<th><%=u.getUserNm() %></th>

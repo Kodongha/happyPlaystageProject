@@ -140,9 +140,6 @@ public class UserDao {
 				user.setSnsCd(rset.getInt("SNS_CD"));
 				user.setLeaveTf(rset.getString("LEAVE_TF").charAt(0));
 				user.setLeaveDt(rset.getDate("LEAVE_DT"));
-				
-				
-				
 				user.setUserGradeCd(rset.getInt("USER_GRADE_CD"));
 				
 			
@@ -164,6 +161,55 @@ public class UserDao {
 		return list;
 	}
 
+	
+	//회원 조회용 메소드
+	public User selectOne(Connection con, int userSeq) {
+		
+	System.err.println("selectone dao까지 왔나요????");
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		User oneUser = null;
+		
+		String query = prop.getProperty("selectOne");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userSeq);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				oneUser = new User();
+				
+				oneUser.setUserSeq(rset.getInt("USER_SEQ"));
+				oneUser.setUserEmail(rset.getString("USER_EMAIL"));
+				oneUser.setUserNm(rset.getString("USER_NM"));
+				oneUser.setUserNick(rset.getString("USER_NICK"));
+				oneUser.setUserPhone(rset.getString("USER_PHONE"));
+				oneUser.setEnrollDt(rset.getDate("ENROLL_DT"));
+				oneUser.setSnsCd(rset.getInt("SNS_CD"));
+				oneUser.setLeaveTf(rset.getString("LEAVE_TF").charAt(0));
+				oneUser.setLeaveDt(rset.getDate("LEAVE_DT"));
+				oneUser.setUserGradeCd(rset.getInt("USER_GRADE_CD"));	
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return oneUser;
+	}
+
+	
+	
+	
+	
 
 }
 

@@ -1,6 +1,10 @@
 package com.kh.hp.rent.model.service;
 
-import static com.kh.hp.common.JDBCTemplate.*;
+import static com.kh.hp.common.JDBCTemplate.close;
+import static com.kh.hp.common.JDBCTemplate.commit;
+import static com.kh.hp.common.JDBCTemplate.getConnection;
+import static com.kh.hp.common.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -192,6 +196,12 @@ public class RentService {
 		return count;
 	}
 
+	/**
+	 * 대관 정보 리스트 가져오기
+	 * @param currentPage
+	 * @param limit
+	 * @return
+	 */
 	public ArrayList<RentListVO> selectRentList(int currentPage, int limit) {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
@@ -201,6 +211,49 @@ public class RentService {
 		close(con);
 
 		return rentListVOList;
+	}
+
+	/**
+	 * @param rentSeq
+	 * @return
+	 */
+	public ArrayList<Object> selectRentOne(int rentSeq) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		ArrayList<Object> rentInfos = new ArrayList<Object>();
+		RentDao rentDao = new RentDao();
+
+		// 대관 기본 정보
+		RentBasicVO rentBasicVO = rentDao.selectRentBasicOne(con, rentSeq);
+		System.out.println("rentBasicVO::" + rentBasicVO);
+
+		// 주의사항 정보
+		ArrayList<CautionsVO> cautionsVOList = rentDao.selectRentCautionsList(con, rentSeq);
+		System.out.println(cautionsVOList);
+
+		// 시설 안내 정보
+		ArrayList<FacInfoVO> facInfoVOList = rentDao.selectRentFacInfoList(con, rentSeq);
+		System.out.println(facInfoVOList);
+
+		// 이미지 정보
+		ArrayList<RentImgVO> rentImgVOList = rentDao.selectRentImg(con, rentSeq);
+		System.out.println(rentImgVOList);
+
+		// 상세 대관 정보
+		ArrayList<RentDetVO> rentDetVOList = rentDao.selectRentDet(con, rentSeq);
+		System.out.println(rentDetVOList);
+
+
+		rentInfos.add(rentBasicVO);
+		rentInfos.add(cautionsVOList);
+		rentInfos.add(facInfoVOList);
+		rentInfos.add(rentImgVOList);
+		rentInfos.add(rentDetVOList);
+
+		close(con);
+
+		return rentInfos;
 	}
 
 }

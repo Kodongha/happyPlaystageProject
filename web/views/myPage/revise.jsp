@@ -123,7 +123,7 @@ input {
 	</div>
 
 	<div id="fileArea">
-               <input type="file" id="upload" name="upload" onchange="loadImg(this, 1)">
+               <input type="file" id="upload" name="upload" onchange="loadImg(this)">
     </div>
      <script>
          $(function(){

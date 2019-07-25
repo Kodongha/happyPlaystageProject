@@ -12,6 +12,7 @@ import java.util.Properties;
 
 import com.kh.hp.account.model.vo.UserVO;
 import com.kh.hp.admin.model.vo.User;
+import com.kh.hp.myPage.model.vo.AhnUsingInfoVO;
 
 import static com.kh.hp.common.JDBCTemplate.*;
 public class UserDao {
@@ -205,6 +206,10 @@ public class UserDao {
 		
 		return oneUser;
 	}
+
+	
+	
+	
 
 	
 	

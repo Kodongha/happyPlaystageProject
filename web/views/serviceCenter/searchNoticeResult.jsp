@@ -3,15 +3,15 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%
- 	ArrayList<Notice> list = (ArrayList<Notice>) request.getAttribute("list");
+<%
+	ArrayList<Notice> list = (ArrayList<Notice>) request.getAttribute("list");
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
- %>
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,18 +101,22 @@ body {
 			</div>
 		</div>
 		<% } %>
+
+		<% if(list.size() == 0) { %>
+			<h4 align="center">검색 결과가 없습니다.</h4>
+		<% } %>
 	</div>
 
 	<%-- 페이징처리 --%>
 		<div class="pagingArea" align="center">
 			<!-- 가장 첫 페이지로 이동 -->
-			<button onclick="location.href='<%=request.getContextPath()%>/notice.sc?currentPage=1'"><<</button>
+			<button onclick="location.href='<%=request.getContextPath()%>/searchNotice.sc?currentPage=1'"><<</button>
 
 			<!-- 이전페이지 -->
 			<% if(currentPage <= 1){ %>
 			<button disabled><</button>
 			<% } else { %>
-			<button onclick="location.href='<%=request.getContextPath()%>/notice.sc?currentPage=<%=currentPage -1%>'"><</button>
+			<button onclick="location.href='<%=request.getContextPath()%>/searchNotice.sc?currentPage=<%=currentPage -1%>'"><</button>
 			<% } %>
 
 			<!-- 숫자 버튼 -->
@@ -121,7 +125,7 @@ body {
         	 %>
                <button disabled><%= p %></button>
          	<% }else{ %>
-               <button onclick="location.href='<%=request.getContextPath()%>/notice.sc?currentPage=<%=p%>'"><%= p %></button>
+               <button onclick="location.href='<%=request.getContextPath()%>/searchNotice.sc?currentPage=<%=p%>'"><%= p %></button>
          	<%
                }
             }
@@ -131,13 +135,14 @@ body {
 			<% if(currentPage >= maxPage){ %>
 			<button disabled>></button>
 			<% } else { %>
-			<button onclick="location.href='<%=request.getContextPath()%>/notice.sc?currentPage=<%=currentPage + 1%>'">></button>
+			<button onclick="location.href='<%=request.getContextPath()%>/searchNotice.sc?currentPage=<%=currentPage + 1%>'">></button>
 			<% } %>
 
 			<!-- 가장 마지막 페이지로 이동 -->
-			<button onclick="location.href='<%=request.getContextPath()%>/notice.sc?currentPage=<%=maxPage%>'">>></button>
+			<button onclick="location.href='<%=request.getContextPath()%>/searchNotice.sc?currentPage=<%=maxPage%>'">>></button>
 
 		</div>
+
 
 
 <jsp:include page="/views/common/footer.jsp" />

@@ -23,7 +23,7 @@ body {
 
 #mainArea {
 	width: 70%;
-	height: 660px;
+	height: 750px;
 	background-color: white;
 	margin: 0 auto;
 	margin-top: 50px;
@@ -32,8 +32,13 @@ body {
 #imgArea {
 	width: 100px;
 	height: 100px;
-	background-image: url("images/myPage/person.png");
-	background-size: 100% 100%;
+	border-radius:70px;
+}
+#profileImg {
+	width:100px;
+	height:100px;
+	border-radius:70px;
+	border:1px solid red;
 }
 table {
 	width: 50%;
@@ -82,14 +87,17 @@ input {
 	<div id="mainArea" align="center">
 		<br>
 		<br>
-		<div id="imgArea"></div>
-		<div>
+		<div id="imgArea" algin="center">
+			<img id="profileImg">
+		</div>
+		<br>
+			<button type="button" class="btn btn-default" onclick="uploadProfile();">프로필 사진 변경</button>
+		<br><br>
+		<div id="profile">
 			<h3>
 				<input type="text" class="form-control" value="<%= mypageInfo.getUserNick() %>" style="width:200px;" name="userNick" required>
 			</h3>
 		</div>
-		<br>
-		<button type="button" class="btn btn-default">프로필 사진 변경</button>
 		<hr style="width: 750px;">
 		<div align="center">
 			<table id="infoForm">
@@ -113,6 +121,32 @@ input {
 		<button type="reset" class="ui button btns" onclick="goMyPage();"> 취소하기 </button>&nbsp;&nbsp;&nbsp;
 		<button type="submit" class="ui secondary button btns" id="btn1" onclick="goRevise();"> 변경하기 </button>
 	</div>
+
+	<div id="fileArea">
+               <input type="file" id="upload" name="upload" onchange="loadImg(this, 1)">
+    </div>
+     <script>
+         $(function(){
+            $("#fileArea").hide();
+
+            $("#imgArea").click(function(){
+               $("#upload").click();
+            });
+         });
+
+         function loadImg(value){
+         if(value.files && value.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+               $("#profileImg").attr("src", e.target.result);
+            }
+
+            reader.readAsDataURL(value.files[0]);
+         }
+       }
+      </script>
+
 </form>
 		<script>
 		function goRevisePwd(){
@@ -123,6 +157,9 @@ input {
 		}
 		function goRevise(){
 			location.href="<%=request.getContextPath()%>/updateUser.mp";
+		}
+		function uploadProfile(){
+			location.href="<%=request.getContextPath()%>/changeProfile.mp";
 		}
 		</script>
 

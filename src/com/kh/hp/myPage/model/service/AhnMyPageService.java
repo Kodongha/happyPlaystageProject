@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import com.kh.hp.myPage.model.dao.AhnMyPageDao;
 import com.kh.hp.myPage.model.vo.AhnApplyInfoVO;
-import com.kh.hp.myPage.model.vo.AhnAttachmentVO;
+import com.kh.hp.myPage.model.vo.AhnLevelupInfoVO;
 import com.kh.hp.myPage.model.vo.AhnLevelupVO;
 import com.kh.hp.myPage.model.vo.AhnMyPageVO;
 import com.kh.hp.myPage.model.vo.AhnUsingInfoVO;
@@ -14,12 +14,13 @@ import com.kh.hp.myPage.model.vo.AhnUsingInfoVO;
 import static com.kh.hp.common.JDBCTemplate.*;
 
 public class AhnMyPageService {
-
-	public AhnMyPageVO selectOne(int userSeq) {
+	//로그인된 유저의 등업신청정보 가져오는 서비스 메소드
+	public AhnLevelupVO selectOne(int userSeq) {
 		Connection con = getConnection();
-		AhnMyPageVO responseUserVO = new AhnMyPageDao().selectOne(con, userSeq);
+		AhnLevelupVO responseUserVO = new AhnMyPageDao().selectOne(con, userSeq);
 		close(con);
 		
+		System.out.println("service responseUserVO : " + responseUserVO);
 		return responseUserVO;
 	}
 
@@ -31,12 +32,19 @@ public class AhnMyPageService {
 		return responseUserVO;
 	}*/
 	
-	public AhnAttachmentVO insertLevelOne(int levelUpInfo, AhnAttachmentVO reqAhnAttachmentVO) {
+	public int insertLevelOne(AhnLevelupInfoVO l, int levelUpInfo) {
 		Connection con = getConnection();
-		AhnAttachmentVO responseUserVO = new AhnMyPageDao().insertLevelOne(con, levelUpInfo, reqAhnAttachmentVO);
+		
+		int result = new AhnMyPageDao().insertLevelOne(con, l, levelUpInfo);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
 		close(con);
 		
-		return responseUserVO;
+		return result;
 	}
 	
 	
@@ -62,6 +70,7 @@ public class AhnMyPageService {
 		return list;
 	}*/
 	
+	//검색 전 신청내역 페이징카운트에 대한 서비스메소드
 	public int getListCount(int usingInfo) {
 		Connection con = getConnection();
 		
@@ -72,6 +81,7 @@ public class AhnMyPageService {
 		return listCount;
 	}
 
+	//검색 전 전체신청내역에 대한 서비스메소드
 	public ArrayList<AhnApplyInfoVO> selectList(int usingInfo, int currentPage, int limit) {
 		Connection con = getConnection();
 		
@@ -81,7 +91,8 @@ public class AhnMyPageService {
 		
 		return list;
 	}
-
+	
+	//검색 전 사용내역 페이징카운트에 대한 서비스메소드
 	public int getListCount1(int usingInfo) {
 		Connection con = getConnection();
 		
@@ -91,7 +102,8 @@ public class AhnMyPageService {
 		
 		return listCount;
 	}
-
+	
+	//검색 전 전체사용내역에 대한 서비스메소드
 	public ArrayList<AhnUsingInfoVO> selectList1(int usingInfo, int currentPage, int limit) {
 		Connection con = getConnection();
 		
@@ -101,6 +113,56 @@ public class AhnMyPageService {
 		
 		return list;
 	}
+	
+	//검색후 신청내역 페이징카운트에 대한 서비스메소드
+	public int getListCount2(int userInfo, int rentSeq) {
+		Connection con = getConnection();
+		
+		int listCount = new AhnMyPageDao().getListCount2(con, userInfo, rentSeq);
+		
+		System.out.println("Service listCount : " + listCount);
+		
+		close(con);
+		
+		return listCount;
+	}
+	
+	//검색후 신청내역에 대한 서비스메소드
+	public ArrayList<AhnApplyInfoVO> searchCheck(int userInfo, int rentSeq, int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<AhnApplyInfoVO> list = new AhnMyPageDao().searchCheck(con, userInfo, rentSeq, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}
+	
+	//검색후 사용내역 페이징카운트에 대한 서비스메소드
+	public int getListCount3(int userInfo, int rentSeq) {
+		Connection con = getConnection();
+		
+		int listCount = new AhnMyPageDao().getListCount3(con, userInfo, rentSeq);
+		
+		System.out.println("Service listCount : " + listCount);
+		
+		close(con);
+		
+		return listCount;
+	}
+	
+	//검색후 사용내역에 대한 서비스메소드
+	public ArrayList<AhnUsingInfoVO> searchCheck1(int userInfo, int rentSeq, int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<AhnUsingInfoVO> list = new AhnMyPageDao().searchCheck1(con, userInfo, rentSeq, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}
+
+	
 
 
 	

@@ -66,4 +66,37 @@ public class ServiceCenterService {
 		return list;
 	}
 
+
+	/** 공지사항 검색 메소드
+	 * @param searchValue
+	 * @return
+	 */
+	public ArrayList<Notice> searchNotice(String searchValue, int currentPage, int limit) {
+		Connection con = getConnection();
+
+		ArrayList<Notice> list = null;
+
+		ServiceCenterDao scd = new ServiceCenterDao();
+
+		list = scd.searchNotice(con, searchValue, currentPage, limit);
+
+		close(con);
+
+		return list;
+	}
+
+	/** 검색된 게시물 리스트 카운트
+	 * @param searchValue
+	 * @return
+	 */
+	public int SearchListCount(String searchValue) {
+		Connection con = getConnection();
+
+		int listCount = new ServiceCenterDao().SearchListCount(con, searchValue);
+
+		close(con);
+
+		return listCount;
+	}
+
 }

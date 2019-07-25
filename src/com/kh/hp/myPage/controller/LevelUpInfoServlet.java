@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.hp.account.model.vo.UserVO;
 import com.kh.hp.myPage.model.service.AhnMyPageService;
-import com.kh.hp.myPage.model.vo.AhnAttachmentVO;
+import com.kh.hp.myPage.model.vo.AhnLevelupInfoVO;
 import com.kh.hp.myPage.model.vo.AhnLevelupVO;
 import com.kh.hp.myPage.model.vo.AhnMyPageVO;
 
@@ -49,23 +49,31 @@ public class LevelUpInfoServlet extends HttpServlet {
 		
 		int levelUpInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
 		
-		String filePath = request.getParameter("filePath");
-		AhnAttachmentVO reqAhnAttachmentVO = new AhnAttachmentVO();
-		reqAhnAttachmentVO.setFilePath(filePath);
-		System.out.println("filePath : " + filePath);
-		AhnAttachmentVO responseUserVO = new AhnMyPageService().insertLevelOne(levelUpInfo, reqAhnAttachmentVO);
+		//String filePath = request.getParameter("filePath");
+		//System.out.println("filePath : " + filePath);
+		
+		
+		
+		AhnLevelupInfoVO l = new AhnLevelupInfoVO();
+		l.setUserSeq(levelUpInfo);
+		
+		System.out.println("insert levelup : " + l);
+		
+		int result = new AhnMyPageService().insertLevelOne(l, levelUpInfo);
 		
 		String page = "";
-		if(responseUserVO != null) {
-			request.setAttribute("msg", "신청이 완료되었습니다.");
+		
+		if(result > 0) {
 			page = "views/common/errorPage.jsp";
-			
+			request.setAttribute("msg", "등업 신청이 완료되었습니다");
+			request.getRequestDispatcher(page).forward(request, response);
 		}else {
-			request.setAttribute("msg", "신청이 불가합니다.");
 			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "등업 신청 실패했습니다");
+			request.getRequestDispatcher(page).forward(request, response);
 		}
 		
-		request.getRequestDispatcher(page).forward(request, response);
+		
 		
 	}
 

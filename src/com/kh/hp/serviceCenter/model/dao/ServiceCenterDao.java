@@ -183,4 +183,90 @@ public class ServiceCenterDao {
 		return list;
 	}
 
+
+	/** 공지사항 검색 메소드
+	 * @param con
+	 * @param searchValue
+	 * @return
+	 */
+	public ArrayList<Notice> searchNotice(Connection con, String searchValue, int currentPage, int limit) {
+		ArrayList<Notice> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("searchNoticeWithPaging");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setString(1, searchValue);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<Notice>();
+
+			while(rset.next()) {
+				Notice n = new Notice();
+
+				n.setNoticeCate(rset.getString("NOTICE_CATE"));
+				n.setNoticeTitle(rset.getString("NOTICE_TITLE"));
+				n.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+
+				list.add(n);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+
+		System.out.println("dao ::: " + list);
+
+		return list;
+	}
+
+	/** 검색된 게시물 리스트 카운트
+	 * @param con
+	 * @param searchValue
+	 * @return
+	 */
+	public int SearchListCount(Connection con, String searchValue) {
+		System.out.println("dao 들어옴!!");
+		PreparedStatement pstmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("searchNoticeList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, searchValue);
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+				System.out.println("들어옴");
+			}else {
+				System.out.println("안들어옴");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+
+		return listCount;
+	}
+
 }

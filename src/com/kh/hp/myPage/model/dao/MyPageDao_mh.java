@@ -8,16 +8,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.hp.account.model.vo.UserVO;
+import com.kh.hp.myPage.model.vo.AttachmentMH;
 import com.kh.hp.myPage.model.vo.MyPageUserVO;
 
 public class MyPageDao_mh {
 	private Properties prop = new Properties();
 
 	public MyPageDao_mh() {
-		String fileName = MyPageDao_mh.class.getResource("/sql/myPage/myPage-query.properties").getPath();
+		String fileName = MyPageDao_mh.class.getResource("/sql/myPage/myPage-query-mh.properties").getPath();
 		try {
 			prop.load(new FileReader(fileName));
 		} catch (IOException e) {
@@ -191,6 +193,11 @@ public class MyPageDao_mh {
 		return result;
 	}
 
+	/** 회원탈퇴시 leaveTF 수정
+	 * @param con
+	 * @param userSeq
+	 * @return
+	 */
 	public int updateLeaveTF(Connection con, int userSeq) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -209,6 +216,30 @@ public class MyPageDao_mh {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	/** 첨부파일 insert용 메소드
+	 * @param con
+	 * @param fileList
+	 * @return
+	 */
+	public int insertProfile(Connection con, ArrayList<AttachmentMH> fileList) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertUserImg");
+
+			try {
+				if(fileList != null) {
+					pstmt = con.prepareStatement(query);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+
+		return 0;
 	}
 
 

@@ -17,14 +17,14 @@ import com.kh.hp.rent.model.vo.RentListVO;
 /**
  * Servlet implementation class MoveRentList
  */
-@WebServlet("/moveRentList.rt")
-public class MoveRentList extends HttpServlet {
+@WebServlet("/moveRentListAjax.rt")
+public class MoveRentListAjax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MoveRentList() {
+    public MoveRentListAjax() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -70,11 +70,9 @@ public class MoveRentList extends HttpServlet {
 		String page = "";
 
 		if(list != null) {
-			System.out.println("list not null!!!");
-			page = "views/rent/rentalList.jsp";
-			request.setAttribute("list", list);
-			request.setAttribute("pi", pi);
-			request.getRequestDispatcher(page).forward(request, response);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			new Gson().toJson(list, response.getWriter());
 		}
 
 	}

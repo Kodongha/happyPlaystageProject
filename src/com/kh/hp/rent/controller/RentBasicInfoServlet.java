@@ -366,11 +366,12 @@ public class RentBasicInfoServlet extends HttpServlet {
 			System.out.println("result:::::::" + result);
 
 			String page = "";
+			/*
 			if(result == 1) {
 				page = request.getContextPath() + "/moveMain.main";
 				response.sendRedirect(page);
 			}
-
+*/
 		}
 	}
 

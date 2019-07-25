@@ -1,5 +1,12 @@
+<%@page import="com.kh.hp.rent.model.vo.PageInfo"%>
+<%@page import="com.kh.hp.rent.model.vo.RentListVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%
+ 	ArrayList<RentListVO> list = (ArrayList<RentListVO>) request.getAttribute("list");
+	PageInfo pi = (PageInfo) request.getAttribute("pi");
+ %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +19,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
+<script type="text/javascript" src="/happyPlaystage/js/common/jquery.oLoader.min.js"></script>
+<title>Insert title here</title>
 <style>
 	.ui.cards {
     padding-left: 14%;
@@ -20,8 +29,6 @@
 		text-align:center;
 	}
 </style>
-
-<title>Insert title here</title>
 </head>
 <body>
 <jsp:include page="/views/common/header.jsp" />
@@ -29,185 +36,143 @@
 <div id="search">
 
 	<label for="location">지역</label>
-<div class="ui compact menu">
-  <div class="ui simple dropdown item" name="location">
-    지역
-    <i class="dropdown icon"></i>
-    <div class="menu">
-      <div class="item">Choice 1</div>
-      <div class="item">Choice 2</div>
-      <div class="item">Choice 3</div>
-    </div>
-   </div>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-  </div>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  	<label for="date">이용일</label>
-	<input type="date" name="date">
-	<label for="price">가격</label>
-	<input type="number" name="price">  ~  <input type="number">
-	<div>
-		<button class="ui yellow button">필터</button>
+		<div class="ui compact menu">
+			<div class="ui simple dropdown item" name="location">
+				지역 <i class="dropdown icon"></i>
+				<div class="menu">
+					<div class="item">Choice 1</div>
+					<div class="item">Choice 2</div>
+					<div class="item">Choice 3</div>
+				</div>
+			</div>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
+		&nbsp;&nbsp;&nbsp;&nbsp; <label
+			for="date">이용일</label> <input type="date" name="date"> <label
+			for="price">가격</label> <input type="number" name="price"> ~ <input
+			type="number">
+		<div>
+			<button class="ui yellow button">필터</button>
+		</div>
+
 	</div>
-
-</div>
 <hr>
+	<div class="container" align="center" id='containerDiv'>
+		<div class="ui link cards">
+			<%for(RentListVO rentListVO : list) { %>
+			<div class="card" align="center">
+				<input type="hidden" value="<%=rentListVO.getRentSeq() %>" id="rentSeq">
+				<div class="image" style="width: 290px; height: 210px">
+					<img src="<%=request.getContextPath() %>/images/profilePhotos/<%=rentListVO.getChangeNm() %>" style="width:100%; height: 100%">
+				</div>
+				<div class="content">
+					<div class="header"><%=rentListVO.getHallNm() %></div>
+					<div class="description"><%=rentListVO.getAddress() %></div>
+				</div>
+				<div class="extra content">
+					<span class="right floated"><%=rentListVO.getRentEnrollDt() %></span>
+					<span>
+						<i class="user icon"></i> <%=rentListVO.getRentPrice() %>
+					</span>
+				</div>
+			</div>
+			<%} %>
+		</div>
+	</div>
+	<script>
+		var currentPage = 1;
 
-	<div class="ui special cards">
-  <div class="card">
-    <div class="blurring dimmable image">
-      <div class="ui dimmer">
-        <div class="content">
-          <div class="center">
-            <div class="ui inverted button">상세보기</div>
-          </div>
-        </div>
-      </div>
-      <img src="../../images/rent/rent3.jpg">
-    </div>
-    <div class="content">
-      <a class="header">Team Fu</a>
-      <div class="meta">
-        <span class="date">Created in Sep 2014</span>
-      </div>
-    </div>
-    <div class="extra content">
-      <a>
-        <i class="users icon"></i>
-        2 Members
-      </a>
-    </div>
-  </div>
-  <div class="card">
-    <div class="blurring dimmable image">
-      <div class="ui inverted dimmer">
-        <div class="content">
-          <div class="center">
-            <div class="ui primary button">상세보기</div>
-          </div>
-        </div>
-      </div>
-      <img src="../../images/rent/rent3.jpg">
-    </div>
-    <div class="content">
-      <a class="header">Team Hess</a>
-      <div class="meta">
-        <span class="date">Created in Aug 2014</span>
-      </div>
-    </div>
-    <div class="extra content">
-      <a>
-        <i class="users icon"></i>
-        2 Members
-      </a>
-    </div>
-  </div>
-  <div class="card">
-    <div class="blurring dimmable image">
-      <div class="ui dimmer">
-        <div class="content">
-          <div class="center">
-            <div class="ui inverted button">상세보기</div>
-          </div>
-        </div>
-      </div>
-      <img src="../../images/rent/rent3.jpg">
-    </div>
-    <div class="content">
-      <a class="header">Team Fu</a>
-      <div class="meta">
-        <span class="date">Created in Sep 2014</span>
-      </div>
-    </div>
-    <div class="extra content">
-      <a>
-        <i class="users icon"></i>
-        2 Members
-      </a>
-    </div>
-  </div>
-</div>
+		$('.cards .image').dimmer({
+			  on: 'hover'
+		});
 
-	<div class="ui special cards">
-  <div class="card">
-    <div class="blurring dimmable image">
-      <div class="ui dimmer">
-        <div class="content">
-          <div class="center">
-            <div class="ui inverted button">상세보기</div>
-          </div>
-        </div>
-      </div>
-      <img src="../../images/rent/rent3.jpg">
-    </div>
-    <div class="content">
-      <a class="header">Team Fu</a>
-      <div class="meta">
-        <span class="date">Created in Sep 2014</span>
-      </div>
-    </div>
-    <div class="extra content">
-      <a>
-        <i class="users icon"></i>
-        2 Members
-      </a>
-    </div>
-  </div>
-  <div class="card">
-    <div class="blurring dimmable image">
-      <div class="ui inverted dimmer">
-        <div class="content">
-          <div class="center">
-            <div class="ui primary button">상세보기</div>
-          </div>
-        </div>
-      </div>
-      <img src="../../images/rent/rent3.jpg">
-    </div>
-    <div class="content">
-      <a class="header">Team Hess</a>
-      <div class="meta">
-        <span class="date">Created in Aug 2014</span>
-      </div>
-    </div>
-    <div class="extra content">
-      <a>
-        <i class="users icon"></i>
-        2 Members
-      </a>
-    </div>
-  </div>
-  <div class="card">
-    <div class="blurring dimmable image">
-      <div class="ui dimmer">
-        <div class="content">
-          <div class="center">
-            <div class="ui inverted button">상세보기</div>
-          </div>
-        </div>
-      </div>
-      <img src="../../images/rent/rent3.jpg">
-    </div>
-    <div class="content">
-      <a class="header">Team Fu</a>
-      <div class="meta">
-        <span class="date">Created in Sep 2014</span>
-      </div>
-    </div>
-    <div class="extra content">
-      <a>
-        <i class="users icon"></i>
-        2 Members
-      </a>
-    </div>
-  </div>
-</div>
+		$(function(){
+			$('.card').click(function(){
+				var rentSeqVal = $(this).children('#rentSeq').val();
+				location.href = "<%=request.getContextPath() %>/MoveRentDetail.rt?rentSeq=" + rentSeqVal;
+			});
+		});
 
-<script>
-$('.special.cards .image').dimmer({
-	  on: 'hover'
-	});
-</script>
+
+		/* 로딩바 */
+		$('#right_panel').oLoader({
+			  backgroundColor: '#fff',
+			  fadeInTime: 500,
+			  fadeLevel: 0.8,
+			  image: '/happyPlaystage/images/ownageLoader/loader3.gif',
+			  style: 3,
+			  imagePadding: 5,
+			  imageBgColor: '#fe0',
+			  hideAfter: 1500,
+			  type:'post'
+			});
+		$(window).scroll(function (){
+			if($(window).scrollTop() == ($(document).height() - $(window).height())){
+				currentPage++;
+
+				$.ajax({
+					url:"moveRentListAjax.rt",
+					data:{type:"ajax", currentPage:currentPage},
+					type:"post",
+					success:function(data){
+						console.log("succ");
+
+						var $linkDiv = $(".link");
+
+						for(var key in data){
+							var $input = $('<input type="hidden" value="" id="rentSeq">');
+							var $carDiv = $("<div class='card' align='center'>");
+							var $imageDiv = $('<div class="image" style="width: 290px; height: 210px">');
+							var $img = $('<img src="" style="width:100%; height: 100%">');
+							var $contentDiv = $('<div class="content">');
+							var $headDiv = $('<div class="header"></div>');
+							var $descriptionDiv = $('<div class="description"></div>');
+							var $extraDiv = $('<div class="extra content">');
+							var $rightSpan = $('<span class="right floated"></span>');
+							var $span = $('<span>');
+							var $i = $('<i class="user icon"></i>');
+							$img.attr("src", "<%=request.getContextPath()%>/images/profilePhotos/" + data[key].changeNm);
+							$headDiv.text(data[key].hallNm);
+							$descriptionDiv.text(data[key].address);
+							$rightSpan.text(data[key].rentEnrollDt);
+							$input.val(data[key].rentSeq);
+
+							$span.append($i);
+							$span.append(data[key].rentPrice);
+							$extraDiv.append($span);
+							$extraDiv.append($rightSpan);
+							$carDiv.append($imageDiv);
+							$contentDiv.append($headDiv);
+							$contentDiv.append($descriptionDiv);
+							$carDiv.append($contentDiv);
+							$imageDiv.append($img);
+							$carDiv.append($input);
+							$carDiv.append($extraDiv);
+							$carDiv.append($extraDiv);
+							$linkDiv.append($carDiv);
+						}
+
+						$('.cards .image').dimmer({
+							  on: 'hover'
+						});
+
+						$(function(){
+							$('.card').click(function(){
+								var rentSeqVal = $(this).children('#rentSeq').val();
+								location.href = "<%=request.getContextPath() %>/MoveRentDetail.rt?rentSeq=" + rentSeqVal;
+							});
+						});
+
+
+					},
+					error:function(){
+						console.log("fail");
+					}
+				})
+			}
+		});
+
+	</script>
 
 <jsp:include page="/views/common/footer.jsp" />
 </body>

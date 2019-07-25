@@ -1,4 +1,4 @@
-package com.kh.hp.main.controller;
+package com.kh.hp.rent.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.hp.main.model.service.MainService;
-import com.kh.hp.main.model.vo.MainRentVO;
+import com.kh.hp.rent.model.service.RentService;
 
 /**
- * Servlet implementation class MoveMainServlet
+ * Servlet implementation class MoveRentDetailServlet
  */
-@WebServlet("/moveMain.main")
-public class MoveMainServlet extends HttpServlet {
+@WebServlet("/MoveRentDetail.rt")
+public class MoveRentDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MoveMainServlet() {
+    public MoveRentDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,28 +31,21 @@ public class MoveMainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		int rentSeq = Integer.parseInt(request.getParameter("rentSeq"));
 
-		System.out.println("moveMain.main in!!");
-
-		MainService mainService = new MainService();
-
-		// 데이터 가져오기
-		ArrayList<MainRentVO> responseMainRentVOList = mainService.selectMainData();
-
-		for(MainRentVO mainRentVO : responseMainRentVOList) {
-			System.out.println(mainRentVO);
-			System.out.println(mainRentVO.getFilePath() + mainRentVO.getChangeNm());
-		}
+		System.out.println("rentSeq ::: " + rentSeq);
+		RentService rentService = new RentService();
+		ArrayList<Object> rentInfos = rentService.selectRentOne(rentSeq);
 
 		String page = "";
-		if(responseMainRentVOList != null) {
-			page = "views/main/main.jsp";
-			request.setAttribute("responseMainRentVOList", responseMainRentVOList);
-			request.getRequestDispatcher(page).forward(request, response);
+		if(rentInfos != null) {
+			request.setAttribute("rentInfos", rentInfos);
+			page = "views/rent/rentDetail.jsp";
 		} else {
-
+			page = "views/common/errorPage.jsp";
 		}
 
+		request.getRequestDispatcher(page).forward(request, response);
 
 	}
 

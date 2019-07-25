@@ -110,108 +110,108 @@
       </div>
    </div>
 
-   <!-- 새로 등록된 공간 -->
-   <hr>
-   <br>
-   <br>
-   <div>
-      <h2 align="center">
-         <b>새로 등록된 공간!</b>
-      </h2>
-   </div>
-   <br>
-   <br>
-   <!-- 카드 -->
-   <div class="container" align="center">
-      <div class="ui link cards">
-         <%--
-         <%for(MainRentVO mainRentVO : responseMainRentVOList) { %>
-         <div class="card" align="center">
-            <div class="image" style="width: 290px; height: 210px">
-               <img src="<%=request.getContextPath() %>/images/profilePhotos/<%=mainRentVO.getChangeNm() %>" style="width:100%; height: 100%">
-            </div>
-            <div class="content">
-               <div class="header"><%=mainRentVO.getHallNm() %></div>
-               <div class="description"><%=mainRentVO.getAddress() %></div>
-            </div>
-            <div class="extra content">
-               <span class="right floated"><%=mainRentVO.getRentEnrollDt() %></span>
-               <span>
-                  <i class="user icon"></i> <%=mainRentVO.getRentPrice() %>
-               </span>
-            </div>
-         </div>
-         <%} %>
-          --%>
-      </div>
-   </div>
-   <!-- 리뷰 -->
-   <hr>
-   <br>
-   <br>
-   <div>
-      <h2 align="center">
-         <b>Review</b>
-      </h2>
-   </div>
-   <br>
-   <br>
-   <!-- 카드 -->
-   <div class="ui link cards" align="center">
-      <div class="card" align="center">
-         <div class="image">
-            <img src="../../images/rent/rent1.jpg">
-         </div>
-         <div class="content">
-            <div class="header">엘지 아트센터</div>
-            <div class="meta">
-               <span class="date">Coworker</span>
-            </div>
-            <div class="description">역삼동 679번지 강남구 서울특별시</div>
-         </div>
-         <div class="extra content">
-            <span class="right floated"> 2019.07.15 </span> <span> <i
-               class="user icon"></i> 450,000 원 /일
-            </span>
-         </div>
-      </div>
-      <div class="card">
-         <div class="image">
-            <img src="../../images/rent/rent2.jpg">
-         </div>
-         <div class="content">
-            <div class="header">Molly</div>
-            <div class="meta">
-               <span class="date">Coworker</span>
-            </div>
-            <div class="description">Molly is a personal assistant living in Paris.</div>
-         </div>
-         <div class="extra content">
-            <span class="right floated"> Joined in 2011 </span>
-            <span>
-               <i class="user icon"></i> 35 Friends
-            </span>
-         </div>
-      </div>
-      <div class="card">
-         <div class="image">
-            <img src="../../images/rent/rent3.jpg">
-         </div>
-         <div class="content">
-            <div class="header">Elyse</div>
-            <div class="meta">
-               <a>Coworker</a>
-            </div>
-            <div class="description">Elyse is a copywriter working in New
-               York.</div>
-         </div>
-         <div class="extra content">
-            <span class="right floated"> Joined in 2014 </span>
-            <span> <i class="user icon"></i> 151 Friends
-            </span>
-         </div>
-      </div>
-   </div>
+	<!-- 새로 등록된 공간 -->
+	<hr>
+	<br>
+	<br>
+	<div>
+		<h2 align="center">
+			<b>새로 등록된 공간!</b>
+		</h2>
+	</div>
+	<br>
+	<br>
+	<!-- 카드 -->
+	<div class="container" align="center">
+		<div class="ui link cards">
+			<%--
+			<%for(MainRentVO mainRentVO : responseMainRentVOList) { %>
+			<div class="card" align="center">
+				<div class="image" style="width: 290px; height: 210px">
+					<img src="<%=request.getContextPath() %>/images/profilePhotos/<%=mainRentVO.getChangeNm() %>" style="width:100%; height: 100%">
+				</div>
+				<div class="content">
+					<div class="header"><%=mainRentVO.getHallNm() %></div>
+					<div class="description"><%=mainRentVO.getAddress() %></div>
+				</div>
+				<div class="extra content">
+					<span class="right floated"><%=mainRentVO.getRentEnrollDt() %></span>
+					<span>
+						<i class="user icon"></i> <%=mainRentVO.getRentPrice() %>
+					</span>
+				</div>
+			</div>
+			<%} %>
+			 --%>
+		</div>
+	</div>
+	<!-- 리뷰 -->
+	<hr>
+	<br>
+	<br>
+	<div>
+		<h2 align="center">
+			<b>Review</b>
+		</h2>
+	</div>
+	<br>
+	<br>
+	<!-- 카드 -->
+	<div class="ui link cards" align="center">
+		<div class="card" align="center">
+			<div class="image">
+				<img src="../../images/rent/rent1.jpg">
+			</div>
+			<div class="content">
+				<div class="header">엘지 아트센터</div>
+				<div class="meta">
+					<span class="date">Coworker</span>
+				</div>
+				<div class="description">역삼동 679번지 강남구 서울특별시</div>
+			</div>
+			<div class="extra content">
+				<span class="right floated"> 2019.07.15 </span> <span> <i
+					class="user icon"></i> 450,000 원 /일
+				</span>
+			</div>
+		</div>
+		<div class="card">
+			<div class="image">
+				<img src="../../images/rent/rent2.jpg">
+			</div>
+			<div class="content">
+				<div class="header">Molly</div>
+				<div class="meta">
+					<span class="date">Coworker</span>
+				</div>
+				<div class="description">Molly is a personal assistant living in Paris.</div>
+			</div>
+			<div class="extra content">
+				<span class="right floated"> Joined in 2011 </span>
+				<span>
+					<i class="user icon"></i> 35 Friends
+				</span>
+			</div>
+		</div>
+		<div class="card">
+			<div class="image">
+				<img src="../../images/rent/rent3.jpg">
+			</div>
+			<div class="content">
+				<div class="header">Elyse</div>
+				<div class="meta">
+					<a>Coworker</a>
+				</div>
+				<div class="description">Elyse is a copywriter working in New
+					York.</div>
+			</div>
+			<div class="extra content">
+				<span class="right floated"> Joined in 2014 </span>
+				<span> <i class="user icon"></i> 151 Friends
+				</span>
+			</div>
+		</div>
+	</div>
 
    <script>
 $('.special.cards .image').dimmer({

@@ -63,10 +63,9 @@ public class UserService {
 		return oneUser;
 	}
 
-	public ArrayList<User> userSearch(String userSeqStart, String userSeqEnd, User requestUser) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+	
+	
 
 
 

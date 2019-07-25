@@ -35,7 +35,7 @@
 <body>
 <jsp:include page="/views/common/header.jsp" />
 	<h1 align=center style="color:gray">대관 사용 내역</h1>
-	
+	<form action="<%=request.getContextPath()%>/searchUsingInfo" method="post">
 	<div class="tab1" style="width:650px;border:1.5px solid black">
 	<table align="center">
 		<tr>
@@ -45,13 +45,14 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td><input type="text"></td>
-			<td><input type="text"></td>
-			<td><input type="text"></td>
+			<td><input type="text" name="rentSeq"></td>
+			<td><input type="text" name="propNm"></td>
+			<td><input type="text" name="useStartDt"></td>
 			<td><input type="submit"></td>
 		</tr>
 	</table>
 	</div>
+	</form>
 	<br>
 	
 	<hr>
@@ -99,12 +100,12 @@
 	</div>
 	<%-- 페이징처리 --%>
 		<div class="pagingArea" align="center">
-			<button onclick="location.href='<%=request.getContextPath()%>/applyInfo1?currentPage=1'"><<</button>
+			<button onclick="location.href='<%=request.getContextPath()%>/usingInfo?currentPage=1'"><<</button>
 			
 			<% if(currentPage <= 1){ %>
 			<button disabled><</button>
 			<% }else { %>
-			<button onclick="location.href='<%=request.getContextPath()%>/applyInfo1?currentPage=<%=currentPage - 1%>'"><</button>
+			<button onclick="location.href='<%=request.getContextPath()%>/usingInfo?currentPage=<%=currentPage - 1%>'"><</button>
 			<% } %>
 			
 			<% for(int p = startPage; p <= endPage; p++){ 
@@ -112,7 +113,7 @@
 			%>
 					<button disabled><%= p %></button>
 			<% } else { %>
-					<button onclick="location.href='<%=request.getContextPath()%>/applyInfo1?currentPage=<%=p%>'"><%= p %></button>
+					<button onclick="location.href='<%=request.getContextPath()%>/usingInfo?currentPage=<%=p%>'"><%= p %></button>
 			<% 
 				}
 			   } 
@@ -121,10 +122,10 @@
 			<% if(currentPage >= maxPage){ %>
 			<button disabled>></button>
 			<% }else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/applyInfo1?currentPage=<%=currentPage + 1 %>'">></button>
+			<button onclick="location.href='<%=request.getContextPath()%>/usingInfo?currentPage=<%=currentPage + 1 %>'">></button>
 			<% } %>
 
-			<button onclick="location.href='<%=request.getContextPath()%>/applyInfo1?currentPage=<%=maxPage%>'">>></button>
+			<button onclick="location.href='<%=request.getContextPath()%>/usingInfo?currentPage=<%=maxPage%>'">>></button>
 		</div>
 	<jsp:include page="/views/common/footer.jsp" />
 </body>

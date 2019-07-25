@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.hp.myPage.model.vo.AhnApplyInfoVO;
-import com.kh.hp.myPage.model.vo.AhnAttachmentVO;
+import com.kh.hp.myPage.model.vo.AhnLevelupInfoVO;
 import com.kh.hp.myPage.model.vo.AhnLevelupVO;
 import com.kh.hp.myPage.model.vo.AhnMyPageVO;
 import com.kh.hp.myPage.model.vo.AhnUsingInfoVO;
@@ -34,10 +34,12 @@ public class AhnMyPageDao {
 			e.printStackTrace();
 		}
 	}
-	public AhnMyPageVO selectOne(Connection con, int userSeq) {
+	
+	//로그인된 유저의 등업신청 정보 가져오는 Dao메소드
+	public AhnLevelupVO selectOne(Connection con, int userSeq) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		AhnMyPageVO responseUserVO = null;
+		AhnLevelupVO responseUserVO = null;
 		
 		String query = prop.getProperty("selectOne");
 		
@@ -47,14 +49,13 @@ public class AhnMyPageDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				responseUserVO = new AhnMyPageVO();
+				responseUserVO = new AhnLevelupVO();
 				
-				responseUserVO.setUserEmail(rset.getString("USER_SEQ"));
+				responseUserVO.setUserSeq(rset.getInt("USER_SEQ"));
 				responseUserVO.setUserEmail(rset.getString("USER_EMAIL"));
 				responseUserVO.setUserNm(rset.getString("USER_NM"));
 				responseUserVO.setUserNick(rset.getString("USER_NICK"));
 				responseUserVO.setUserPhone(rset.getString("USER_PHONE"));
-				responseUserVO.setEnrollDt(rset.getDate("ENROLL_DT"));
 				
 			}
 		} catch (SQLException e) {
@@ -64,6 +65,7 @@ public class AhnMyPageDao {
 			close(rset);
 		}
 		
+		System.out.println("DAO responseUserVO : " + responseUserVO);
 		
 		return responseUserVO;
 	}
@@ -102,46 +104,27 @@ public class AhnMyPageDao {
 		return responseUserVO;
 	}*/
 	
-	public AhnAttachmentVO insertLevelOne(Connection con, int levelUpInfo, AhnAttachmentVO reqAhnAttachmentVO) {
+	public int insertLevelOne(Connection con, AhnLevelupInfoVO l, int levelUpInfo) {
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		AhnAttachmentVO responseUserVO = null;
+		int result = 0;
 		
 		String query = prop.getProperty("insertLevelOne");
 		
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, levelUpInfo);
-			pstmt.setString(2, reqAhnAttachmentVO.getFilePath());
-			rset = pstmt.executeQuery();
+			//pstmt.setString(2, reqAhnAttachmentVO.getFilePath());
 			
-			while(rset.next()) {
-				responseUserVO = new AhnAttachmentVO();
+			
+			result = pstmt.executeUpdate();
 				
-				
-				responseUserVO.setAttchSeq(rset.getInt("ATTCH_SEQ"));
-				responseUserVO.setOriginNm(rset.getString("ORIGIN_NM"));
-				responseUserVO.setChangeNm(rset.getString("CHANGE_NM"));
-				responseUserVO.setFilePath(rset.getString("FILE_PATH"));
-				responseUserVO.setUploadDt(rset.getDate("UPLOAD_DT"));
-				responseUserVO.setFileType(rset.getInt("FILE_TYPE"));
-				responseUserVO.setRentSeq(rset.getInt("RENT_SEQ"));
-				responseUserVO.setPropSeq(rset.getInt("PROP_SEQ"));
-				responseUserVO.setUserSeq(rset.getInt("USER_SEQ"));
-				responseUserVO.setSubType(rset.getInt("SUB_TYPE"));
-				
-				
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-			close(rset);
 		}
 		
-		System.out.println("responseUserVO : " + responseUserVO);
-		
-		return responseUserVO;
+		return result;
 	}
 	
 	/*public ArrayList<AhnApplyInfoVO> searchCheck(Connection con, int usingInfo) {
@@ -503,6 +486,97 @@ public class AhnMyPageDao {
 				b.setPayAmount(rset.getInt("PAY_AMOUNT"));*/
 				
 				b.setHallNm(rset.getString("HALL_NM"));
+				b.setPropSeq(rset.getInt("PROP_SEQ"));
+				b.setRentSeq(rset.getInt("RENT_SEQ"));
+				b.setUserSeq(rset.getInt("USER_SEQ"));
+				b.setPropNm(rset.getString("PROP_NM"));
+				b.setPropDt(rset.getDate("PROP_DT"));
+				b.setPropStatus(rset.getString("PROP_STATUS"));
+				b.setUseStartDt(rset.getDate("USE_START_DT"));
+				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		
+		return list;
+	}
+	
+	//검색후 사용내역 페이징카운트에 대한 DAO메소드
+	public int getListCount3(Connection con, int userInfo, int rentSeq) {
+		PreparedStatement pstmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectListCount3");
+		System.out.println("userInfo : " + userInfo);
+		System.out.println("rentSeq : " + rentSeq);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, rentSeq);
+			pstmt.setInt(2, userInfo);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			if(rset.next()) {
+				System.out.println("결과 있음");
+				listCount = rset.getInt(1);
+			} else {
+				System.out.println("결과 없음");
+			}
+			
+			System.out.println("DAO listCount : " + listCount);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return listCount;
+	}
+	
+	//검색후 사용내역에 대한 DAO메소드
+	public ArrayList<AhnUsingInfoVO> searchCheck1(Connection con, int userInfo, int rentSeq, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AhnUsingInfoVO> list = null;
+		
+		String query = prop.getProperty("searchCheck1");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+
+			//조회를 시작할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, userInfo);
+			pstmt.setInt(2, rentSeq);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<AhnUsingInfoVO>();
+			
+			while(rset.next()) {
+				AhnUsingInfoVO b = new AhnUsingInfoVO();
+				
+				b.setHallNm(rset.getString("HALL_NM"));
+				b.setCompNm(rset.getString("COMP_NM"));
 				b.setPropSeq(rset.getInt("PROP_SEQ"));
 				b.setRentSeq(rset.getInt("RENT_SEQ"));
 				b.setUserSeq(rset.getInt("USER_SEQ"));

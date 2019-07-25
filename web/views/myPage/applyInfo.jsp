@@ -10,7 +10,6 @@
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
-
 %>
 <!DOCTYPE html>
 <html>
@@ -19,6 +18,12 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<!-- 캘린더 -->
+<script type="text/javascript" src="/happyPlaystage/js/common/moment.min.js"></script>
+<link rel="stylesheet" href="/happyPlaystage/css/common/daterangepicker.min.css">
+<script type="text/javascript" src="/happyPlaystage/js/common/jquery.daterangepicker.min.js"></script>
+
 <title>대관 신청 내역</title>
 <style>
 	div {
@@ -48,10 +53,18 @@
 		<tr>
 			<td><input type="text" name="rentSeq"></td>
 			<td><input type="text" name="propNm"></td>
-			<td><input type="text" name="useStartDt"></td>
+			<td>
+				<input name="cusClosedate" id="cusClosedate">			
+			</td>
 			<td><input type="submit"></td>
 		</tr>
 	</table>
+	<!-- 캘린더를 파라미터로 가져와서 split으로 자르는법
+	if(cusClosedate != null && !cusClosedate.equals("")) {
+				String[] temp = cusClosedate.split(" to ");
+				cusCloseStart = Date.valueOf(temp[0]);
+				cusCloseEnd = Date.valueOf(temp[1]);
+			} -->
 	</div>
 	</form>
 	<br>
@@ -76,7 +89,7 @@
 			<td id="tab2"><%= list.get(i).getHallNm() %></td>
 			<td id="tab2"><%= list.get(i).getUseStartDt() %> ~ <%= list.get(i).getUseEndDt() %></td>
 			<td id="tab2"><%= list.get(i).getPropStatus() %></td>
-			</tr>		
+			</tr>
 		<% } %>
 		
 		<%-- <tr>
@@ -128,6 +141,9 @@
 
 			<button onclick="location.href='<%=request.getContextPath()%>/applyInfo1?currentPage=<%=maxPage%>'">>></button>
 		</div>
+	<script type="text/javascript">
+		$('#cusClosedate').dateRangePicker();
+	</script>		
 	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html> 

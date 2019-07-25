@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import com.kh.hp.myPage.model.dao.AhnMyPageDao;
 import com.kh.hp.myPage.model.vo.AhnApplyInfoVO;
+import com.kh.hp.myPage.model.vo.AhnAttachmentVO;
 import com.kh.hp.myPage.model.vo.AhnLevelupInfoVO;
 import com.kh.hp.myPage.model.vo.AhnLevelupVO;
 import com.kh.hp.myPage.model.vo.AhnMyPageVO;
@@ -32,7 +33,7 @@ public class AhnMyPageService {
 		return responseUserVO;
 	}*/
 	
-	public int insertLevelOne(AhnLevelupInfoVO l, int levelUpInfo) {
+	/*public int insertLevelOne(AhnLevelupInfoVO l, int levelUpInfo) {
 		Connection con = getConnection();
 		
 		int result = new AhnMyPageDao().insertLevelOne(con, l, levelUpInfo);
@@ -45,7 +46,7 @@ public class AhnMyPageService {
 		close(con);
 		
 		return result;
-	}
+	}*/
 	
 	
 	
@@ -160,6 +161,33 @@ public class AhnMyPageService {
 		close(con);
 		
 		return list;
+	}
+
+	public int insertImage(AhnLevelupInfoVO l, ArrayList<AhnAttachmentVO> fileList) {
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		int result1 = new AhnMyPageDao().insertImage(con, l);
+		
+		/*if(result1 > 0) {
+			int userSeq = new AhnMyPageDao().selectCurrval(con);
+			
+			for(int i = 0; i < fileList.size(); i++) {
+				fileList.get(i).setUserSeq(userSeq);
+			}
+		}*/
+		
+		int result2 = new AhnMyPageDao().insertAttachment(con, fileList);
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(con);
+			result = 1;
+		}else {
+			rollback(con);
+		}
+		
+		return result;
 	}
 
 	

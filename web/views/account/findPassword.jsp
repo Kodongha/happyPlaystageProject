@@ -132,14 +132,12 @@ h2 {
 	<form action="<%=request.getContextPath()%>/findPassword.acc" method="post" name="fr" id="fr">
 		<div class="findId" id="findid2">
 			<table>
-
 				<tr>
 					<td>
 					<input class="form-control" id="receiver" type="email" name="receiver"placeholder="이메일">
 						<h6>가입시 사용한 이메일 주소를 입력해주시면 비밀번호 재설정 링크를 보내드립니다.<br>
 							카카오톡, 구글로 가입하신 경우 비밀번호 찾기가 불가능 합니다.</h6></td>
 				</tr>
-
 
 				<tr>
 					<td>

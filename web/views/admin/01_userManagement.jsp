@@ -199,7 +199,7 @@ margin-left: 600px;
 
 				<div id="users3">
 					<div class="col-sm-2">
-						<select class="form-control" id="userGradeStatus" name="userGradeStatus">
+						<select class="form-control" id="userGradeStatus" name="userGradeStatus" style="width:100px">
 							<option>선택</option>
 							<option>Y</option>
 							<option>N</option>
@@ -215,7 +215,7 @@ margin-left: 600px;
 
 					<div id="users5">
 						<div class="col-sm-2" id="select">
-							<select class="form-control" id="leaveTf" name="leaveTf">
+							<select class="form-control" id="leaveTf" name="leaveTf" style="width:100px">
 								<option>선택</option>
 								<option>Y</option>
 								<option>N</option>
@@ -242,6 +242,7 @@ margin-left: 600px;
 				</thead>
 				<tbody>
 					<tr onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=u.getUserSeq() %>'">
+
 						<th><%=u.getUserSeq() %></th>
 						<th><%=u.getUserEmail() %>/</th>
 						<th><%=u.getUserNm() %></th>
@@ -281,32 +282,13 @@ margin-left: 600px;
 			<% if(currentPage >= maxPage){ %>
 			<button disabled>></button>
 			<% }else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=currentPage%>'">></button>
+			<button onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=currentPage + 1%>'">></button>
 			<% } %>
 
 			<button onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=maxPage%>'">>></button>
 		</div>
 
 
-	<script>
-		$(function(){
-			$("#listArea td").mouseenter(function(){
-				$(this).parent().css({"background":"darkgray", "cursor":"pointer"});
-			}).mouseout(function(){
-				$(this).parent().css({"background":"black"});
-			}).click(function(){
-				var num = $(this).parent().children("input").val();
-				
-				location.href="<%=request.getContextPath()%>/selectOne.bo?num=" + num;
-			});
-		});
-	</script>
-	
-	<script>
-	$(function(){
-		$()
-	});
-	</script>
 
 
 

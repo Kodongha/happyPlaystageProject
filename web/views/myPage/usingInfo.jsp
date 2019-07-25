@@ -4,12 +4,14 @@
 <%
  ArrayList<AhnUsingInfoVO> list = (ArrayList<AhnUsingInfoVO>)request.getAttribute("list"); 
 //AhnUsingInfoVO responseUserVO = (AhnUsingInfoVO) request.getAttribute("responseUserVO");
+
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
+
 %>
 <!DOCTYPE html>
 <html>
@@ -20,15 +22,15 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <title>대관 사용 내역</title>
 <style>
-	div {
-		margin:auto;
-	}
-	#tab1{
-		background-color: darkgray;
-		 border: 1px solid lightgray;
-	}
-	#tab2 {
-	 border: 1px solid lightgray;
+   div {
+      margin:auto;
+   }
+   #tab1{
+      background-color: darkgray;
+       border: 1px solid lightgray;
+   }
+   #tab2 {
+    border: 1px solid lightgray;
   } 
 </style>
 </head>

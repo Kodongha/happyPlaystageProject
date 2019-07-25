@@ -29,7 +29,6 @@
 			<input id="rentPhone2" type="tel" class="form-control" name="rentPhone2" style="width: 100px; min-width: 100px; display:inline; margin: 0 2% 0 2%">
 			<label>-</label>
 			<input id="rentPhone3" type="tel" class="form-control" name="rentPhone3" style="width: 100px; min-width: 100px; display:inline; margin: 0 2% 0 2%">
-			<button type="button" id="cautionAddBtn" class="col-sm-2 col-xs-2 btn btn btn-primary" style="width: 15%; min-width: 50px; float: right;">추가</button>
 		</div>
 		<p>
 			* 해당 휴대폰으로 예약 관련 연락이 갑니다. (추가 핸드폰에도 동일한 연락이 갑니다.)
@@ -49,6 +48,7 @@
 
 			<br>
 			<select class="form-control" name="rentMainTel1" id="rentMainTel1" style="width: 100px; min-width: 100px; display:inline; margin: 0 2% 0 0">
+				<option>02</option>
 				<option>010</option>
 				<option>011</option>
 				<option>016</option>

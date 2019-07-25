@@ -1,3 +1,5 @@
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="com.kh.hp.rent.model.vo.RentPropVO"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -20,43 +22,14 @@
 	ArrayList<RentDetVO> rentDetVOList = (ArrayList<RentDetVO>) rentInfos.get(4);
 	ArrayList<RentCloseVO> rentCloseVOList = (ArrayList<RentCloseVO>) rentInfos.get(5);
 	ArrayList<RentRefundTypeVO> rentRefundTypeVOList = (ArrayList<RentRefundTypeVO>) rentInfos.get(6);
-
-
-
-	Calendar cal = Calendar.getInstance();
-	cal.setTime(rentBasicVO.getRentEnrollDt());
-	int dayNum = cal.get(Calendar.DAY_OF_WEEK) ;
-	String day = "";
-	switch(dayNum){
-    case 1:
-        day = "일";
-        break ;
-    case 2:
-        day = "월";
-        break ;
-    case 3:
-        day = "화";
-        break ;
-    case 4:
-        day = "수";
-        break ;
-    case 5:
-        day = "목";
-        break ;
-    case 6:
-        day = "금";
-        break ;
-    case 7:
-        day = "토";
-        break ;
-	}
-	day += "요일";
+	ArrayList<RentPropVO> rentPropVOList = (ArrayList<RentPropVO>) rentInfos.get(7);
 
 	/* 데이터 가공 */
 	String detailIntro = rentBasicVO.getHallDetIntro().replace("\r\n", "<br>");
 
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 	String dateStr = sdf.format(rentBasicVO.getRentEnrollDt());
+
 %>
 <!DOCTYPE html>
 <html>
@@ -69,7 +42,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
+<!-- 캘린더 -->
+<script type="text/javascript" src="/happyPlaystage/js/common/moment.min.js"></script>
+<link rel="stylesheet" href="/happyPlaystage/css/common/daterangepicker.min.css">
+<script type="text/javascript" src="/happyPlaystage/js/common/jquery.daterangepicker.min.js"></script>
+
 <style type="text/css">
+
+
 	h1, h2 {
 		font-weight: bold;
 	}
@@ -123,9 +103,8 @@
 
 			<br><br>
 
-
 			<!-- 이미지 -->
-			<div class="container">
+			<div class="container" style="width: 70%; float: left">
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
 					<!-- Indicators -->
 					<ol class="carousel-indicators">
@@ -167,10 +146,97 @@
 				</div>
 			</div>
 
-			<br><br>
+<!-- 결제창 -->
+			<div class="container" style="width: 30%; height:510px; background: white; float: right;">
+				<br>
+				<label style="float: left;"><b>세부공간 선택</b></label><label style="color:red; float: right;"><b>필수선택</b></label>
+				<br>
+				<hr style="border: solid 1px blue; width: 100%">
+				<p align="center">예약을 하시려면 호스트의 승인이 필요합니다. <br>
+				승인 후에 호스트가 결제방법을 안내드립니다 !</p>
+
+				<div class="radio" align="center">
+					<%for(int i=0; i<rentDetVOList.size(); i++){%>
+						<%if(i==0){ %>
+						<label><input type="radio" name="rentDetail" checked="checked"><%=rentDetVOList.get(i).getDetAddress() %></label>
+						<%} else {%>
+						<label><input type="radio" name="rentDetail"><%=rentDetVOList.get(i).getDetAddress() %></label>
+						<%} %>
+						<label style="color:blue;">&#8361; &nbsp <%=rentDetVOList.get(i).getRentPrice() %></label> <label style="color:#c2c2c2">/ <%=rentBasicVO.getUseTimeUnit() %></label>
+					<%} %>
+				</div>
+				<div class="container-fluid" style="width:100%; height:100%; border: 1px solid blue; padding: 3% 3% 3% 3%; margin-top: 5%">
+					<div class="container" align="center" style="width:100%; height:160px; background: red">
+						<img src="<%=request.getContextPath() %>/images/profilePhotos/<%=rentImgVOList.get(0).getChangeNm() %>" alt="<%=rentImgVOList.get(0).getOriginNm() %>" style="object-fit: cover; width: 90%">
+					</div>
+					<div>
+						<hr>
+							<label> ·  최소 <%=rentBasicVO.getMinRsvTm() %>시간 부터</label>
+						<hr>
+						<input name="schedule" class="form-control" id="schedule" placeholder="날짜를 선택하세요.">
+						<script type="text/javascript">
+							$('#schedule').dateRangePicker({
+								startDate: new Date(),
+								selectForward: true,
+								autoClose: true,
+								showDateFilter: function(time, date)
+								{
+									return '<div style="padding:0 5px;">\
+												<span style="font-weight:bold">'+date+'</span>\
+											</div>';
+								},
+								beforeShowDay: function(t)
+								{
+									/* var valid = !(t.getDay() == 0 || t.getDay() == 6);  //disable saturday and sunday */
+									var date = new Date('2019-07-28');
+									/* dateDiff(t, '2019-07-28') */
+									var valid = !(
+											<%
+											SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+											String strDate = "";
+											for(int i=0; i<rentPropVOList.size(); i++){
+												for(int j=0; j<rentPropVOList.get(i).getDiffDate()+1; j++){
+													Calendar cal = new GregorianCalendar();
+													cal.setTime(rentPropVOList.get(i).getUseStartDt());
+													cal.add(Calendar.DAY_OF_YEAR, j);%>
+												dateDiff(t, '<%=fm.format(cal.getTime())%>')
+												<%if(i == rentPropVOList.size() -1 && j == rentPropVOList.get(i).getDiffDate()){%>
+												<%} else {%>||<%}}}%>
+												);
+									var _class = '';
+									var _tooltip = valid ? '' : 'sold out';
+									return [valid,_class,_tooltip];
+								}
+							});
+
+
+
+							function dateDiff(_date1, _date2) {
+							    var diffDate_1 = _date1 instanceof Date ? _date1 : new Date(_date1);
+							    var diffDate_2 = _date2 instanceof Date ? _date2 : new Date(_date2);
+
+							    diffDate_1 = new Date(diffDate_1.getFullYear(), diffDate_1.getMonth()+1, diffDate_1.getDate());
+							    diffDate_2 = new Date(diffDate_2.getFullYear(), diffDate_2.getMonth()+1, diffDate_2.getDate());
+
+							    var diff = Math.abs(diffDate_2.getTime() - diffDate_1.getTime());
+							    diff = Math.ceil(diff / (1000 * 3600 * 24));
+							    if(diff == 0){
+								    return true;
+							    } else {
+							    	return false;
+							    }
+							}
+
+						</script>
+
+
+					</div>
+				</div>
+
+			</div>
 
 			<!-- 극장 소개 -->
-			<h2>극장 소개</h2>
+			<h2 style="margin-top: 20%">극장 소개</h2>
 			<p class="form-control-static"><%=detailIntro %></p>
 
 			<br><br>
@@ -234,7 +300,6 @@
 							<%} %>
 
 						</tr>
-
 				<%} %>
 				</table>
 			</div>

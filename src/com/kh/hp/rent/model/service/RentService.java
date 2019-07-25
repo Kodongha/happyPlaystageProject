@@ -20,6 +20,7 @@ import com.kh.hp.rent.model.vo.RentDetFacVO;
 import com.kh.hp.rent.model.vo.RentDetVO;
 import com.kh.hp.rent.model.vo.RentImgVO;
 import com.kh.hp.rent.model.vo.RentListVO;
+import com.kh.hp.rent.model.vo.RentPropVO;
 import com.kh.hp.rent.model.vo.RentRefundTypeVO;
 
 public class RentService {
@@ -252,6 +253,10 @@ public class RentService {
 		ArrayList<RentRefundTypeVO> rentRefundTypeVOList = rentDao.selectRentRefundType(con, rentSeq);
 		System.out.println(rentRefundTypeVOList);
 
+		// 예약 정보
+		ArrayList<RentPropVO> rentPropVOList = rentDao.selectRentProp(con, rentSeq);
+		System.out.println(rentPropVOList);
+
 		rentInfos.add(rentBasicVO);
 		rentInfos.add(cautionsVOList);
 		rentInfos.add(facInfoVOList);
@@ -259,6 +264,7 @@ public class RentService {
 		rentInfos.add(rentDetVOList);
 		rentInfos.add(rentCloseVOList);
 		rentInfos.add(rentRefundTypeVOList);
+		rentInfos.add(rentPropVOList);
 
 		close(con);
 

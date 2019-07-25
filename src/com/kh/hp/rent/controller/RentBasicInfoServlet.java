@@ -132,6 +132,7 @@ public class RentBasicInfoServlet extends HttpServlet {
 
 			String availStartTm = multipartRequest.getParameter("availStartTm");
 			String availEndTm = multipartRequest.getParameter("availEndTm");
+			String useTimeUnit = multipartRequest.getParameter("useTimeUnit");
 			int minRsvTm = Integer.parseInt(multipartRequest.getParameter("minRsvTm"));
 			int maxHeadCount = Integer.parseInt(multipartRequest.getParameter("maxHeadCount"));
 			int regCloseCd = Integer.parseInt(multipartRequest.getParameter("regCloseCd"));
@@ -141,7 +142,6 @@ public class RentBasicInfoServlet extends HttpServlet {
 			String cusClosedate = multipartRequest.getParameter("cusClosedate");
 			Date cusCloseStart = null;
 			Date cusCloseEnd = null;
-
 
 
 			/*캘린더 설정*/
@@ -212,6 +212,7 @@ public class RentBasicInfoServlet extends HttpServlet {
 			requestRentBasicVO.setRentMainTel(rentMainTel);
 			// step3
 			requestRentBasicVO.setAvailStartTm(availStartTm);
+			requestRentBasicVO.setUseTimeUnit(useTimeUnit);
 			requestRentBasicVO.setAvailEndTm(availEndTm);
 			requestRentBasicVO.setMinRsvTm(minRsvTm);
 			// step4

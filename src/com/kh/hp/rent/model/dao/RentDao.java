@@ -24,6 +24,7 @@ import com.kh.hp.rent.model.vo.RentDetFacVO;
 import com.kh.hp.rent.model.vo.RentDetVO;
 import com.kh.hp.rent.model.vo.RentImgVO;
 import com.kh.hp.rent.model.vo.RentListVO;
+import com.kh.hp.rent.model.vo.RentPropVO;
 import com.kh.hp.rent.model.vo.RentRefundTypeVO;
 
 public class RentDao {
@@ -575,6 +576,8 @@ public class RentDao {
 				rentBasicVO.setCorpAddress(rset.getString("CORP_ADDRESS"));
 				rentBasicVO.setRentEnrollDt(rset.getDate("RENT_ENROLL_DT"));
 				rentBasicVO.setRentMainTel(rset.getString("RENT_MAIN_TEL"));
+				rentBasicVO.setUseTimeUnit(rset.getString("USE_TIME_UNIT"));
+				rentBasicVO.setMinRsvTm(rset.getInt("MIN_RSV_TM"));
 			}
 
 		} catch (SQLException e) {
@@ -809,6 +812,12 @@ public class RentDao {
 
 	}
 
+	/**
+	 * 환불타입 관련 정보 가져오기
+	 * @param con
+	 * @param rentSeq
+	 * @return
+	 */
 	public ArrayList<RentRefundTypeVO> selectRentRefundType(Connection con, int rentSeq) {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt = null;
@@ -844,6 +853,47 @@ public class RentDao {
 		}
 
 		return rentRefundTypeVOList;
+	}
+
+	/**
+	 * 예약 관련 정보 가져오기
+	 * @param con
+	 * @param rentSeq
+	 * @return
+	 */
+	public ArrayList<RentPropVO> selectRentProp(Connection con, int rentSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<RentPropVO> rentPropVOList = null;
+
+		String query = prop.getProperty("selectRentProp");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, rentSeq);
+
+			rset = pstmt.executeQuery();
+			rentPropVOList = new ArrayList<RentPropVO>();
+
+			while(rset.next()) {
+				RentPropVO rentPropVO = new RentPropVO();
+				rentPropVO.setUseStartDt(rset.getDate("USE_START_DT"));
+				rentPropVO.setUseEndDt(rset.getDate("USE_END_DT"));
+				rentPropVO.setUseStartTm(rset.getInt("USE_START_TM"));
+				rentPropVO.setUseEndTm(rset.getInt("USE_END_TM"));
+				rentPropVO.setDiffDate(rset.getInt("DIFF_DATE"));
+				System.out.println("rentPropVO:::" + rentPropVO);
+				rentPropVOList.add(rentPropVO);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return rentPropVOList;
 	}
 
 }

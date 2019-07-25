@@ -46,7 +46,11 @@
 		<!-- 사용 시간 단위 -->
 		<div class="form-group">
 			<label class="necessary">*</label><label for="availStartTm">사용 시간 단위</label>
-
+			<div class="container" >
+			<label class="radio-inline"><input type="radio" id="useTimeUnit1" name="useTimeUnit" value="시간" checked>시간 단위</label>
+			<label class="radio-inline"><input type="radio" id="useTimeUnit2" name="useTimeUnit" value="일">일 단위</label>
+			<label class="radio-inline"><input type="radio" id="useTimeUnit3" name="useTimeUnit" value="월">월 단위</label>
+		</div>
 		</div>
 
 		<br>

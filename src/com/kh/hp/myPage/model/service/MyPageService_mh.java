@@ -6,8 +6,10 @@ import static com.kh.hp.common.JDBCTemplate.getConnection;
 import static com.kh.hp.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.kh.hp.myPage.model.dao.MyPageDao_mh;
+import com.kh.hp.myPage.model.vo.AttachmentMH;
 import com.kh.hp.myPage.model.vo.MyPageUserVO;
 
 public class MyPageService_mh {
@@ -175,6 +177,29 @@ public class MyPageService_mh {
 		}
 
 		close(con);
+
+		return result;
+	}
+
+
+	/** 프로필 사진 업로드용 메소드
+	 * @param userSeq
+	 * @param fileList
+	 * @return
+	 */
+	public int insertProfile(int userSeq, ArrayList<AttachmentMH> fileList) {
+		Connection con = getConnection();
+
+		int result = 0;
+
+		int result2 = new MyPageDao_mh().insertProfile(con, fileList);
+
+		if (result2 > 0) {
+			commit(con);
+			result = 1;
+		}else {
+			rollback(con);
+		}
 
 		return result;
 	}

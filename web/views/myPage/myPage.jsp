@@ -14,6 +14,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
 <style>
 body {
 	background-color: #ebebeb;
@@ -21,7 +24,7 @@ body {
 
 #mainArea {
 	width: 70%;
-	height: 700px;
+	height: 800px;
 	background-color: white;
 	margin: 0 auto;
 	margin-top: 50px;
@@ -32,6 +35,7 @@ body {
 	height: 100px;
 	background-image: url("images/myPage/person.png");
 	background-size: 100% 100%;
+	border-radius:70px;
 }
 table {
 	width: 50%;
@@ -51,6 +55,11 @@ table {
 	cursor:pointer;
 	text-decoration:underline;
 }
+</style>
+
+<style>
+  	.toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
+  	.toggle.ios .toggle-handle { border-radius: 20px; }
 </style>
 
 <title>마이페이지</title>
@@ -102,14 +111,19 @@ table {
 				</tr>
 				<tr>
 					<th>SNS 연동 여부</th>
-					<td>
+					<td rowspan="2">
 						<% if (mypageInfo.getSnsCd() == 1) { %>
 						<img src="images/myPage/person.png" width="50px" height="50px">
 						<p>카카오</p>
-						<% } %>
-						<% if (mypageInfo.getSnsCd() == 2) { %>
+						<% } else if (mypageInfo.getSnsCd() == 2) { %>
 						<p>구글</p>
+						<% } else { %>
+						<img src="images/myPage/kakao.png" width="50px" height="50px">&nbsp;&nbsp;
+						<input type="checkbox" data-toggle="toggle" data-style="ios" data-on=""><br>
+						<img src="images/myPage/google.png" width="50px" height="50px">&nbsp;&nbsp;
+						<input type="checkbox" data-toggle="toggle" data-style="ios">
 						<% } %>
+
 					</td>
 				</tr>
 			</table>

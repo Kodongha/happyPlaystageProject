@@ -244,12 +244,21 @@ public class RentService {
 		ArrayList<RentDetVO> rentDetVOList = rentDao.selectRentDet(con, rentSeq);
 		System.out.println(rentDetVOList);
 
+		// 휴무 정보
+		ArrayList<RentCloseVO> rentCloseVOList = rentDao.selectRentCloseList(con, rentSeq);
+		System.out.println(rentCloseVOList);
+
+		// 환불 정보
+		ArrayList<RentRefundTypeVO> rentRefundTypeVOList = rentDao.selectRentRefundType(con, rentSeq);
+		System.out.println(rentRefundTypeVOList);
 
 		rentInfos.add(rentBasicVO);
 		rentInfos.add(cautionsVOList);
 		rentInfos.add(facInfoVOList);
 		rentInfos.add(rentImgVOList);
 		rentInfos.add(rentDetVOList);
+		rentInfos.add(rentCloseVOList);
+		rentInfos.add(rentRefundTypeVOList);
 
 		close(con);
 

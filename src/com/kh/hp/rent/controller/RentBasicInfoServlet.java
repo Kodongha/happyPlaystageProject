@@ -179,8 +179,9 @@ public class RentBasicInfoServlet extends HttpServlet {
 			String bankNm = multipartRequest.getParameter("bankNm");	// 은행명
 			String accNo = multipartRequest.getParameter("accNo");	// 계좌번호
 			String accHolder = multipartRequest.getParameter("accHolder");	// 예금주
-			int rentRefundTypeSeq = Integer.parseInt(multipartRequest.getParameter("rentRefundTypeSeq"));	// 환불유형
 
+			int rentRefundTypeSeq = Integer.parseInt(multipartRequest.getParameter("rentRefundTypeSeq"));	// 환불유형
+			System.out.println("rentRefundTypeSeq::::::" + rentRefundTypeSeq);
 
 			/*#################################### V O - Setting ####################################*/
 
@@ -306,7 +307,7 @@ public class RentBasicInfoServlet extends HttpServlet {
 
 			/*requestRentRefundTypeVO 세팅*/
 			// step4
-			requestRentRefundTypeVO.setRentRefundTypeSeq(rentRefundTypeSeq);
+			requestRentRefundTypeVO.setRefundSeq(rentRefundTypeSeq);
 
 
 			/*수정 사항*/

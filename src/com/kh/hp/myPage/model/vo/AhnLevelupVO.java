@@ -5,19 +5,16 @@ import java.sql.Date;
 public class AhnLevelupVO implements java.io.Serializable{
 	private int userSeq;
 	private String userEmail;
-	private String userPwd;
 	private String userNm;
 	private String userNick;
 	private String userPhone;
 	
-	
 	public AhnLevelupVO() {}
-
-	public AhnLevelupVO(int userSeq, String userEmail, String userPwd, String userNm, String userNick, String userPhone) {
+	
+	public AhnLevelupVO(int userSeq, String userEmail, String userNm, String userNick, String userPhone) {
 		super();
 		this.userSeq = userSeq;
 		this.userEmail = userEmail;
-		this.userPwd = userPwd;
 		this.userNm = userNm;
 		this.userNick = userNick;
 		this.userPhone = userPhone;
@@ -38,14 +35,6 @@ public class AhnLevelupVO implements java.io.Serializable{
 
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
-	}
-
-	public String getUserPwd() {
-		return userPwd;
-	}
-
-	public void setUserPwd(String userPwd) {
-		this.userPwd = userPwd;
 	}
 
 	public String getUserNm() {
@@ -74,7 +63,7 @@ public class AhnLevelupVO implements java.io.Serializable{
 
 	@Override
 	public String toString() {
-		return "AhnLevelupVO [userSeq=" + userSeq + ", userEmail=" + userEmail + ", userPwd=" + userPwd + ", userNm="
+		return "AhnLevelupVO [userSeq=" + userSeq + ", userEmail=" + userEmail + ", userPwd=" + ", userNm="
 				+ userNm + ", userNick=" + userNick + ", userPhone=" + userPhone + "]";
 	}
 

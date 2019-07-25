@@ -15,6 +15,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.kh.hp.account.model.vo.UserVO;
 import com.kh.hp.myPage.model.service.AhnMyPageService;
+import com.kh.hp.myPage.model.vo.AhnLevelupVO;
 import com.kh.hp.myPage.model.vo.AhnMyPageVO;
 import com.oreilly.servlet.MultipartRequest;
 
@@ -38,8 +39,9 @@ public class LevelUpServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("들어옴");
 		int userSeq = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
-		AhnMyPageVO responseUserVO = new AhnMyPageService().selectOne(userSeq);
+		AhnLevelupVO responseUserVO = new AhnMyPageService().selectOne(userSeq);
 		 
 		 
 		 String page = "";

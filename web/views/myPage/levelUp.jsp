@@ -1,13 +1,13 @@
-<%@page import="com.kh.hp.myPage.model.vo.AhnMyPageVO"%>
+<%@page import="com.kh.hp.myPage.model.vo.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	AhnMyPageVO responseUserVO = (AhnMyPageVO) request.getAttribute("responseUserVO");
+	AhnLevelupVO responseUserVO = (AhnLevelupVO) request.getAttribute("responseUserVO");
 %>
 <!DOCTYPE html>   
 <html>
 <head>
-<title>Bootstrap Example</title>
+<title>대관 관련 등업 신청</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"

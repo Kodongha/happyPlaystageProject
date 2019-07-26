@@ -20,6 +20,7 @@ import com.kh.hp.rent.model.vo.RentDetFacVO;
 import com.kh.hp.rent.model.vo.RentDetVO;
 import com.kh.hp.rent.model.vo.RentImgVO;
 import com.kh.hp.rent.model.vo.RentListVO;
+import com.kh.hp.rent.model.vo.RentPropVO;
 import com.kh.hp.rent.model.vo.RentRefundTypeVO;
 
 public class RentService {
@@ -244,12 +245,26 @@ public class RentService {
 		ArrayList<RentDetVO> rentDetVOList = rentDao.selectRentDet(con, rentSeq);
 		System.out.println(rentDetVOList);
 
+		// 휴무 정보
+		ArrayList<RentCloseVO> rentCloseVOList = rentDao.selectRentCloseList(con, rentSeq);
+		System.out.println(rentCloseVOList);
+
+		// 환불 정보
+		ArrayList<RentRefundTypeVO> rentRefundTypeVOList = rentDao.selectRentRefundType(con, rentSeq);
+		System.out.println(rentRefundTypeVOList);
+
+		// 예약 정보
+		ArrayList<RentPropVO> rentPropVOList = rentDao.selectRentProp(con, rentSeq);
+		System.out.println(rentPropVOList);
 
 		rentInfos.add(rentBasicVO);
 		rentInfos.add(cautionsVOList);
 		rentInfos.add(facInfoVOList);
 		rentInfos.add(rentImgVOList);
 		rentInfos.add(rentDetVOList);
+		rentInfos.add(rentCloseVOList);
+		rentInfos.add(rentRefundTypeVOList);
+		rentInfos.add(rentPropVOList);
 
 		close(con);
 

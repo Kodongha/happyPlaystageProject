@@ -99,6 +99,5 @@
  			<li><a href="<%=request.getContextPath() %>/logout.acc"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
  			<%} %>
 		</ul>
-
 	  </div>
 	</nav>

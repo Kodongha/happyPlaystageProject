@@ -132,6 +132,7 @@ public class RentBasicInfoServlet extends HttpServlet {
 
 			String availStartTm = multipartRequest.getParameter("availStartTm");
 			String availEndTm = multipartRequest.getParameter("availEndTm");
+			String useTimeUnit = multipartRequest.getParameter("useTimeUnit");
 			int minRsvTm = Integer.parseInt(multipartRequest.getParameter("minRsvTm"));
 			int maxHeadCount = Integer.parseInt(multipartRequest.getParameter("maxHeadCount"));
 			int regCloseCd = Integer.parseInt(multipartRequest.getParameter("regCloseCd"));
@@ -141,7 +142,6 @@ public class RentBasicInfoServlet extends HttpServlet {
 			String cusClosedate = multipartRequest.getParameter("cusClosedate");
 			Date cusCloseStart = null;
 			Date cusCloseEnd = null;
-
 
 
 			/*캘린더 설정*/
@@ -179,8 +179,9 @@ public class RentBasicInfoServlet extends HttpServlet {
 			String bankNm = multipartRequest.getParameter("bankNm");	// 은행명
 			String accNo = multipartRequest.getParameter("accNo");	// 계좌번호
 			String accHolder = multipartRequest.getParameter("accHolder");	// 예금주
-			int rentRefundTypeSeq = Integer.parseInt(multipartRequest.getParameter("rentRefundTypeSeq"));	// 환불유형
 
+			int rentRefundTypeSeq = Integer.parseInt(multipartRequest.getParameter("rentRefundTypeSeq"));	// 환불유형
+			System.out.println("rentRefundTypeSeq::::::" + rentRefundTypeSeq);
 
 			/*#################################### V O - Setting ####################################*/
 
@@ -211,6 +212,7 @@ public class RentBasicInfoServlet extends HttpServlet {
 			requestRentBasicVO.setRentMainTel(rentMainTel);
 			// step3
 			requestRentBasicVO.setAvailStartTm(availStartTm);
+			requestRentBasicVO.setUseTimeUnit(useTimeUnit);
 			requestRentBasicVO.setAvailEndTm(availEndTm);
 			requestRentBasicVO.setMinRsvTm(minRsvTm);
 			// step4
@@ -306,7 +308,7 @@ public class RentBasicInfoServlet extends HttpServlet {
 
 			/*requestRentRefundTypeVO 세팅*/
 			// step4
-			requestRentRefundTypeVO.setRentRefundTypeSeq(rentRefundTypeSeq);
+			requestRentRefundTypeVO.setRefundSeq(rentRefundTypeSeq);
 
 
 			/*수정 사항*/

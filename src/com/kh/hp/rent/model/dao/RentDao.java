@@ -1,10 +1,10 @@
 package com.kh.hp.rent.model.dao;
 
-import static com.kh.hp.common.JDBCTemplate.*;
+import static com.kh.hp.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,6 +24,7 @@ import com.kh.hp.rent.model.vo.RentDetFacVO;
 import com.kh.hp.rent.model.vo.RentDetVO;
 import com.kh.hp.rent.model.vo.RentImgVO;
 import com.kh.hp.rent.model.vo.RentListVO;
+import com.kh.hp.rent.model.vo.RentPropVO;
 import com.kh.hp.rent.model.vo.RentRefundTypeVO;
 
 public class RentDao {
@@ -574,6 +575,9 @@ public class RentDao {
 				rentBasicVO.setCorpNo(rset.getString("CORP_NO"));
 				rentBasicVO.setCorpAddress(rset.getString("CORP_ADDRESS"));
 				rentBasicVO.setRentEnrollDt(rset.getDate("RENT_ENROLL_DT"));
+				rentBasicVO.setRentMainTel(rset.getString("RENT_MAIN_TEL"));
+				rentBasicVO.setUseTimeUnit(rset.getString("USE_TIME_UNIT"));
+				rentBasicVO.setMinRsvTm(rset.getInt("MIN_RSV_TM"));
 			}
 
 		} catch (SQLException e) {
@@ -757,6 +761,139 @@ public class RentDao {
 		}
 
 		return rentDetVOList;
+	}
+
+	/**
+	 * 휴무관련 정보 가져오기
+	 * @param con
+	 * @param rentSeq
+	 * @return
+	 */
+	public ArrayList<RentCloseVO> selectRentCloseList(Connection con, int rentSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<RentCloseVO> rentCloseList = null;
+
+		String query = prop.getProperty("selectRentCloseList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, rentSeq);
+
+			rset = pstmt.executeQuery();
+
+			rentCloseList = new ArrayList<RentCloseVO>();
+			while(rset.next()) {
+				RentCloseVO rentCloseVO = new RentCloseVO();
+				rentCloseVO.setRentCloseSeq(rset.getInt("RENT_CLOSE_SEQ"));
+				rentCloseVO.setRegCloseCd(rset.getInt("REG_CLOSE_CD"));
+				rentCloseVO.setCusCloseNm(rset.getString("CUS_CLOSE_NM"));
+				rentCloseVO.setCusCloseStart(rset.getDate("CUS_CLOSE_START"));
+				rentCloseVO.setCusCloseEnd(rset.getDate("CUS_CLOSE_END"));
+				rentCloseVO.setCusCloseWeekOkDay(rset.getString("CUS_CLOSE_WEEK_OK_DAY"));
+				rentCloseVO.setRegCloseWeekOfDay(rset.getString("REG_CLOSE_WEEK_OF_DAY"));
+				rentCloseVO.setRegCloseDt(rset.getString("REG_CLOSE_DT"));
+				rentCloseVO.setRentSeq(rset.getInt("RENT_SEQ"));
+				rentCloseVO.setRegCloseNm(rset.getString("REG_CLOSE_NM"));
+
+				rentCloseList.add(rentCloseVO);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return rentCloseList;
+
+	}
+
+	/**
+	 * 환불타입 관련 정보 가져오기
+	 * @param con
+	 * @param rentSeq
+	 * @return
+	 */
+	public ArrayList<RentRefundTypeVO> selectRentRefundType(Connection con, int rentSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<RentRefundTypeVO> rentRefundTypeVOList = null;
+
+		String query = prop.getProperty("selectRentRefundType");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, rentSeq);
+
+			rset = pstmt.executeQuery();
+
+			rentRefundTypeVOList = new ArrayList<RentRefundTypeVO>();
+			while(rset.next()) {
+				RentRefundTypeVO rentRefundTypeVO = new RentRefundTypeVO();
+				rentRefundTypeVO.setRefundSeq(rset.getInt("REFUND_SEQ"));
+				rentRefundTypeVO.setRentRefundTypeSeq(rset.getInt("RENT_REFUND_TYPE_SEQ"));
+				rentRefundTypeVO.setRentSeq(rset.getInt("RENT_SEQ"));
+				rentRefundTypeVO.setDtCd(rset.getInt("DT_CD"));
+				rentRefundTypeVO.setRefundDeductPer(rset.getInt("REFUND_DEDUCT_PER"));
+
+				rentRefundTypeVOList.add(rentRefundTypeVO);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return rentRefundTypeVOList;
+	}
+
+	/**
+	 * 예약 관련 정보 가져오기
+	 * @param con
+	 * @param rentSeq
+	 * @return
+	 */
+	public ArrayList<RentPropVO> selectRentProp(Connection con, int rentSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<RentPropVO> rentPropVOList = null;
+
+		String query = prop.getProperty("selectRentProp");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, rentSeq);
+
+			rset = pstmt.executeQuery();
+			rentPropVOList = new ArrayList<RentPropVO>();
+
+			while(rset.next()) {
+				RentPropVO rentPropVO = new RentPropVO();
+				rentPropVO.setUseStartDt(rset.getDate("USE_START_DT"));
+				rentPropVO.setUseEndDt(rset.getDate("USE_END_DT"));
+				rentPropVO.setUseStartTm(rset.getInt("USE_START_TM"));
+				rentPropVO.setUseEndTm(rset.getInt("USE_END_TM"));
+				rentPropVO.setDiffDate(rset.getInt("DIFF_DATE"));
+				System.out.println("rentPropVO:::" + rentPropVO);
+				rentPropVOList.add(rentPropVO);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return rentPropVOList;
 	}
 
 }

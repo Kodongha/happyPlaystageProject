@@ -33,7 +33,7 @@
 #area {
 	border: 2px solid black;
 	width: 1000px;
-	height:100px;
+	height:100PX;
 		margin: auto;
 }
 #area1 {
@@ -71,34 +71,24 @@
 	<div id="line"></div>
 	<br>
 	
-
+<form action="<%=request.getContextPath()%>/reviewSh.acc" method="post">
 	<div id="area">
 		<div id="Information">예약정보 검색 :
 		&nbsp; 
-		
+		<table>
 		<tr>
-			<td><input type="text" placeholder="예약 번호" id="search" style="width: 60%"></td>
+			<td><input type="text" placeholder="예약 번호" name="search" id="search" style="width: 60%"></td>
 		</tr>
+		</table>
 		</div>
-		<button type="button" class="btn btn-warning" id="searchbutton" onclick="search()">등록</button>
-	
+		<input type="submit" class="btn btn-warning" id="searchbutton" value="등록">
 			
 
 
 	
 		</div>
-	<%-- 	<script>
-		function search(){
-		var num = $("#search").val();
-		location.href = "<%=request.getContextPath()%>/reviewInsert.acc?num="+num;	
-		console.log(num);
-		
-		}
-		
-		
-		
-		</script> --%>
-		
+	</form>
+	
 
 	<jsp:include page="/views/common/footer.jsp" />
 </body>

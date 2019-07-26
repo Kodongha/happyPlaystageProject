@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.hp.account.model.service.ReviewSearchService;
-import com.kh.hp.serviceCenter.model.vo.Notice;
+import com.kh.hp.account.model.vo.ReviewSearchVO;
 
 /**
  * Servlet implementation class ReviewSearch
@@ -31,17 +31,20 @@ public class ReviewSearch extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Notice> list = new ReviewSearchService().selectList();
-		System.out.println(list);
+		int num = Integer.parseInt(request.getParameter("search"));
+		
+		System.out.println(num);
+		ReviewSearchVO rs = new ReviewSearchService().selectList(num);
+		System.out.println(rs);
 		
 		String page = "";
 
-		if(list != null) {
+		if(rs.getRentSeq()>0) {
 			page = "views/account/reviewRegister.jsp";
-			request.setAttribute("list", list);
+			request.setAttribute("rs", rs);
 		}else {
 			page = "views/account/reviewSearch.jsp";
-			request.setAttribute("msg", "조회 실패");
+	
 		}
 		request.getRequestDispatcher(page).forward(request, response);
 		

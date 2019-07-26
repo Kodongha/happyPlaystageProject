@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%-- <%@
-		int num = Integer.parseInt(request.getAttribute("num"));
-	%> --%>
+	pageEncoding="UTF-8" import=" com.kh.hp.account.model.vo.*"%>
+ <%
+		ReviewSearchVO rs =(ReviewSearchVO) request.getAttribute("rs");
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,7 +67,7 @@ h4 {
 
 	<div class="form-group">
 		<label for="공연장 명">공연장 명</label> <input type="text" placeholder="예약번호를 확인하여 자동입력"
-			class="form-control" id="p1">
+			class="form-control" value=<%= rs.getRentSeq() %> id="p1">
 	</div>
 	<div class="form-group">
 		<label for="이용소감">공연장 이용 소감</label> <input type="text" name="p2"

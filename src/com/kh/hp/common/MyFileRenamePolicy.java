@@ -10,6 +10,10 @@ public class MyFileRenamePolicy implements FileRenamePolicy{
 
 	private int userSeq;
 
+	public MyFileRenamePolicy() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public MyFileRenamePolicy(int userSeq) {
 		// TODO Auto-generated constructor stub
 		this.userSeq = userSeq;
@@ -36,8 +40,13 @@ public class MyFileRenamePolicy implements FileRenamePolicy{
 			body = name;
 			ext = "";
 		}
-
-		String fileName = userSeq + "_" + ft.format(new Date(currentTime)) + "_" + randomNumber + ext;
+		
+		String fileName = "";
+		if(userSeq != 0) {
+			fileName = userSeq + "_" + ft.format(new Date(currentTime)) + "_" + randomNumber + ext;
+		} else {
+			fileName = ft.format(new Date(currentTime)) + "_" + randomNumber + ext;
+		}
 
 		File newFile = new File(oldFile.getParent(), fileName);
 

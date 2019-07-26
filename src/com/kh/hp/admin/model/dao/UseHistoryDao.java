@@ -35,8 +35,8 @@ public class UseHistoryDao {
 
 
 
-	////페이징 처리후 회원관리  - 사용내역 조회 
-	public ArrayList<UseHistoryVO> UseHistoryVOlist(Connection con, int currentPage, int limit) {
+	//페이징처리후 회원관리상세내역 - 사용내역 조회 
+	public ArrayList<UseHistoryVO> UseHistoryVOlist(Connection con, int userSeq, int currentPage, int limit) {
 		System.out.println("사용내역 DAO까지 왔나요 ?");
 
 		PreparedStatement pstmt = null;
@@ -49,16 +49,17 @@ public class UseHistoryDao {
 			pstmt = con.prepareStatement(query);
 			
 
-			//조회를 시작할 행 번호와 마지막 행 번호 계산
+		
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
 
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
+			pstmt.setInt(3, userSeq);
 
-			System.out.println("1");
+			
 			rset = pstmt.executeQuery();
-			System.out.println("2");
+			
 			
 			UseHistoryVOlist = new ArrayList<UseHistoryVO>();
 
@@ -77,9 +78,8 @@ public class UseHistoryDao {
 
 
 				UseHistoryVOlist.add(useHistoryVO);
-				System.out.println("리스트를 보여죵");
-
-				System.out.println(useHistoryVO);
+				
+				System.out.println("리스트를 보여죵:::"+useHistoryVO);
 
 			}
 		} catch (SQLException e) {

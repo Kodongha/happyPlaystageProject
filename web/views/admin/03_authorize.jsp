@@ -184,9 +184,10 @@ border-radius: 6px 6px 6px 6px;
         
         <div id="users5">
           <div class="col-sm-2" id="select" >
-        <select class="form-control" id="gender1">
-          <option>Y</option>
-          <option>N</option>
+        <select class="form-control" id="gender1" style="width:100px">
+          <option>선택</option>
+          <option>승인대기</option>
+          <option>승인완료</option>
         </select>       
            
 		</div>

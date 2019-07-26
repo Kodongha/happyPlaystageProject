@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import com.kh.hp.account.model.vo.UserVO;
 import com.kh.hp.myPage.model.vo.MyPageUserVO;
+import com.kh.hp.myPage.model.vo.RegistListVO;
 import com.kh.hp.myPage.model.vo.UserImgVO;
 
 public class MyPageDao_mh {
@@ -240,6 +241,33 @@ public class MyPageDao_mh {
 
 
 		return 0;
+	}
+
+	public ArrayList<RegistListVO> selectRegistList(Connection con, int userSeq) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<RegistListVO> list = null;
+
+		String query = prop.getProperty("selectRegistList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userSeq);
+
+			rset = pstmt.executeQuery();
+
+			while(rset.next()) {
+				list = new ArrayList<RegistListVO>();
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return null;
 	}
 
 

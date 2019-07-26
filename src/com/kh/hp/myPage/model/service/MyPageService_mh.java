@@ -9,8 +9,9 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.hp.myPage.model.dao.MyPageDao_mh;
-import com.kh.hp.myPage.model.vo.AttachmentMH;
+
 import com.kh.hp.myPage.model.vo.MyPageUserVO;
+import com.kh.hp.myPage.model.vo.UserImgVO;
 
 public class MyPageService_mh {
 
@@ -187,7 +188,7 @@ public class MyPageService_mh {
 	 * @param fileList
 	 * @return
 	 */
-	public int insertProfile(int userSeq, ArrayList<AttachmentMH> fileList) {
+	public int insertProfile(int userSeq, ArrayList<UserImgVO> fileList) {
 		Connection con = getConnection();
 
 		int result = 0;

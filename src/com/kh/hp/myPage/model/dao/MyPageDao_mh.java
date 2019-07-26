@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.hp.account.model.vo.UserVO;
-import com.kh.hp.myPage.model.vo.AttachmentMH;
 import com.kh.hp.myPage.model.vo.MyPageUserVO;
+import com.kh.hp.myPage.model.vo.UserImgVO;
 
 public class MyPageDao_mh {
 	private Properties prop = new Properties();
@@ -223,7 +223,7 @@ public class MyPageDao_mh {
 	 * @param fileList
 	 * @return
 	 */
-	public int insertProfile(Connection con, ArrayList<AttachmentMH> fileList) {
+	public int insertProfile(Connection con, ArrayList<UserImgVO> fileList) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 

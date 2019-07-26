@@ -2,16 +2,16 @@ package com.kh.hp.myPage.model.vo;
 
 import java.util.Date;
 
-public class AttachmentMH {
+public class UserImgVO implements java.io.Serializable{
 	private int userSeq;
 	private String originNm;
 	private String changeNm;
 	private String filePath;
 	private Date uploadDt;
 
-	public AttachmentMH() {}
+	public UserImgVO() {}
 
-	public AttachmentMH(int userSeq, String originNm, String changeNm, String filePath, Date uploadDt) {
+	public UserImgVO(int userSeq, String originNm, String changeNm, String filePath, Date uploadDt) {
 		super();
 		this.userSeq = userSeq;
 		this.originNm = originNm;
@@ -62,10 +62,9 @@ public class AttachmentMH {
 
 	@Override
 	public String toString() {
-		return "AttachmentMH [userSeq=" + userSeq + ", originNm=" + originNm + ", changeNm=" + changeNm + ", filePath="
+		return "UserImgVO [userSeq=" + userSeq + ", originNm=" + originNm + ", changeNm=" + changeNm + ", filePath="
 				+ filePath + ", uploadDt=" + uploadDt + "]";
 	}
-
 
 
 

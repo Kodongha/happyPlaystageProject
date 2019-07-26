@@ -90,7 +90,7 @@
 			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-pencil"></span> <%=user.getUserNick() %></a>
 	        <ul class="dropdown-menu">
 	          <li><a href="<%=request.getContextPath() %>/myPage.mp">마이 페이지</a></li>
-	          <li><a href="<%=request.getContextPath() %>/views/myPage/registrationList.jsp">대관 등록 내역</a></li>
+	          <li><a href="<%=request.getContextPath() %>/registList.mp">대관 등록 내역</a></li>
 	          <li><a href="<%=request.getContextPath() %>/usingInfo">대관 사용 내역</a></li>
 	          <li><a href="<%=request.getContextPath() %>/applyInfo1">대관 신청 내역</a></li>
 	          <li><a href="<%=request.getContextPath() %>/levelUp">등업 신청</a></li>

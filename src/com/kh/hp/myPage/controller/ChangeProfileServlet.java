@@ -14,7 +14,6 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.kh.hp.common.MyFileRenamePolicy;
 import com.kh.hp.myPage.model.service.MyPageService_mh;
-import com.kh.hp.myPage.model.vo.MyPageUserVO;
 import com.kh.hp.myPage.model.vo.UserImgVO;
 import com.oreilly.servlet.MultipartRequest;
 
@@ -40,18 +39,17 @@ public class ChangeProfileServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("프로필 사진 변경 버튼 클릭!!");
 
-		int userSeq = ((com.kh.hp.account.model.vo.UserVO) request.getSession().getAttribute("user")).getUserSeq();
-
-		MyPageUserVO mypageInfo = new MyPageService_mh().selectMyPageInfo(userSeq);
-
-		if (mypageInfo != null) {
-			System.out.println("사용자 정보 받아옴");
 			if (ServletFileUpload.isMultipartContent(request)) {
+				System.out.println("파일업로드 in!");
+
 				int maxSize = 1024 * 1024 * 10;
 
 				String root = request.getSession().getServletContext().getRealPath("/");
 				System.out.println(root);
 				String savePath = root + "images/myPage/profile/";
+				System.out.println("savaPath :::::!!!!! "+savePath);
+
+				int userSeq = ((com.kh.hp.account.model.vo.UserVO) request.getSession().getAttribute("user")).getUserSeq();
 
 				MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8",
 						new MyFileRenamePolicy(userSeq));
@@ -72,21 +70,24 @@ public class ChangeProfileServlet extends HttpServlet {
 					System.out.println("fileSystem name : " + multiRequest.getFilesystemName(name));
 					System.out.println("originFile name : " + multiRequest.getOriginalFileName(name));
 				}
+
+				UserImgVO us = new UserImgVO();
+				us.setUserSeq(userSeq);
+
 				ArrayList<UserImgVO> fileList = new ArrayList<UserImgVO>();
 				for (int i = originFiles.size() - 1; i >= 0; i--) {
 					UserImgVO ui = new UserImgVO();
 					ui.setFilePath(savePath);
-					ui.setOriginNm(originFiles.get(i));
-					ui.setChangeNm(saveFiles.get(i));
+					ui.setOriginNm(originFiles.get(0));
+					ui.setChangeNm(saveFiles.get(0));
 
 					fileList.add(ui);
 				}
+				System.out.println("userImgVO ==== "+us);
 
-				int result = new MyPageService_mh().insertProfile(userSeq, fileList);
-
+				//int result = new MyPageService_mh().insertProfile(userSeq, fileList);
 			}
 		}
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.kh.hp.myPage.model.dao.MyPageDao_mh;
 
 import com.kh.hp.myPage.model.vo.MyPageUserVO;
+import com.kh.hp.myPage.model.vo.RegistListVO;
 import com.kh.hp.myPage.model.vo.UserImgVO;
 
 public class MyPageService_mh {
@@ -204,6 +205,22 @@ public class MyPageService_mh {
 
 		return result;
 	}
+
+
+	/** 대관등록 리스트 받아오기
+	 * @param registListVO
+	 * @return
+	 */
+	public ArrayList<RegistListVO> selectRegistList(int userSeq) {
+		Connection con = getConnection();
+
+		ArrayList<RegistListVO> list = new MyPageDao_mh().selectRegistList(con, userSeq);
+
+		close(con);
+
+		return list;
+	}
+
 
 
 }

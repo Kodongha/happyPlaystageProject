@@ -2,6 +2,7 @@ package com.kh.hp.myPage.model.service;
 
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import com.kh.hp.myPage.model.dao.AhnMyPageDao;
@@ -152,16 +153,6 @@ public class AhnMyPageService {
 		return listCount;
 	}
 	
-	//검색후 사용내역에 대한 서비스메소드
-	public ArrayList<AhnUsingInfoVO> searchCheck1(int userInfo, int rentSeq, int currentPage, int limit) {
-		Connection con = getConnection();
-		
-		ArrayList<AhnUsingInfoVO> list = new AhnMyPageDao().searchCheck1(con, userInfo, rentSeq, currentPage, limit);
-		
-		close(con);
-		
-		return list;
-	}
 
 	public int insertImage(AhnLevelupInfoVO l, ArrayList<AhnAttachmentVO> fileList) {
 		Connection con = getConnection();
@@ -189,15 +180,130 @@ public class AhnMyPageService {
 		
 		return result;
 	}
+	
+	//검색후 사용내역에 대한 서비스메소드
+	public ArrayList<AhnUsingInfoVO> searchCheck(int userInfo, int rentSeq, String hallNm, Date useStart, Date useEnd, int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<AhnUsingInfoVO> list = null;
+		
+		String rentSeq1 = String.valueOf(rentSeq);
+		
+		if(rentSeq1 != null && hallNm != null && useStart != null && useEnd != null) {
+			
+			list = new AhnMyPageDao().searchCheck1(con, userInfo, rentSeq, hallNm, useStart, useEnd, currentPage, limit);
+		
+		}else if(rentSeq1 == null && hallNm != null && useStart != null && useEnd != null) {
+			
+			list = new AhnMyPageDao().searchCheck2(con, userInfo, hallNm, useStart, useEnd, currentPage, limit);
+			
+		}else if(rentSeq1 != null && hallNm == null && useStart != null && useEnd != null) {
+			
+			list = new AhnMyPageDao().searchCheck3(con, userInfo, rentSeq, useStart, useEnd, currentPage, limit);
+			
+		}else if(rentSeq1 != null && hallNm != null && useStart == null && useEnd == null) {
+			
+			list = new AhnMyPageDao().searchCheck4(con, userInfo, rentSeq, hallNm, currentPage, limit);
+			
+		}else if(rentSeq1 != null && hallNm == null && useStart == null && useEnd == null) {
+			
+			list = new AhnMyPageDao().searchCheck5(con, userInfo, rentSeq, currentPage, limit);
+			
+		}else if(rentSeq1 == null && hallNm != null && useStart == null && useEnd == null) {
+			
+			list = new AhnMyPageDao().searchCheck6(con, userInfo, hallNm, currentPage, limit);
+			
+		}else if(rentSeq1 == null && hallNm == null && useStart != null && useEnd != null) {
+			
+			list = new AhnMyPageDao().searchCheck7(con, userInfo, useStart, useEnd, currentPage, limit);
+			
+		}else if(rentSeq1 == null && hallNm == null && useStart == null && useEnd == null) {
+			
+			list = new AhnMyPageDao().searchCheck8(con, userInfo, currentPage, limit);
+			
+		}
+		close(con);
+		
+		return list;
+	}
+		
+	/*public ArrayList<AhnUsingInfoVO> searchCheck2(int userInfo, String hallNm, Date useStart, Date useEnd,
+			int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<AhnUsingInfoVO> list = new AhnMyPageDao().searchCheck2(con, userInfo, hallNm, useStart, useEnd, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}*/
+	
+	/*public ArrayList<AhnUsingInfoVO> searchCheck3(int userInfo, int rentSeq, Date useStart, Date useEnd,
+			int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<AhnUsingInfoVO> list = new AhnMyPageDao().searchCheck3(con, userInfo, rentSeq, useStart, useEnd, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}*/
+
+	/*public ArrayList<AhnUsingInfoVO> searchCheck4(int userInfo, int rentSeq, String hallNm, int currentPage,
+			int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<AhnUsingInfoVO> list = new AhnMyPageDao().searchCheck4(con, userInfo, rentSeq, hallNm, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}*/
+
+	/*public ArrayList<AhnUsingInfoVO> searchCheck5(int userInfo, int rentSeq, int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<AhnUsingInfoVO> list = new AhnMyPageDao().searchCheck5(con, userInfo, rentSeq, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}*/
+
+	/*public ArrayList<AhnUsingInfoVO> searchCheck6(int userInfo, String hallNm, int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<AhnUsingInfoVO> list = new AhnMyPageDao().searchCheck6(con, userInfo, hallNm, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}*/
+
+	/*public ArrayList<AhnUsingInfoVO> searchCheck7(int userInfo, Date useStart, Date useEnd, int currentPage,
+			int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<AhnUsingInfoVO> list = new AhnMyPageDao().searchCheck7(con, userInfo, useStart, useEnd, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}*/
+
+	/*public ArrayList<AhnUsingInfoVO> searchCheck8(int userInfo, int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<AhnUsingInfoVO> list = new AhnMyPageDao().searchCheck8(con, userInfo, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}*/
 
 	
+	}
 
-
-	
-	
-	
-	
-	
 	
 	/*public AhnUsingInfoVO searchCheck(int usingInfo) {
 		Connection con = getConnection();
@@ -223,4 +329,4 @@ public class AhnMyPageService {
 		return responseUserVO;
 	}*/
 	
-}
+

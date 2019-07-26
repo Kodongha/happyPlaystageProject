@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.hp.myPage.model.vo.AhnApplyInfoVO;
+import com.kh.hp.myPage.model.vo.AhnAttachmentVO;
 import com.kh.hp.myPage.model.vo.AhnLevelupInfoVO;
 import com.kh.hp.myPage.model.vo.AhnLevelupVO;
 import com.kh.hp.myPage.model.vo.AhnMyPageVO;
@@ -104,7 +105,7 @@ public class AhnMyPageDao {
 		return responseUserVO;
 	}*/
 	
-	public int insertLevelOne(Connection con, AhnLevelupInfoVO l, int levelUpInfo) {
+	/*public int insertLevelOne(Connection con, AhnLevelupInfoVO l, int levelUpInfo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -125,7 +126,7 @@ public class AhnMyPageDao {
 		}
 		
 		return result;
-	}
+	}*/
 	
 	/*public ArrayList<AhnApplyInfoVO> searchCheck(Connection con, int usingInfo) {
 		ArrayList<AhnApplyInfoVO> list = null;
@@ -599,6 +600,86 @@ public class AhnMyPageDao {
 		
 		
 		return list;
+	}
+
+	public int insertImage(Connection con, AhnLevelupInfoVO l) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertLevelOne");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, l.getUserSeq());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return 0;
+	}
+
+	/*public int selectCurrval(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		int userSeq = 0;
+		
+		String query = prop.getProperty("selectCurrval");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				userSeq = rset.getInt("currval");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+		}
+		
+		
+		return userSeq;
+	}*/
+
+	public int insertAttachment(Connection con, ArrayList<AhnAttachmentVO> fileList) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertAttachment");
+		
+			try {
+				for(int i = 0; i < fileList.size(); i++) {
+				pstmt = con.prepareStatement(query);
+				pstmt.setInt(1, fileList.get(i).getUserSeq());
+				pstmt.setString(2, fileList.get(i).getOriginNm());
+				pstmt.setString(3, fileList.get(i).getChangeNm());
+				pstmt.setString(4, fileList.get(i).getFilePath());
+				/*int level = 0;
+				if(i == 0) {
+					level = 0;
+				}else {
+					level = 1;
+				}
+				
+				pstmt.setInt(5, level);*/
+				
+				result += pstmt.executeUpdate();
+				
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+		
+		return result;
 	}
 	
 	

@@ -25,7 +25,7 @@
 <jsp:include page="/views/common/header.jsp" />
 <br><br>
 	<div style="width:600px; height:500px; ">
-		<form action="<%=request.getContextPath()%>/levelUpInfo" method="post">
+		<form action="<%=request.getContextPath()%>/levelUpInfo" method="post" encType="multipart/form-data">
 			<h3>대관 관련 등업 신청</h3>
 			<table class="table table-condensed" style="width:600px; height:400px; vertical-align:middle">
 				<tr>
@@ -65,7 +65,7 @@
 				<tr>
 					<td id="lev1"></td>
 					<td id="lev1"></td>
-					<td id="lev1"><input type="button" name="filePath" style="width:100pt; height:30pt; background-color:#ffd014; border:0px; color:black; border-radius: 3px; float:right;" value="신청" onclick="location.href='<%=request.getContextPath() %>/levelUpInfo'"></td>
+					<td id="lev1"><input type="submit" name="filePath" style="width:100pt; height:30pt; background-color:#ffd014; border:0px; color:black; border-radius: 3px; float:right;" value="신청"></td>
 				</tr>
 			</table>
 		</form>
@@ -79,6 +79,7 @@
 		$("#upload").change(function(){
 			$("#perfomer").val($("#upload").val());
 		});
+		
 	</script>
 <jsp:include page="/views/common/footer.jsp" />
 </body>

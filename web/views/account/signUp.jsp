@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +14,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <style>
 div.form-group {
 	border: 1px solid #999;
-	height: 500px;
+	height: 550px;
 	width: 500px;
 	padding: 40px 10px 0px 130px;
 	border-radius: 10px;
@@ -87,6 +89,11 @@ table {
 
 #hr {
 	border-bottom: 1px solid #999;
+}
+
+#kakao-login-btn{
+	
+	
 }
 </style>
 
@@ -188,7 +195,8 @@ table {
 				<tr>
 					<td><input class="form-control" id="userEmail" type="email"
 						name="userEmail" placeholder="이메일"></td>
-					<td><input type="button" value="중복확인" onclick="idCheck" id="idCheck">
+					<td><input type="button" value="중복확인" onclick="idCheck"
+						id="idCheck">
 					<td>
 				</tr>
 				<tr>
@@ -217,6 +225,9 @@ table {
 					<td id="inj"><input id="injbu" type="button" value="인증번호 받기"></td>
 				</tr>
 
+
+
+
 				<tr>
 
 					<td id="hr"><input type="checkbox" name="all"
@@ -225,13 +236,16 @@ table {
 				</tr>
 
 				<tr>
-					<td><input type="checkbox" class="ab" id="ab1" name="ab1"> 서비스 이용약관(필수)</td>
+					<td><input type="checkbox" class="ab" id="ab1" name="ab1">
+						서비스 이용약관(필수)</td>
 
 				</tr>
 				<tr>
-					<td><input type="checkbox" class="ab" id="ab2" name="ab2"> 개인정보 처리 방침(필수)</td>
+					<td><input type="checkbox" class="ab" id="ab2" name="ab2">
+						개인정보 처리 방침(필수)</td>
 
 				</tr>
+
 				<tr>
 					<td>
 						<button id="signUpBtn" type="submit"
@@ -242,15 +256,31 @@ table {
 
 				</tr>
 			</table>
-
-
-
-
-
-
+				<div>
+					<a id="kakao-login-btn"></a>
+   					 <a href="http://developers.kakao.com/logout"></a>
+				
+				</div>
 		</div>
 
 	</form>
+ 	<script type='text/javascript'>
+
+        // 사용할 앱의 JavaScript 키를 설정해 주세요.
+        Kakao.init('d371ecdcb455e35b072949c209feab4b');
+        // 카카오 로그인 버튼을 생성합니다.
+        Kakao.Auth.createLoginButton({
+          container: '#kakao-login-btn',
+          success: function(authObj) {
+            alert(JSON.stringify(authObj));
+          },
+          fail: function(err) {
+             alert(JSON.stringify(err));
+          }
+        });
+    
+    </script>
 	<jsp:include page="/views/common/footer.jsp" />
+
 </body>
 </html>

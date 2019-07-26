@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.hp.account.model.service.ReviewService;
 import com.kh.hp.account.model.vo.ReviewVO;
+import com.kh.hp.account.model.vo.UserVO;
 
 /**
  * Servlet implementation class ReviewInsert
@@ -32,27 +33,28 @@ public class ReviewInsert extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String reviewCon = request.getParameter("reviewCon");
+		String reviewContent = request.getParameter("reviewContent");
+		int ran = Integer.parseInt(request.getParameter("ran"));
+		int userSeq = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
 		
-		System.out.println(reviewCon);
+		System.out.println(reviewContent);
+		System.out.println(ran);
+		System.out.println(userSeq);
 		
 		ReviewVO rv = new ReviewVO();
 		
-		rv.setReviewContent(reviewCon);
+		rv.setReviewContent(reviewContent);
+		rv.setRan(ran);
+		rv.setUserSeq(userSeq);
 		
 		int result = new ReviewService().insertReview(rv);
 		
-		String page = "";
-		
 		if(result > 0) {
-			response.sendRedirect(request.getContextPath() + "/selectList.bo");
-			//request.getRequestDispatcher("selectList.bo").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/views/review/reviewmain.jsp");
 		}else {
-			request.setAttribute("msg", "게시판 작성 실패!");
+			request.setAttribute("msg", "리뷰 작성 실패!");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
-		
-	
 	}
 
 	/**

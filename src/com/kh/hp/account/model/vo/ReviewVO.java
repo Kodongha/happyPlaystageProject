@@ -9,22 +9,23 @@ public class ReviewVO {
 	private String reviewContent;
 	private int ran;
 	private Date reviewWrDt;
-	private int ropSeq;
+	private int propSeq;
 	private int userSeq;
 	private int rentSeq;
+	private int ropSeq;
 	
 	
 	public ReviewVO() {}
 
 
-	public ReviewVO(int reviewSeq, String reviewContent, int ran, Date reviewWrDt, int ropSeq, int userSeq,
+	public ReviewVO(int reviewSeq, String reviewContent, int ran, Date reviewWrDt, int propSeq, int userSeq,
 			int rentSeq) {
 		super();
 		this.reviewSeq = reviewSeq;
 		this.reviewContent = reviewContent;
 		this.ran = ran;
 		this.reviewWrDt = reviewWrDt;
-		this.ropSeq = ropSeq;
+		this.propSeq = propSeq;
 		this.userSeq = userSeq;
 		this.rentSeq = rentSeq;
 	}
@@ -70,13 +71,13 @@ public class ReviewVO {
 	}
 
 
-	public int getRopSeq() {
-		return ropSeq;
+	public int getpropSeq() {
+		return propSeq;
 	}
 
 
-	public void setRopSeq(int ropSeq) {
-		this.ropSeq = ropSeq;
+	public void setpopSeq(int propSeq) {
+		this.propSeq = propSeq;
 	}
 
 
@@ -103,7 +104,7 @@ public class ReviewVO {
 	@Override
 	public String toString() {
 		return "ReviewVO [reviewSeq=" + reviewSeq + ", reviewContent=" + reviewContent + ", ran=" + ran
-				+ ", reviewWrDt=" + reviewWrDt + ", ropSeq=" + ropSeq + ", userSeq=" + userSeq + ", rentSeq=" + rentSeq
+				+ ", reviewWrDt=" + reviewWrDt + ", propSeq=" + propSeq + ", userSeq=" + userSeq + ", rentSeq=" + rentSeq
 				+ "]";
 	}
 	

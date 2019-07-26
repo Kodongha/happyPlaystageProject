@@ -54,7 +54,7 @@ public class UserSearchServlet extends HttpServlet {
 		System.out.println("userGradeStatus:::" + userGradeStatus);
 		System.out.println("leaveTf:::" + leaveTf);
 		
-		ArrayList<User> searchUserList = new UserService().userSearch(userSeqStart, userSeqEnd, requestUser);
+//		ArrayList<User> searchUserList = new UserService().userSearch(userSeqStart, userSeqEnd, requestUser);
 			
 		
 		

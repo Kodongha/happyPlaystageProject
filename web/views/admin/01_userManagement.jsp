@@ -8,7 +8,7 @@
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
+	int endPage = pi.getEndPage(); 
 	
  %>
 
@@ -252,7 +252,7 @@ margin-left: 600px;
 						<%} else {%>
 							<th>Y</th>
 						<%} %>
-						<th><%=u.getLeaveTf() %></th>
+						<th><%=u.getLeaveTf() %> </th>
 					</tr>
 					<%} %>
 				</tbody>

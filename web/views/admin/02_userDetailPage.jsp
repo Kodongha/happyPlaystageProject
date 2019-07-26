@@ -3,18 +3,25 @@
 
 <%
 	ArrayList<User> list = (ArrayList<User>) request.getAttribute("list");
-
 	User oneUser = (User) request.getAttribute("oneUser");
 
 	ArrayList<UseHistoryVO> UseHistoryVOlist = (ArrayList<UseHistoryVO>) request
 			.getAttribute("UseHistoryVOlist");
 
+	ArrayList<EnrollHistoryVO> EnrollHistoryVOlist = (ArrayList<EnrollHistoryVO>) request
+			.getAttribute("EnrollHistoryVOlist");
+
+	
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
 	int listCount = pi.getListCount();
-	int currentPage = pi.getCurrentPage();
+	int currentPage = pi.getCurrentPage();	
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
+	
+	
+	System.out.println("view::");
+	System.out.println(EnrollHistoryVOlist);
 %>
 
 
@@ -83,8 +90,10 @@ margin-top:-55px;
 		<div id="inner">
 
 			<br> <br>
+		
+		
 			<div class="Membership">
-				<form class="form-horizontal" action="/action_page.php">
+				<form class="form-horizontal" action="<%=request.getContextPath()%>/updateOneUser.ad?" method="post" encType="multipart/form-data">
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="userId" id="userseq">회원번호</label>
 						<div class="col-sm-10">
@@ -97,7 +106,7 @@ margin-top:-55px;
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="nikName">이메일</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="email" name="email"
+							<input type="text" class="form-control" id="userEmail" name="userEmail"
 								style="width: 500px;" value="<%=oneUser.getUserEmail()%>">
 						</div>
 					</div>
@@ -105,7 +114,7 @@ margin-top:-55px;
 						<label class="control-label col-sm-2" for="name">이름</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control"
-								value="<%=oneUser.getUserNm()%>" id="name" name="name"
+								value="<%=oneUser.getUserNm()%>" id="userNm" name="userNm"
 								style="width: 500px;">
 						</div>
 					</div>
@@ -113,7 +122,7 @@ margin-top:-55px;
 						<label class="control-label col-sm-2" for="nick">닉네임</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control"
-								value="<%=oneUser.getUserNick()%>" id="nick" name="nick"
+								value="<%=oneUser.getUserNick()%>" id="userNick" name="userNick"
 								style="width: 500px;">
 						</div>
 					</div>
@@ -121,39 +130,39 @@ margin-top:-55px;
 						<label class="control-label col-sm-2" for="phone">연락처</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control"
-								value="<%=oneUser.getUserPhone()%>" id="phone" name="phone"
+								value="<%=oneUser.getUserPhone()%>" id="userPhone" name="userPhone"
 								style="width: 500px;">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="EnrollDt">회원가입일자</label>
 						<div class="col-sm-10">
-							<input type="email" class="form-control" id="text"
-								value="<%=oneUser.getEnrollDt()%>" name="text"
+							<input type="email" class="form-control" id="enrollDt"
+								value="<%=oneUser.getEnrollDt()%>" name="enrollDt"
 								style="width: 500px;">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="sns">SNS코드</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="text"
-								value="<%=oneUser.getEnrollDt()%>" name="text"
+							<input type="text" class="form-control" id="snsCd"
+								value="<%=oneUser.getSnsCd()%>" name="snsCd"
 								style="width: 500px;">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="LeaveTf">탈퇴여부</label>
 						<div class="col-sm-10">
-							<input type="email" class="form-control" id="text"
-								value="<%=oneUser.getLeaveTf()%>" name="text"
+							<input type="email" class="form-control" id="leaveTf"
+								value="<%=oneUser.getLeaveTf()%>" name="leaveTf"
 								style="width: 500px;">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="tLeaveDt">탈퇴일자</label>
 						<div class="col-sm-10">
-							<input type="email" class="form-control" id="text"
-								value="<%=oneUser.getLeaveDt()%>" name="text"
+							<input type="email" class="form-control" id="leaveDt"
+								value="<%=oneUser.getLeaveDt()%>" name="leaveDt"
 								style="width: 500px;">
 						</div>
 					</div>
@@ -164,10 +173,10 @@ margin-top:-55px;
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="cd">대관등록승인</label>
+						<label class="control-label col-sm-2" for="cd" >대관등록승인</label>
 						<div class="col-sm-10">
 							<div class="col-sm-2" id="select" style="width: 100px;">
-								<select class="form-control" id="cd">
+								<select class="form-control" id="userGradeCd" name="userGradeCd">
 									<%
 										if (oneUser.getUserGradeCd() == 1) {
 									%>
@@ -186,13 +195,101 @@ margin-top:-55px;
 						</div>
 						<br>
 					</div>
+					</form>
 					<br> <br> <br> <br>
 					<div align="center">
 						<label>대관등록내역</label>
 					</div>
-					<div id="Enrollment"></div>
-					<br> <br>
+					<br>
+					<div class="container">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>공연장 고유번호</th>
+									<th>공연장명</th>
+									<th>상호명</th>
+									<th>주소</th>
+									<th>등록일</th>
+									<th>대관등록진행상태</th>
+									<th>작성자</th>
+								
+								</tr>
+							 	<%
+									for (EnrollHistoryVO EnrollHistory : EnrollHistoryVOlist) {
+								%>
+								
+								
+							</thead>
+							<tbody>
 
+								<tr>
+									<th><%=EnrollHistory.getRentSeq()%></th>
+									<th><%=EnrollHistory.getHallNm()%></th>
+									<th><%=EnrollHistory.getCompNm()%></th>
+									<th><%=EnrollHistory.getAddress()%></th>
+									<th><%=EnrollHistory.getRentEnrollDt()%></th>
+									<th><%=EnrollHistory.getRentEnrollStatus()%></th>
+									<th><%=EnrollHistory.getUserNm() %></th>
+								</tr>
+							</tbody>
+							<%
+								}
+							%> 
+						</table>
+					</div>
+	
+				<%-- 페이징처리 --%>
+		<div class="pagingArea" align="center">
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq()%>&currentPage=1'"><<</button>
+
+			<%
+				if (currentPage <= 1) {
+			%>
+			<button disabled><</button>
+			<%
+				} else {
+			%>
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq()%>&currentPage=<%=currentPage - 1%>'"></button>
+			<%
+				}
+			%>
+
+			<%
+				for (int p = startPage; p <= endPage; p++) {
+					if (currentPage == p) {
+			%>
+			<button disabled><%=p%></button>
+			<%
+				} else {
+			%>
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>&currentPage=<%=p%>'"><%=p%></button>
+			<%
+				}
+				}
+			%>
+
+			<%
+				if (currentPage >= maxPage) {
+			%>
+			<button disabled>></button>
+			<%
+				} else {
+			%>
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>&currentPage=<%=currentPage + 1%>'">></button>
+			<%
+				}
+			%>
+
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>&currentPage=<%=maxPage%>'">>></button>
+				
+			</div>
+		</div>
+		<br><br><br><br>
 
 					<div align="center">
 						<label>대관사용내역</label>
@@ -216,7 +313,7 @@ margin-top:-55px;
 								<tr>
 									<th><%=useHistory.getRentSeq()%></th>
 									<th><%=useHistory.getCompNm()%></th>
-									<th><%=useHistory.getUseStartDt()%></th>
+									<th><%=useHistory.getUseStartDt()%> ~ <%=useHistory.getUseEndDt() %></th>
 									<th><%=useHistory.getHallNm()%></th>
 								</tr>
 							</tbody>
@@ -225,7 +322,7 @@ margin-top:-55px;
 							%>
 						</table>
 					</div>
-				</form>
+				
 				
 				<br>
 				<%-- 페이징처리 --%>
@@ -283,8 +380,15 @@ margin-top:-55px;
 		
 
 		</div>
-		<button type="submit" class="btn btn-warning" id="revisebutton"
-		onclick="location.href='<%=request.getContextPath()%>/updateOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>'" >수정</button>
+		<button class="btn btn-warning" id="revisebutton">수정</button>
+		<script type="text/javascript">
+			$(function(){
+				$("#revisebutton").click(function(){
+					$("form").submit();
+				});
+			});
+		</script>
+		
 		
 		
 		<button type="reset" class="btn btn-warning" id="resetbutton" 

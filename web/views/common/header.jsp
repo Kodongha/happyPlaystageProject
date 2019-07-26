@@ -47,7 +47,7 @@
 	      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">관리자<span class="caret"></span></a>
 	        <ul class="dropdown-menu">
 	          <li><a href="<%=request.getContextPath() %>/selectAllUser.ad">회원 관리</a></li>
-	          <li><a href="<%=request.getContextPath() %>/views/admin/03_authorize.jsp">대관등록 권한설정</a></li>
+	          <li><a href="<%=request.getContextPath() %>/SetRegPermissions.ad">대관등록 권한설정</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/admin/04_checkList.jsp">대관등록 검수</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/admin/06_salesStatus.jsp">매출 통계</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/admin/07_statistics.jsp">회원 수 통계</a></li>

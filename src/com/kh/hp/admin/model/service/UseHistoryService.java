@@ -24,13 +24,13 @@ public class UseHistoryService  {
 	}
 
 	
-	//회원관리  - 사용내역 조회 
-	public ArrayList<UseHistoryVO> UseHistoryVOlist(int currentPage, int limit) {
+	//회원관리상세페이지 - 대관사용리스트조회
+	public ArrayList<UseHistoryVO> UseHistoryVOlist(int userSeq, int currentPage, int limit) {
 		
 		System.out.println("사용내역조회서비스까지 왔나요 ");
 		Connection con = getConnection();
 
-		ArrayList<UseHistoryVO> UseHistoryVOlist = new UseHistoryDao().UseHistoryVOlist(con, currentPage, limit);
+		ArrayList<UseHistoryVO> UseHistoryVOlist = new UseHistoryDao().UseHistoryVOlist(con, userSeq, currentPage, limit);
 
 		close(con);
 

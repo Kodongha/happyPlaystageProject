@@ -1,7 +1,6 @@
 package com.kh.hp.account.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,7 +38,7 @@ public class ReviewSearch extends HttpServlet {
 		
 		String page = "";
 
-		if(rs.getRentSeq()>0) {
+		if(rs !=  null) {
 			page = "views/account/reviewRegister.jsp";
 			request.setAttribute("rs", rs);
 		}else {

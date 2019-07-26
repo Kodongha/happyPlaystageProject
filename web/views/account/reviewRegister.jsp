@@ -40,7 +40,7 @@ h4 {
 	margin-left: auto;
 }
 
-#p2{
+#reviewContent{
 	width: 100%;
 	height: 200px;
 	text-align: left;
@@ -66,24 +66,25 @@ h4 {
 	<br>
 
 	<div class="form-group">
-		<label for="공연장 명">공연장 명</label> <input type="text" placeholder="예약번호를 확인하여 자동입력"
-			class="form-control" value=<%= rs.getRentSeq() %> id="p1">
+		<label for="공연장 명">공연장 명</label>  
+		<input type="text" placeholder="예약번호를 확인하여 자동입력"
+			class="form-control" value="<%= rs.getHallNm() %>" id="p1">
 	</div>
 	<div class="form-group">
-		<label for="이용소감">공연장 이용 소감</label> <input type="text" name="p2"
-			class="form-control" name="reviewCon" id="p2">
+		<label for="이용소감">공연장 이용 소감</label> <input type="text" name="reviewContent"
+			class="form-control" name="reviewCon" id="reviewContent">
 	</div>
 	<div class="form-group">
-		<label for="이미지">이미지를 추가해 주세요.</label> <input type="password" placeholder="이미지는 최대 1개만 첨부 가능합니다."
-			class="form-control" id="p3">
-			<button type="button" id="hallRegisCerPathAddBtn" class="col-sm-2 col-xs-2 btn btn btn-primary" style="width: 10%; float: right;">첨부</button>
+		<label for="이미지">별점</label> <input type="number" placeholder="이미지는 최대 1개만 첨부 가능합니다."
+			class="form-control" id="ran" name="ran">
+
 	</div>
 	
 	
 
 
 	
-	<div class="chek1">
+	<div class="chek1" style="margin: 50px;">
 	<button type="button" class="btn btn-danger" style="width: 49%;" onclick="location.href='../main/main.jsp'">취소</button>
 	<button type="submit" class="btn btn-success next-step" style="width: 49%; float: right;">저장</button>
 	</div>

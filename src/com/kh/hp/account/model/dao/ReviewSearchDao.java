@@ -1,4 +1,6 @@
 package com.kh.hp.account.model.dao;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +14,17 @@ import static com.kh.hp.common.JDBCTemplate.*;
 public class ReviewSearchDao {
 	private Properties prop = new Properties();
 	
+	public ReviewSearchDao() {
+		String fileName = ReviewSearchDao.class.getResource("/sql/account/account-query.properties").getPath();
+
+		try {
+			prop.load(new FileReader(fileName));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 	public ReviewSearchVO selectList(Connection con, int num) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -22,14 +35,13 @@ public class ReviewSearchDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, num);
-			pstmt.setString(2, "완료");
 
 			rset = pstmt.executeQuery();
 
 			if(rset.next()) {
 				rs = new ReviewSearchVO();
 
-				rs.setRentSeq(rset.getInt("RENT_SEQ"));
+				rs.setHallNm(rset.getString("HALL_NM"));
 			
 			}
 		} catch (SQLException e) {

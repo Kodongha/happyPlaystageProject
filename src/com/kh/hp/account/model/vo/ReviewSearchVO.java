@@ -17,6 +17,7 @@ public class ReviewSearchVO  {
 	private int useStartTm;
 	private int useEndTm;
 	private int payAmount;
+	private String hallNm;
 	
 	public void ReviewSearch() {}
 
@@ -36,6 +37,17 @@ public class ReviewSearchVO  {
 		this.useStartTm = useStartTm;
 		this.useEndTm = useEndTm;
 		this.payAmount = payAmount;
+		this.hallNm = hallNm;
+	}
+	
+	
+
+	public String getHallNm() {
+		return hallNm;
+	}
+
+	public void setHallNm(String hallNm) {
+		this.hallNm = hallNm;
 	}
 
 	public int getPropSeq() {
@@ -156,8 +168,10 @@ public class ReviewSearchVO  {
 				+ propNm + ", propPhone=" + propPhone + ", propEmail=" + propEmail + ", propReqContent="
 				+ propReqContent + ", propDt=" + propDt + ", propStatus=" + propStatus + ", userStartDt=" + userStartDt
 				+ ", userEndDt=" + userEndDt + ", useStartTm=" + useStartTm + ", useEndTm=" + useEndTm + ", payAmount="
-				+ payAmount + "]";
+				+ payAmount + ", hallNm=" + hallNm + "]";
 	}
+
+	
 	
 	
 	

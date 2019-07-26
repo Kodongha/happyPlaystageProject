@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.kh.hp.rent.model.dao.RentDao;
 import com.kh.hp.rent.model.vo.AttachmentVO;
 import com.kh.hp.rent.model.vo.CautionsVO;
+import com.kh.hp.rent.model.vo.DetFacAndRentDetFacVO;
 import com.kh.hp.rent.model.vo.DetFacVO;
 import com.kh.hp.rent.model.vo.FacInfoVO;
 import com.kh.hp.rent.model.vo.RefundTypeVO;
@@ -215,6 +216,7 @@ public class RentService {
 	}
 
 	/**
+	 * 대관 상세보기
 	 * @param rentSeq
 	 * @return
 	 */
@@ -269,6 +271,51 @@ public class RentService {
 		close(con);
 
 		return rentInfos;
+	}
+
+	/**
+	 * 상세보기에서 신청버튼 클릭 시 기본 정보 가져오기
+	 * @param requestRentSeq
+	 * @param rentPropVO
+	 * @return
+	 */
+	public ArrayList<Object> getRentInfoList(int requestRentSeq, RentPropVO rentPropVO) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		RentDao rentDao = new RentDao();
+		ArrayList<Object> rentInfoList = new ArrayList<Object>();
+
+		// 대관 기본 정보
+		RentBasicVO rentBasicVO = rentDao.selectRentBasicOne(con, requestRentSeq);
+		System.out.println(rentBasicVO);
+
+		// 주의사항 정보
+		ArrayList<CautionsVO> cautionsVOList = rentDao.selectRentCautionsList(con, requestRentSeq);
+		System.out.println(cautionsVOList);
+
+		// 이미지 정보
+		ArrayList<RentImgVO> rentImgVOList = rentDao.selectRentImg(con, requestRentSeq);
+		System.out.println(rentImgVOList);
+
+		// 상세 시설 정보
+		ArrayList<DetFacAndRentDetFacVO>  rentDetFacVOList = rentDao.selectRentDetFacList(con, requestRentSeq);
+		System.out.println(rentDetFacVOList);
+
+		// 상세 대관 정보
+		ArrayList<RentDetVO> rentDetVOList = rentDao.selectRentDet(con, requestRentSeq);
+		System.out.println(rentDetVOList);
+
+		System.out.println(rentPropVO);
+
+		rentInfoList.add(rentBasicVO);
+		rentInfoList.add(cautionsVOList);
+		rentInfoList.add(rentImgVOList);
+		rentInfoList.add(rentDetFacVOList);
+		rentInfoList.add(rentDetVOList);
+		rentInfoList.add(rentPropVO);
+
+		return rentInfoList;
 	}
 
 }

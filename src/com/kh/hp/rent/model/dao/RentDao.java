@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.kh.hp.myPage.model.dao.MyPageDao_mh;
 import com.kh.hp.rent.model.vo.AttachmentVO;
 import com.kh.hp.rent.model.vo.CautionsVO;
+import com.kh.hp.rent.model.vo.DetFacAndRentDetFacVO;
 import com.kh.hp.rent.model.vo.DetFacVO;
 import com.kh.hp.rent.model.vo.FacInfoVO;
 import com.kh.hp.rent.model.vo.RefundTypeVO;
@@ -894,6 +895,43 @@ public class RentDao {
 		}
 
 		return rentPropVOList;
+	}
+
+	public ArrayList<DetFacAndRentDetFacVO> selectRentDetFacList(Connection con, int requestRentSeq) {
+		// TODO Auto-generated method stub
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<DetFacAndRentDetFacVO> rentDetFacVOList = null;
+
+		String query = prop.getProperty("selectRentDetFacList");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, requestRentSeq);
+
+			rset = pstmt.executeQuery();
+			rentDetFacVOList = new ArrayList<DetFacAndRentDetFacVO>();
+
+			while(rset.next()) {
+
+				DetFacAndRentDetFacVO rentDetFacVO = new DetFacAndRentDetFacVO();
+				rentDetFacVO.setRentDetFacSeq(rset.getInt("RENT_DET_FAC_SEQ"));
+				rentDetFacVO.setRentSeq(rset.getInt("RENT_SEQ"));
+				rentDetFacVO.setDetFacSeq(rset.getInt("DET_FAC_SEQ"));
+				rentDetFacVO.setDetFacNm(rset.getString("DET_FAC_NM"));
+				rentDetFacVO.setDetFacImgPath(rset.getString("DET_FAC_IMG_PATH"));
+
+				rentDetFacVOList.add(rentDetFacVO);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return rentDetFacVOList;
 	}
 
 }

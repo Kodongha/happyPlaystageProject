@@ -19,6 +19,7 @@ public class RentPropVO {
 	private int useEndTm;
 	private int payAmount;
 	private int diffDate;
+	private int propHeadCount;
 
 	public RentPropVO() {
 		// TODO Auto-generated constructor stub
@@ -26,7 +27,7 @@ public class RentPropVO {
 
 	public RentPropVO(int propSeq, int rentSeq, int userSeq, String propNm, String propPhone, String propEmail,
 			String propReqContent, Date propDt, String propStatus, Date useStartDt, Date useEndDt, int useStartTm,
-			int useEndTm, int payAmount, int diffDate) {
+			int useEndTm, int payAmount, int diffDate, int propHeadCount) {
 		super();
 		this.propSeq = propSeq;
 		this.rentSeq = rentSeq;
@@ -43,6 +44,7 @@ public class RentPropVO {
 		this.useEndTm = useEndTm;
 		this.payAmount = payAmount;
 		this.diffDate = diffDate;
+		this.propHeadCount = propHeadCount;
 	}
 
 	public int getPropSeq() {
@@ -165,13 +167,20 @@ public class RentPropVO {
 		this.diffDate = diffDate;
 	}
 
+	public int getPropHeadCount() {
+		return propHeadCount;
+	}
+
+	public void setPropHeadCount(int propHeadCount) {
+		this.propHeadCount = propHeadCount;
+	}
+
 	@Override
 	public String toString() {
 		return "RentPropVO [propSeq=" + propSeq + ", rentSeq=" + rentSeq + ", userSeq=" + userSeq + ", propNm=" + propNm
 				+ ", propPhone=" + propPhone + ", propEmail=" + propEmail + ", propReqContent=" + propReqContent
 				+ ", propDt=" + propDt + ", propStatus=" + propStatus + ", useStartDt=" + useStartDt + ", useEndDt="
 				+ useEndDt + ", useStartTm=" + useStartTm + ", useEndTm=" + useEndTm + ", payAmount=" + payAmount
-				+ ", diffDate=" + diffDate + "]";
+				+ ", diffDate=" + diffDate + ", propHeadCount=" + propHeadCount + "]";
 	}
-
 }

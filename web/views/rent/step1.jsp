@@ -136,7 +136,6 @@
 		<input type="file" id="hallRegisCerPathInput" name="hallRegisCerPathInput">
 	</div>
 
-
 <script type="text/javascript">
 	var i = 1;
 

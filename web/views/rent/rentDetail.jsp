@@ -94,8 +94,8 @@
 			if($("#schedule")){
 				$("#schedule").focus();
 			} else {
-				if($("#maxHeadCount")){
-					$("#maxHeadCount").focus();
+				if($("#headCount")){
+					$("#headCount").focus();
 				} else {
 
 				}
@@ -139,7 +139,6 @@
 
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner" >
-
 						<%for(int i=0; i<rentImgVOList.size(); i++) {
 							if(i == 0){%>
 							<div class="item active">
@@ -151,7 +150,6 @@
 							</div>
 							<%} %>
 						<%} %>
-
 					</div>
 					<!-- Left and right controls -->
 					<a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -188,7 +186,7 @@
 					<div class="container" align="center" style="width:100%; height:150px;">
 						<img src="<%=request.getContextPath() %>/images/profilePhotos/<%=rentImgVOList.get(0).getChangeNm() %>" alt="<%=rentImgVOList.get(0).getOriginNm() %>" style="object-fit: cover; width: 90%">
 					</div>
-					<form action="<%=request.getContextPath() %>/movePropose.rt" method="post" id="propForm" name="propForm">
+					<form action="<%=request.getContextPath() %>/movePropose.rt" method="post" id="propForm" name="propForm" autocomplete="off">
 						<div>
 							<hr>
 								<p class="text-muted"> ·  최소 <%=rentBasicVO.getMinRsvTm() %>시간 부터</p>
@@ -197,7 +195,7 @@
 							<input name="schedule" class="form-control" id="schedule" placeholder="날짜를 선택하세요.">
 							<br>
 							<p class="text-muted">* 인원 입력</p>
-							<input class="form-control" name="maxHeadCount" id="maxHeadCount" type="number" min="0" max="1000" step="10" style="width: 100%" placeholder="인원을 입력하세요."/>
+							<input class="form-control" name="headCount" id="headCount" type="number" step="10" style="width: 100%" placeholder="인원을 입력하세요."/>
 							<br>
 							<button type="button" class="btn btn-success" id="proposeBtn" style="width: 100%; float: right;">신청</button>
 							<script type="text/javascript">
@@ -216,6 +214,8 @@
 										/* var valid = !(t.getDay() == 0 || t.getDay() == 6);  //disable saturday and sunday */
 										var date = new Date('2019-07-28');
 										/* dateDiff(t, '2019-07-28') */
+
+										<%if(rentPropVOList.size() > 0){ %>
 										var valid = !(
 												<%
 												SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
@@ -229,6 +229,11 @@
 													<%if(i == rentPropVOList.size() -1 && j == rentPropVOList.get(i).getDiffDate()){%>
 													<%} else {%>||<%}}}%>
 													);
+
+										<%} else {%>
+										valid = !('');
+										<%}%>
+
 										var _class = '';
 										var _tooltip = valid ? '' : 'sold out';
 										return [valid,_class,_tooltip];
@@ -252,13 +257,15 @@
 								}
 							</script>
 						</div>
+						<input type="hidden" name="rentSeq" id="rentSeq" value="<%=rentBasicVO.getRentSeq() %>">
 					</form>
 				</div>
 			</div>
 
+			.
 			<!-- 극장 소개 -->
-			<h2 style="margin-top: 20%">극장 소개</h2>
-			<p class="form-control-static"><%=detailIntro %></p>
+			<h2 style="margin-top: 3%">극장 소개</h2>
+			<p class="form-control-static" style="width: 70%"><%=detailIntro %></p>
 
 			<br><br>
 

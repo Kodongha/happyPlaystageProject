@@ -95,8 +95,6 @@
 
 		<br><br><br><br><br><br><br><br>
 
-
-
 		<!-- 시설 세부항목 -->
 		<h2>시설 세부항목 설정</h2>
 		<hr style="background: black">
@@ -111,6 +109,15 @@
 				</div>
 			</div>
 			<%} %>
+			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
+			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
+			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
+			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
+			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
+			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
+			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
+			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
+			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
 			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
 		</div>
 

@@ -46,15 +46,15 @@
 	<table align="center">
 		<tr>
 			<td id="rentSeq" name="rentSeq">공연장 고유번호</td>
-			<td id="propNm" name="propNm">공연장 이름</td>
-			<td id="useStartDt" name="useStartDt">일자</td>
+			<td id="propNm" name="hallNm">공연장 이름</td>
+			<td id="useStartDt" name="useDt">일자</td>
 			<td></td>
 		</tr>
 		<tr>
 			<td><input type="text" name="rentSeq"></td>
-			<td><input type="text" name="propNm"></td>
+			<td><input type="text" name="hallNm"></td>
 			<td>
-				<input name="cusClosedate" id="cusClosedate">			
+				<input name="cusClosedate" id="cusClosedate" name="useDt">			
 			</td>
 			<td><input type="submit"></td>
 		</tr>

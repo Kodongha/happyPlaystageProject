@@ -354,6 +354,10 @@ public class AhnMyPageDao {
 			int endRow = startRow + limit - 1;
 			
 			
+			/*pstmt.setInt(1, usingInfo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);*/
+			
 			pstmt.setInt(1, usingInfo);
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
@@ -550,7 +554,7 @@ public class AhnMyPageDao {
 	}
 	
 	//검색후 사용내역에 대한 DAO메소드
-	public ArrayList<AhnUsingInfoVO> searchCheck1(Connection con, int userInfo, int rentSeq, int currentPage, int limit) {
+	public ArrayList<AhnUsingInfoVO> searchCheck1(Connection con, int userInfo, int rentSeq, String hallNm, Date useStart, Date useEnd, int currentPage, int limit) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<AhnUsingInfoVO> list = null;
@@ -566,8 +570,11 @@ public class AhnMyPageDao {
 			
 			pstmt.setInt(1, userInfo);
 			pstmt.setInt(2, rentSeq);
-			pstmt.setInt(3, startRow);
-			pstmt.setInt(4, endRow);
+			pstmt.setString(3, hallNm);
+			pstmt.setDate(4, useStart);
+			pstmt.setDate(5, useEnd);
+			pstmt.setInt(6, startRow);
+			pstmt.setInt(7, endRow);
 			
 			rset = pstmt.executeQuery();
 			
@@ -680,6 +687,381 @@ public class AhnMyPageDao {
 			}
 		
 		return result;
+	}
+
+	public ArrayList<AhnUsingInfoVO> searchCheck2(Connection con, int userInfo, String hallNm, Date useStart,
+			Date useEnd, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AhnUsingInfoVO> list = null;
+		
+		String query = prop.getProperty("searchCheck2");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+
+			//조회를 시작할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, userInfo);
+			pstmt.setString(2, hallNm);
+			pstmt.setDate(3, useStart);
+			pstmt.setDate(4, useEnd);
+			pstmt.setInt(5, startRow);
+			pstmt.setInt(6, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<AhnUsingInfoVO>();
+			
+			while(rset.next()) {
+				AhnUsingInfoVO b = new AhnUsingInfoVO();
+				
+				b.setHallNm(rset.getString("HALL_NM"));
+				b.setCompNm(rset.getString("COMP_NM"));
+				b.setPropSeq(rset.getInt("PROP_SEQ"));
+				b.setRentSeq(rset.getInt("RENT_SEQ"));
+				b.setUserSeq(rset.getInt("USER_SEQ"));
+				b.setPropNm(rset.getString("PROP_NM"));
+				b.setPropDt(rset.getDate("PROP_DT"));
+				b.setPropStatus(rset.getString("PROP_STATUS"));
+				b.setUseStartDt(rset.getDate("USE_START_DT"));
+				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		
+		return list;
+	}
+
+	public ArrayList<AhnUsingInfoVO> searchCheck3(Connection con, int userInfo, int rentSeq, Date useStart, Date useEnd,
+			int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AhnUsingInfoVO> list = null;
+		
+		String query = prop.getProperty("searchCheck3");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+
+			//조회를 시작할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, userInfo);
+			pstmt.setInt(2, rentSeq);
+			pstmt.setDate(3, useStart);
+			pstmt.setDate(4, useEnd);
+			pstmt.setInt(5, startRow);
+			pstmt.setInt(6, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<AhnUsingInfoVO>();
+			
+			while(rset.next()) {
+				AhnUsingInfoVO b = new AhnUsingInfoVO();
+				
+				b.setHallNm(rset.getString("HALL_NM"));
+				b.setCompNm(rset.getString("COMP_NM"));
+				b.setPropSeq(rset.getInt("PROP_SEQ"));
+				b.setRentSeq(rset.getInt("RENT_SEQ"));
+				b.setUserSeq(rset.getInt("USER_SEQ"));
+				b.setPropNm(rset.getString("PROP_NM"));
+				b.setPropDt(rset.getDate("PROP_DT"));
+				b.setPropStatus(rset.getString("PROP_STATUS"));
+				b.setUseStartDt(rset.getDate("USE_START_DT"));
+				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		
+		return list;
+	}
+
+	public ArrayList<AhnUsingInfoVO> searchCheck4(Connection con, int userInfo, int rentSeq, String hallNm,
+			int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AhnUsingInfoVO> list = null;
+		
+		String query = prop.getProperty("searchCheck4");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+
+			//조회를 시작할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, userInfo);
+			pstmt.setInt(2, rentSeq);
+			pstmt.setString(3, hallNm);
+			pstmt.setInt(4, startRow);
+			pstmt.setInt(5, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<AhnUsingInfoVO>();
+			
+			while(rset.next()) {
+				AhnUsingInfoVO b = new AhnUsingInfoVO();
+				
+				b.setHallNm(rset.getString("HALL_NM"));
+				b.setCompNm(rset.getString("COMP_NM"));
+				b.setPropSeq(rset.getInt("PROP_SEQ"));
+				b.setRentSeq(rset.getInt("RENT_SEQ"));
+				b.setUserSeq(rset.getInt("USER_SEQ"));
+				b.setPropNm(rset.getString("PROP_NM"));
+				b.setPropDt(rset.getDate("PROP_DT"));
+				b.setPropStatus(rset.getString("PROP_STATUS"));
+				b.setUseStartDt(rset.getDate("USE_START_DT"));
+				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		
+		return list;
+	}
+
+	public ArrayList<AhnUsingInfoVO> searchCheck5(Connection con, int userInfo, int rentSeq, int currentPage,
+			int limit) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AhnUsingInfoVO> list = null;
+		
+		String query = prop.getProperty("searchCheck5");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+
+			//조회를 시작할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, userInfo);
+			pstmt.setInt(2, rentSeq);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<AhnUsingInfoVO>();
+			
+			while(rset.next()) {
+				AhnUsingInfoVO b = new AhnUsingInfoVO();
+				/*
+				b.setHallNm(rset.getString("HALL_NM"));
+				b.setCompNm(rset.getString("COMP_NM"));
+				b.setPropSeq(rset.getInt("PROP_SEQ"));
+				b.setRentSeq(rset.getInt("RENT_SEQ"));
+				b.setUserSeq(rset.getInt("USER_SEQ"));
+				b.setPropNm(rset.getString("PROP_NM"));
+				b.setPropDt(rset.getDate("PROP_DT"));
+				b.setPropStatus(rset.getString("PROP_STATUS"));
+				b.setUseStartDt(rset.getDate("USE_START_DT"));
+				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				*/
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		System.out.println("DAO LIST : " + list);
+		
+		return list;
+	}
+
+	public ArrayList<AhnUsingInfoVO> searchCheck6(Connection con, int userInfo, String hallNm, int currentPage,
+			int limit) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AhnUsingInfoVO> list = null;
+		
+		String query = prop.getProperty("searchCheck6");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+
+			//조회를 시작할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, userInfo);
+			pstmt.setString(2, hallNm);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<AhnUsingInfoVO>();
+			
+			while(rset.next()) {
+				AhnUsingInfoVO b = new AhnUsingInfoVO();
+				
+				b.setHallNm(rset.getString("HALL_NM"));
+				b.setCompNm(rset.getString("COMP_NM"));
+				b.setPropSeq(rset.getInt("PROP_SEQ"));
+				b.setRentSeq(rset.getInt("RENT_SEQ"));
+				b.setUserSeq(rset.getInt("USER_SEQ"));
+				b.setPropNm(rset.getString("PROP_NM"));
+				b.setPropDt(rset.getDate("PROP_DT"));
+				b.setPropStatus(rset.getString("PROP_STATUS"));
+				b.setUseStartDt(rset.getDate("USE_START_DT"));
+				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		
+		return list;
+	}
+
+	public ArrayList<AhnUsingInfoVO> searchCheck7(Connection con, int userInfo, Date useStart, Date useEnd,
+			int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AhnUsingInfoVO> list = null;
+		
+		String query = prop.getProperty("searchCheck7");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+
+			//조회를 시작할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, userInfo);
+			pstmt.setDate(2, useStart);
+			pstmt.setDate(3, useEnd);
+			pstmt.setInt(4, startRow);
+			pstmt.setInt(5, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<AhnUsingInfoVO>();
+			
+			while(rset.next()) {
+				AhnUsingInfoVO b = new AhnUsingInfoVO();
+				
+				b.setHallNm(rset.getString("HALL_NM"));
+				b.setCompNm(rset.getString("COMP_NM"));
+				b.setPropSeq(rset.getInt("PROP_SEQ"));
+				b.setRentSeq(rset.getInt("RENT_SEQ"));
+				b.setUserSeq(rset.getInt("USER_SEQ"));
+				b.setPropNm(rset.getString("PROP_NM"));
+				b.setPropDt(rset.getDate("PROP_DT"));
+				b.setPropStatus(rset.getString("PROP_STATUS"));
+				b.setUseStartDt(rset.getDate("USE_START_DT"));
+				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		
+		return list;
+	}
+
+	public ArrayList<AhnUsingInfoVO> searchCheck8(Connection con, int userInfo, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AhnUsingInfoVO> list = null;
+		
+		String query = prop.getProperty("searchCheck8");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+
+			//조회를 시작할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, userInfo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<AhnUsingInfoVO>();
+			
+			while(rset.next()) {
+				AhnUsingInfoVO b = new AhnUsingInfoVO();
+				
+				b.setHallNm(rset.getString("HALL_NM"));
+				b.setCompNm(rset.getString("COMP_NM"));
+				b.setPropSeq(rset.getInt("PROP_SEQ"));
+				b.setRentSeq(rset.getInt("RENT_SEQ"));
+				b.setUserSeq(rset.getInt("USER_SEQ"));
+				b.setPropNm(rset.getString("PROP_NM"));
+				b.setPropDt(rset.getDate("PROP_DT"));
+				b.setPropStatus(rset.getString("PROP_STATUS"));
+				b.setUseStartDt(rset.getDate("USE_START_DT"));
+				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		
+		return list;
 	}
 	
 	

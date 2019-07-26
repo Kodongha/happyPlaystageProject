@@ -70,6 +70,7 @@ public class UsingInfoServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
+		//ArrayList<AhnUsingInfoVO> list = new AhnMyPageService().selectList1(usingInfo, currentPage, limit);
 		ArrayList<AhnUsingInfoVO> list = new AhnMyPageService().selectList1(usingInfo, currentPage, limit);
 		
 		System.out.println("controller list : " + list);

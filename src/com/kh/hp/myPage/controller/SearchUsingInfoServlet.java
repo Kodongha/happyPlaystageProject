@@ -1,6 +1,7 @@
 package com.kh.hp.myPage.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -34,9 +35,23 @@ public class SearchUsingInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		int userInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
 		int rentSeq = Integer.parseInt(request.getParameter("rentSeq"));
+		String hallNm = request.getParameter("hallNm");
+		String useDt = request.getParameter("cusClosedate");
+		Date useStart = null;
+		Date useEnd = null;
+
+		/*캘린더 설정*/
+		if(useDt != null && !useDt.equals("")) {
+			String[] temp = useDt.split(" to ");
+			useStart = Date.valueOf(temp[0]);
+			useEnd = Date.valueOf(temp[1]);
+		}
 		
+		System.out.println("useStart : " + useStart);
+		System.out.println("useEnd : " + useEnd);
 		System.out.println("rentSeq : " + rentSeq);
 		
 		int currentPage;		//현재 페이지를 표시할 변수
@@ -69,8 +84,23 @@ public class SearchUsingInfoServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-	
-		ArrayList<AhnUsingInfoVO> list = new AhnMyPageService().searchCheck1(userInfo, rentSeq, currentPage, limit);
+		//검색목록 전체를 입력하고 검색했을때 추출할 list
+		ArrayList<AhnUsingInfoVO> list = new AhnMyPageService().searchCheck( userInfo, rentSeq, hallNm, useStart, useEnd, currentPage, limit);
+		//공연장 고유번호 => 입력no,	공연장 이름 => 입력, 일자 => 입력
+		/*ArrayList<AhnUsingInfoVO> list2 = new AhnMyPageService().searchCheck2(userInfo, hallNm, useStart, useEnd, currentPage, limit);
+		//공연장 고유번호 => 입력,	공연장 이름 => 입력no, 일자 => 입력
+		ArrayList<AhnUsingInfoVO> list3 = new AhnMyPageService().searchCheck3(userInfo, rentSeq, useStart, useEnd, currentPage, limit);
+		//공연장 고유번호 => 입력, 공연장 이름 => 입력, 일자 => 입력no
+		ArrayList<AhnUsingInfoVO> list4 = new AhnMyPageService().searchCheck4(userInfo, rentSeq, hallNm, currentPage, limit);
+		//공연장 고유번호 => 입력,	공연장 이름 => 입력no, 일자 => 입력no
+		ArrayList<AhnUsingInfoVO> list5 = new AhnMyPageService().searchCheck5(userInfo, rentSeq, currentPage, limit);
+		//공연장 고유번호 => 입력no,	공연장 이름 => 입력, 일자 => 입력no
+		ArrayList<AhnUsingInfoVO> list6 = new AhnMyPageService().searchCheck6(userInfo, hallNm, currentPage, limit);
+		//공연장 고유번호 => 입력no,	공연장 이름 => 입력no, 일자 => 입력
+		ArrayList<AhnUsingInfoVO> list7 = new AhnMyPageService().searchCheck7(userInfo, useStart, useEnd, currentPage, limit);
+		//공연장 고유번호 => 입력no,	공연장 이름 => 입력no, 일자 => 입력no
+		ArrayList<AhnUsingInfoVO> list8 = new AhnMyPageService().searchCheck8(userInfo, currentPage, limit);*/
+		
 		
 		String page = "";
 		

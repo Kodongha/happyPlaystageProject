@@ -54,6 +54,7 @@ public class LevelUpInfoServlet extends HttpServlet {
 			System.out.println("savePath:::" + savePath);
 			int levelUpInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
 			
+			// 저장 안됨
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy(levelUpInfo));
 			
 			ArrayList<String> saveFiles = new ArrayList<String>();

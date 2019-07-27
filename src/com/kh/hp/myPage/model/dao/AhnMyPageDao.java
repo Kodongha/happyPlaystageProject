@@ -604,6 +604,9 @@ public class AhnMyPageDao {
 			close(rset);
 		}
 
+		
+		System.out.println("DAO LIST : " + list);
+
 		return list;
 	}
 
@@ -737,7 +740,8 @@ public class AhnMyPageDao {
 			close(rset);
 		}
 
-
+		
+		System.out.println("DAO LIST : " + list);
 
 		return list;
 	}
@@ -792,7 +796,8 @@ public class AhnMyPageDao {
 			close(rset);
 		}
 
-
+		
+		System.out.println("DAO LIST : " + list);
 
 		return list;
 	}
@@ -846,7 +851,8 @@ public class AhnMyPageDao {
 			close(rset);
 		}
 
-
+		
+		System.out.println("DAO LIST : " + list);
 
 		return list;
 	}
@@ -877,7 +883,7 @@ public class AhnMyPageDao {
 
 			while(rset.next()) {
 				AhnUsingInfoVO b = new AhnUsingInfoVO();
-				/*
+				
 				b.setHallNm(rset.getString("HALL_NM"));
 				b.setCompNm(rset.getString("COMP_NM"));
 				b.setPropSeq(rset.getInt("PROP_SEQ"));
@@ -888,7 +894,9 @@ public class AhnMyPageDao {
 				b.setPropStatus(rset.getString("PROP_STATUS"));
 				b.setUseStartDt(rset.getDate("USE_START_DT"));
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
-				 */
+
+				
+
 				list.add(b);
 			}
 
@@ -952,7 +960,9 @@ public class AhnMyPageDao {
 			close(rset);
 		}
 
-
+		
+		System.out.println("DAO LIST : " + list);
+		
 
 		return list;
 	}
@@ -1006,7 +1016,9 @@ public class AhnMyPageDao {
 			close(rset);
 		}
 
-
+		
+		System.out.println("DAO LIST : " + list);
+		
 
 		return list;
 	}
@@ -1056,8 +1068,9 @@ public class AhnMyPageDao {
 			close(pstmt);
 			close(rset);
 		}
-
-
+		
+		System.out.println("DAO LIST : " + list);
+		
 
 		return list;
 	}

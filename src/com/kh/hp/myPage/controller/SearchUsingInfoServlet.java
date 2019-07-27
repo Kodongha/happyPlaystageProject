@@ -52,6 +52,7 @@ public class SearchUsingInfoServlet extends HttpServlet {
 		
 		System.out.println("useStart : " + useStart);
 		System.out.println("useEnd : " + useEnd);
+		System.out.println("hallNm : " + hallNm);
 		System.out.println("rentSeq : " + rentSeq);
 		
 		int currentPage;		//현재 페이지를 표시할 변수

@@ -157,6 +157,8 @@ public class AhnMyPageService {
 	public int insertImage(AhnLevelupInfoVO l, ArrayList<AhnAttachmentVO> fileList) {
 		Connection con = getConnection();
 
+		System.out.println("insertImage in!!!");
+
 		int result = 0;
 
 		int result1 = new AhnMyPageDao().insertImage(con, l);
@@ -186,44 +188,66 @@ public class AhnMyPageService {
 	public ArrayList<AhnUsingInfoVO> searchCheck(int userInfo, int rentSeq, String hallNm, Date useStart, Date useEnd, int currentPage, int limit) {
 		Connection con = getConnection();
 
+		System.out.println("service in!!");
+
 		ArrayList<AhnUsingInfoVO> list = null;
 
 		String rentSeq1 = String.valueOf(rentSeq);
 
 		if(rentSeq1 != null && hallNm != null && useStart != null && useEnd != null) {
 
+			System.out.println("ooooin1");
+
 			list = new AhnMyPageDao().searchCheck1(con, userInfo, rentSeq, hallNm, useStart, useEnd, currentPage, limit);
 
 		}else if(rentSeq1 == null && hallNm != null && useStart != null && useEnd != null) {
+
+			System.out.println("ooooin2");
 
 			list = new AhnMyPageDao().searchCheck2(con, userInfo, hallNm, useStart, useEnd, currentPage, limit);
 
 		}else if(rentSeq1 != null && hallNm == null && useStart != null && useEnd != null) {
 
+			System.out.println("ooooin3");
+
 			list = new AhnMyPageDao().searchCheck3(con, userInfo, rentSeq, useStart, useEnd, currentPage, limit);
 
 		}else if(rentSeq1 != null && hallNm != null && useStart == null && useEnd == null) {
+
+			System.out.println("ooooin4");
 
 			list = new AhnMyPageDao().searchCheck4(con, userInfo, rentSeq, hallNm, currentPage, limit);
 
 		}else if(rentSeq1 != null && hallNm == null && useStart == null && useEnd == null) {
 
+			System.out.println("ooooin5");
+
 			list = new AhnMyPageDao().searchCheck5(con, userInfo, rentSeq, currentPage, limit);
 
 		}else if(rentSeq1 == null && hallNm != null && useStart == null && useEnd == null) {
+
+			System.out.println("ooooin6");
 
 			list = new AhnMyPageDao().searchCheck6(con, userInfo, hallNm, currentPage, limit);
 
 		}else if(rentSeq1 == null && hallNm == null && useStart != null && useEnd != null) {
 
+			System.out.println("ooooin7");
+
 			list = new AhnMyPageDao().searchCheck7(con, userInfo, useStart, useEnd, currentPage, limit);
 
 		}else if(rentSeq1 == null && hallNm == null && useStart == null && useEnd == null) {
 
+			System.out.println("ooooin8");
+
 			list = new AhnMyPageDao().searchCheck8(con, userInfo, currentPage, limit);
 
 		}
+		
 		close(con);
+		
+		System.out.println("service list : " + list);
+		
 
 		return list;
 	}

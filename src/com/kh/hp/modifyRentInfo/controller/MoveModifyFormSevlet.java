@@ -1,4 +1,4 @@
-package com.kh.hp.myPage.controller;
+package com.kh.hp.modifyRentInfo.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,21 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.hp.account.model.vo.UserVO;
-import com.kh.hp.myPage.model.service.MyPageService_mh;
-import com.kh.hp.myPage.model.vo.RegistListVO;
+import com.kh.hp.modifyRentInfo.model.service.ModifyService;
 
 /**
- * Servlet implementation class RegistrationListServlet
+ * Servlet implementation class MoveModifyFormSevlet
  */
-@WebServlet("/registList.mp")
-public class RegistrationListServlet extends HttpServlet {
+@WebServlet("/moveModifyRentForm.up")
+public class MoveModifyFormSevlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegistrationListServlet() {
+    public MoveModifyFormSevlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,26 +30,26 @@ public class RegistrationListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("대관 등록 내역 들어옴!");
+		// TODO Auto-generated method stub
+		System.out.println("in!!!");
 
-		UserVO userVO = ((UserVO) request.getSession().getAttribute("user"));
-		int userSeq = userVO.getUserSeq();
+		// 수정하기 버튼 클릭시 해당 공연장 고유번호 전달받기
+		int rentSeq = 1; // 임시
 
-		System.out.println(userSeq);
+		ModifyService modifyService = new ModifyService();
 
-		ArrayList<RegistListVO> list = new MyPageService_mh().selectRegistList(userSeq);
+		ArrayList<Object> rentInfo = modifyService.getrentInfo(rentSeq);
 
-		String page= "";
-		if (list != null) {
-			System.out.println("list가 널이 아님!");
-			System.out.println(list);
-			page="views/myPage/registrationList.jsp";
-			request.setAttribute("list", list);
-		}else {
-			page="views/common/errorPage.jsp";
-			request.setAttribute("msg", "게시판 조회 실패");
+		String page = "";
+		if(rentInfo != null) {
+			page="views/modifyRentInfo/rentBasicModify.jsp";
+			request.setAttribute("rentInfo", rentInfo);
+		} else {
+
 		}
+
 		request.getRequestDispatcher(page).forward(request, response);
+
 
 	}
 

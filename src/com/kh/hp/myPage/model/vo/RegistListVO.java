@@ -5,24 +5,19 @@ import java.util.Date;
 public class RegistListVO implements java.io.Serializable{
 	private int rentSeq;
 	private int userSeq;
-	private int userGradeCode;
 	private String hallNm;
-	private String rentEnrollStatus;
-	private String inspTf;
-	private Date rentEnrollDt;
+	private int imgType;
+	private String filePath;
 
 	public RegistListVO() {}
 
-	public RegistListVO(int rentSeq, int userSeq, int userGradeCode, String hallNm, String rentEnrollStatus,
-			String inspTf, Date rentEnrollDt) {
+	public RegistListVO(int rentSeq, int userSeq, String hallNm, int imgType, String filePath) {
 		super();
 		this.rentSeq = rentSeq;
 		this.userSeq = userSeq;
-		this.userGradeCode = userGradeCode;
 		this.hallNm = hallNm;
-		this.rentEnrollStatus = rentEnrollStatus;
-		this.inspTf = inspTf;
-		this.rentEnrollDt = rentEnrollDt;
+		this.imgType = imgType;
+		this.filePath = filePath;
 	}
 
 	public int getRentSeq() {
@@ -41,14 +36,6 @@ public class RegistListVO implements java.io.Serializable{
 		this.userSeq = userSeq;
 	}
 
-	public int getUserGradeCode() {
-		return userGradeCode;
-	}
-
-	public void setUserGradeCode(int userGradeCode) {
-		this.userGradeCode = userGradeCode;
-	}
-
 	public String getHallNm() {
 		return hallNm;
 	}
@@ -57,36 +44,28 @@ public class RegistListVO implements java.io.Serializable{
 		this.hallNm = hallNm;
 	}
 
-	public String getRentEnrollStatus() {
-		return rentEnrollStatus;
+	public int getImgType() {
+		return imgType;
 	}
 
-	public void setRentEnrollStatus(String rentEnrollStatus) {
-		this.rentEnrollStatus = rentEnrollStatus;
+	public void setImgType(int imgType) {
+		this.imgType = imgType;
 	}
 
-	public String getInspTf() {
-		return inspTf;
+	public String getFilePath() {
+		return filePath;
 	}
 
-	public void setInspTf(String inspTf) {
-		this.inspTf = inspTf;
-	}
-
-	public Date getRentEnrollDt() {
-		return rentEnrollDt;
-	}
-
-	public void setRentEnrollDt(Date rentEnrollDt) {
-		this.rentEnrollDt = rentEnrollDt;
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 
 	@Override
 	public String toString() {
-		return "RegistListVO [rentSeq=" + rentSeq + ", userSeq=" + userSeq + ", userGradeCode=" + userGradeCode
-				+ ", hallNm=" + hallNm + ", rentEnrollStatus=" + rentEnrollStatus + ", inspTf=" + inspTf
-				+ ", rentEnrollDt=" + rentEnrollDt + "]";
+		return "RegistListVO [rentSeq=" + rentSeq + ", userSeq=" + userSeq + ", hallNm=" + hallNm + ", imgType="
+				+ imgType + ", filePath=" + filePath + "]";
 	}
+
 
 
 

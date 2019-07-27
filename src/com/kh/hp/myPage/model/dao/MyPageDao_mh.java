@@ -255,19 +255,26 @@ public class MyPageDao_mh {
 			pstmt.setInt(1, userSeq);
 
 			rset = pstmt.executeQuery();
+			list = new ArrayList<RegistListVO>();
 
 			while(rset.next()) {
-				list = new ArrayList<RegistListVO>();
+				RegistListVO registListVO = new RegistListVO();
+				registListVO.setRentSeq(rset.getInt("RENT_SEQ"));
+				registListVO.setHallNm(rset.getString("HALL_NM"));
+				registListVO.setFilePath(rset.getString("FILE_PATH"));
 
+				list.add(registListVO);
 			}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
 
-
-		return null;
+		return list;
 	}
 
 

@@ -162,8 +162,6 @@
 								location.href = "<%=request.getContextPath() %>/MoveRentDetail.rt?rentSeq=" + rentSeqVal;
 							});
 						});
-
-
 					},
 					error:function(){
 						console.log("fail");
@@ -171,7 +169,6 @@
 				})
 			}
 		});
-
 	</script>
 
 <jsp:include page="/views/common/footer.jsp" />

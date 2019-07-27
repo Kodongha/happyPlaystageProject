@@ -143,7 +143,7 @@ input {
 
 	<script>
          $(function(){
-           // $("#fileArea").hide();
+            $("#fileArea").hide();
 
             $("#imgArea").click(function(){
                $("#upload").click();

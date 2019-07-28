@@ -5,6 +5,7 @@ int random=0;
 random = (int)Math.floor((Math.random()*(99999-10000+1)))+10000;
 return random;
 }%>
+<%String loginFlag = request.getParameter("flag"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,12 +101,16 @@ h2 {
 		$("#success").click(function(){
 			console.log("check in!");
 			var receiver = $("#receiver").val();
-			var regExp = "/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/";
-			
-			if(receiver.match(regExp) != null){
+			var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+			if (receiver.match(regExp) != null) {
 				console.log("성공");
+				$("#fr").submit();
+			} else {
+				$("#receiver").focus();
+				alert("이메일을 양식을 확인하여 입력해주세요.");
 			}
-			
+/*
 			if(receiver && receiver.match(regExp) != null){
 				alert('임시 비밀번호를 이메일로 전송 하였습니다.');
 				$("#fr").submit();
@@ -113,14 +118,16 @@ h2 {
 				$("#receiver").focus();
 				alert("이메일을 입력해주세요");
 			}
-			
-			
+			 */
 		});
 	});
-	
-	
-</script>
 
+
+	<%if(loginFlag!= null && loginFlag.equals("N")){
+	%>
+	alert("해당 아이디가 존재하지 않습니다.");
+	<%}%>
+</script>
 </head>
 <body>
 <jsp:include page="/views/common/header.jsp" />
@@ -138,7 +145,6 @@ h2 {
 						<h6>가입시 사용한 이메일 주소를 입력해주시면 비밀번호 재설정 링크를 보내드립니다.<br>
 							카카오톡, 구글로 가입하신 경우 비밀번호 찾기가 불가능 합니다.</h6></td>
 				</tr>
-
 				<tr>
 					<td>
 						<button id="success" name="success"
@@ -146,8 +152,6 @@ h2 {
 							비밀번호 재설정 링크 이메일로 보내기</button>
 					</td>
 				</tr>
-
-
 			</table>
 		</div>
 	</form>

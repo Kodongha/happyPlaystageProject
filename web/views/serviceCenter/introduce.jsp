@@ -76,41 +76,46 @@ body {
 	width:45%;
 	height:50px;
 }
+.btns:hover{
+	background: #ffbf47;
+}
 </style>
 </head>
 <body>
 <jsp:include page="/views/common/header.jsp" />
-	<div id="d1">
-		<div id="text1" class="text">공연장이 필요할 땐</div>
-		<div id="text2" class="text">Happy Playstage</div>
-	</div>
-	<div id="d2">
-		<p id="text6">
-			공연장을 시간단위로<br>예약하세요.
-		</p>
-		<em>"다양한 크기의 공연장을 등록하고 대관할 수 있습니다."</em>
-	</div>
-	<br>
-	<br>
-	<div id="d3">
-		<div id="text3" class="text">색다른 무대, 취향 저격 공연장</div>
-	</div>
-	<br>
-	<br>
-	<div id="d4">
-		<p id="text4">
-			<b>우리에게 꼭 맞는 공연장이 필요할땐!</b>
-		</p>
-		<p id="text5">
-			<b>Happy Playstage에서 쉽게 예약하고 등록해 보세요.</b>
-		</p>
-		<br>
-		<div class="container">
-			<button type="button" class="btn btn-outline-dark btns">공연장 찾아보기</button>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<button type="button" class="btn btn-outline-dark btns">공연장 등록하기</button>
+	<div class="container">
+		<div id="d1">
+			<div id="text1" class="text">공연장이 필요할 땐</div>
+			<div id="text2" class="text">Happy Playstage</div>
 		</div>
-		<br><br>
+		<div id="d2">
+			<p id="text6">
+				공연장을 시간단위로<br>예약하세요.
+			</p>
+			<em>"다양한 크기의 공연장을 등록하고 대관할 수 있습니다."</em>
+		</div>
+		<br>
+		<br>
+		<div id="d3">
+			<div id="text3" class="text">색다른 무대, 취향 저격 공연장</div>
+		</div>
+		<br>
+		<br>
+		<div id="d4">
+			<p id="text4">
+				<b>우리에게 꼭 맞는 공연장이 필요할땐!</b>
+			</p>
+			<p id="text5">
+				<b>Happy Playstage에서 쉽게 예약하고 등록해 보세요.</b>
+			</p>
+			<br>
+			<div class="container">
+				<button type="button" class="btn btn-outline-dark btns" onclick="location.href='<%=request.getContextPath()%>/moveRentList.rt'">공연장 찾아보기</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button type="button" class="btn btn-outline-dark btns" onclick="location.href='<%=request.getContextPath()%>/MoveRentEnroll.rt'">공연장 등록하기</button>
+			</div>
+			<br><br>
+		</div>
 	</div>
 	<jsp:include page="/views/common/footer.jsp" />
 </body>

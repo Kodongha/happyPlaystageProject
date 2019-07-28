@@ -9,7 +9,7 @@
 
 
 	<div class="container">
-		<h2>A관의 이용 정보를 입력해주세요.</h2>
+		<h2>이용 정보를 입력해주세요.</h2>
 		<hr style="background: black">
 
 		<!-- 이용 가능 시간 -->
@@ -43,9 +43,9 @@
 		</div>
 
 		<div class="form-group" style="display: inline; width: 49%; float: right;">
-			<label class="necessary">*</label><label for="price">가격</label>
+			<label class="necessary">*</label><label for="rentPrice">가격</label>
 			<br><br><br>
-			<input id="maxHeadCount" class="form-control" name="maxHeadCount" style="width: 200px; min-width: 200px; display:inline; margin: 0 2% 0 0" placeholder="예약 가능 인원 수" value="0">
+			<input type="number" id="rentPrice" class="form-control" name="rentPrice" style="width: 200px; min-width: 200px; display:inline; margin: 0 2% 0 0" value="0">
 		</div>
 
 		<!-- 사용 시간 단위 -->

@@ -70,6 +70,9 @@
 		});
 		$("#perfPlanCerInputDiv").hide();
 
+		$("#cancleBtn").click(function(){
+			location.href = "<%=request.getContextPath()%>/MoveRentDetail.rt?rentSeq=<%=rentBasicVO.getRentSeq()%>";
+		});
 	});
 </script>
 

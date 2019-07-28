@@ -245,7 +245,7 @@ public class RentDao {
 			pstmt.setInt(1, rentSeq);
 			pstmt.setString(2, rentDetVO.getDetAddress());
 			pstmt.setInt(3, rentDetVO.getMaxHeadCount());
-			pstmt.setInt(4, 500000);
+			pstmt.setInt(4, rentDetVO.getRentPrice());
 			/*pstmt.setInt(4, rentDetVO.getRentPrice());*/
 
 			result = pstmt.executeUpdate();

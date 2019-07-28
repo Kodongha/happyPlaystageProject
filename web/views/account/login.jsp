@@ -10,7 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <style rel="stylesheet">
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
@@ -42,8 +42,10 @@ body .container .half {
   padding: 40px 40px 0;
 }
 body .container .half.bg {
-  background-image: url("/sm/image/oen.jpg");
-  background-size: 400px;
+  background-image: url("/happyPlaystage/images/login/logo.png");
+  background-size: 100%;
+  height:100%;
+
   background-repeat: no-repeat;
 }
 body .container h1 {
@@ -332,50 +334,62 @@ body .container .content .signup-cont {
           <div class="half bg"></div>
    </section>
 
-     <script type='text/javascript'>
-     Kakao.init('d371ecdcb455e35b072949c209feab4b');
+	<!-- 카카오 로그인 -->
+	<script type='text/javascript'>
+		// javascript 키 설정
+		Kakao.init('4117d1600d82887109d2f11f520fe6ee');
 
-     Kakao.Auth.createLoginButton({
-         container: '#kakao-login-btn',
-         success: function(authObj) {
-           alert(JSON.stringify(authObj));
-         },
-         fail: function(err) {
-            alert(JSON.stringify(err));
-         }
-       });
+		// 카카오 로그인 버튼 생성
+		Kakao.Auth.createLoginButton({
+			container: '#kakao-login-btn',
+			success: function(authObj) {
+				alert(JSON.stringify(authObj));
+				var access_token = authObj.access_token;
+				var token_type = authObj.token_type;
+				var refresh_token = authObj.refresh_token;
+				var expires_in = authObj.expires_in;
+				var scope = authObj.scope;
+				var refresh_token_expires_in = authObj.refresh_token_expires_in;
+
+				console.log(access_token);
+				console.log(token_type);
+				console.log(refresh_token);
+				console.log(expires_in);
+				console.log(scope);
+				console.log(refresh_token_expires_in);
+
+				Kakao.Auth.setAccessToken(access_token);
+
+			},
+			fail: function(err) {
+				alert(JSON.stringify(err));
+			}
+		});
 
 
-     </script>
+	</script>
 
 
-
-
-
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
-$('.tabs .tab').click(function(){
-    if ($(this).hasClass('signin')) {
-        $('.tabs .tab').removeClass('active');
-        $(this).addClass('active');
-        $('.cont').hide();
-        $('.signin-cont').show();
-    }
-    if ($(this).hasClass('signup')) {
-        $('.tabs .tab').removeClass('active');
-        $(this).addClass('active');
-        $('.cont').hide();
-        $('.signup-cont').show();
-    }
-});
-$('.container .bg').mousemove(function(e){
-    var amountMovedX = (e.pageX * -1 / 30);
-    var amountMovedY = (e.pageY * -1 / 9);
-    $(this).css('background-position', amountMovedX + 'px ' + amountMovedY + 'px');
-});
+	$('.tabs .tab').click(function(){
+	    if ($(this).hasClass('signin')) {
+	        $('.tabs .tab').removeClass('active');
+	        $(this).addClass('active');
+	        $('.cont').hide();
+	        $('.signin-cont').show();
+	    }
+	    if ($(this).hasClass('signup')) {
+	        $('.tabs .tab').removeClass('active');
+	        $(this).addClass('active');
+	        $('.cont').hide();
+	        $('.signup-cont').show();
+	    }
+	});
+	$('.container .bg').mousemove(function(e){
+	    var amountMovedX = (e.pageX * -1 / 30);
+	    var amountMovedY = (e.pageY * -1 / 9);
+	    $(this).css('background-position', amountMovedX + 'px ' + amountMovedY + 'px');
+	});
 </script>
 </body>
 </html>

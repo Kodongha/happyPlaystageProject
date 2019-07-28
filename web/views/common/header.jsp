@@ -35,7 +35,7 @@
 	          <li><a href="<%=request.getContextPath() %>/notice.sc">공지사항</a></li>
 	          <li><a href="<%=request.getContextPath() %>/faq.sc">자주 묻는 질문</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/serviceCenter/introduce.jsp">회사 소개</a></li>
-	          <li><a href="#">1:1 문의</a></li>
+	          <li><a href="<%=request.getContextPath() %>/moveRealtimeQnA.sc">1:1 문의</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/serviceCenter/terms.jsp">약관 및 개인정보 보호</a></li>
 	        </ul>
 	      </li>

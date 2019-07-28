@@ -318,4 +318,29 @@ public class RentService {
 		return rentInfoList;
 	}
 
+	public int insertPorp(RentPropVO rentPropVO, AttachmentVO attachmentVO) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		RentDao rentDao = new RentDao();
+		int propReuslt = rentDao.insertPorp(con, rentPropVO);
+		int result = 0;
+		if(propReuslt > 0) {
+			int propSeq = rentDao.selectPropCurrval(con);
+
+			int attachResult = rentDao.insertPropAttachment(con, propSeq, attachmentVO);
+			if(attachResult > 0) {
+				result = 1;
+				commit(con);
+			} else {
+				rollback(con);
+			}
+		} else {
+			rollback(con);
+		}
+
+		close(con);
+		return result;
+	}
+
 }

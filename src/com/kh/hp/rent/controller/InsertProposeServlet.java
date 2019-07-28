@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.kh.hp.account.model.vo.UserVO;
 import com.kh.hp.common.MyFileRenamePolicy;
+import com.kh.hp.rent.model.service.RentService;
 import com.kh.hp.rent.model.vo.AttachmentVO;
 import com.kh.hp.rent.model.vo.RentPropVO;
 import com.oreilly.servlet.MultipartRequest;
@@ -40,12 +42,15 @@ public class InsertProposeServlet extends HttpServlet {
 
 		if(ServletFileUpload.isMultipartContent(request)) {
 
-			int userSeq = 2;
-			int maxSize = 1024 * 1024 * 10; // 제한 MB
+			int maxSize = 1024 * 1024 * 10;
 			String rootPath = request.getSession().getServletContext().getRealPath("/");
 			String profileSavePath = rootPath + "/perfPlanCer/";
 			MultipartRequest multipartRequest = new MultipartRequest(request, profileSavePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 
+			// VO Setting
+			int userSeq = ((UserVO)request.getSession().getAttribute("user")).getUserSeq(); // 작성자 회원번호
+
+			int rentSeq = Integer.parseInt(multipartRequest.getParameter("rentSeq"));
 			String propNm = multipartRequest.getParameter("propNm");
 			String propPhone1 = multipartRequest.getParameter("propPhone1");
 			String propPhone2 = multipartRequest.getParameter("propPhone2");
@@ -58,7 +63,10 @@ public class InsertProposeServlet extends HttpServlet {
 			int propHeadCount = Integer.parseInt(multipartRequest.getParameter("propHeadCount"));
 
 			RentPropVO rentPropVO = new RentPropVO();
-			rentPropVO.setPropNm(propPhone);
+			rentPropVO.setRentSeq(rentSeq);
+			rentPropVO.setPropNm(propNm);
+			rentPropVO.setUserSeq(userSeq);
+			rentPropVO.setPropPhone(propPhone);
 			rentPropVO.setPropEmail(propEmail);
 			rentPropVO.setPropReqContent(propReqContent);
 			rentPropVO.setPropHeadCount(propHeadCount);
@@ -67,13 +75,12 @@ public class InsertProposeServlet extends HttpServlet {
 
 			System.out.println(rentPropVO);
 
-
+			// 첨부파일 처리
 			Enumeration<String> imgFiles = multipartRequest.getFileNames();
 			String attSaveFile = "";
 			String attOriginFile = "";
 
 			if(imgFiles.hasMoreElements()) {
-				System.out.println("이미지 있다!");
 				String name = imgFiles.nextElement();
 				attSaveFile = multipartRequest.getFilesystemName(name);
 				attOriginFile = multipartRequest.getOriginalFileName(name);
@@ -82,10 +89,15 @@ public class InsertProposeServlet extends HttpServlet {
 			AttachmentVO attachmentVO = new AttachmentVO();
 			attachmentVO.setOriginNm(attOriginFile);
 			attachmentVO.setChangeNm(attSaveFile);
+			attachmentVO.setFilePath(profileSavePath);
 
 			System.out.println(attachmentVO);
-		}
 
+			int result = new RentService().insertPorp(rentPropVO, attachmentVO);
+
+			System.out.println("result:::" + result);
+
+		}
 	}
 
 	/**

@@ -262,10 +262,11 @@
 				</div>
 			</div>
 
-			.
+
 			<!-- 극장 소개 -->
-			<h2 style="margin-top: 3%">극장 소개</h2>
-			<p class="form-control-static" style="width: 70%"><%=detailIntro %></p>
+			<div class="container" style="width: 70%; float: left">
+				<h2 style="margin-top: 3%">극장 소개</h2>
+				<p class="form-control-static" style="width: 70%"><%=detailIntro %></p>
 
 			<br><br>
 
@@ -413,7 +414,7 @@
 
 		</div>
 	</div>
-
+</div>
 
 
 	<jsp:include page="/views/common/footer.jsp" />

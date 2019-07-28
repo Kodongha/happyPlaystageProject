@@ -88,10 +88,6 @@ $(function(){
 
 	/*상세 주소 추가 관련*/
 	$("#detAddressAddBtn").click(function(){
-
-		console.log("detAddressAddBtn");
-		console.log("detAddrSeq::"+detAddrSeq);
-
 		var facInfoContent = $.trim($("#detAddress").val())
 		if(facInfoContent != "" && facInfoContent != null && detAddrSeq < 5){
 			detAddrSeq++;
@@ -143,6 +139,34 @@ $(function(){
 	    $(elem).prev().find('a[data-toggle="tab"]').click();
 	}
 
+	$("#allTime").click(function(){
+		$("#availStartTm").val("00:00");
+		$("#availEndTm").val("24:00");
+	});
+
+	$(".availTime").change(function(){
+		if($("#allTime").prop("checked")){
+			$("#allTime").prop("checked", false);
+		}
+	});
+
+	$("#regCloseCd").change(function(){
+		var thisVal = $(this).val();
+		if(thisVal == "11"){
+			var $regDaySelect = $('<select/>', {id:"regOneDay",  class:'form-control'}).css({"width":"200px"});
+			for(var i=1; i<=31; i++){
+				var option = $('<option/>', {value:i, text:i+"일"});
+				$regDaySelect.append(option);
+			}
+			$("#regHolidayForm").append($regDaySelect);
+		}else{
+			$("#regOneDay").remove();
+		}
+
+		if(thisVal != "1" && thisVal != "10"){
+
+		}
+	})
 });
 
 

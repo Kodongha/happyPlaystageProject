@@ -1,6 +1,7 @@
 package com.kh.hp.myPage.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -33,10 +34,25 @@ public class SearchApplyInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("들어옴");
 		int userInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
 		int rentSeq = Integer.parseInt(request.getParameter("rentSeq"));
+		String hallNm = request.getParameter("hallNm");
+		String useDt = request.getParameter("cusClosedate");
+		Date useStart = null;
+		Date useEnd = null;
+
+		/*캘린더 설정*/
+		if(useDt != null && !useDt.equals("")) {
+			String[] temp = useDt.split(" to ");
+			useStart = Date.valueOf(temp[0]);
+			useEnd = Date.valueOf(temp[1]);
+		}
 		
 		System.out.println("rentSeq : " + rentSeq);
+		System.out.println("hallNm : " + hallNm);
+		System.out.println("useStart : " + useStart);
+		System.out.println("useEnd : " + useEnd);
 		
 		int currentPage;		//현재 페이지를 표시할 변수
 		int limit;				//한 페이지에 보여질 게시물 수
@@ -69,7 +85,7 @@ public class SearchApplyInfoServlet extends HttpServlet {
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
 	
-		ArrayList<AhnApplyInfoVO> list = new AhnMyPageService().searchCheck(userInfo, rentSeq, currentPage, limit);
+		ArrayList<AhnApplyInfoVO> list = new AhnMyPageService().searchApplyCheck(userInfo, rentSeq, hallNm, useStart, useEnd, currentPage, limit);
 		
 		String page = "";
 		

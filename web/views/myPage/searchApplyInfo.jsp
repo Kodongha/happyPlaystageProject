@@ -52,7 +52,7 @@
 		</tr>
 		<tr>
 			<td><input type="text" name="rentSeq"></td>
-			<td><input type="text" name="hallNm"></td>
+			<td><input type="text" id="hallNm"></td>
 			<td>
 			<input name="cusClosedate" id="cusClosedate" name="useDt">
 			</td>

@@ -85,15 +85,24 @@ public class SetRegPermissions extends HttpServlet {
 
 		//대관사용내역리스트 
 		ArrayList<SetRegPermissionsVO> SetRegPermissionsVOList = new SetRegPermissionsService().SetRegPermissionsList(currentPage, limit);
+	
+		
+		String page = "";
 
+		if(SetRegPermissionsVOList != null) {
+			
+			request.setAttribute("SetRegPermissionsVOList", SetRegPermissionsVOList);
+			request.setAttribute("pi", pi);
 
+			page = "views/admin/03_authorize.jsp";
 
+		} else {
+			page = "views/main/main.jsp";
 
+		}
 
-
-
-
-	}
+		request.getRequestDispatcher(page).forward(request, response);				
+}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

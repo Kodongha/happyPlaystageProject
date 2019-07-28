@@ -70,6 +70,7 @@ public class UseHistoryDao {
 				useHistoryVO.setRentSeq(rset.getInt("RENT_SEQ"));
 				useHistoryVO.setUserSeq(rset.getInt("USER_SEQ"));
 				useHistoryVO.setHallNm(rset.getString("HALL_NM"));
+				useHistoryVO.setGetpropStatus(rset.getString("PROP_STATUS"));
 				useHistoryVO.setCompNm(rset.getString("COMP_NM"));
 				useHistoryVO.setUseStartDt(rset.getDate("USE_START_DT"));
 				useHistoryVO.setUseEndDt(rset.getDate("USE_END_DT"));

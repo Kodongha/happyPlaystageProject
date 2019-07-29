@@ -54,7 +54,7 @@
 	          <li><a href="<%=request.getContextPath() %>/views/admin/08_calculate.jsp">매출 정산</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/admin/09_refund.jsp">환불 정산</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/admin/10_noticeWirte.jsp">공지사항 등록</a></li>
-	          <li><a href="<%=request.getContextPath() %>/views/admin/11_1vs1.jsp">1:1 문의 관리</a></li>
+	          <li><a href="<%=request.getContextPath() %>/moveRealTimeAdmin.ad">1:1 문의 관리</a></li>
 	        </ul>
 	      </li>
 		<%} %>

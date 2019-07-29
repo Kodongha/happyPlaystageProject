@@ -12,11 +12,10 @@
 <script type="text/javascript">
 
 	function getConnection(){
-		ws = new WebSocket("ws://localhost:8001" + '<%=request.getContextPath()%>/serverStart');
+		ws = new WebSocket("ws://localhost:8001" + '<%=request.getContextPath()%>/serverStart?userSeq=<%=((UserVO) request.getSession().getAttribute("user")).getUserSeq() %>');
 		//서버 시작할 때 동작
 		ws.onopen = function(event){
-			var sendText = <%=((UserVO) request.getSession().getAttribute("user")).getUserSeq() %>;
-			ws.send(sendText);
+			onopen(event);
 		}
 
 		//서버로부터 메세지를 전달 받을 때 동작하는 메소드
@@ -31,6 +30,10 @@
 		function onClose(event){
 			alert(event);
 		}
+	}
+
+	function onopen(event){
+
 	}
 
 	// 메시지 왔을 때
@@ -52,10 +55,10 @@
 			var sendInput = $("#sendInput");
 			var txaVal = $("#txa").val();
 
-			sendMessage = txaVal + "\r\n" + sendInput.val();
-			$("#txa").val(sendMessage);
-
-			ws.send(sendInput.val());
+			var sendMessage = '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + '§§' + sendInput.val();
+			ws.send(sendMessage);
+			setMessage = txaVal + "\r\n" + '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + '§§' + sendInput.val();
+			$("#txa").val(setMessage);
 			sendInput.val("");
 		});
 
@@ -64,15 +67,13 @@
 				var sendInput = $("#sendInput");
 				var txaVal = $("#txa").val();
 
-				sendMessage = txaVal + "\r\n" + sendInput.val();
-				$("#txa").val(sendMessage);
-
-				ws.send(sendInput.val());
+				var sendMessage = '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + '§§' + sendInput.val();
+				ws.send(sendMessage);
+				setMessage = txaVal + "\r\n" + '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + '§§' + sendInput.val();
+				$("#txa").val(setMessage);
 				sendInput.val("");
 			}
 		});
-
-
 	});
 
 </script>

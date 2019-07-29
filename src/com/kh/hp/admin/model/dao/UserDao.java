@@ -1,5 +1,7 @@
 package com.kh.hp.admin.model.dao;
 
+import static com.kh.hp.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,11 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.kh.hp.account.model.vo.UserVO;
 import com.kh.hp.admin.model.vo.User;
-import com.kh.hp.myPage.model.vo.AhnUsingInfoVO;
-
-import static com.kh.hp.common.JDBCTemplate.*;
 public class UserDao {
 
 	Properties prop = new Properties();
@@ -55,7 +53,7 @@ public class UserDao {
 				u.setUserNm(rset.getString("USER_NICK"));
 				u.setUserNick(rset.getString("USER_NICK"));
 				u.setUserPhone(rset.getString("USER_PHONE"));
-				u.setUserGradeCd(rset.getInt("USER_GRADE_CO"));				
+				u.setUserGradeCd(rset.getInt("USER_GRADE_CO"));
 				u.setEnrollDt(rset.getDate("ENROLL_DT"));
 				u.setSnsCd(rset.getInt("SNS_CD"));
 				u.setLeaveTf(rset.getString("LEAVE_TF").charAt(0));
@@ -130,8 +128,8 @@ public class UserDao {
 
 			while(rset.next()) {
 				User user = new User();
-				
-			
+
+
 				user.setUserSeq(rset.getInt("USER_SEQ"));
 				user.setUserEmail(rset.getString("USER_EMAIL"));
 				user.setUserNm(rset.getString("USER_NM"));
@@ -142,14 +140,14 @@ public class UserDao {
 				user.setLeaveTf(rset.getString("LEAVE_TF").charAt(0));
 				user.setLeaveDt(rset.getDate("LEAVE_DT"));
 				user.setUserGradeCd(rset.getInt("USER_GRADE_CD"));
-				
-			
-				
-				
+
+
+
+
 
 				list.add(user);
 				System.out.println("리스트를 보여죵");
-				
+
 				System.out.println(user);
 
 			}
@@ -162,27 +160,27 @@ public class UserDao {
 		return list;
 	}
 
-	
+
 	//회원 조회용 메소드
 	public User selectOne(Connection con, int userSeq) {
-		
+
 	System.err.println("selectone dao까지 왔나요????");
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		User oneUser = null;
-		
+
 		String query = prop.getProperty("selectOne");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, userSeq);
-			
+
 			rset = pstmt.executeQuery();
-			
+
 			if(rset.next()) {
 				oneUser = new User();
-				
+
 				oneUser.setUserSeq(rset.getInt("USER_SEQ"));
 				oneUser.setUserEmail(rset.getString("USER_EMAIL"));
 				oneUser.setUserNm(rset.getString("USER_NM"));
@@ -192,29 +190,29 @@ public class UserDao {
 				oneUser.setSnsCd(rset.getInt("SNS_CD"));
 				oneUser.setLeaveTf(rset.getString("LEAVE_TF").charAt(0));
 				oneUser.setLeaveDt(rset.getDate("LEAVE_DT"));
-				oneUser.setUserGradeCd(rset.getInt("USER_GRADE_CD"));	
-				
+				oneUser.setUserGradeCd(rset.getInt("USER_GRADE_CD"));
+
 			}
-			
-			
+
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			close(pstmt);
 			close(rset);
 		}
-		
+
 		return oneUser;
 	}
 
-	
-	
-	
 
-	
-	
-	
-	
+
+
+
+
+
+
+
 
 }
 

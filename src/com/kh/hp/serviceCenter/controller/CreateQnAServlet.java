@@ -1,6 +1,7 @@
 package com.kh.hp.serviceCenter.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,16 +12,16 @@ import com.kh.hp.account.model.vo.UserVO;
 import com.kh.hp.serviceCenter.model.service.ServiceCenterService;
 
 /**
- * Servlet implementation class MoveRealtimeQnA
+ * Servlet implementation class CreateQnAServlet
  */
-@WebServlet("/moveRealtimeQnA.sc")
-public class MoveRealtimeQnA extends HttpServlet {
+@WebServlet("/createQna.sc")
+public class CreateQnAServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MoveRealtimeQnA() {
+    public CreateQnAServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +33,10 @@ public class MoveRealtimeQnA extends HttpServlet {
 		// TODO Auto-generated method stub
 		int userSeq = ((UserVO)request.getSession().getAttribute("user")).getUserSeq();
 
-		int result = new ServiceCenterService().selectHaveRoom(userSeq);
+		int result = new ServiceCenterService().createQnARoom(userSeq);
 
-		String page = "";
 		if(result > 0) {
-			response.sendRedirect("views/serviceCenter/realTimeQnA.jsp");
-		} else {
-			page = "views/serviceCenter/realTimeCreateForm.jsp";
-			request.getRequestDispatcher(page).forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/moveRealtimeQnA.sc");
 		}
 	}
 

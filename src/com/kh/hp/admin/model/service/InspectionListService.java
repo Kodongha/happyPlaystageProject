@@ -13,7 +13,7 @@ import com.kh.hp.admin.model.vo.InspectionListVO;
 import com.kh.hp.admin.model.vo.SetRegPermissionsVO;
 
 public class InspectionListService {
-	
+
 	public int getListCount() {
 		Connection con = getConnection();
 
@@ -26,25 +26,25 @@ public class InspectionListService {
 
 	//대관등록검수
 	public ArrayList<InspectionListVO> InspectionList(int currentPage, int limit) {
-	
+
 		System.out.println("대관등록검수 서비스까지 왔나요?");
-		
-		
-Connection con = getConnection();
-		
+
+
+		Connection con = getConnection();
+
 		ArrayList<InspectionListVO> InspectionListVOList = new InspectionListVOListDao().InspectionList(con,currentPage, limit);
 
 		close(con);
 
 		return InspectionListVOList;
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
+
 	}
 
 }

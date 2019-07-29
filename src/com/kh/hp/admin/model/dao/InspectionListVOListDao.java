@@ -70,6 +70,7 @@ public class InspectionListVOListDao {
 				inspectionListVO.setOriginNm(rset.getString("ORIGIN_NM"));
 				inspectionListVO.setInspTf(rset.getString("INSP_TF").charAt(0));
 				inspectionListVO.setRentEnrollStatus(rset.getString("RENT_ENROLL_STATUS"));
+		
 
 				InspectionListVOList.add(inspectionListVO);
 

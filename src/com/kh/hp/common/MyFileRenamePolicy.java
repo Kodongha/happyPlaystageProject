@@ -47,7 +47,9 @@ public class MyFileRenamePolicy implements FileRenamePolicy{
 		} else {
 			fileName = ft.format(new Date(currentTime)) + "_" + randomNumber + ext;
 		}
+
 		System.out.println("fileName::" + fileName);
+
 		File newFile = new File(oldFile.getParent(), fileName);
 
 		return newFile;

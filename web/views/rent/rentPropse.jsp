@@ -70,6 +70,9 @@
 		});
 		$("#perfPlanCerInputDiv").hide();
 
+		$("#cancleBtn").click(function(){
+			location.href = "<%=request.getContextPath()%>/MoveRentDetail.rt?rentSeq=<%=rentBasicVO.getRentSeq()%>";
+		});
 	});
 </script>
 
@@ -131,6 +134,7 @@
 			<input type="hidden" name="propHeadCount" id="propHeadCount" value="<%=rentPropVO.getPropHeadCount() %>">
 			<input type="hidden" name="useStartDt" id="useStartDt" value="<%=rentPropVO.getUseStartDt() %>">
 			<input type="hidden" name="useEndDt" id="useEndDt" value="<%=rentPropVO.getUseEndDt() %>">
+			<input type="hidden" name="rentSeq" id="rentSeq" value="<%=rentBasicVO.getRentSeq() %>">
 
 	 		<div class="container" style="padding-top: 5%">
 			<h2>예약자 정보</h2>
@@ -173,7 +177,7 @@
 			</div>
 		</div>
 		<div id="perfPlanCerInputDiv">
-			<input type="file" id="perfPlanCerInput">
+			<input type="file" id="perfPlanCerInput" name="perfPlanCerInput">
 		</div>
 
 

@@ -245,7 +245,7 @@ public class RentDao {
 			pstmt.setInt(1, rentSeq);
 			pstmt.setString(2, rentDetVO.getDetAddress());
 			pstmt.setInt(3, rentDetVO.getMaxHeadCount());
-			pstmt.setInt(4, 500000);
+			pstmt.setInt(4, rentDetVO.getRentPrice());
 			/*pstmt.setInt(4, rentDetVO.getRentPrice());*/
 
 			result = pstmt.executeUpdate();
@@ -933,6 +933,86 @@ public class RentDao {
 		}
 
 		return rentDetFacVOList;
+	}
+
+	public int insertPorp(Connection con, RentPropVO rentPropVO) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertPorp");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, rentPropVO.getRentSeq());
+			pstmt.setInt(2, rentPropVO.getUserSeq());
+			pstmt.setString(3, rentPropVO.getPropNm());
+			pstmt.setString(4, rentPropVO.getPropPhone());
+			pstmt.setString(5, rentPropVO.getPropEmail());
+			pstmt.setString(6, rentPropVO.getPropReqContent());
+			pstmt.setDate(7, rentPropVO.getUseStartDt());
+			pstmt.setDate(8, rentPropVO.getUseEndDt());
+			pstmt.setInt(9, rentPropVO.getUseStartTm());
+			pstmt.setInt(10, rentPropVO.getUseEndTm());
+			pstmt.setInt(11, rentPropVO.getPayAmount());
+			pstmt.setInt(12, rentPropVO.getPropHeadCount());
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int insertPropAttachment(Connection con, int propSeq, AttachmentVO attachmentVO) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertPropAttachment");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, attachmentVO.getOriginNm());
+			pstmt.setString(2, attachmentVO.getChangeNm());
+			pstmt.setString(3, attachmentVO.getFilePath());
+			pstmt.setInt(4, propSeq);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	public int selectPropCurrval(Connection con) {
+		// TODO Auto-generated method stub
+		Statement stmt = null;
+		ResultSet rset = null;
+		int currval = 0;
+
+		String query = prop.getProperty("selectPorpSeqCurrval");
+
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			if(rset.next()) {
+				currval = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return currval;
 	}
 
 }

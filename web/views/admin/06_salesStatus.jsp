@@ -4,23 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
-
-
 <title>Insert title here</title>
-
-
 <style>
 #center {
 	/* 	border: 1px solid black; */
 	width: 1300px;
-	height: 800px;
+	height: 450px;
 	margin: auto;
 }
 
@@ -103,7 +97,8 @@ margin-top:30px;
 
 </head>
 <body>
-<jsp:include page="/views/common/header.jsp" />
+	<jsp:include page="/views/common/header.jsp" />
+
 	<div id="center" class="fram">
 		<!-- 타이틀 -->
 		<h2 id="text1">
@@ -112,26 +107,23 @@ margin-top:30px;
 		</h2>
 		<!-- 회원관리내역과 검색창 사이의 선 -->
 		<div id="line"></div>
-		<br> <label id="salesStatus">매출기간:</label>
 		<!--검색영역 -->
 		<div id="search">
 
 			<div id="users1">
 				<label id="userno">매출기간</label>
 				<div id="input">
-					<input class="form-control" id="ex1" type="text"
-						style="width: 100px;">
+					<input class="form-control" id="ex1" type="text" style="width: 100px;">
 				</div>
 				<div id="wave">~</div>
 				<div id="input1">
-					<input class="form-control" id="ex1" type="text"
-						style="width: 100px;">
+					<input class="form-control" id="ex1" type="text" style="width: 100px;">
 				</div>
 			</div>
 			<button type="button" class="btn btn-warning" id="searchbutton">검색</button>
 		</div>
-		
-		 <label id="unit">(단위:만원)</label>
+		<label id="unit">(단위:만원)</label>
+
 		<div class="container">
 			<table class="table table-bordered">
 				<thead>
@@ -201,46 +193,32 @@ margin-top:30px;
 				</tbody>
 			</table>
 		</div>
-		
-		<!-- 그래프 들어갈 자리 -->	
-	<div style="width:800px">
-    <canvas id="myChart"></canvas>
-</div>
+	</div>
+	<!-- 그래프 들어갈 자리 -->
+	<div class="container">
+		<canvas id="myChart"></canvas>
+	</div>
 
-<script>
-var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
+	<script>
+	var ctx = document.getElementById('myChart').getContext('2d');
+	var chart = new Chart(ctx, {
+	    // The type of chart we want to create
+	    type: 'line',
+	    // The data for our dataset
+	    data: {
+	        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+	        datasets: [{
+	            label: 'My First dataset',
+	            backgroundColor: 'rgb(255, 99, 132)',
+	            borderColor: 'rgb(255, 99, 132)',
+	            data: [0, 10, 5, 2, 20, 30, 45]
+	        }]
+	    },
+	    // Configuration options go here
+	    options: {}
+	});
+	</script>
 
-    // The data for our dataset
-    data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45]
-        }]
-    },
-
-    // Configuration options go here
-    options: {}
-});
-</script>	
-
-
-
-
-
-
-
-
-
-
-
-
-
-<jsp:include page="/views/common/footer.jsp" />
+	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

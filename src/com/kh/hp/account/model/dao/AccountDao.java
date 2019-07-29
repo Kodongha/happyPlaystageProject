@@ -71,4 +71,123 @@ public class AccountDao {
 		return responseUserVO;
 	}
 
+	/**
+	 * 이메일 인증
+	 * @param con
+	 * @param sessionId
+	 * @param authNumber
+	 * @return
+	 */
+	public int selectAuth(Connection con, String sessionId, String authNumber) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+
+		String query = prop.getProperty("selectAuth");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, sessionId);
+			pstmt.setString(2, authNumber);
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	/**
+	 * 아이디 확인
+	 * @param con
+	 * @param receiver
+	 * @return
+	 */
+	public int checkId(Connection con, String receiver) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+
+		String query = prop.getProperty("checkId");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, receiver);
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	/**
+	 * 패스워드 업데이트
+	 * @param con
+	 * @param email
+	 * @param newPwd
+	 * @return
+	 */
+	public int updateUserPwd(Connection con, int userSeq, String newPwd) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("updateUserPwd");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, newPwd);
+			pstmt.setInt(2, userSeq);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int insertLog(Connection con, int userSeq, String newPwd) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertLog");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userSeq);
+			pstmt.setString(2, newPwd);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+
+		return result;
+	}
+
 }

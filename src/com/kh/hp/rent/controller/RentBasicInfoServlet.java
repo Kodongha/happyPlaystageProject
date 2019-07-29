@@ -138,6 +138,7 @@ public class RentBasicInfoServlet extends HttpServlet {
 			int regCloseCd = Integer.parseInt(multipartRequest.getParameter("regCloseCd"));
 			String selectedDetFacIcon = multipartRequest.getParameter("selectedDetFacIcon");
 			String cusCloseNm = multipartRequest.getParameter("cusCloseNm");
+			int rentPrice = Integer.parseInt(multipartRequest.getParameter("rentPrice"));
 
 			String cusClosedate = multipartRequest.getParameter("cusClosedate");
 			Date cusCloseStart = null;
@@ -251,6 +252,7 @@ public class RentBasicInfoServlet extends HttpServlet {
 			for(int i=0; i<detAddressArray.length; i++) {
 				RentDetVO rentDetVO = new RentDetVO();
 				rentDetVO.setDetAddress(detAddressArray[i]);
+				rentDetVO.setRentPrice(rentPrice);
 				rentDetVO.setMaxHeadCount(maxHeadCount);
 				rentDetVOList.add(rentDetVO);
 			}

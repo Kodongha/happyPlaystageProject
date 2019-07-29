@@ -1,3 +1,5 @@
+<%@page import="com.kh.hp.rent.model.vo.AttachmentVO"%>
+<%@page import="com.kh.hp.rent.model.vo.CautionsVO"%>
 <%@page import="java.util.Map"%>
 <%@page import="com.kh.hp.rent.model.vo.RentDetVO"%>
 <%@page import="com.kh.hp.rent.model.vo.FacInfoVO"%>
@@ -41,11 +43,14 @@
 
 <!-- 외부 JS/CSS -->
 <link rel="stylesheet" href="/happyPlaystage/css/rent/rentEnroll.css">
-<script src="/happyPlaystage/js/rent/rentEnroll.js"></script>
+<script src="/happyPlaystage/js/modifyRentInfo/modifyEnroll.js"></script>
+<!-- <script src="/happyPlaystage/js/rent/rentEnroll.js"></script> -->
 <%
 	Map<String, Object> rentInfo = (Map<String, Object>) request.getAttribute("rentInfo");
 	RentBasicVO rentBasicVO = (RentBasicVO) rentInfo.get("rentBasicVO");
 	ArrayList<FacInfoVO> facInfoVOList = (ArrayList<FacInfoVO>) rentInfo.get("facInfoVOList");
+	ArrayList<CautionsVO> cautionsVOList = (ArrayList<CautionsVO>) rentInfo.get("cautionsVOList");
+	ArrayList<AttachmentVO> attachmentVOList = (ArrayList<AttachmentVO>) rentInfo.get("attachmentVOList");
 %>
 <script>
 	$(function(){
@@ -57,17 +62,9 @@
 	});
 </script>
 
-	<% for(int i=0; i<facInfoVOList.size(); i++) {
-		System.out.println(facInfoVOList.get(i).getFacInfoContent()); %>
-		<script>
-
-		</script>
-	<%  } %>
-
 </head>
 <body>
 <jsp:include page="/views/common/header.jsp" />
-1234
 	<div class="container">
 		<div class="row">
 			<section>

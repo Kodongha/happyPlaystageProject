@@ -70,8 +70,8 @@ $(function(){
 		console.log("cautionContentAddBtn");
 		console.log("coutionSeq::"+coutionSeq);
 
-		var facInfoContent = $.trim($("#cautionContent").val())
-		if(facInfoContent != "" && facInfoContent != null && coutionSeq < 5){
+		var cautionContent = $.trim($("#cautionContent").val())
+		if(cautionContent != "" && cautionContent != null && coutionSeq < 5){
 			coutionSeq++;
 			$("#cautionContent").clone(true).attr({"name" : "cautionContentReq", "id" : "cautionContent"+coutionSeq, "value" : $("cautionContent").val(), "readonly" : "true"}).appendTo($(".caution"));
 			$("#cautionContent").val("");

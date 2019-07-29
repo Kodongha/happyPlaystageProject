@@ -12,6 +12,15 @@ import com.kh.hp.myPage.model.vo.AhnLevelupInfoVO;
 import com.kh.hp.myPage.model.vo.AhnLevelupVO;
 import com.kh.hp.myPage.model.vo.AhnMyPageVO;
 import com.kh.hp.myPage.model.vo.AhnUsingInfoVO;
+import com.kh.hp.rent.model.dao.RentDao;
+import com.kh.hp.rent.model.vo.CautionsVO;
+import com.kh.hp.rent.model.vo.FacInfoVO;
+import com.kh.hp.rent.model.vo.RentBasicVO;
+import com.kh.hp.rent.model.vo.RentCloseVO;
+import com.kh.hp.rent.model.vo.RentDetVO;
+import com.kh.hp.rent.model.vo.RentImgVO;
+import com.kh.hp.rent.model.vo.RentPropVO;
+import com.kh.hp.rent.model.vo.RentRefundTypeVO;
 
 import static com.kh.hp.common.JDBCTemplate.*;
 
@@ -270,6 +279,108 @@ public class AhnMyPageService {
 		}else if(rentSeq1 == null && hallNm == null && useStart == null && useEnd == null) {
 			System.out.println("ooooin8");
 			list = new AhnMyPageDao().searchApplyCheck8(con, userInfo, currentPage, limit);
+			
+		}
+		
+		close(con);
+		
+		System.out.println("service list : " + list);
+		
+		return list;
+	}
+
+	public static ArrayList<Object> selectRentOne(int rentSeq) {
+		Connection con = getConnection();
+
+		ArrayList<Object> rentInfos = new ArrayList<Object>();
+		RentDao rentDao = new RentDao();
+
+		// 대관 기본 정보
+		RentBasicVO rentBasicVO = rentDao.selectRentBasicOne(con, rentSeq);
+		System.out.println("rentBasicVO::" + rentBasicVO);
+
+		// 주의사항 정보
+		ArrayList<CautionsVO> cautionsVOList = rentDao.selectRentCautionsList(con, rentSeq);
+		System.out.println(cautionsVOList);
+
+		// 시설 안내 정보
+		ArrayList<FacInfoVO> facInfoVOList = rentDao.selectRentFacInfoList(con, rentSeq);
+		System.out.println(facInfoVOList);
+
+		// 이미지 정보
+		ArrayList<RentImgVO> rentImgVOList = rentDao.selectRentImg(con, rentSeq);
+		System.out.println(rentImgVOList);
+
+		// 상세 대관 정보
+		ArrayList<RentDetVO> rentDetVOList = rentDao.selectRentDet(con, rentSeq);
+		System.out.println(rentDetVOList);
+
+		// 휴무 정보
+		ArrayList<RentCloseVO> rentCloseVOList = rentDao.selectRentCloseList(con, rentSeq);
+		System.out.println(rentCloseVOList);
+
+		// 환불 정보
+		ArrayList<RentRefundTypeVO> rentRefundTypeVOList = rentDao.selectRentRefundType(con, rentSeq);
+		System.out.println(rentRefundTypeVOList);
+
+		// 예약 정보
+		ArrayList<RentPropVO> rentPropVOList = rentDao.selectRentProp(con, rentSeq);
+		System.out.println(rentPropVOList);
+
+		rentInfos.add(rentBasicVO);
+		rentInfos.add(cautionsVOList);
+		rentInfos.add(facInfoVOList);
+		rentInfos.add(rentImgVOList);
+		rentInfos.add(rentDetVOList);
+		rentInfos.add(rentCloseVOList);
+		rentInfos.add(rentRefundTypeVOList);
+		rentInfos.add(rentPropVOList);
+
+		close(con);
+		
+		System.out.println("rentInfos : " + rentInfos);
+		
+		return rentInfos;
+	}
+
+	public ArrayList<AhnUsingInfoVO> searchUsingDetail(int userInfo, int rentSeq, String hallNm, Date useStart, Date useEnd) {
+		Connection con = getConnection();
+		System.out.println("service in!!");
+		ArrayList<AhnUsingInfoVO> list = null;
+		
+		String rentSeq1 = String.valueOf(rentSeq);
+		
+		if(rentSeq1 != null && hallNm != null && useStart != null && useEnd != null) {
+			System.out.println("ooooin1");
+			list = new AhnMyPageDao().searchUsingDetail1(con, userInfo, rentSeq, hallNm, useStart, useEnd);
+		
+		}else if(rentSeq1 == null && hallNm != null && useStart != null && useEnd != null) {
+			System.out.println("ooooin2");
+			list = new AhnMyPageDao().searchUsingDetail2(con, userInfo, hallNm, useStart, useEnd);
+			
+		}else if(rentSeq1 != null && hallNm == null && useStart != null && useEnd != null) {
+			System.out.println("ooooin3");
+			list = new AhnMyPageDao().searchUsingDetail3(con, userInfo, rentSeq, useStart, useEnd);
+			
+		}else if(rentSeq1 != null && hallNm != null && useStart == null && useEnd == null) {
+			System.out.println("ooooin4");
+			list = new AhnMyPageDao().searchUsingDetail4(con, userInfo, rentSeq, hallNm);
+			
+		}else if(rentSeq1 != null && hallNm == null && useStart == null && useEnd == null) {
+			System.out.println("ooooin5");
+			list = new AhnMyPageDao().searchUsingDetail5(con, userInfo, rentSeq);
+			
+		}else if(rentSeq1 == null && hallNm != null && useStart == null && useEnd == null) {
+			System.out.println("ooooin6");
+			list = new AhnMyPageDao().searchUsingDetail6(con, userInfo, hallNm);
+			
+		}else if(rentSeq1 == null && hallNm == null && useStart != null && useEnd != null) {
+			System.out.println("ooooin7");
+			list = new AhnMyPageDao().searchUsingDetail7(con, userInfo, useStart, useEnd);
+			
+		}else if(rentSeq1 == null && hallNm == null && useStart == null && useEnd == null) {
+			System.out.println("ooooin8");
+			list = new AhnMyPageDao().searchUsingDetail8(con, userInfo);
 			
 		}
 		

@@ -1,3 +1,5 @@
+<%@page import="java.util.Map"%>
+<%@page import="com.kh.hp.rent.model.vo.RentDetVO"%>
 <%@page import="com.kh.hp.rent.model.vo.FacInfoVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
@@ -41,9 +43,9 @@
 <link rel="stylesheet" href="/happyPlaystage/css/rent/rentEnroll.css">
 <script src="/happyPlaystage/js/rent/rentEnroll.js"></script>
 <%
-	ArrayList<Object> rentInfo = (ArrayList<Object>) request.getAttribute("rentInfo");
-	RentBasicVO rentBasicVO = (RentBasicVO) rentInfo.get(0);
-	FacInfoVO facInfoVO = (FacInfoVO) rentInfo.get(1);
+	Map<String, Object> rentInfo = (Map<String, Object>) request.getAttribute("rentInfo");
+	RentBasicVO rentBasicVO = (RentBasicVO) rentInfo.get("rentBasicVO");
+	ArrayList<FacInfoVO> facInfoVOList = (ArrayList<FacInfoVO>) rentInfo.get("facInfoVOList");
 %>
 <script>
 	$(function(){
@@ -54,6 +56,13 @@
 		$("#address").val('<%=rentBasicVO.getAddress()%>');
 	});
 </script>
+
+	<% for(int i=0; i<facInfoVOList.size(); i++) {
+		System.out.println(facInfoVOList.get(i).getFacInfoContent()); %>
+		<script>
+
+		</script>
+	<%  } %>
 
 </head>
 <body>
@@ -114,7 +123,7 @@
 
 						<!-- step1 -->
 						<div class="tab-pane active" role="tabpanel" id="step1">
-							<%@include file="step1.jsp" %>
+ 							<%@include file="step1.jsp" %>
 						</div>
 	           <!-- </form> -->
 						<!-- Step2 -->

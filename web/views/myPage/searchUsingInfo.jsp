@@ -40,8 +40,8 @@
 </head>
 <body>
 <jsp:include page="/views/common/header.jsp" />
-	<h1 align=center style="color:gray">대관 신청 내역</h1>
-	<form action="<%=request.getContextPath() %>/searchApplyInfo" method="post">
+	<h1 align=center style="color:gray">대관 사용 내역</h1>
+	<form action="<%=request.getContextPath() %>/searchUsingInfo"  method="post">
 	<div class="tab1" style="width:650px;border:1.5px solid black">
 	<table align="center">
 		<tr>
@@ -78,7 +78,7 @@
 		<% for(int i = 0; i < list.size(); i++){
 			
 			%>
-			<tr>
+			<tr onclick="location.href='<%=request.getContextPath()%>/usingInfoDetail?rentSeq=<%=list.get(i).getRentSeq()%> && hallNm=<%=list.get(i).getHallNm()%> && useStart=<%=list.get(i).getUseStartDt()%> && useEnd=<%=list.get(i).getUseEndDt()%>'">
 			<td id="tab2"><%= list.get(i).getRentSeq() %></td>
 			<td id="tab2"><%= list.get(i).getCompNm() %></td>
 			<td id="tab2"><%= list.get(i).getUseStartDt() %> ~ <%= list.get(i).getUseEndDt() %></td>

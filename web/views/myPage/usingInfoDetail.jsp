@@ -11,9 +11,11 @@
 <%@page import="com.kh.hp.rent.model.vo.FacInfoVO"%>
 <%@page import="com.kh.hp.rent.model.vo.CautionsVO"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.hp.myPage.model.vo.*, java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	ArrayList<AhnUsingInfoVO> list = (ArrayList<AhnUsingInfoVO>)request.getAttribute("list");
 	ArrayList<Object> rentInfos = (ArrayList<Object>) request.getAttribute("rentInfos");
 	RentBasicVO rentBasicVO = (RentBasicVO) rentInfos.get(0);
 	ArrayList<CautionsVO> cautionsVOList = (ArrayList<CautionsVO>) rentInfos.get(1);
@@ -23,7 +25,9 @@
 	ArrayList<RentCloseVO> rentCloseVOList = (ArrayList<RentCloseVO>) rentInfos.get(5);
 	ArrayList<RentRefundTypeVO> rentRefundTypeVOList = (ArrayList<RentRefundTypeVO>) rentInfos.get(6);
 	ArrayList<RentPropVO> rentPropVOList = (ArrayList<RentPropVO>) rentInfos.get(7);
-
+	
+	 
+	
 	/* 데이터 가공 */
 	String detailIntro = rentBasicVO.getHallDetIntro().replace("\r\n", "<br>");
 
@@ -35,9 +39,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <!-- bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -50,29 +51,10 @@
 <link rel="stylesheet" href="/happyPlaystage/css/common/daterangepicker.min.css">
 <script type="text/javascript" src="/happyPlaystage/js/common/jquery.daterangepicker.min.js"></script>
 
-<style>
-div {
-		margin:auto;
-	}
-	
-	thead tr {
-    background-color: gray;
-  
-  } 
-  td {
-    border: 1px solid lightgray;
-  }
-  
-  label {
-  	margin-left:auto;
-  	margin-right:auto;
-  }
-  
-  tbody tr:nth-child(1) {
-    background-color: #b4b4b4;
-  }
-  
-  h1, h2 {
+<style type="text/css">
+
+
+	h1, h2 {
 		font-weight: bold;
 	}
 
@@ -106,6 +88,27 @@ div {
 	  width: auto;
 	  height: auto;
 	}
+	
+	div {
+		margin:auto;
+	}
+	
+	thead tr {
+    background-color: gray;
+  
+  } 
+  td {
+    border: 1px solid lightgray;
+  }
+  
+  label {
+  	margin-left:auto;
+  	margin-right:auto;
+  }
+  
+  tbody tr:nth-child(1) {
+    background-color: #b4b4b4;
+  }
 </style>
 
 <script type="text/javascript">
@@ -129,43 +132,35 @@ div {
 
 </head>
 <body>
-<jsp:include page="/views/common/header.jsp" />
-	<h1 align=center>대관 사용 내역 상세정보</h1>
-	
-	<hr>
-	<br>
-	
-	<div style="width:790px;">
-	
-	<table style="width:790px; height:113px; text-align:center; margin:auto; border-collapse: collapse;">
-		<tr>
-		<td>공연장명</td>
-		<td>이용시간</td>
-		<td>예약정보</td>
-		<td>정산정보</td>
-		<td>정산정보</td>
-		<td>상호명</td>
-		<td>대표자명</td>
-		</tr>
-		<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		</tr>
-	</table>
-	</div>
-	<br>
-	
-	<hr>
-	
+	<jsp:include page="/views/common/header.jsp" />
 	<div class="thumb-crop">
 		<img class="auto" src="<%=request.getContextPath() %>/images/profilePhotos/<%=rentImgVOList.get(0).getChangeNm() %>" alt="<%=rentImgVOList.get(0).getOriginNm() %>">
 	</div>
-
+	
+	<div>
+	<table style="width:790px; height:113px; text-align:center; margin:auto; border-collapse: collapse;">
+		<tr>
+		<td id="tab1">공연장 고유번호</td>
+		<td id="tab1">상호명</td>
+		<td id="tab1">사용일자</td>
+		<td id="tab1">사용공간 이름</td>
+		</tr>
+		<% for(int i = 0; i < list.size(); i++){
+			
+			%>
+			<tr>
+			<td id="tab2"><%= list.get(i).getRentSeq() %></td>
+			<td id="tab2"><%= list.get(i).getCompNm() %></td>
+			<td id="tab2"><%= list.get(i).getUseStartDt() %> ~ <%= list.get(i).getUseEndDt() %></td>
+			<td id="tab2"><%= list.get(i).getHallNm() %></td>
+			</tr>		
+		<% } %>
+		
+	</table>
+	</div>
+	
+	<hr>
+	
 	<div class="container" style="margin-top: 3%;">
 		<div class="form-group">
 			<h1><%=rentBasicVO.getHallNm() %></h1>
@@ -216,10 +211,84 @@ div {
 					</a>
 				</div>
 			</div>
-			.
+			
+			<div style="width:790px;">
+	
+			<div class="container" style="width: 30%; height:510px; background: white; float: right;">
+				
+				<div class="container-fluid" style="width:100%; padding: 3% 3% 3% 3%; margin-top: 5%">
+					
+					<form action="<%=request.getContextPath() %>/movePropose.rt" method="post" id="propForm" name="propForm" autocomplete="off">
+						<div>
+							<script type="text/javascript">
+								$('#schedule').dateRangePicker({
+									startDate: new Date(),
+									selectForward: true,
+									autoClose: true,
+									showDateFilter: function(time, date)
+									{
+										return '<div style="padding:0 5px;">\
+													<span style="font-weight:bold">'+date+'</span>\
+												</div>';
+									},
+									beforeShowDay: function(t)
+									{
+										/* var valid = !(t.getDay() == 0 || t.getDay() == 6);  //disable saturday and sunday */
+										var date = new Date('2019-07-28');
+										/* dateDiff(t, '2019-07-28') */
+
+										<%if(rentPropVOList.size() > 0){ %>
+										var valid = !(
+												<%
+												SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+												String strDate = "";
+												for(int i=0; i<rentPropVOList.size(); i++){
+													for(int j=0; j<rentPropVOList.get(i).getDiffDate()+1; j++){
+														Calendar cal = new GregorianCalendar();
+														cal.setTime(rentPropVOList.get(i).getUseStartDt());
+														cal.add(Calendar.DAY_OF_YEAR, j);%>
+													dateDiff(t, '<%=fm.format(cal.getTime())%>')
+													<%if(i == rentPropVOList.size() -1 && j == rentPropVOList.get(i).getDiffDate()){%>
+													<%} else {%>||<%}}}%>
+													);
+
+										<%} else {%>
+										valid = !('');
+										<%}%>
+
+										var _class = '';
+										var _tooltip = valid ? '' : 'sold out';
+										return [valid,_class,_tooltip];
+									}
+								});
+
+								function dateDiff(_date1, _date2) {
+								    var diffDate_1 = _date1 instanceof Date ? _date1 : new Date(_date1);
+								    var diffDate_2 = _date2 instanceof Date ? _date2 : new Date(_date2);
+
+								    diffDate_1 = new Date(diffDate_1.getFullYear(), diffDate_1.getMonth()+1, diffDate_1.getDate());
+								    diffDate_2 = new Date(diffDate_2.getFullYear(), diffDate_2.getMonth()+1, diffDate_2.getDate());
+
+								    var diff = Math.abs(diffDate_2.getTime() - diffDate_1.getTime());
+								    diff = Math.ceil(diff / (1000 * 3600 * 24));
+								    if(diff == 0){
+									    return true;
+								    } else {
+								    	return false;
+								    }
+								}
+							</script>
+						</div>
+						<input type="hidden" name="rentSeq" id="rentSeq" value="<%=rentBasicVO.getRentSeq() %>">
+					</form>
+				</div>
+			</div>
+
+
 			<!-- 극장 소개 -->
-			<h2 style="margin-top: 3%">극장 소개</h2>
-			<p class="form-control-static" style="width: 70%"><%=detailIntro %></p>
+			<div class="container" style="width: 70%; float: left">
+				<h2 style="margin-top: 3%">극장 소개</h2>
+				<p class="form-control-static" style="width: 70%"><%=detailIntro %></p>
 
 			<br><br>
 
@@ -367,8 +436,9 @@ div {
 
 		</div>
 	</div>
-	
-	
+</div>
+
+
 	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

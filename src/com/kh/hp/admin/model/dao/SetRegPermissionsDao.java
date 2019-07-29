@@ -1,5 +1,7 @@
 package com.kh.hp.admin.model.dao;
 
+import static com.kh.hp.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -74,14 +76,15 @@ public class SetRegPermissionsDao {
 				
 			}
 			
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
 		}
-
-
-
-
-		return null;
+		return SetRegPermissionsVOList;
 	}
 
 }

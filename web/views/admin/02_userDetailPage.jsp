@@ -19,9 +19,6 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	
-	
-	System.out.println("view::");
-	System.out.println(EnrollHistoryVOlist);
 %>
 
 
@@ -303,6 +300,7 @@ margin-top:-55px;
 									<th>상호명</th>
 									<th>사용일자</th>
 									<th>사용공간 이름</th>
+									<th>상태</th>
 								</tr>
 								<%
 									for (UseHistoryVO useHistory : UseHistoryVOlist) {
@@ -315,6 +313,7 @@ margin-top:-55px;
 									<th><%=useHistory.getCompNm()%></th>
 									<th><%=useHistory.getUseStartDt()%> ~ <%=useHistory.getUseEndDt() %></th>
 									<th><%=useHistory.getHallNm()%></th>
+									<th><%=useHistory.getGetpropStatus()%></th>
 								</tr>
 							</tbody>
 							<%

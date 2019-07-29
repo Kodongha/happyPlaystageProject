@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.hp.admin.model.vo.RealTimeVO;
 import com.kh.hp.serviceCenter.model.vo.FaQVO;
 import com.kh.hp.serviceCenter.model.vo.Notice;
 
@@ -509,6 +510,44 @@ public class ServiceCenterDao {
 		}
 
 		return adminUserSeqList;
+	}
+
+	public ArrayList<RealTimeVO> selectConversationList(Connection con, int userSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<RealTimeVO> realTimeVOList = null;
+
+		String query = prop.getProperty("selectConversationList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userSeq);
+
+			rset = pstmt.executeQuery();
+
+			realTimeVOList = new ArrayList<RealTimeVO>();
+			while(rset.next()) {
+				RealTimeVO realTimeVO = new RealTimeVO();
+				realTimeVO.setChatSeq(rset.getInt("CHAT_SEQ"));
+				realTimeVO.setRoomSeq(rset.getInt("ROOM_SEQ"));
+				realTimeVO.setRcvMsg(rset.getString("RCV_MSG"));
+				realTimeVO.setSendMsg(rset.getString("SEND_MSG"));
+				realTimeVO.setAdminNo(rset.getInt("ADMIN_NO"));
+				realTimeVO.setCharDate(rset.getDate("CHAR_DATE"));
+				realTimeVO.setUserNick(rset.getString("USER_NICK"));
+				realTimeVOList.add(realTimeVO);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return realTimeVOList;
 	}
 
 

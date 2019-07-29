@@ -24,7 +24,7 @@
 <script type="text/javascript">
 	$(function(){
 		$('button[name=searchbutton]').click(function(){
-			location.href = '<%=request.getContextPath() %>/?roomSeq=' + $(this).next().val();
+			location.href = '<%=request.getContextPath() %>/moveRealTimeAdminConversation.ad?roomSeq=' + $(this).next().val();
 		});
 	});
 </script>

@@ -1,6 +1,25 @@
+<%@page import="com.kh.hp.admin.model.vo.RealTimeVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.kh.hp.account.model.vo.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<RealTimeVO> realTimeVOs = (ArrayList<RealTimeVO>) request.getAttribute("realTimeVOs");
+	String textValue = "";
+	for(int i=0; i<realTimeVOs.size(); i++){
+
+		if(realTimeVOs.get(i).getRcvMsg() != null){
+			textValue += realTimeVOs.get(i).getUserNick() + ":" + realTimeVOs.get(i).getRcvMsg();
+		} else {
+			textValue += realTimeVOs.get(i).getSendMsg();
+		}
+
+		if(i != realTimeVOs.size() - 1){
+			textValue += "\r\n";
+		}
+	}
+	System.out.println("textValue::" + textValue);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,11 +62,13 @@
 
 		receivedMessage = txaVal + "\r\n" + event.data;
 		$("#txa").val(receivedMessage);
-
+		const top = $("#txa").prop('scrollHeight');
+		$("#txa").scrollTop(top);
 	}
 
 	$(function(){
-
+		const top = $("#txa").prop('scrollHeight');
+		$("#txa").scrollTop(top);
 		// connection 연결
 		getConnection();
 
@@ -57,9 +78,11 @@
 
 			var sendMessage = '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + '§§' + sendInput.val();
 			ws.send(sendMessage);
-			setMessage = txaVal + "\r\n" + '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + '§§' + sendInput.val();
+			setMessage = txaVal + "\r\n" + '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + ':' + sendInput.val();
 			$("#txa").val(setMessage);
 			sendInput.val("");
+			const top = $("#txa").prop('scrollHeight');
+			$("#txa").scrollTop(top);
 		});
 
 		$("#sendInput").keydown(function(key) {
@@ -67,11 +90,13 @@
 				var sendInput = $("#sendInput");
 				var txaVal = $("#txa").val();
 
-				var sendMessage = '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + '§§' + sendInput.val();
+				var sendMessage = '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + ':' + sendInput.val();
 				ws.send(sendMessage);
-				setMessage = txaVal + "\r\n" + '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + '§§' + sendInput.val();
+				setMessage = txaVal + "\r\n" + '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + ':' + sendInput.val();
 				$("#txa").val(setMessage);
 				sendInput.val("");
+				const top = $("#txa").prop('scrollHeight');
+				$("#txa").scrollTop(top);
 			}
 		});
 	});
@@ -82,7 +107,7 @@
 	<jsp:include page="/views/common/header.jsp" />
 
 	<div class="container">
-		<textarea rows="30" cols="50" id="txa"></textarea>
+		<textarea rows="30" cols="50" id="txa"><%=textValue%></textarea>
 		<br>
 		<input size="40" id="sendInput">
 		<button id="sendBtn">보내기</button>

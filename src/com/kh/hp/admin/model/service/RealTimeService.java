@@ -25,4 +25,15 @@ public class RealTimeService {
 		return realTimeVOs;
 	}
 
+	public ArrayList<RealTimeVO> selectConversationList(String roomSeq) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		ArrayList<RealTimeVO> realTimeVOList = new RealTimeDao().selectConversationList(con, roomSeq);
+
+		close(con);
+
+		return realTimeVOList;
+	}
+
 }

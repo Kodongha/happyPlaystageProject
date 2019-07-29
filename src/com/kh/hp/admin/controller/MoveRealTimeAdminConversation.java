@@ -1,4 +1,4 @@
-package com.kh.hp.serviceCenter.controller;
+package com.kh.hp.admin.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.hp.account.model.vo.UserVO;
+import com.kh.hp.admin.model.service.RealTimeService;
 import com.kh.hp.admin.model.vo.RealTimeVO;
-import com.kh.hp.serviceCenter.model.service.ServiceCenterService;
 
 /**
- * Servlet implementation class MoveRealtimeQnA
+ * Servlet implementation class MoveRealTimeAdminConversation
  */
-@WebServlet("/moveRealtimeQnA.sc")
-public class MoveRealtimeQnA extends HttpServlet {
+@WebServlet("/moveRealTimeAdminConversation.ad")
+public class MoveRealTimeAdminConversation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MoveRealtimeQnA() {
+    public MoveRealTimeAdminConversation() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,22 +32,17 @@ public class MoveRealtimeQnA extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int userSeq = ((UserVO)request.getSession().getAttribute("user")).getUserSeq();
-
-		int result = new ServiceCenterService().selectHaveRoom(userSeq);
+		String roomSeq = request.getParameter("roomSeq");
 
 		// 대화 내용 가져오기
-		ArrayList<RealTimeVO> realTimeVOs = new ServiceCenterService().selectConversationList(userSeq);
+		ArrayList<RealTimeVO> realTimeVOs = new RealTimeService().selectConversationList(roomSeq);
 
-		System.out.println("realTimeVOs::::::::::::::"+realTimeVOs);
-
-		String page = "";
-		if(result > 0) {
-			request.setAttribute("realTimeVOs", realTimeVOs);
-			page = "views/serviceCenter/realTimeQnA.jsp";
-		} else {
-			page = "views/serviceCenter/realTimeCreateForm.jsp";
+		for(RealTimeVO realTimeVO : realTimeVOs) {
+			System.out.println("moveRealTimeAdminConversation ::" + realTimeVO);
 		}
+
+		String page = "views/admin/12_1vs1answer.jsp";
+		request.setAttribute("realTimeVOs", realTimeVOs);
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 

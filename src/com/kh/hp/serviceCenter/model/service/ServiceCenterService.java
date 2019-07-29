@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import static com.kh.hp.common.JDBCTemplate.*;
 
+import com.kh.hp.admin.model.dao.RealTimeDao;
+import com.kh.hp.admin.model.vo.RealTimeVO;
 import com.kh.hp.serviceCenter.model.dao.ServiceCenterDao;
 import com.kh.hp.serviceCenter.model.vo.FaQVO;
 import com.kh.hp.serviceCenter.model.vo.Notice;
@@ -212,6 +214,17 @@ public class ServiceCenterService {
 		System.out.println("userGradeCd::" + userGradeCd);
 
 		return userGradeCd;
+	}
+
+	public ArrayList<RealTimeVO> selectConversationList(int userSeq) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		ArrayList<RealTimeVO> realTimeVOList = new ServiceCenterDao().selectConversationList(con, userSeq);
+
+		close(con);
+
+		return realTimeVOList;
 	}
 
 }

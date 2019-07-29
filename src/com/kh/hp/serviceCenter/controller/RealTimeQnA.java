@@ -29,7 +29,9 @@ public class RealTimeQnA {
 	@OnOpen
 	public void onOpen(Session session) {
 		String queryString = session.getQueryString();
-		String userSeq = queryString.split("=")[1];
+		String [] tempStr1 = queryString.split("&");
+		// userSeq
+		String userSeq = tempStr1[0].split("=")[1];
 
 		clients.put(userSeq, session);
 		System.out.println("clients.size()::" + clients.size());
@@ -44,17 +46,33 @@ public class RealTimeQnA {
 	@OnMessage
 	public void onMessage(String msg, Session session) throws IOException {
 		String queryString = session.getQueryString();
-		String userSeq = queryString.split("=")[1];
-
-		System.out.println("userSeq::" + userSeq);
+		System.out.println("queryString::" + queryString);
 		System.out.println("msg::" + msg);
 
+		String [] tempStr1 = queryString.split("&");
+
+		// userSeq
+		String userSeq = tempStr1[0].split("=")[1];
+		System.out.println("userSeq::" + userSeq);
+
+		// roomSeq
+		if(tempStr1.length > 1) {
+			String roomSeq = tempStr1[1].split("=")[1];
+			System.out.println("roomSeq::" + roomSeq);
+		}
+
 		String[] temp = msg.split("§§");
+
+		System.out.println("temp.length::::" + temp.length);
+
 		String userNick = temp[0];
 		String sendMsg = "";
 		if(temp.length > 1) {
 			sendMsg = temp[1];
 		}
+
+		System.out.println("userNick::" + userNick);
+		System.out.println("sendMsg::" + sendMsg);
 
 		// 관리자 번호를 가진 회원번호 가져오기
 		ArrayList<Integer> adminUserSeqList = new ServiceCenterService().selectAdminUserSeqList();
@@ -100,7 +118,10 @@ public class RealTimeQnA {
 	@OnClose
 	public void onClose(Session session) {
 		String queryString = session.getQueryString();
-		String userSeq = queryString.split("=")[1];
+		String [] tempStr1 = queryString.split("&");
+		// userSeq
+		String userSeq = tempStr1[0].split("=")[1];
+
 
 		clients.remove(userSeq);
 	}

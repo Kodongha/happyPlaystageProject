@@ -1,123 +1,122 @@
+<%@page import="com.kh.hp.admin.model.vo.RealTimeVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.hp.account.model.vo.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String roomSeq = request.getParameter("roomSeq");
+	ArrayList<RealTimeVO> realTimeVOs = (ArrayList<RealTimeVO>) request.getAttribute("realTimeVOs");
+	String textValue = "";
+	for(int i=0; i<realTimeVOs.size(); i++){
+
+		if(realTimeVOs.get(i).getRcvMsg() != null){
+			textValue += realTimeVOs.get(i).getUserNick() + ":" + realTimeVOs.get(i).getRcvMsg();
+		} else {
+			textValue += realTimeVOs.get(i).getSendMsg();
+		}
+
+		if(i != realTimeVOs.size() - 1){
+			textValue += "\r\n";
+		}
+	}
+	System.out.println("textValue::" + textValue);
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
-	integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
-	crossorigin="anonymous">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
 
+	function getConnection(){
+		ws = new WebSocket("ws://localhost:8001" + '<%=request.getContextPath()%>/serverStart?userSeq=<%=((UserVO) request.getSession().getAttribute("user")).getUserSeq() %>' + '&roomSeq=<%=roomSeq%>');
+		//서버 시작할 때 동작
+		ws.onopen = function(event){
+			onopen(event);
+		}
 
-<style>
-#center {
-	/* 	border: 1px solid black; */
-	width: 1300px;
-	height: 800px;
-	margin: auto;
-}
+		//서버로부터 메세지를 전달 받을 때 동작하는 메소드
+		ws.onmessage = function(event){
+			onMessage(event);
+		}
 
-#line {
-	border: 0.5px solid gray;
-	width: 1300px;
-	margin: auto;
-}
+		function onError(event){
+			alert(event.data);
+		}
 
-#text1 {
-	width: 250px;
-	height: 30px;
-	margin-left: 70px;
-}
+		function onClose(event){
+			alert(event);
+		}
+	}
 
-.Subject {
-	text-align: center;
-}
+	function onopen(event){
 
-.Contents {
-	text-align: center;
-}
+	}
 
-#question {
-	border: 1px solid lightgray;
-	width: 1200px;
-	height: 150px;
-	border-top-left-radius: 8px;
-	border-top-right-radius: 8px;
-	border-bottom-left-radius: 8px;
-	border-bottom-right-radius: 8px;
-}
-#searchbutton{
-margin-left:1200px;
-}
-</style>
+	// 메시지 왔을 때
+	function onMessage(event){
+		console.log("onMessage in!");
+		var txaVal = $("#txa").val();
 
+		receivedMessage = txaVal + "\r\n" + event.data;
+		$("#txa").val(receivedMessage);
+
+		const top = $("#txa").prop('scrollHeight');
+		$("#txa").scrollTop(top);
+
+	}
+
+	$(function(){
+		const top = $("#txa").prop('scrollHeight');
+		$("#txa").scrollTop(top);
+
+		// connection 연결
+		getConnection();
+
+		$("#sendBtn").click(function(){
+			var sendInput = $("#sendInput");
+			var txaVal = $("#txa").val();
+
+			var sendMessage = '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + '§§' + sendInput.val();
+			ws.send(sendMessage);
+			setMessage = txaVal + "\r\n" + '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + ':' + sendInput.val();
+			$("#txa").val(setMessage);
+			sendInput.val("");
+			const top = $("#txa").prop('scrollHeight');
+			$("#txa").scrollTop(top);
+		});
+
+		$("#sendInput").keydown(function(key) {
+			if (key.keyCode == 13) {
+				var sendInput = $("#sendInput");
+				var txaVal = $("#txa").val();
+
+				var sendMessage = '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + '§§' + sendInput.val();
+				ws.send(sendMessage);
+				setMessage = txaVal + "\r\n" + '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + ':' + sendInput.val();
+				$("#txa").val(setMessage);
+				sendInput.val("");
+				const top = $("#txa").prop('scrollHeight');
+				$("#txa").scrollTop(top);
+			}
+		});
+	});
+
+</script>
 </head>
 <body>
-<jsp:include page="/views/common/header.jsp" />
-	<div id="center" class="fram">
-		<!-- 타이틀 -->
-		<h2 id="text1">
-			<strong>1:1문의등록 상세</strong>
+	<jsp:include page="/views/common/header.jsp" />
 
-		</h2>
-		<!-- 회원관리내역과 검색창 사이의 선 -->
-		<div id="line"></div>
-
-		<br> <br>
-
-		<div class="container">
-			<table class="table">
-				<thead>
-				</thead>
-				<tbody>
-					<tr>
-						<td class="Contents">
-							<div id="question">
-							여기는 문의글 내용 !!!!!<br>
-							여기는 문의글 내용 !!!!!<br>
-							여기는 문의글 내용 !!!!!<br>
-							여기는 문의글 내용 !!!!!<br>
-							
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td class="Contents">
-
-							<div class="form-group">
-								<textarea class="form-control" rows="10" id="comment"></textarea>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-			<button type="button" class="btn btn-warning" id="searchbutton">등록</button>
+	<div class="container">
+		<textarea rows="30" cols="50" id="txa" ><%=textValue%></textarea>
+		<br>
+		<input size="40" id="sendInput">
+		<button id="sendBtn">보내기</button>
 	</div>
-	
-<jsp:include page="/views/common/footer.jsp" />
+
+	<jsp:include page="/views/common/footer.jsp"/>
 </body>
 </html>

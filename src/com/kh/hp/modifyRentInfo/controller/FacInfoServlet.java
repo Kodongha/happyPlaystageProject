@@ -2,7 +2,7 @@ package com.kh.hp.modifyRentInfo.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,48 +10,38 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.hp.modifyRentInfo.model.service.ModifyService;
+import com.kh.hp.rent.model.vo.FacInfoVO;
 
 /**
- * Servlet implementation class MoveModifyFormSevlet
+ * Servlet implementation class FacInfoServlet
  */
-@WebServlet("/moveModifyRentForm.up")
-public class MoveModifyFormSevlet extends HttpServlet {
+@WebServlet("/facInfo")
+public class FacInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MoveModifyFormSevlet() {
+    public FacInfoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	/**
+	 * @return
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("in!!!");
-
-		// 수정하기 버튼 클릭시 해당 공연장 고유번호 전달받기
-		int rentSeq = 1; // 임시
-
 		ModifyService modifyService = new ModifyService();
 
-		Map<String, Object> rentInfo = modifyService.getrentInfo(rentSeq);
+		int rentSeq = Integer.parseInt(request.getParameter("rentSeq"));
+		List<FacInfoVO> facInfoVOList = (List<FacInfoVO>) modifyService.getrentInfo(rentSeq).get("facInfoVOList");
 
-		String page = "";
-		if(rentInfo != null) {
-			page="views/modifyRentInfo/rentBasicModify.jsp";
-			request.setAttribute("rentInfo", rentInfo);
-		} else {
-
-		}
-
-		request.getRequestDispatcher(page).forward(request, response);
-
-
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		new Gson().toJson(facInfoVOList, response.getWriter());
 	}
 
 	/**

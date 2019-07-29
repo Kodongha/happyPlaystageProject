@@ -1,10 +1,9 @@
+<%@page import="com.kh.hp.rent.model.vo.RentDetVO"%>
 <%@page import="com.kh.hp.rent.model.vo.FacInfoVO"%>
 <%@page import="com.kh.hp.rent.model.vo.RentBasicVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
 
 	<div class="form-group">
 		<label class="necessary">*</label><label for="hallNm">공연장 명</label><br><br>
@@ -36,6 +35,7 @@
 			<input type="text" class="col-sm-10 col-xs-10 form-control" name="facInfoContent" id="facInfoContent" style="width: 80%">
 			<button type="button" id="facInfoContentAddBtn" class="col-sm-2 col-xs-2 btn btn btn-primary" style="width: 15%; float: right;">추가</button>
 		</div>
+		<div id="facs"></div>
 	</div>
 
 	<br><br><br><br><br>
@@ -107,7 +107,6 @@
 	</div>
 
 	<br><br><br><br>
-
 	<br>
 
 	<div class="form-group">

@@ -7,10 +7,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.hp.myPage.model.dao.MyPageDao_mh;
 import com.kh.hp.rent.model.vo.FacInfoVO;
+import com.kh.hp.rent.model.vo.RefundTypeVO;
 import com.kh.hp.rent.model.vo.RentBasicVO;
 
 public class ModifyDao {
@@ -85,10 +87,10 @@ public class ModifyDao {
 	 * @param rentSeq
 	 * @return
 	 */
-	public FacInfoVO selectFaInfo(Connection con, int rentSeq) {
+	public ArrayList<FacInfoVO> selectFacInfo(Connection con, int rentSeq) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		FacInfoVO facInfoVO = null;
+		ArrayList<FacInfoVO> facInfoVOList = null;
 
 		String query = prop.getProperty("selectFaInfo");
 
@@ -96,14 +98,18 @@ public class ModifyDao {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, rentSeq);
 
+			facInfoVOList = new ArrayList<FacInfoVO>();
+
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				facInfoVO = new FacInfoVO();
+				FacInfoVO facInfoVO = new FacInfoVO();
 				facInfoVO.setRentSeq(rset.getInt("RENT_SEQ"));
 				facInfoVO.setFacSeq(rset.getInt("FAC_SEQ"));
 				facInfoVO.setFacInfoNo(rset.getInt("FAC_INFO_NO"));
 				facInfoVO.setFacInfoContent(rset.getString("FAC_INFO_CONTENT"));
+
+				facInfoVOList.add(facInfoVO);
 			}
 
 		} catch (SQLException e) {
@@ -114,8 +120,7 @@ public class ModifyDao {
 			close(pstmt);
 		}
 
-		return facInfoVO;
-
+		return facInfoVOList;
 	}
 
 }

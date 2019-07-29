@@ -47,7 +47,7 @@ public class MainDao {
 
 			while(rset.next()) {
 				MainRentVO mainRentVO = new MainRentVO();
-				mainRentVO.setSeq(rset.getInt("SEQ"));
+				mainRentVO.setSeq(rset.getInt("RANKING"));
 				mainRentVO.setRentSeq(rset.getInt("RENT_SEQ"));
 				mainRentVO.setHallNm(rset.getString("HALL_NM"));
 				mainRentVO.setAddress(rset.getString("ADDRESS"));

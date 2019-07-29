@@ -269,4 +269,59 @@ public class ServiceCenterDao {
 		return listCount;
 	}
 
+	/**1:1 문의 관련 방 만들기
+	 * @param con
+	 * @param userSeq
+	 * @return
+	 */
+	public int createQnARoom(Connection con, int userSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("createQnARoom");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userSeq);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int selectHaveRoom(Connection con, int userSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+
+		String query = prop.getProperty("selectHaveRoom");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userSeq);
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return result;
+	}
+
 }

@@ -124,7 +124,6 @@
 	<!-- 카드 -->
 	<div class="container" align="center">
 		<div class="ui link cards">
-			<%--
 			<%for(MainRentVO mainRentVO : responseMainRentVOList) { %>
 			<div class="card" align="center">
 				<div class="image" style="width: 290px; height: 210px">
@@ -142,7 +141,6 @@
 				</div>
 			</div>
 			<%} %>
-			 --%>
 		</div>
 	</div>
 	<!-- 리뷰 -->

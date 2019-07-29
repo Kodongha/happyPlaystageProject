@@ -99,4 +99,37 @@ public class ServiceCenterService {
 		return listCount;
 	}
 
+	/**
+	 * 1:1 문의 관련 방 만들기
+	 * @param userSeq
+	 * @return
+	 */
+	public int createQnARoom(int userSeq) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		int result = new ServiceCenterDao().createQnARoom(con, userSeq);
+
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+
+		close(con);
+
+		return result;
+	}
+
+	public int selectHaveRoom(int userSeq) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		int result = new ServiceCenterDao().selectHaveRoom(con, userSeq);
+
+		close(con);
+
+		return result;
+	}
+
 }

@@ -1,26 +1,28 @@
-package com.kh.hp.serviceCenter.controller;
+package com.kh.hp.admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.hp.account.model.vo.UserVO;
-import com.kh.hp.serviceCenter.model.service.ServiceCenterService;
+import com.kh.hp.admin.model.service.RealTimeService;
+import com.kh.hp.admin.model.vo.RealTimeVO;
 
 /**
- * Servlet implementation class MoveRealtimeQnA
+ * Servlet implementation class MoveRealTimeAdmin
  */
-@WebServlet("/moveRealtimeQnA.sc")
-public class MoveRealtimeQnA extends HttpServlet {
+@WebServlet("/moveRealTimeAdmin.ad")
+public class MoveRealTimeAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MoveRealtimeQnA() {
+    public MoveRealTimeAdmin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,17 +32,21 @@ public class MoveRealtimeQnA extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int userSeq = ((UserVO)request.getSession().getAttribute("user")).getUserSeq();
+		System.out.println("moveRealTimeAdmin in");
 
-		int result = new ServiceCenterService().selectHaveRoom(userSeq);
+		// 대화방 리스트 가져오기
+		ArrayList<RealTimeVO> realTimeVOs = new RealTimeService().selectRealTimeList();
 
 		String page = "";
-		if(result > 0) {
-			response.sendRedirect("views/serviceCenter/realTimeQnA.jsp");
+		if(realTimeVOs != null) {
+			request.setAttribute("realTimeVOs", realTimeVOs);
+			page = "views/admin/11_1vs1.jsp";
 		} else {
-			page = "views/serviceCenter/realTimeCreateForm.jsp";
-			request.getRequestDispatcher(page).forward(request, response);
+			page = "views/common/errorPage.jsp";
 		}
+
+		request.getRequestDispatcher(page).forward(request, response);
+
 	}
 
 	/**

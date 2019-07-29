@@ -296,6 +296,12 @@ public class ServiceCenterDao {
 		return result;
 	}
 
+	/**
+	 * 1:1 문의 관련 방 유무 확인
+	 * @param con
+	 * @param userSeq
+	 * @return
+	 */
 	public int selectHaveRoom(Connection con, int userSeq) {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt = null;
@@ -323,5 +329,188 @@ public class ServiceCenterDao {
 
 		return result;
 	}
+
+	/**
+	 * 1:1 문의 방 번호 확인
+	 * @param con
+	 * @param userSeq
+	 * @return
+	 */
+	public int selectRoomNo(Connection con, String userSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int roomNo = 0;
+
+		String query = prop.getProperty("selectRoomNo");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(userSeq));
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				roomNo = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return roomNo;
+	}
+
+	/**
+	 * 1:1 문의 관련 회원 등급 가져오기
+	 * @param con
+	 * @param userSeq
+	 * @return
+	 */
+	public int selectUserGradeCd(Connection con, String userSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int userGradeCd = 999;
+
+		String query = prop.getProperty("selectUserGradeCd");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(userSeq));
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				userGradeCd = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return userGradeCd;
+	}
+
+	/**
+	 * 1:1 문의 관련관리자일 경우 답변 저장
+	 * @param con
+	 * @param userSeq
+	 * @param sendMsg
+	 * @return
+	 */
+	public int insertAnswer(Connection con, String userSeq, String sendMsg) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertAnswer");
+
+
+		return result;
+	}
+
+	/**
+	 * 1:1 문의 관련 일반 유저일 경우 질문 저장
+	 * @param con
+	 * @param userSeq
+	 * @param sendMsg
+	 * @param roomNo
+	 * @return
+	 */
+	public int insertQuestion(Connection con, String userSeq, String sendMsg, int roomNo) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertQuestion");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, roomNo);
+			pstmt.setString(2, sendMsg);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	/**
+	 * 1:1 문의 관련 방 상태 변경
+	 * @param con
+	 * @param roomNo
+	 * @return
+	 */
+	public int updateQuestionRoomStatus(Connection con, int roomNo) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("updateQuestionRoomStatus");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, roomNo);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	/**
+	 * 1:1 문의 관련 관리자 번호 확인
+	 * @param con
+	 * @return
+	 */
+	public ArrayList<Integer> selectAdminUserSeqList(Connection con) {
+		// TODO Auto-generated method stub
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<Integer> adminUserSeqList = null;
+
+		String query = prop.getProperty("selectAdminUserSeqList");
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+
+			adminUserSeqList = new ArrayList<Integer>();
+			while(rset.next()) {
+				int adminUserSeq = rset.getInt(1);
+				adminUserSeqList.add(adminUserSeq);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+
+		return adminUserSeqList;
+	}
+
+
 
 }

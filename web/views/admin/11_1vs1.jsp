@@ -1,120 +1,72 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.kh.hp.admin.model.vo.RealTimeVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	ArrayList<RealTimeVO> realTimeVOs = (ArrayList<RealTimeVO>) request.getAttribute("realTimeVOs");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
-	integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
-	crossorigin="anonymous">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
+<style type="text/css">
+	.table>tbody>tr>td{
+		vertical-align: middle;
+	}
 
-
-<style>
-#center {
-	/* 	border: 1px solid black; */
-	width: 1300px;
-	height: 800px;
-	margin: auto;
-}
-
-#line {
-	border: 0.5px solid gray;
-	width: 1300px;
-	margin: auto;
-}
-
-#text1 {
-	width: 180px;
-	height: 30px;
-	margin-left: 70px;
-}
-.Subject{
-	text-align:center;
-}
-.Contents{
-	text-align:center;
-}
 </style>
-
+<script type="text/javascript">
+	$(function(){
+		$('button[name=searchbutton]').click(function(){
+			location.href = '<%=request.getContextPath() %>/?roomSeq=' + $(this).next().val();
+		});
+	});
+</script>
 </head>
 <body>
-<jsp:include page="/views/common/header.jsp" />
-	<div id="center" class="fram">
+	<jsp:include page="/views/common/header.jsp" />
+	<div class="container">
 		<!-- 타이틀 -->
-		<h2 id="text1">
-			<strong>1:1문의등록</strong>
-
-		</h2>
+		<h2><strong>1:1문의등록</strong></h2>
+		<hr>
 		<!-- 회원관리내역과 검색창 사이의 선 -->
 		<div id="line"></div>
-
-		<br> <br>
-		
-		<div class="container">      
-  <table class="table">
-    <thead>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="Contents">user01</td>
-        <td class="Contents">문의있습니다</td> 
-        <td class="Contents">2019.07.09</td>  
-        <td class="Contents"> <button type="button" class="btn btn-primary" id="searchbutton">답변대기</button></td>
-      </tr>
-        <tr>
-        <td class="Contents">user01</td>
-        <td class="Contents">문의있습니다</td> 
-        <td class="Contents">2019.07.09</td>  
-        <td class="Contents"><button type="button" class="btn">답변완료</button> </td>
-      </tr>
-       <tr>
-        <td class="Contents">user01</td>
-        <td class="Contents">문의있습니다</td> 
-        <td class="Contents">2019.07.09</td>  
-        <td class="Contents"> <button type="button" class="btn btn-primary" id="searchbutton">답변대기</button></td>
-      </tr>
-       <tr>
-        <td class="Contents">user01</td>
-        <td class="Contents">문의있습니다</td> 
-        <td class="Contents">2019.07.09</td>  
-        <td class="Contents"> <button type="button" class="btn btn-primary" id="searchbutton">답변대기</button></td>
-      </tr>
-      
-      
-      
-      
-      
-      
-    </tbody>
-  </table>
-</div>
-		
+		<br><br>
+		<div class="container">
+			<table class="table" >
+				<%for(RealTimeVO realTimeVO : realTimeVOs){%>
+					<tr>
+						<td class="Contents" align="center"><%=realTimeVO.getUserNick() %></td>
+						<td class="Contents" align="center"><%=realTimeVO.getRcvMsg() %></td>
+						<td class="Contents" align="center"><%=sdf.format(realTimeVO.getLastRcvDate()) %></td>
+						<td class="Contents" align="center">
+							<%if(realTimeVO.getStatus() == 1){ %>
+							<button type="button" class="btn btn-primary" id="searchbutton" name="searchbutton">답변대기</button>
+							<%} else { %>
+							<button type="button" class="btn" disabled="disabled">답변완료</button>
+							<%} %>
+							<input type="hidden" name="roomSeq" id="roomSeq" value="<%=realTimeVO.getRoomSeq() %>">
+						</td>
+					</tr>
+				<%}%>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
 		</div>
-		
 
-<jsp:include page="/views/common/footer.jsp" />
+	</div>
+
+
+	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

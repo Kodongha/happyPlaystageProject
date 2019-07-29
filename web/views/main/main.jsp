@@ -121,6 +121,7 @@
 	</div>
 	<br>
 	<br>
+	<%--
 	<!-- 카드 -->
 	<div class="container" align="center">
 		<div class="ui link cards">
@@ -143,6 +144,7 @@
 			<%} %>
 		</div>
 	</div>
+	 --%>
 	<!-- 리뷰 -->
 	<hr>
 	<br>

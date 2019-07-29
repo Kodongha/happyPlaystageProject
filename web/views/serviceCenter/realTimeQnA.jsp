@@ -12,7 +12,7 @@
 <script type="text/javascript">
 
 	function getConnection(){
-		ws = new WebSocket("ws://172.30.1.81:8001" + '<%=request.getContextPath()%>/serverStart?userSeq=<%=((UserVO) request.getSession().getAttribute("user")).getUserSeq() %>');
+		ws = new WebSocket("ws://localhost:8001" + '<%=request.getContextPath()%>/serverStart?userSeq=<%=((UserVO) request.getSession().getAttribute("user")).getUserSeq() %>');
 		//서버 시작할 때 동작
 		ws.onopen = function(event){
 			onopen(event);
@@ -67,15 +67,13 @@
 				var sendInput = $("#sendInput");
 				var txaVal = $("#txa").val();
 
-				var sendMessage = '<%=((UserVO) request.getSession().getAttribute("user")).getUserSeq() %>' + '§§' + '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + '§§' + sendInput.val();
+				var sendMessage = '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + '§§' + sendInput.val();
 				ws.send(sendMessage);
 				setMessage = txaVal + "\r\n" + '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + '§§' + sendInput.val();
 				$("#txa").val(setMessage);
 				sendInput.val("");
 			}
 		});
-
-
 	});
 
 </script>

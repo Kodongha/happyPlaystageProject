@@ -121,6 +121,11 @@ public class ServiceCenterService {
 		return result;
 	}
 
+	/**
+	 * 1:1 문의 관련 방 유무 확인
+	 * @param userSeq
+	 * @return
+	 */
 	public int selectHaveRoom(int userSeq) {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
@@ -130,6 +135,83 @@ public class ServiceCenterService {
 		close(con);
 
 		return result;
+	}
+
+	/**
+	 * @param userSeq
+	 * @param sendMsg
+	 * @param userGradeCd
+	 * @return
+	 */
+	public int insertConversation(String userSeq, String sendMsg, int userGradeCd) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		ServiceCenterDao serviceCenterDao = new ServiceCenterDao();
+
+		int insertQuestionResult = 0;
+		int insertAnswerResult = 0;
+		int updateQuestionRoomStatusResult = 0;
+
+		int roomNo = 0;
+		// 관리자인지 유저인지 구분한다.
+		// 관리자일 경우
+		if(userGradeCd == 0) {
+
+			// 답변 내용 DB에 INSERT
+			//insertAnswerResult = serviceCenterDao.insertAnswer(con, userSeq, sendMsg);
+			// 1:1 문의 방 상태 UPDATE
+
+		// 유저일 경우
+		} else if(userGradeCd == 1 || userGradeCd == 2) {
+			// 방 번호 가져오기
+			roomNo = serviceCenterDao.selectRoomNo(con, userSeq);
+			System.out.println("roomNo::" + roomNo);
+			// 답변 내용 DB에 INSERT
+			insertQuestionResult = serviceCenterDao.insertQuestion(con, userSeq, sendMsg, roomNo);
+			System.out.println("insertQuestionResult::" + insertQuestionResult);
+			// 1:1 문의 방 상태 UPDATE
+			updateQuestionRoomStatusResult = serviceCenterDao.updateQuestionRoomStatus(con, roomNo);
+			System.out.println("updateQuestionRoomStatusResult::" + updateQuestionRoomStatusResult);
+
+			if(insertQuestionResult > 0 && updateQuestionRoomStatusResult > 0) {
+				commit(con);
+			} else {
+				rollback(con);
+			}
+
+		// 에러
+		} else {
+			System.out.println("에러 발생");
+		}
+
+		close(con);
+
+		return 0;
+	}
+
+	public ArrayList<Integer> selectAdminUserSeqList() {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		ArrayList<Integer> adminUserSeqList = null;
+
+		adminUserSeqList = new ServiceCenterDao().selectAdminUserSeqList(con);
+
+		return adminUserSeqList;
+	}
+
+	/**
+	 * userSeq의 회원등급  코드를 가져온다.
+	 * @param userSeq
+	 * @return
+	 */
+	public int selectUserGradeCd(String userSeq) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		int userGradeCd = new ServiceCenterDao().selectUserGradeCd(con, userSeq);
+		System.out.println("userGradeCd::" + userGradeCd);
+
+		return userGradeCd;
 	}
 
 }

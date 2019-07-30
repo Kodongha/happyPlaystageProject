@@ -40,12 +40,14 @@ $(function(){
     $(function(){
     	// 시설 안내 정보 가져오기
     	var rentSeq = 1;	// 수정필요
+    	var imgType = 1;
 
     	if(rentSeq > 0) {	// 수정필요
     		getFacInfo(rentSeq);
     		getCaution(rentSeq);
     		getDetAddress(rentSeq);
     		getAttachment(rentSeq);
+    		getTitleRentImg(rentSeq, imgType)
     	}
     });
 
@@ -59,6 +61,7 @@ $(function(){
 		// 시설 안내 정보 추가
 		addFacInfo(facInfoContent);
 	});
+
 
 	// 시설 안내 정보 가져오기
 	function getFacInfo(rentSeq) {
@@ -101,6 +104,14 @@ $(function(){
 				.attr('readonly', true)
 				.val(facInfoContent)
 				.appendTo($(".facInfo"));
+
+/*
+			$("#facInfoContentDeleteBtn")
+				.clone(true)
+				.attr('name', 'facInfoContentDeleteBtnReq')
+				.attr('id', 'facInfoContentDeleteBtn'+facSeq)
+				.appendTo($(".facInfo"));
+*/
 
 			// 입력창 초기화
 			$("#facInfoContent").val("").focus();
@@ -228,6 +239,18 @@ $(function(){
 		i++;
 	});
 
+	function getTitleRentImg(rentSeq, imgType){
+		var url = 'rentImg.md';
+
+		$.ajax({
+			url:url,
+			type:'get',
+			data:{'rentSeq':rentSeq, 'imgType':imgType},
+			success:function(rentImgVOList){
+
+			}
+		});
+	}
 
 //==================================================================
 	/* 공연장 등록증 첨부 */
@@ -247,7 +270,7 @@ $(function(){
 			type:'get',
 			data:{'rentSeq':rentSeq},
 			success:function(rentDetVOList){
-				console.log($("#hallRegisCerPath").val());
+				//console.log($("#hallRegisCerPath").val());
 		    },
 		    error: function(err) {
 		        // 서버로부터 응답이 정상적으로 처리되지 못햇을 때 실행

@@ -115,15 +115,6 @@
 			</div>
 			<%} %>
 			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
 		</div>
 
 		<script type="text/javascript">

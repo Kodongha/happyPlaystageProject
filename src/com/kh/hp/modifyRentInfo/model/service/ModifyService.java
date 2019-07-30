@@ -40,7 +40,6 @@ public class ModifyService {
 		ArrayList<AttachmentVO> attachmentVOList = modifyDao.selectAttachment(con, rentSeq);
 		//RENT_IMG 테이블
 		ArrayList<RentImgVO> rentImgVOList = modifyDao.selectRentImg(con, rentSeq);
-		System.out.println(rentImgVOList);
 
 
 		// 리스트 추가
@@ -49,6 +48,7 @@ public class ModifyService {
 		rentBasicInfoMap.put("cautionsVOList", cautionsVOList);
 		rentBasicInfoMap.put("rentDetVOList", rentDetVOList);
 		rentBasicInfoMap.put("attachmentVOList", attachmentVOList);
+		rentBasicInfoMap.put("rentImgVOList", rentImgVOList);
 
 
 

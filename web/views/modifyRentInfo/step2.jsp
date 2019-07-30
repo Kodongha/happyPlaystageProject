@@ -56,9 +56,9 @@
 				<option>019</option>
 			</select>
 			<label>-</label>
-			<input id="rentMainTel12" type="tel" class="form-control" name="rentMainTel2" style="width: 100px; min-width: 100px; display:inline; margin: 0 2% 0 2%">
+			<input id="rentMainTel2" type="tel" class="form-control" name="rentMainTel2" style="width: 100px; min-width: 100px; display:inline; margin: 0 2% 0 2%">
 			<label>-</label>
-			<input id="rentMainTel13" type="tel" class="form-control" name="rentMainTel3" style="width: 100px; min-width: 100px; display:inline; margin: 0 2% 0 2%">
+			<input id="rentMainTel3" type="tel" class="form-control" name="rentMainTel3" style="width: 100px; min-width: 100px; display:inline; margin: 0 2% 0 2%">
 		</div>
 
 		<br><br>

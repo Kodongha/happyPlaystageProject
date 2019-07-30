@@ -40,10 +40,15 @@
 		<br><br>
 		<div class="container">
 			<table class="table" >
+
 				<%for(RealTimeVO realTimeVO : realTimeVOs){%>
 					<tr>
 						<td class="Contents" align="center"><%=realTimeVO.getUserNick() %></td>
+						<%if(realTimeVO.getRcvMsg() != null){ %>
 						<td class="Contents" align="center"><%=realTimeVO.getRcvMsg() %></td>
+						<%} else {%>
+						<td class="Contents" align="center"></td>
+						<%} %>
 						<td class="Contents" align="center"><%=sdf.format(realTimeVO.getLastRcvDate()) %></td>
 						<td class="Contents" align="center">
 							<%if(realTimeVO.getStatus() == 1){ %>

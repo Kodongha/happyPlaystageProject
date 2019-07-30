@@ -343,30 +343,22 @@ body .container .content .signup-cont {
 		Kakao.Auth.createLoginButton({
 			container: '#kakao-login-btn',
 			success: function(authObj) {
-				alert(JSON.stringify(authObj));
-				var access_token = authObj.access_token;
-				var token_type = authObj.token_type;
-				var refresh_token = authObj.refresh_token;
-				var expires_in = authObj.expires_in;
-				var scope = authObj.scope;
-				var refresh_token_expires_in = authObj.refresh_token_expires_in;
+				Kakao.API.request({
+					url: '/v1/user/me',
 
-				console.log(access_token);
-				console.log(token_type);
-				console.log(refresh_token);
-				console.log(expires_in);
-				console.log(scope);
-				console.log(refresh_token_expires_in);
-
-				Kakao.Auth.setAccessToken(access_token);
+					success: function(res) {
+						console.log(authObj);
+						console.log(res);
+					}
+				})
+				//location.href = 'https://kauth.kakao.com/oauth/token';
+				location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=ea861fadd8d5b486bbcd4ae127c3404d&redirect_uri=http://localhost:8001/happyPlaystage/kakaoLogin.acc&response_type=code';
 
 			},
 			fail: function(err) {
 				alert(JSON.stringify(err));
 			}
 		});
-
-
 	</script>
 
 

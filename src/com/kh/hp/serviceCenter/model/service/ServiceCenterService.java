@@ -139,13 +139,16 @@ public class ServiceCenterService {
 		return result;
 	}
 
+
 	/**
+	 *
 	 * @param userSeq
 	 * @param sendMsg
 	 * @param userGradeCd
+	 * @param roomSeq : 관리자가 사용하는 방번호
 	 * @return
 	 */
-	public int insertConversation(String userSeq, String sendMsg, int userGradeCd) {
+	public int insertConversation(String userSeq, String sendMsg, int userGradeCd, String roomSeq) {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
 		ServiceCenterDao serviceCenterDao = new ServiceCenterDao();
@@ -153,6 +156,7 @@ public class ServiceCenterService {
 		int insertQuestionResult = 0;
 		int insertAnswerResult = 0;
 		int updateQuestionRoomStatusResult = 0;
+		int updateAnwerResult = 0;
 
 		int roomNo = 0;
 		// 관리자인지 유저인지 구분한다.
@@ -160,8 +164,16 @@ public class ServiceCenterService {
 		if(userGradeCd == 0) {
 
 			// 답변 내용 DB에 INSERT
-			//insertAnswerResult = serviceCenterDao.insertAnswer(con, userSeq, sendMsg);
+			insertAnswerResult = serviceCenterDao.insertAnswer(con, userSeq, sendMsg, roomSeq);
+			System.out.println("insertAnswerResult::" + insertAnswerResult);
 			// 1:1 문의 방 상태 UPDATE
+			updateAnwerResult = serviceCenterDao.updateAnwer(con, roomSeq);
+			System.out.println("updateAnwerResult::" + updateAnwerResult);
+			if(insertAnswerResult > 0 && updateAnwerResult > 0) {
+				commit(con);
+			} else {
+				rollback(con);
+			}
 
 		// 유저일 경우
 		} else if(userGradeCd == 1 || userGradeCd == 2) {
@@ -225,6 +237,22 @@ public class ServiceCenterService {
 		close(con);
 
 		return realTimeVOList;
+	}
+
+	/**
+	 * 방번호에 존재하는 유저번호 가져오기
+	 * @param roomSeq
+	 * @return
+	 */
+	public int selectTargetUserSeq(String roomSeq) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		int targetUserSeq = new ServiceCenterDao().selectTargetUserSeq(con, roomSeq);
+
+		close(con);
+
+		return targetUserSeq;
 	}
 
 }

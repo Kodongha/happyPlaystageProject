@@ -63,6 +63,11 @@ public class ModifyDao {
 				rentBasicVO.setHallDetIntro(rset.getString("HALL_DET_INTRO"));
 				rentBasicVO.setWebsite(rset.getString("WEBSITE"));
 				rentBasicVO.setAddress(rset.getString("ADDRESS"));
+				rentBasicVO.setHallRegisCerPath(rset.getString("HALL_REGIS_CER_PATH"));
+				rentBasicVO.setRentEmail(rset.getString("RENT_EMAIL"));
+				rentBasicVO.setRentMainTel(rset.getString("RENT_MAIN_TEL"));
+				rentBasicVO.setRentPhone(rset.getString("RENT_PHONE"));
+				rentBasicVO.setRentPhoneSub(rset.getString("RENT_PHONE_SUB"));
 				rentBasicVO.setAvailStartTm(rset.getString("AVAIL_START_TM"));
 				rentBasicVO.setAvailEndTm(rset.getString("AVAIL_END_TM"));
 				rentBasicVO.setCompNm(rset.getString("COMP_NM"));
@@ -70,7 +75,6 @@ public class ModifyDao {
 				rentBasicVO.setCorpNo(rset.getString("CORP_NO"));
 				rentBasicVO.setCorpAddress(rset.getString("CORP_ADDRESS"));
 				rentBasicVO.setRentEnrollDt(rset.getDate("RENT_ENROLL_DT"));
-				rentBasicVO.setRentMainTel(rset.getString("RENT_MAIN_TEL"));
 				rentBasicVO.setUseTimeUnit(rset.getString("USE_TIME_UNIT"));
 				rentBasicVO.setMinRsvTm(rset.getInt("MIN_RSV_TM"));
 				rentBasicVO.setPerfPlanTf(rset.getString("PERF_PLAN_TF").charAt(0));

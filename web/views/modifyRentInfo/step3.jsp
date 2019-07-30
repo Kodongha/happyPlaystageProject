@@ -9,20 +9,19 @@
 
 
 	<div class="container">
-		<h2>A관의 이용 정보를 입력해주세요.</h2>
+		<h2>이용 정보를 입력해주세요.</h2>
 		<hr style="background: black">
 
 		<!-- 이용 가능 시간 -->
-		<div class="form-group">
+		<div class="form-group" style="display: inline; width: 49%; float: left;">
 			<label class="necessary">*</label><label for="availStartTm">이용 가능 시간</label>
 			<br>
-
 			<div class="ui checkbox">
-				<input type="checkbox" name="example"><label>24시 운영</label>
+				<input type="checkbox" id="allTime" style="margin:0px !important;"><label>24시 운영</label>
 			</div>
 
 			<br>
-			<select class="form-control" name="availStartTm" id="availStartTm" style="width: 150px; min-width: 150px; display:inline; margin: 0 2% 0 0">
+			<select class="form-control availTime" name="availStartTm" id="availStartTm" style="width: 150px; min-width: 150px; display:inline; margin: 0 2% 0 0">
 				<%for(int i=0; i<=24; i++){ %>
 					<%if (i / 10 == 0){%>
 						<option><%="0" + i + ":00" %></option>
@@ -32,7 +31,7 @@
 				<%}%>
 			</select>
 			<label>~</label>
-			<select class="form-control" name="availEndTm" id="availEndTm" style="width: 150px; min-width: 150px; display:inline; margin: 0 2% 0 2%">
+			<select class="form-control availTime" name="availEndTm" id="availEndTm" style="width: 150px; min-width: 150px; display:inline; margin: 0 2% 0 2%">
 				<%for(int i=0; i<=24; i++){ %>
 					<%if (i / 10 == 0){%>
 						<option><%="0" + i + ":00" %></option>
@@ -43,8 +42,14 @@
 			</select>
 		</div>
 
+		<div class="form-group" style="display: inline; width: 49%; float: right;">
+			<label class="necessary">*</label><label for="rentPrice">가격</label>
+			<br><br><br>
+			<input type="number" id="rentPrice" class="form-control" name="rentPrice" style="width: 200px; min-width: 200px; display:inline; margin: 0 2% 0 0" value="0">
+		</div>
+
 		<!-- 사용 시간 단위 -->
-		<div class="form-group">
+		<div class="form-group" style="display: inline-block;">
 			<label class="necessary">*</label><label for="availStartTm">사용 시간 단위</label>
 			<div class="container" >
 			<label class="radio-inline"><input type="radio" id="useTimeUnit1" name="useTimeUnit" value="시간" checked>시간 단위</label>
@@ -110,15 +115,6 @@
 			</div>
 			<%} %>
 			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
-			<input type="hidden" name="selectedDetFacIcon" id="selectedDetFacIcon">
 		</div>
 
 		<script type="text/javascript">
@@ -146,14 +142,12 @@
 		<hr style="background: black">
 
 		<!-- 정기 휴무일 -->
-		<div class="form-group">
+		<div class="form-group" id="regHolidayForm">
 			<label class="necessary">*</label><label for="regHoliday">정기 휴무</label>
 			<br>
-
 			<div class="ui checkbox">
-				<input type="checkbox" name="example"><label>공휴일 휴무</label>
+				<input type="checkbox" name="example" style="margin:0px !important;"><label>공휴일 휴무</label>
 			</div>
-
 			<br>
 			<select class="form-control" name="regCloseCd" id=regCloseCd style="width: 200px; min-width: 200px;">
 				<option value="1">휴무 없음</option>

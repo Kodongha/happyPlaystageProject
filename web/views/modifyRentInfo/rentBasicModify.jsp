@@ -1,3 +1,4 @@
+<%@page import="com.kh.hp.rent.model.vo.RentImgVO"%>
 <%@page import="com.kh.hp.rent.model.vo.AttachmentVO"%>
 <%@page import="com.kh.hp.rent.model.vo.CautionsVO"%>
 <%@page import="java.util.Map"%>
@@ -48,9 +49,10 @@
 <%
 	Map<String, Object> rentInfo = (Map<String, Object>) request.getAttribute("rentInfo");
 	RentBasicVO rentBasicVO = (RentBasicVO) rentInfo.get("rentBasicVO");
-	ArrayList<FacInfoVO> facInfoVOList = (ArrayList<FacInfoVO>) rentInfo.get("facInfoVOList");
+/* 	ArrayList<FacInfoVO> facInfoVOList = (ArrayList<FacInfoVO>) rentInfo.get("facInfoVOList");
 	ArrayList<CautionsVO> cautionsVOList = (ArrayList<CautionsVO>) rentInfo.get("cautionsVOList");
 	ArrayList<AttachmentVO> attachmentVOList = (ArrayList<AttachmentVO>) rentInfo.get("attachmentVOList");
+	ArrayList<RentImgVO> rentImgVOList = (ArrayList<RentImgVO>) rentInfo.get("rentImgVOList"); */
 %>
 <script>
 	$(function(){
@@ -59,6 +61,30 @@
 		$("#hallDetIntro").val('<%=rentBasicVO.getHallDetIntro()%>');
 		$("#website").val('<%=rentBasicVO.getWebsite()%>');
 		$("#address").val('<%=rentBasicVO.getAddress()%>');
+		$("#rentEmail").val('<%=rentBasicVO.getRentEmail()%>');
+
+		//휴대폰번호
+		var rentPhone = "<%= rentBasicVO.getRentPhone()%>";
+		var rentPhoneArr = rentPhone.split('-');
+
+		$("#rentPhone1").val(rentPhoneArr[0]);
+		$("#rentPhone2").val(rentPhoneArr[1]);
+		$("#rentPhone3").val(rentPhoneArr[2]);
+
+		//대표번호
+		var mainTel = "<%= rentBasicVO.getRentMainTel()%>";
+		console.log(mainTel);
+		var mainTelArr = mainTel.split('-');
+		console.log(mainTelArr);
+
+		$("#rentMainTel1").val(mainTelArr[0]);
+		$("#rentMainTel2").val(mainTelArr[1]);
+		$("#rentMainTel3").val(mainTelArr[2]);
+
+		console.log(mainTelArr[0]);
+		console.log(mainTelArr[1]);
+		console.log(mainTelArr[2]);
+
 	});
 </script>
 
@@ -122,13 +148,12 @@
 						<div class="tab-pane active" role="tabpanel" id="step1">
  							<%@include file="step1.jsp" %>
 						</div>
-	           <!-- </form> -->
+
 						<!-- Step2 -->
 						<div class="tab-pane" role="tabpanel" id="step2">
 							<%@include file="step2.jsp" %>
 						</div>
 						<!-- step3 -->
-						<%--
 						<div class="tab-pane" role="tabpanel" id="step3">
 							<%@include file="step3.jsp" %>
 						</div>
@@ -138,7 +163,7 @@
 						</div>
 						<!-- complete -->
 						<%@include file="complete.jsp" %>
- --%>
+
 	                    <div class="clearfix"></div>
 	                </div>
 	            </form>

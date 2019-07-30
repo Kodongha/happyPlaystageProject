@@ -2,36 +2,24 @@ package com.kh.hp.admin.model.vo;
 
 public class InspectionListVO {
 	
-	private int userSeq;
-	private int  rentSeq;
+	private int rentSeq;
 	private String hallNm;
-	private String userEmail;
-	private String userPhone;
+	private String rentEmail;
+	private String rentMainTel;
 	private String originNm;
-	private char  inspTf;
-	private String rentEnrollStatus;
-
+	private String  inspTf;
+	
 	public InspectionListVO () {}
 
-	public InspectionListVO(int userSeq, int rentSeq, String hallNm, String userEmail, String userPhone,
-			String originNm, char inspTf, String rentEnrollStatus) {
+	public InspectionListVO(int rentSeq, String hallNm, String rentEmail, String rentMainTel, String originNm,
+			String inspTf) {
 		super();
-		this.userSeq = userSeq;
 		this.rentSeq = rentSeq;
 		this.hallNm = hallNm;
-		this.userEmail = userEmail;
-		this.userPhone = userPhone;
+		this.rentEmail = rentEmail;
+		this.rentMainTel = rentMainTel;
 		this.originNm = originNm;
 		this.inspTf = inspTf;
-		this.rentEnrollStatus = rentEnrollStatus;
-	}
-
-	public int getUserSeq() {
-		return userSeq;
-	}
-
-	public void setUserSeq(int userSeq) {
-		this.userSeq = userSeq;
 	}
 
 	public int getRentSeq() {
@@ -50,20 +38,20 @@ public class InspectionListVO {
 		this.hallNm = hallNm;
 	}
 
-	public String getUserEmail() {
-		return userEmail;
+	public String getRentEmail() {
+		return rentEmail;
 	}
 
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+	public void setRentEmail(String rentEmail) {
+		this.rentEmail = rentEmail;
 	}
 
-	public String getUserPhone() {
-		return userPhone;
+	public String getRentMainTel() {
+		return rentMainTel;
 	}
 
-	public void setUserPhone(String userPhone) {
-		this.userPhone = userPhone;
+	public void setRentMainTel(String rentMainTel) {
+		this.rentMainTel = rentMainTel;
 	}
 
 	public String getOriginNm() {
@@ -74,29 +62,20 @@ public class InspectionListVO {
 		this.originNm = originNm;
 	}
 
-	public char getInspTf() {
+	public String getInspTf() {
 		return inspTf;
 	}
 
-	public void setInspTf(char inspTf) {
+	public void setInspTf(String inspTf) {
 		this.inspTf = inspTf;
-	}
-
-	public String getRentEnrollStatus() {
-		return rentEnrollStatus;
-	}
-
-	public void setRentEnrollStatus(String rentEnrollStatus) {
-		this.rentEnrollStatus = rentEnrollStatus;
 	}
 
 	@Override
 	public String toString() {
-		return "InspectionListVO [userSeq=" + userSeq + ", rentSeq=" + rentSeq + ", hallNm=" + hallNm + ", userEmail="
-				+ userEmail + ", userPhone=" + userPhone + ", originNm=" + originNm + ", inspTf=" + inspTf
-				+ ", rentEnrollStatus=" + rentEnrollStatus + "]";
-	}
+		return "InspectionListVO [rentSeq=" + rentSeq + ", hallNm=" + hallNm + ", rentEmail=" + rentEmail
+				+ ", rentMainTel=" + rentMainTel + ", originNm=" + originNm + ", inspTf=" + inspTf + "]";
+	} 
 	
 	
-
+	
 }

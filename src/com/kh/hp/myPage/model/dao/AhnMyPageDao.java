@@ -591,40 +591,41 @@ public class AhnMyPageDao {
 	}*/
 
 	public int insertAttachment(Connection con, ArrayList<AhnAttachmentVO> fileList) {
-		PreparedStatement pstmt = null;
-		int result = 0;
+	      PreparedStatement pstmt = null;
+	      int result = 0;
 
-		String query = prop.getProperty("insertAttachment");
+	      String query = prop.getProperty("insertAttachment");
 
 
 
-			try {
-				for(int i = 0; i < fileList.size(); i++) {
-				System.out.println("fileList.get(i):::"+fileList.get(i));
-					pstmt = con.prepareStatement(query);
-					pstmt.setString(1, fileList.get(i).getChangeNm());
-					pstmt.setString(2, fileList.get(i).getFilePath());
-					pstmt.setString(3, fileList.get(i).getOriginNm());
-				pstmt.setInt(4, fileList.get(i).getUserSeq());
-				/*int level = 0;
-				if(i == 0) {
-					level = 0;
-				}else {
-					level = 1;
-				}
+	         try {
+	            for(int i = 0; i < fileList.size(); i++) {
+	            System.out.println("fileList.get(i):::"+fileList.get(i));
+	               pstmt = con.prepareStatement(query);
+	               pstmt.setString(1, fileList.get(i).getOriginNm());
+	               pstmt.setString(2, fileList.get(i).getChangeNm());
+	               pstmt.setString(3, fileList.get(i).getFilePath());
+	            pstmt.setInt(4, fileList.get(i).getUserSeq());
+	            /*int level = 0;
+	            if(i == 0) {
+	               level = 0;
+	            }else {
+	               level = 1;
+	            }
 
-				pstmt.setInt(5, level);*/
+	            pstmt.setInt(5, level);*/
 
-				result += pstmt.executeUpdate();
+	            result += pstmt.executeUpdate();
 
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				close(pstmt);
-			}
+	            }
+	         } catch (SQLException e) {
+	            e.printStackTrace();
+	         } finally {
+	            close(pstmt);
+	         }
 
-		return result;
+	      return result;
+
 	}
 
 	public ArrayList<AhnUsingInfoVO> searchCheck2(Connection con, int userInfo, String hallNm, Date useStart,

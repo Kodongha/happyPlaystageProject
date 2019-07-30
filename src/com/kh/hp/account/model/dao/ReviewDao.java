@@ -1,15 +1,17 @@
 package com.kh.hp.account.model.dao;
 
+import static com.kh.hp.common.JDBCTemplate.*;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.hp.account.model.vo.ReviewMainVO;
 import com.kh.hp.account.model.vo.ReviewVO;
-import com.sun.crypto.provider.RSACipher;
 
 public class ReviewDao {
 	private Properties prop = new Properties();
@@ -55,6 +57,48 @@ public class ReviewDao {
 		
 
 		return result;
+	}
+
+
+	public ArrayList<ReviewMainVO> ReviewList(Connection con) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<ReviewMainVO> reviewMainVOList = null;
+		
+		String query = prop.getProperty("selectReviewMap");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+		
+			
+			rset = pstmt.executeQuery();
+			
+			reviewMainVOList = new ArrayList<ReviewMainVO>();
+			while(rset.next()) {
+				ReviewMainVO reviewMainVO = new ReviewMainVO();
+				
+				reviewMainVO.setAddress(rset.getString("ADDRESS"));
+				reviewMainVO.setChangeNm(rset.getString("CHANGE_NM"));
+				reviewMainVO.setHallNm(rset.getString("HALL_NM"));
+				reviewMainVO.setRating(rset.getInt("RATING"));
+				reviewMainVO.setReviewContent(rset.getString("REVIEW_CONTENT"));
+				
+				reviewMainVOList.add(reviewMainVO);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+
+		
+		return reviewMainVOList;
 	}
 
 }

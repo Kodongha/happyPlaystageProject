@@ -6,8 +6,10 @@ import static com.kh.hp.common.JDBCTemplate.getConnection;
 import static com.kh.hp.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.kh.hp.account.model.dao.ReviewDao;
+import com.kh.hp.account.model.vo.ReviewMainVO;
 import com.kh.hp.account.model.vo.ReviewVO;
 public class ReviewService {
 
@@ -25,6 +27,16 @@ public class ReviewService {
 		close(con);
 		
 		return result;
+	}
+
+	public ArrayList<ReviewMainVO> ReviewList() {
+		Connection con = getConnection();
+		
+		ArrayList<ReviewMainVO> reviewMainVOList = new ReviewDao().ReviewList(con);
+		
+		close(con);
+		
+		return reviewMainVOList;
 	}
 
 }

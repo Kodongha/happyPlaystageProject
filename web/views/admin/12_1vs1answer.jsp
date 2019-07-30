@@ -12,14 +12,16 @@
 		if(realTimeVOs.get(i).getRcvMsg() != null){
 			textValue += realTimeVOs.get(i).getUserNick() + ":" + realTimeVOs.get(i).getRcvMsg();
 		} else {
-			textValue += realTimeVOs.get(i).getSendMsg();
+			System.out.println("else in!!!");
+			System.out.println("realTimeVOs.get(i).getSendMsg()::" + realTimeVOs.get(i).getSendMsg());
+
+			textValue += "관리자:" + realTimeVOs.get(i).getSendMsg();
 		}
 
 		if(i != realTimeVOs.size() - 1){
 			textValue += "\r\n";
 		}
 	}
-	System.out.println("textValue::" + textValue);
 %>
 <!DOCTYPE html>
 <html>

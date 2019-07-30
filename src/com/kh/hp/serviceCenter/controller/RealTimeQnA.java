@@ -56,8 +56,9 @@ public class RealTimeQnA {
 		System.out.println("userSeq::" + userSeq);
 
 		// roomSeq
+		String roomSeq = null;
 		if(tempStr1.length > 1) {
-			String roomSeq = tempStr1[1].split("=")[1];
+			roomSeq = tempStr1[1].split("=")[1];
 			System.out.println("roomSeq::" + roomSeq);
 		}
 
@@ -80,12 +81,27 @@ public class RealTimeQnA {
 		// 해당 userSeq의 회원등급  코드를 가져온다.
 		int userGradeCd = new ServiceCenterService().selectUserGradeCd(userSeq);
 
+		// 방번호에 존재하는 유저번호 가져오기
+		int targetUserSeq = 0;
+		if(roomSeq != null) {
+			targetUserSeq = new ServiceCenterService().selectTargetUserSeq(roomSeq);
+			System.out.println("targetUserSeq:::" + targetUserSeq);
+		}
+
+
 		// DB 저장 및 변경
-		int result = new ServiceCenterService().insertConversation(userSeq, sendMsg, userGradeCd);
+		int result = new ServiceCenterService().insertConversation(userSeq, sendMsg, userGradeCd, roomSeq);
 
 		Iterator<String> iter = clients.keySet().iterator();
 		while(iter.hasNext()) {
 			String key = iter.next();
+
+			// 관리자가 특정 사용자에게
+			if(userGradeCd == 0) {
+				if(Integer.parseInt(key) == targetUserSeq) {
+					clients.get(key).getBasicRemote().sendText(userNick + ":" + sendMsg);
+				}
+			}
 
 			// 일반 회원일 경우 관리자에게 전송
 			if(userGradeCd == 1 || userGradeCd == 2) {

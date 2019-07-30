@@ -406,15 +406,30 @@ public class ServiceCenterDao {
 	 * @param con
 	 * @param userSeq
 	 * @param sendMsg
+	 * @param roomSeq
 	 * @return
 	 */
-	public int insertAnswer(Connection con, String userSeq, String sendMsg) {
+	public int insertAnswer(Connection con, String userSeq, String sendMsg, String roomSeq) {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt = null;
 		int result = 0;
 
 		String query = prop.getProperty("insertAnswer");
 
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(roomSeq));
+			pstmt.setString(2, sendMsg);
+			pstmt.setString(3, userSeq);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 
 		return result;
 	}
@@ -548,6 +563,58 @@ public class ServiceCenterDao {
 		}
 
 		return realTimeVOList;
+	}
+
+	public int selectTargetUserSeq(Connection con, String roomSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int targetUserSeq = 0;
+
+		String query = prop.getProperty("selectTargetUserSeq");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(roomSeq));
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				targetUserSeq = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return targetUserSeq;
+	}
+
+	public int updateAnwer(Connection con, String roomSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("updateAnwer");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(roomSeq));
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
 	}
 
 

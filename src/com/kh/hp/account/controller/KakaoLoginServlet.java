@@ -29,7 +29,9 @@ public class KakaoLoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("kakao login in!");
-		System.out.println(request.getRequestURL());
+
+		String code = request.getParameter("code");
+		System.out.println(code);
 
 	}
 

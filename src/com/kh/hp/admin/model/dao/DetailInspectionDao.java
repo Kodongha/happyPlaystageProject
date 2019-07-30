@@ -31,7 +31,7 @@ public class DetailInspectionDao {
 
 	}
 
-	public ArrayList<DetailInspectionVO> DetailInspection(Connection con, int currentPage, int limit,int rentSeq) {
+	public ArrayList<DetailInspectionVO> DetailInspection(Connection con,int rentSeq) {
 		System.out.println("대관등록검수 DAO까지 왔나요?");
 
 
@@ -45,15 +45,10 @@ public class DetailInspectionDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			
-			int startRow = (currentPage - 1) * limit + 1;
-			int endRow = startRow + limit - 1;
-
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
 			
-			pstmt.setInt(3, rentSeq);
+			pstmt.setInt(1, rentSeq);
 			
-			System.out.println(rentSeq);
+			
 
 			rset = pstmt.executeQuery();
 
@@ -64,16 +59,17 @@ public class DetailInspectionDao {
 			while(rset.next()) {
 				
 
-				System.out.println(rentSeq);
+				
 				DetailInspectionVO detailInspectionVO  = new DetailInspectionVO();
-
+				
 				detailInspectionVO.setRentSeq(rset.getInt("RENT_SEQ"));
-				detailInspectionVO.setRentNm(rset.getString("HALL_NM"));
+				detailInspectionVO.setHallNm(rset.getString("HALL_NM"));
 				detailInspectionVO.setAddress(rset.getString("ADDRESS"));
 				detailInspectionVO.setHallDetIntro(rset.getString("HALL_DET_INTRO"));
 				detailInspectionVO.setCautionContent(rset.getString("CAUTION_CONTENT"));
-				detailInspectionVO.setWebsite(rset.getString("WEBSITE"));	
-				detailInspectionVO.setInspTf(rset.getString("INSP_TF").charAt(0));
+				detailInspectionVO.setWebsite(rset.getString("WEBSITE"));
+				detailInspectionVO.setInspTf(rset.getString("INSP_TF"));
+				
 	
 				
 				DetailInspectionVOList.add(detailInspectionVO);

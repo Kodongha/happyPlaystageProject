@@ -54,18 +54,19 @@ public class EnrollHistoryDao {
 			pstmt.setInt(3, userSeq);
 		
 			System.out.println(userSeq);
-			System.out.println("1");
 			rset = pstmt.executeQuery();
-			System.out.println("2");
 		
-
+		
+			System.out.println("111111");
 			enrollHistoryVOList = new ArrayList<EnrollHistoryVO>();
-
+			System.out.println("222");
+			
+			
 			while(rset.next()) {
 
 				EnrollHistoryVO enrollHistoryVO = new EnrollHistoryVO();
-				
-				enrollHistoryVO.setUserSeq(rset.getInt("RENT_SEQ"));
+			
+				enrollHistoryVO.setUserSeq(rset.getInt("USER_SEQ"));
 				enrollHistoryVO.setRentSeq(rset.getInt("RENT_SEQ"));
 				enrollHistoryVO.setHallNm(rset.getString("HALL_NM"));
 				enrollHistoryVO.setCompNm(rset.getString("COMP_NM"));
@@ -75,10 +76,10 @@ public class EnrollHistoryDao {
 				enrollHistoryVO.setUserNm(rset.getString("USER_NM"));
 				
 				System.out.println("enrollHistoryVO:::" + enrollHistoryVO);
-
+				
 				enrollHistoryVOList.add(enrollHistoryVO);
 				System.out.println("enrollHistoryVO 보여죵");
-
+				
 				System.out.println(enrollHistoryVO);
 
 			}

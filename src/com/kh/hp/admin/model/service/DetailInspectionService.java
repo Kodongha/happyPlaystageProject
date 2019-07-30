@@ -14,25 +14,16 @@ import com.kh.hp.admin.model.vo.InspectionListVO;
 
 public class DetailInspectionService {
 	
-	public int getListCount() {
-		Connection con = getConnection();
-
-	int listCount = new UserDao().getListCount(con);
-
-	return listCount;
-
-	}
-
 
 
 	//대관등록검수리스트 상세
-	public ArrayList<DetailInspectionVO> DetailInspection(int rentSeq ,int currentPage, int limit) {
+	public ArrayList<DetailInspectionVO> DetailInspection(int rentSeq ) {
 
 		System.out.println("대관등록검수리스트상세 서비스까지 왔나요?");
 
 		Connection con = getConnection();
 
-		ArrayList<DetailInspectionVO> DetailInspectionVOList = new DetailInspectionDao().DetailInspection(con , rentSeq,currentPage, limit);
+		ArrayList<DetailInspectionVO> DetailInspectionVOList = new DetailInspectionDao().DetailInspection(con , rentSeq);
 
 		close(con);
 

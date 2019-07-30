@@ -4,22 +4,22 @@ public class DetailInspectionVO {
 	
 	private int userSeq;
 	private int rentSeq;
-	private String rentNm;
+	private String hallNm;
 	private String hallDetIntro;
 	private String cautionContent ;
 	private String website;
 	private String rentEnrollStatus;
 	private String address;
-	private char inspTf;
+	private String inspTf;
 	
 	public DetailInspectionVO () {}
 
-	public DetailInspectionVO(int userSeq, int rentSeq, String rentNm, String hallDetIntro, String cautionContent,
-			String website, String rentEnrollStatus, String address, char inspTf) {
+	public DetailInspectionVO(int userSeq, int rentSeq, String hallNm, String hallDetIntro, String cautionContent,
+			String website, String rentEnrollStatus, String address, String inspTf) {
 		super();
 		this.userSeq = userSeq;
 		this.rentSeq = rentSeq;
-		this.rentNm = rentNm;
+		this.hallNm = hallNm;
 		this.hallDetIntro = hallDetIntro;
 		this.cautionContent = cautionContent;
 		this.website = website;
@@ -44,12 +44,12 @@ public class DetailInspectionVO {
 		this.rentSeq = rentSeq;
 	}
 
-	public String getRentNm() {
-		return rentNm;
+	public String getHallNm() {
+		return hallNm;
 	}
 
-	public void setRentNm(String rentNm) {
-		this.rentNm = rentNm;
+	public void setHallNm(String hallNm) {
+		this.hallNm = hallNm;
 	}
 
 	public String getHallDetIntro() {
@@ -92,20 +92,21 @@ public class DetailInspectionVO {
 		this.address = address;
 	}
 
-	public char getInspTf() {
+	public String getInspTf() {
 		return inspTf;
 	}
 
-	public void setInspTf(char inspTf) {
+	public void setInspTf(String inspTf) {
 		this.inspTf = inspTf;
 	}
 
 	@Override
 	public String toString() {
-		return "DetailInspectionVO [userSeq=" + userSeq + ", rentSeq=" + rentSeq + ", rentNm=" + rentNm
+		return "DetailInspectionVO [userSeq=" + userSeq + ", rentSeq=" + rentSeq + ", hallNm=" + hallNm
 				+ ", hallDetIntro=" + hallDetIntro + ", cautionContent=" + cautionContent + ", website=" + website
 				+ ", rentEnrollStatus=" + rentEnrollStatus + ", address=" + address + ", inspTf=" + inspTf + "]";
 	}
 
+	
 	
 }

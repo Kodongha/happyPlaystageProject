@@ -254,8 +254,14 @@
 						<td><%=SetRegPermissions.getUserSeq()%></td>
 						<td><%=SetRegPermissions.getUserNm()%></td>
 						<td><%=SetRegPermissions.getUserPhone() %></td>
-						<td><%=SetRegPermissions.getOriginNm() %></td>
-						<td><%=SetRegPermissions.getUserGradeStatus() %></td>
+						<td><%=SetRegPermissions.getOriginNm() %></td>					
+						<%if(SetRegPermissions.getUserGradeStatus() == 1){%>
+							<td>승인대기</td>
+						<%} else {%>
+							<td>승인완료</td>
+						<%} %>
+
+						</tr>
 						<td><input type="button" value="O" class="button"> <input
 							type="button" value="X" class="button"></td>
 					</tr>

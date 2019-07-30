@@ -2,64 +2,58 @@ package com.kh.hp.admin.model.vo;
 
 import java.sql.Date;
 
-public class AttachmentVO implements java.io.Serializable {
+public class AttachmentVO {
 	
-	private int fid;
-	private int bid;
-	private String originName;
-	private String changeName;
+	private int attchSeq;
+	private String originNm;
+	private String changeNm;
 	private String filePath;
-	private Date uploadDate;
-	private int fileLevel;
-	private int downloadCount;
-	private String status;
+	private Date uploadDt;
+	private int fileType;
+	private int rentSeq;
+	private int propSeq;
+	private int userSeq;
+	private int subType;
 	
 	public AttachmentVO () {}
 
-	public AttachmentVO(int fid, int bid, String originName, String changeName, String filePath, Date uploadDate,
-			int fileLevel, int downloadCount, String status) {
+	public AttachmentVO(int attchSeq, String originNm, String changeNm, String filePath, Date uploadDt, int fileType,
+			int rentSeq, int propSeq, int userSeq, int subType) {
 		super();
-		this.fid = fid;
-		this.bid = bid;
-		this.originName = originName;
-		this.changeName = changeName;
+		this.attchSeq = attchSeq;
+		this.originNm = originNm;
+		this.changeNm = changeNm;
 		this.filePath = filePath;
-		this.uploadDate = uploadDate;
-		this.fileLevel = fileLevel;
-		this.downloadCount = downloadCount;
-		this.status = status;
+		this.uploadDt = uploadDt;
+		this.fileType = fileType;
+		this.rentSeq = rentSeq;
+		this.propSeq = propSeq;
+		this.userSeq = userSeq;
+		this.subType = subType;
 	}
 
-	public int getFid() {
-		return fid;
+	public int getAttchSeq() {
+		return attchSeq;
 	}
 
-	public void setFid(int fid) {
-		this.fid = fid;
+	public void setAttchSeq(int attchSeq) {
+		this.attchSeq = attchSeq;
 	}
 
-	public int getBid() {
-		return bid;
+	public String getOriginNm() {
+		return originNm;
 	}
 
-	public void setBid(int bid) {
-		this.bid = bid;
+	public void setOriginNm(String originNm) {
+		this.originNm = originNm;
 	}
 
-	public String getOriginName() {
-		return originName;
+	public String getChangeNm() {
+		return changeNm;
 	}
 
-	public void setOriginName(String originName) {
-		this.originName = originName;
-	}
-
-	public String getChangeName() {
-		return changeName;
-	}
-
-	public void setChangeName(String changeName) {
-		this.changeName = changeName;
+	public void setChangeNm(String changeNm) {
+		this.changeNm = changeNm;
 	}
 
 	public String getFilePath() {
@@ -70,44 +64,61 @@ public class AttachmentVO implements java.io.Serializable {
 		this.filePath = filePath;
 	}
 
-	public Date getUploadDate() {
-		return uploadDate;
+	public Date getUploadDt() {
+		return uploadDt;
 	}
 
-	public void setUploadDate(Date uploadDate) {
-		this.uploadDate = uploadDate;
+	public void setUploadDt(Date uploadDt) {
+		this.uploadDt = uploadDt;
 	}
 
-	public int getFileLevel() {
-		return fileLevel;
+	public int getFileType() {
+		return fileType;
 	}
 
-	public void setFileLevel(int fileLevel) {
-		this.fileLevel = fileLevel;
+	public void setFileType(int fileType) {
+		this.fileType = fileType;
 	}
 
-	public int getDownloadCount() {
-		return downloadCount;
+	public int getRentSeq() {
+		return rentSeq;
 	}
 
-	public void setDownloadCount(int downloadCount) {
-		this.downloadCount = downloadCount;
+	public void setRentSeq(int rentSeq) {
+		this.rentSeq = rentSeq;
 	}
 
-	public String getStatus() {
-		return status;
+	public int getPropSeq() {
+		return propSeq;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPropSeq(int propSeq) {
+		this.propSeq = propSeq;
+	}
+
+	public int getUserSeq() {
+		return userSeq;
+	}
+
+	public void setUserSeq(int userSeq) {
+		this.userSeq = userSeq;
+	}
+
+	public int getSubType() {
+		return subType;
+	}
+
+	public void setSubType(int subType) {
+		this.subType = subType;
 	}
 
 	@Override
 	public String toString() {
-		return "AttachmentVO [fid=" + fid + ", bid=" + bid + ", originName=" + originName + ", changeName=" + changeName
-				+ ", filePath=" + filePath + ", uploadDate=" + uploadDate + ", fileLevel=" + fileLevel
-				+ ", downloadCount=" + downloadCount + ", status=" + status + "]";
-	}
+		return "AttachmentVO [attchSeq=" + attchSeq + ", originNm=" + originNm + ", changeNm=" + changeNm
+				+ ", filePath=" + filePath + ", uploadDt=" + uploadDt + ", fileType=" + fileType + ", rentSeq="
+				+ rentSeq + ", propSeq=" + propSeq + ", userSeq=" + userSeq + ", subType=" + subType + "]";
+	} 
+	
 	
 	
 

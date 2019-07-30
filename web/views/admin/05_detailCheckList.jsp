@@ -6,7 +6,9 @@
     
     ArrayList<DetailInspectionVO> DetailInspectionVOList = (ArrayList<DetailInspectionVO>) request.getAttribute("DetailInspectionVOList");
 	String mainImg  = (String) request.getAttribute("mainImg");
-	System.out.println(mainImg);
+	ArrayList<AttachmentVO> fileList = 
+			(ArrayList<AttachmentVO>) request.getAttribute("fileList");
+	AttachmentVO titleImg = fileList.get(0);
 
     %>
 <!DOCTYPE html>
@@ -72,7 +74,7 @@
 						<label class="control-label col-sm-2" for="Performancename">공연장명</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="rentNm"
-								value="<%=DetailInspectionVOList.get(0).getRentNm()%>"
+								value="<%=DetailInspectionVOList.get(0).getHallNm()%>"
 								name="rentNm" style="width: 500px;">
 						</div>
 					</div>
@@ -120,8 +122,8 @@
 						<div class="col-sm-10">
 							<div class="col-sm-2" id="select" style="width: 150px;">
 								<select class="form-control" id="inspTf">
-									<%
-										if (DetailInspectionVOList.get(0).getInspTf() == 'Y') {
+									 <%
+										if (DetailInspectionVOList.get(0).getInspTf().equals('Y')) {
 									%>
 									<option>검수대기</option>
 									<option selected="selected">검수완료</option>
@@ -132,7 +134,7 @@
 									<option>검수완료</option>
 									<%
 										}
-									%>
+									%> 
 								</select> <br>
 							</div>
 
@@ -142,13 +144,13 @@
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="mainimg">대표이미지</label>
 						<div class="col-sm-10">
-						<img alt="<%=request.getContextPath() %>/images/profilePhotos/<%=mainImg %>" src="">
+						<img alt="<%=request.getContextPath() %>/images/profilePhotos/<%=mainImg %>" src=""> 
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="Registration">공연장등록증</label>
 						<div class="col-sm-10">
-						
+						<button onclick="location.href='<%=request.getContextPath()%>/download.tn?num=<%=titleImg.getAttchSeq()%>'">다운로드</button>
 						</div>
 					</div>
 					<div class="form-group">

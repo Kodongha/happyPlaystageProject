@@ -65,11 +65,12 @@ public class InspectionListVOListDao {
 				InspectionListVO inspectionListVO  = new InspectionListVO();
 
 				inspectionListVO.setRentSeq(rset.getInt("RENT_SEQ"));
+				inspectionListVO.setHallNm(rset.getString("HALL_NM"));
 				inspectionListVO.setUserEmail(rset.getString("USER_EMAIL"));
 				inspectionListVO.setUserPhone(rset.getString("USER_PHONE"));
 				inspectionListVO.setOriginNm(rset.getString("ORIGIN_NM"));
 				inspectionListVO.setInspTf(rset.getString("INSP_TF").charAt(0));
-				inspectionListVO.setRentEnrollStatus(rset.getString("RENT_ENROLL_STATUS"));
+				//inspectionListVO.setRentEnrollStatus(rset.getString("RENT_ENROLL_STATUS"));
 		
 
 				InspectionListVOList.add(inspectionListVO);

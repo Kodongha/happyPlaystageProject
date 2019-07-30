@@ -92,8 +92,8 @@ public class InspectionList extends HttpServlet {
 
 					page = "views/admin/04_checkList.jsp";
 
-				} else {
-					page = "views/main/main.jsp";
+//				} else {
+//					page = "views/main/main.jsp";
 
 				}
 

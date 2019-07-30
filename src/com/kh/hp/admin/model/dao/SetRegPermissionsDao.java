@@ -42,6 +42,7 @@ public class SetRegPermissionsDao {
 		ArrayList<SetRegPermissionsVO> SetRegPermissionsVOList = null;
 
 		String query = prop.getProperty("SetRegPermissionsList");
+		
 
 		try {
 
@@ -50,6 +51,8 @@ public class SetRegPermissionsDao {
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
 
+			System.out.println("startRow::"+startRow);
+			System.out.println("endRow::"+endRow);
 
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -57,10 +60,11 @@ public class SetRegPermissionsDao {
 			rset = pstmt.executeQuery();
 			
 			SetRegPermissionsVOList = new ArrayList<SetRegPermissionsVO> ();
-
+		
+			System.out.println("1");
 
 			while(rset.next()) {
-				
+				System.out.println("while in!!");
 				SetRegPermissionsVO setRegPermissionsVO  = new SetRegPermissionsVO();
 				
 				setRegPermissionsVO.setUserSeq(rset.getInt("USER_SEQ"));
@@ -68,11 +72,19 @@ public class SetRegPermissionsDao {
 				setRegPermissionsVO.setUserPhone(rset.getString("USER_PHONE"));
 				setRegPermissionsVO.setOriginNm(rset.getString("ORIGIN_NM"));
 				setRegPermissionsVO.setUserGradeStatus(rset.getInt("USER_GRADE_STATUS"));
+			
+				System.out.println("22");
+				
+				System.out.println(setRegPermissionsVO);
+				
 				
 				SetRegPermissionsVOList.add(setRegPermissionsVO);
+				System.out.println("33");
 				
+
 				System.out.println("등록권한설정리스트:::::" + setRegPermissionsVO);
-				
+			
+
 				
 			}
 			

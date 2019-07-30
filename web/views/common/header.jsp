@@ -24,7 +24,7 @@
 		  <!-- 리뷰 관련 -->
 	      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">리뷰<span class="caret"></span></a>
 	        <ul class="dropdown-menu">
-	          <li><a href="<%=request.getContextPath() %>/views/review/reviewmain.jsp">리뷰 보기</a></li>
+	          <li><a href="<%=request.getContextPath() %>/reviewMain.acc">리뷰 보기</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/review/beforeriveiw.jsp">리뷰 등록하기</a></li>
 	        </ul>
 	      </li>

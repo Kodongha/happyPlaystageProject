@@ -579,7 +579,7 @@ public class RentDao {
 				rentBasicVO.setRentMainTel(rset.getString("RENT_MAIN_TEL"));
 				rentBasicVO.setUseTimeUnit(rset.getString("USE_TIME_UNIT"));
 				rentBasicVO.setMinRsvTm(rset.getInt("MIN_RSV_TM"));
-				rentBasicVO.setPerfPlanTf(rset.getString("PERF_PLAN_TF").charAt(0));
+				//rentBasicVO.setPerfPlanTf(rset.getString("PERF_PLAN_TF").charAt(0));
 			}
 
 		} catch (SQLException e) {

@@ -18,10 +18,14 @@ public class ReviewSearchVO  {
 	private int useEndTm;
 	private int payAmount;
 	private String hallNm;
-	
-	public void ReviewSearch() {}
 
 	public ReviewSearchVO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public ReviewSearchVO(int propSeq, int rentSeq, int userSeq, String propNm, String propPhone, String propEmail,
+			String propReqContent, Date propDt, String propStatus, Date userStartDt, Date userEndDt, int useStartTm,
+			int useEndTm, int payAmount, String hallNm) {
 		super();
 		this.propSeq = propSeq;
 		this.rentSeq = rentSeq;
@@ -39,8 +43,10 @@ public class ReviewSearchVO  {
 		this.payAmount = payAmount;
 		this.hallNm = hallNm;
 	}
-	
-	
+
+
+
+
 
 	public String getHallNm() {
 		return hallNm;
@@ -171,9 +177,9 @@ public class ReviewSearchVO  {
 				+ payAmount + ", hallNm=" + hallNm + "]";
 	}
 
-	
-	
-	
-	
+
+
+
+
 
 }

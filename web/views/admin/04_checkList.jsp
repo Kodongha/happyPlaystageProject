@@ -7,7 +7,7 @@ ArrayList<InspectionListVO> InspectionListVOList = (ArrayList<InspectionListVO>)
 
 PageInfo pi = (PageInfo) request.getAttribute("pi");
 int listCount = pi.getListCount();
-int currentPage = pi.getCurrentPage();	
+int currentPage = pi.getCurrentPage();
 int maxPage = pi.getMaxPage();
 int startPage = pi.getStartPage();
 int endPage = pi.getEndPage();
@@ -228,7 +228,7 @@ margin-left: 600px;
 
 
 				<div id="users4">
-		
+
 
 					<button type="button" class="btn btn-warning" id="searchbutton">검색</button>
 
@@ -261,7 +261,7 @@ margin-left: 600px;
 							<td><%=InspectionList.getUserEmail() %></td>
 							<td><%=InspectionList.getUserPhone() %></td>
 							<td><%=InspectionList.getOriginNm() %></td>
-							
+
 							<%if(InspectionList.getInspTf() == 'Y'){%>
 							<td>검수완료</td>
 						<%} else {%>
@@ -282,24 +282,24 @@ margin-left: 600px;
 	</div>
 	<div class="pagingArea">
 			<button onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=1'"><<</button>
-			
+
 			<% if(currentPage <= 1){ %>
 			<button disabled><</button>
 			<% }else { %>
 			<button onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=<%=currentPage - 1%>'"><</button>
 			<% } %>
-			
-			<% for(int p = startPage; p <= endPage; p++){ 
+
+			<% for(int p = startPage; p <= endPage; p++){
 				if(currentPage == p){
 			%>
 					<button disabled><%= p %></button>
 			<% } else { %>
 					<button onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=<%=p%>'"><%= p %></button>
-			<% 
+			<%
 				}
-			   } 
+			   }
 			%>
-			
+
 			<% if(currentPage >= maxPage){ %>
 			<button disabled>></button>
 			<% }else{ %>

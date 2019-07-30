@@ -71,17 +71,13 @@
 	<div id="line"></div>
 	<br>
 
-	<%-- <form action="<%=request.getContextPath()%>/reviewSh.acc" method="post"> --%>
+	<form action="<%=request.getContextPath()%>/reviewSh.acc" method="post">
 		<div id="area">
 			<div id="Information">
 				예약번호 : &nbsp; <input type="text" placeholder="예약 번호" name="search"
 					id="search" style="width: 60%">
 			</div>
 					<input type="submit" class="btn btn-warning" id="searchbutton" value="등록">
-
-
-
-
 		</div>
 	</form>
 	<br><br><br><br><br><br><br><br>

@@ -13,7 +13,7 @@ import static com.kh.hp.common.JDBCTemplate.*;
 
 public class ReviewSearchDao {
 	private Properties prop = new Properties();
-	
+
 	public ReviewSearchDao() {
 		String fileName = ReviewSearchDao.class.getResource("/sql/account/account-query.properties").getPath();
 
@@ -24,7 +24,7 @@ public class ReviewSearchDao {
 		}
 
 	}
-	
+
 	public ReviewSearchVO selectList(Connection con, int num) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -42,7 +42,9 @@ public class ReviewSearchDao {
 				rs = new ReviewSearchVO();
 
 				rs.setHallNm(rset.getString("HALL_NM"));
-			
+				rs.setPropSeq(rset.getInt("PROP_SEQ"));
+				rs.setRentSeq(rset.getInt("RENT_SEQ"));
+
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -19,7 +19,7 @@ import com.kh.hp.account.model.vo.ReviewMainVO;
 @WebServlet("/reviewMain.acc")
 public class ReviewMainList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -32,20 +32,20 @@ public class ReviewMainList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		ArrayList<ReviewMainVO> reviewMainVOList = new ReviewService().ReviewList();
 		System.out.println(reviewMainVOList);
-		
+
 		String page = "";
 		if(reviewMainVOList.size() > 0) {
 			request.setAttribute("reviewMainVOList", reviewMainVOList);
-			page = "views/account/reviewMain.jsp";
+			page = "views/review/reviewmain.jsp";
 		} else {
 			page = "views/common/errorPage.jsp";
 		}
-		
+
 		request.getRequestDispatcher(page).forward(request, response);
-		
+
 	}
 
 	/**

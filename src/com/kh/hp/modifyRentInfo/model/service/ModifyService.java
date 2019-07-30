@@ -26,7 +26,7 @@ public class ModifyService {
 		Connection con = getConnection();
 
 		ModifyDao modifyDao = new ModifyDao();
-		Map<String, Object> rentBasicInfoMap = new HashMap();
+		Map<String, Object> rentBasicInfoMap = new HashMap<String, Object>();
 
 		// RENT_BAISC 테이블
 		RentBasicVO rentBasicVO = modifyDao.selectRentBasic(con, rentSeq);
@@ -50,7 +50,9 @@ public class ModifyService {
 		rentBasicInfoMap.put("attachmentVOList", attachmentVOList);
 		rentBasicInfoMap.put("rentImgVOList", rentImgVOList);
 
-
+		for(AttachmentVO attachmentVO : attachmentVOList) {
+			System.out.println(attachmentVO);
+		}
 
 		return rentBasicInfoMap;
 	}

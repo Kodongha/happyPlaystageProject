@@ -277,6 +277,16 @@ public class MyPageDao_mh {
 		return list;
 	}
 
+	public int delete1Rent(Connection con, int rentSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		// String query = prop.getProperty("delete1Rent");
+
+		return result;
+	}
+
 
 
 

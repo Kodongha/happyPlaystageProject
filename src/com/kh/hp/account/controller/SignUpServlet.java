@@ -30,7 +30,7 @@ public class SignUpServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		System.out.println("signUp.acc in");
 
 		String userEmail = request.getParameter("userEmail");
@@ -39,7 +39,7 @@ public class SignUpServlet extends HttpServlet {
 		String userNick = request.getParameter("userNick");
 		String userPhone = request.getParameter("userPhone");
 
-		
+
 
 		UserVO u = new UserVO();
 
@@ -48,20 +48,21 @@ public class SignUpServlet extends HttpServlet {
 		u.setUserNm(userNm);
 		u.setUserNick(userNick);
 		u.setUserPhone(userPhone);
-		
+
 		System.out.println("servlet ::: "+u);
-		
+
 		SignUpService ss = new SignUpService();
 		int result = ss.joinMember(u);
-		
+
 		String page = "";
 		if(result > 0) {
 			page = "views/account/login.jsp";
+			response.sendRedirect(page);
 		} else {
 			page = "views/common/errorPage.jsp";
+			request.getRequestDispatcher(page).forward(request, response);
 		}
-		
-		request.getRequestDispatcher(page).forward(request, response);
+
 
 	}
 

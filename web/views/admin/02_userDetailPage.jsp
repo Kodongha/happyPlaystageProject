@@ -11,14 +11,14 @@
 	ArrayList<EnrollHistoryVO> EnrollHistoryVOlist = (ArrayList<EnrollHistoryVO>) request
 			.getAttribute("EnrollHistoryVOlist");
 
-	
+
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
 	int listCount = pi.getListCount();
-	int currentPage = pi.getCurrentPage();	
+	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
-	
+
 %>
 
 
@@ -87,8 +87,8 @@ margin-top:-55px;
 		<div id="inner">
 
 			<br> <br>
-		
-		
+
+
 			<div class="Membership">
 				<form class="form-horizontal" action="<%=request.getContextPath()%>/updateOneUser.ad?" method="post" encType="multipart/form-data">
 					<div class="form-group">
@@ -96,7 +96,7 @@ margin-top:-55px;
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="userseq"
 								value="<%=oneUser.getUserSeq()%>" name="userseq"
-								style="width: 500px;">
+								style="width: 500px;" readonly="readonly">
 
 						</div>
 					</div>
@@ -104,7 +104,7 @@ margin-top:-55px;
 						<label class="control-label col-sm-2" for="nikName">이메일</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="userEmail" name="userEmail"
-								style="width: 500px;" value="<%=oneUser.getUserEmail()%>">
+								style="width: 500px;" value="<%=oneUser.getUserEmail()%>" readonly="">
 						</div>
 					</div>
 					<div class="form-group">
@@ -136,7 +136,7 @@ margin-top:-55px;
 						<div class="col-sm-10">
 							<input type="email" class="form-control" id="enrollDt"
 								value="<%=oneUser.getEnrollDt()%>" name="enrollDt"
-								style="width: 500px;">
+								style="width: 500px;" readonly="readonly">
 						</div>
 					</div>
 					<div class="form-group">
@@ -144,7 +144,7 @@ margin-top:-55px;
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="snsCd"
 								value="<%=oneUser.getSnsCd()%>" name="snsCd"
-								style="width: 500px;">
+								style="width: 500px;" readonly="readonly">
 						</div>
 					</div>
 					<div class="form-group">
@@ -155,6 +155,9 @@ margin-top:-55px;
 								style="width: 500px;">
 						</div>
 					</div>
+
+					<!-- 탈퇴일자가 NULL이 아닐때 생김 -->
+					<%if(oneUser.getLeaveTf() == 'Y' && oneUser.getLeaveDt() != null){ %>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="tLeaveDt">탈퇴일자</label>
 						<div class="col-sm-10">
@@ -163,6 +166,10 @@ margin-top:-55px;
 								style="width: 500px;">
 						</div>
 					</div>
+					<%} else {%>
+
+							<input type="hidden" class="form-control" id="leaveDt" name="leaveDt" style="width: 500px;" readonly="readonly">
+					<%} %>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="file">첨부파일:</label>
 						<div class="col-sm-10">
@@ -209,13 +216,13 @@ margin-top:-55px;
 									<th>등록일</th>
 									<th>대관등록진행상태</th>
 									<th>작성자</th>
-								
+
 								</tr>
 							 	<%
 									for (EnrollHistoryVO EnrollHistory : EnrollHistoryVOlist) {
 								%>
-								
-								
+
+
 							</thead>
 							<tbody>
 
@@ -231,10 +238,10 @@ margin-top:-55px;
 							</tbody>
 							<%
 								}
-							%> 
+							%>
 						</table>
 					</div>
-	
+
 				<%-- 페이징처리 --%>
 		<div class="pagingArea" align="center">
 			<button
@@ -283,7 +290,7 @@ margin-top:-55px;
 
 			<button
 				onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>&currentPage=<%=maxPage%>'">>></button>
-				
+
 			</div>
 		</div>
 		<br><br><br><br>
@@ -321,8 +328,8 @@ margin-top:-55px;
 							%>
 						</table>
 					</div>
-				
-				
+
+
 				<br>
 				<%-- 페이징처리 --%>
 		<div class="pagingArea" align="center">
@@ -372,11 +379,11 @@ margin-top:-55px;
 
 			<button
 				onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>&currentPage=<%=maxPage%>'">>></button>
-				
+
 			</div>
 		</div>
 
-		
+
 
 		</div>
 		<button class="btn btn-warning" id="revisebutton">수정</button>
@@ -387,10 +394,10 @@ margin-top:-55px;
 				});
 			});
 		</script>
-		
-		
-		
-		<button type="reset" class="btn btn-warning" id="resetbutton" 
+
+
+
+		<button type="reset" class="btn btn-warning" id="resetbutton"
 		onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad'">취소</button>
 
 

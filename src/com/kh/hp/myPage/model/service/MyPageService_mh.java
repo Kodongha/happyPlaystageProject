@@ -222,6 +222,21 @@ public class MyPageService_mh {
 	}
 
 
+	/**
+	 * 대관 삭제
+	 * @param rentSeq
+	 * @return
+	 */
+	public int delete1Rent(int rentSeq) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		int result = new MyPageDao_mh().delete1Rent(con, rentSeq);
+
+		return result;
+	}
+
+
 
 }
 

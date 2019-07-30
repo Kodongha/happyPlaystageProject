@@ -39,7 +39,19 @@
 	$(function(){
 		$("#editBtn").click(function(){
 			console.log("aa");
-			location.href = '<%=request.getContextPath()%>/moveModifyRentForm.up';
+			var rentSeqVal = $(this).next().val();
+			location.href = '<%=request.getContextPath()%>/moveModifyRentForm.up?rentSeq=' + rentSeqVal;
+		});
+
+		$('.detailBtn').click(function(){
+			var rentSeqVal = $(this).next().val();
+			location.href = '<%=request.getContextPath()%>/MoveRentDetail.rt?rentSeq=' + rentSeqVal;
+		});
+
+		$('.deleteBtn').click(function(){
+			var rentSeqVal = $(this).next().val();
+			location.href = '<%=request.getContextPath()%>/deleteRent.rt?rentSeq=' + rentSeqVal;
+//			var rentSeqVal = $(this).parents("#tableList > #rentSeqInput").css("color","red");
 		});
 	});
 
@@ -64,9 +76,18 @@
 			<td colspan="5"><img src="/happyPlaystage/images/rent/rent1.jpg"></td>
 		</tr>
 		<tr>
-			<td colspan="2"><button class="btns btn btn-warning" id="editBtn">수정</button></td>
-			<td colspan="2"><button class="btns btn btn-warning" id="detailBtn">보기</button></td>
-			<td colspan="1"><button class="btns btn btn-default" id="deleteBtn">삭제</button></td>
+			<td colspan="2">
+				<button class="btns btn btn-warning" id="editBtn">수정</button>
+				<input type="hidden" id="rentSeqInput" value="<%=list.get(i).getRentSeq()%>">
+			</td>
+			<td colspan="2">
+				<button class="btns btn btn-warning detailBtn" id="detailBtn">보기</button>
+				<input type="hidden" id="rentSeqInput" value="<%=list.get(i).getRentSeq()%>">
+			</td>
+			<td colspan="1">
+				<button class="btns btn btn-default deleteBtn" id="deleteBtn">삭제</button>
+				<input type="hidden" id="rentSeqInput" value="<%=list.get(i).getRentSeq()%>">
+			</td>
 		</tr>
 	</table>
 	</div>

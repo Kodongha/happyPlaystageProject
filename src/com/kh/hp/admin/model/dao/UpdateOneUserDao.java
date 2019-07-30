@@ -17,7 +17,7 @@ public class UpdateOneUserDao {
 	private Properties prop = new Properties();
 
 	public UpdateOneUserDao() {
-		String fileName = 
+		String fileName =
 				UpdateOneUserDao.class.getResource("/sql/admin/admin-query.properties").getPath();
 
 		try {
@@ -37,11 +37,15 @@ public class UpdateOneUserDao {
 			pstmt.setString(1,updateUser.getUserEmail());
 			pstmt.setString(2, updateUser.getUserNm());
 			pstmt.setString(3, updateUser.getUserNick());
-			pstmt.setString(4, updateUser.getUserPhone());	
+			pstmt.setString(4, updateUser.getUserPhone());
 			pstmt.setInt(5, updateUser.getUserGradeCd());
-			pstmt.setInt(6, updateUser.getSnsCd());
+			if(updateUser.getSnsCd() == 0) {
+				pstmt.setString(6, null);
+			} else {
+				pstmt.setInt(6, updateUser.getSnsCd());
+			}
+
 			pstmt.setInt(7, updateUser.getUserSeq());
-			
 
 			result = pstmt.executeUpdate();
 

@@ -12,27 +12,27 @@ import com.kh.hp.admin.model.vo.DetailInspectionVO;
 
 public class MainImgService {
 
-	
-	
+
+
 	//대표이미지
-	public String mainImg(int rentSeq) {
+	public String[] mainImg(int rentSeq) {
 		Connection con = getConnection();
-		
-		String mainImg = new MainImgDao().mainImg(con,rentSeq);
-		
-		
+
+		String[] mainImg = new MainImgDao().mainImg(con,rentSeq);
+
+
 
 		close(con);
 
 		return mainImg;
 
-		
-	
-	
+
+
+
 	}
 
 
 
-	
+
 
 }

@@ -99,8 +99,8 @@ public class LevelUpInfoServlet extends HttpServlet {
 			String page = "";
 
 			if(result > 0) {
-				page = "views/common/errorPage.jsp";
-				request.setAttribute("msg", "등업신청이 정상적으로 처리되었습니다.");
+				page = request.getContextPath() + "/moveMain.main";
+				response.sendRedirect(page);
 			}else {
 
 				for(int i = 0; i < saveFiles.size(); i++) {
@@ -109,8 +109,8 @@ public class LevelUpInfoServlet extends HttpServlet {
 				}
 				page = "views/common/errorPage.jsp";
 				request.setAttribute("msg", "등업신청에 실패했습니다");
+				request.getRequestDispatcher(page).forward(request, response);
 			}
-			request.getRequestDispatcher(page).forward(request, response);
 		}
 
 

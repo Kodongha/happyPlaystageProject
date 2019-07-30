@@ -50,6 +50,7 @@ public class UpdateOneUserServlet extends HttpServlet {
 
 		//이미지 업데이트용
 		if(ServletFileUpload.isMultipartContent(request)) {
+
 			//전송 파일 용량 제한 : 10Mbyte로 제한
 			int maxSize = 1024 * 1024 * 10;
 
@@ -60,7 +61,7 @@ public class UpdateOneUserServlet extends HttpServlet {
 
 
 			//파일 저장 경로(web/thumbnail_uploadFiles)
-			String savePath = root + "regiscer/";
+			String savePath = root + "myPage_uploadFiles/";
 
 			//FileRenamePolicy 상속 후 오버라이딩
 			MultipartRequest multiRequest =
@@ -109,7 +110,11 @@ public class UpdateOneUserServlet extends HttpServlet {
 			Date multienrollDt =  Date.valueOf(multiRequest.getParameter("enrollDt"));
 			int multisnsCd = Integer.parseInt(multiRequest.getParameter("snsCd"));
 			char multileaveTf = multiRequest.getParameter("leaveTf").charAt(0);
-			Date multileaveDt =  Date.valueOf(multiRequest.getParameter("leaveDt"));
+			String leavDt = multiRequest.getParameter("leaveDt");
+			Date multileaveDt = null;
+			if(leavDt != null && !leavDt.equals("")) {
+				multileaveDt =  Date.valueOf(leavDt);
+			}
 
 
 
@@ -130,12 +135,18 @@ public class UpdateOneUserServlet extends HttpServlet {
 			System.out.println("updateUser::::::" +updateUser);
 
 			int result = new UpdateOneUserService().updateOneUser(updateUser);
-			
-			
+
 			System.out.println("result::::" +result);
 
-
-		}	
+			String page = "";
+			if(result > 0) {
+				page = request.getContextPath() + "/selectAllUser.ad";
+				response.sendRedirect(page);
+			} else {
+				page = "view/common/errorPage.jsp";
+				request.getRequestDispatcher(page).forward(request, response);
+			}
+		}
 
 	}
 

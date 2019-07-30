@@ -127,13 +127,13 @@
 
 		<div class="form-group" style="display: inline; float:left; margin: 0 3% 0 3%">
 			<label class="necessary">*</label><label for="accNo">계좌번호</label> <br><br>
-			<input name="accNo" id="accNo" type="text" class="form-control" name="email" placeholder="Email" style="width: 400px">
+			<input name="accNo" id="accNo" type="text" class="form-control" name="email" placeholder="계좌번호" style="width: 400px">
 			<br>
 		</div>
 
 		<div class="form-group" style="display: inline; float: left; margin: 0 3% 0 3%">
 			<label class="necessary">*</label><label for="mailTel1">예금주</label> <br><br>
-			<input id="accHolder" type="text" class="form-control" name="accHolder" placeholder="Email" style="width: 200px">
+			<input id="accHolder" type="text" class="form-control" name="accHolder" placeholder="예금주" style="width: 200px">
 			<br>
 		</div>
 

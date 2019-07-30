@@ -5,13 +5,15 @@
 <%@page import="com.kh.hp.rent.model.vo.RentDetVO"%>
 <%@page import="com.kh.hp.rent.model.vo.FacInfoVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<% int requestRentSeq = Integer.parseInt(request.getParameter("rentSeq")); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script type="text/javascript">
+	var requestRentSeq = <%=requestRentSeq %>;
+</script>
 <!-- bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
@@ -49,10 +51,10 @@
 <%
 	Map<String, Object> rentInfo = (Map<String, Object>) request.getAttribute("rentInfo");
 	RentBasicVO rentBasicVO = (RentBasicVO) rentInfo.get("rentBasicVO");
-/* 	ArrayList<FacInfoVO> facInfoVOList = (ArrayList<FacInfoVO>) rentInfo.get("facInfoVOList");
+ 	ArrayList<FacInfoVO> facInfoVOList = (ArrayList<FacInfoVO>) rentInfo.get("facInfoVOList");
 	ArrayList<CautionsVO> cautionsVOList = (ArrayList<CautionsVO>) rentInfo.get("cautionsVOList");
 	ArrayList<AttachmentVO> attachmentVOList = (ArrayList<AttachmentVO>) rentInfo.get("attachmentVOList");
-	ArrayList<RentImgVO> rentImgVOList = (ArrayList<RentImgVO>) rentInfo.get("rentImgVOList"); */
+	ArrayList<RentImgVO> rentImgVOList = (ArrayList<RentImgVO>) rentInfo.get("rentImgVOList");
 %>
 <script>
 	$(function(){
@@ -84,6 +86,8 @@
 		console.log(mainTelArr[0]);
 		console.log(mainTelArr[1]);
 		console.log(mainTelArr[2]);
+		
+		$("#hallRegisCerPath").val("");
 
 	});
 </script>
@@ -155,11 +159,11 @@
 						</div>
 						<!-- step3 -->
 						<div class="tab-pane" role="tabpanel" id="step3">
-							<%@include file="step3.jsp" %>
+							<%-- <%@include file="step3.jsp" %> --%>
 						</div>
 						<!-- step4 -->
 						<div class="tab-pane" role="tabpanel" id="step4">
-							<%@include file="step4.jsp" %>
+							<%-- <%@include file="step4.jsp" %> --%>
 						</div>
 						<!-- complete -->
 						<%@include file="complete.jsp" %>

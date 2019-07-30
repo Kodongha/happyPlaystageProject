@@ -109,6 +109,7 @@
 	<br><br><br><br>
 	<br>
 
+	<!-- 공연장 등록증 -->
 	<div class="form-group">
 		<label class="necessary">*</label><label for="hallRegisCerPath">공연장 등록증 첨부</label><br><br>
 		<div class="form-group">

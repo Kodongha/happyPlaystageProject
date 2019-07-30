@@ -91,22 +91,22 @@ public class DetailInspection extends HttpServlet {
 			endPage = maxPage;
 		}
 
-		PageInfo pi = 
+		PageInfo pi =
 				new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
 		ArrayList<DetailInspectionVO> DetailInspectionVOList = new DetailInspectionService().DetailInspection(rentSeq);
 
-		//대표이미지 
+		//대표이미지
 
 
-		String mainImg  = new MainImgService().mainImg(rentSeq);
+		String[] mainImg  = new MainImgService().mainImg(rentSeq);
 
 		System.out.println("controller :: "+mainImg);
 
 
 		//공연장등록증 (다운)
 
-
+/*
 		AttachmentVO file = new RegisCerService().regisCer(rentSeq);
 		System.out.println("등록증서블릿파일::::"+file);
 
@@ -121,7 +121,7 @@ public class DetailInspection extends HttpServlet {
 
 		//한글이나 특수문자 때문에 파일명 인코딩 처리
 		//강제적으로 다운로드 처리
-		response.setHeader("Content-Disposition", "attachment; filename=\"" 
+		response.setHeader("Content-Disposition", "attachment; filename=\""
 				+ new String(file.getOriginNm().getBytes("UTF-8"), "ISO-8859-1")
 				+ "\"");
 		response.setContentLength((int) downFile.length());
@@ -136,8 +136,8 @@ public class DetailInspection extends HttpServlet {
 
 		downOut.close();
 		buf.close();
+*/
 
-	
 
 		String page = "";
 
@@ -145,7 +145,7 @@ public class DetailInspection extends HttpServlet {
 
 			request.setAttribute("DetailInspectionVOList", DetailInspectionVOList);
 			request.setAttribute("mainImg", mainImg);
-			request.setAttribute("file", file);
+//			request.setAttribute("file", file);
 			page = "views/admin/05_detailCheckList.jsp";
 
 
@@ -155,7 +155,7 @@ public class DetailInspection extends HttpServlet {
 
 		}
 
-		request.getRequestDispatcher(page).forward(request, response);				
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

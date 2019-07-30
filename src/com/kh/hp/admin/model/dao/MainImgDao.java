@@ -14,7 +14,7 @@ import java.util.Properties;
 
 public class MainImgDao {
 
-	private Properties prop = new Properties(); 
+	private Properties prop = new Properties();
 
 	public MainImgDao() {
 
@@ -31,13 +31,13 @@ public class MainImgDao {
 
 
 	//대표이미지
-	public String mainImg(Connection con, int rentSeq) {
-		
+	public String[] mainImg(Connection con, int rentSeq) {
+
 		System.out.println("대표이미지 dao까지는 왔어? ");
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String mainImg = null;
+		String[] mainImg = new String[4];
 
 		String query = prop.getProperty("mainImg");
 
@@ -48,18 +48,18 @@ public class MainImgDao {
 			pstmt.setInt(1, rentSeq);
 
 			rset = pstmt.executeQuery();
+			int i=0;
+			while(rset.next()) {
 
-			if(rset.next()) {
 
-			
 
-				mainImg = rset.getString("CHANGE_NM");
-				
+				mainImg[i] = rset.getString("CHANGE_NM");
+
 				System.out.println("333333333333333333");
-				
+
 				System.out.println(mainImg);
 
-			
+				i++;
 			}
 
 		} catch (SQLException e) {

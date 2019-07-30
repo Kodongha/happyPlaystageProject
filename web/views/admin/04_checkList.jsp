@@ -178,7 +178,21 @@ int endPage = pi.getEndPage();
 margin-top: -100px;
 margin-left: 600px;
 }
+#attachTd:hover{
+	font-weight: bold;
+	cursor:pointer;
+}
+tbody > tr:hover{
+	background:#e6f2ff;
+}
+tbody > tr:active{
+	background:#cce6ff;
+}
 </style>
+
+<script type="text/javascript">
+
+</script>
 
 </head>
 <body>
@@ -258,25 +272,20 @@ margin-left: 600px;
 						<tr onclick="location.href='<%=request.getContextPath()%>/detailInspection.ad?rentSeq=<%=InspectionList.getRentSeq() %>'">
 							<td><%=InspectionList.getRentSeq() %></td>
 							<td><%=InspectionList.getHallNm() %></td>
-							<td><%=InspectionList.getUserEmail() %></td>
-							<td><%=InspectionList.getUserPhone() %></td>
-							<td><%=InspectionList.getOriginNm() %></td>
+							<td><%=InspectionList.getRentEmail() %></td>
+							<td><%=InspectionList.getRentMainTel() %></td>
+							<td id="attachTd"><%=InspectionList.getOriginNm() %></td>
 
-							<%if(InspectionList.getInspTf() == 'Y'){%>
+							<% if(InspectionList.getInspTf().equals("Y")){%>
 							<td>검수완료</td>
-						<%} else {%>
-							<td>검수대기</td>
-						<%} %>
-
-						</tr>
-						<% } %>
-
+							<%} else {%>
+								<td>검수대기</td>
+							<%} %>
+							</tr>
+							<% } %>
 					</tbody>
 				</table>
 			</div>
-
-
-
 		</div>
 
 	</div>

@@ -11,26 +11,21 @@ import com.kh.hp.admin.model.vo.UpdateUserVO;
 
 public class UpdateOneUserService {
 
-	
-	
 	//회원정보 수정용 메소드
 	public int updateOneUser(UpdateUserVO updateUser) {
-	 Connection con = getConnection();
-	 
-	 int result = new UpdateOneUserDao().updateOneUser(con,updateUser);
-		
-			 if(result > 0) {
-					commit(con);
-				}else {
-					rollback(con);
-				}
-				close(con);
+		Connection con = getConnection();
 
-				return result;
-	
+		int result = new UpdateOneUserDao().updateOneUser(con,updateUser);
+
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+
+		return result;
+
 	}
-
-
-
 
 }

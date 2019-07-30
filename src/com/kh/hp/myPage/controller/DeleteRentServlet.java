@@ -1,28 +1,25 @@
-package com.kh.hp.modifyRentInfo.controller;
+package com.kh.hp.myPage.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.hp.modifyRentInfo.model.service.ModifyService;
+import com.kh.hp.myPage.model.service.MyPageService_mh;
 
 /**
- * Servlet implementation class MoveModifyFormSevlet
+ * Servlet implementation class DeleteRentServlet
  */
-@WebServlet("/moveModifyRentForm.up")
-public class MoveModifyFormSevlet extends HttpServlet {
+@WebServlet("/deleteRent.rt")
+public class DeleteRentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MoveModifyFormSevlet() {
+    public DeleteRentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,26 +29,12 @@ public class MoveModifyFormSevlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("in!!!");
-		// 수정하기 버튼 클릭시 해당 공연장 고유번호 전달받기
-		int rentSeq = Integer.parseInt(request.getParameter("rentSeq")); // 임시
+		System.out.println("delete in");
+		int rentSeq = Integer.parseInt(request.getParameter("rentSeq"));
 
-		System.out.println("rentSeq:::" + rentSeq);
+		System.out.println(rentSeq);
 
-		ModifyService modifyService = new ModifyService();
-
-		Map<String, Object> rentInfo = modifyService.getrentInfo(rentSeq);
-
-		String page = "";
-		if(rentInfo != null) {
-			page="views/modifyRentInfo/rentBasicModify.jsp";
-			request.setAttribute("rentInfo", rentInfo);
-		} else {
-
-		}
-
-		request.getRequestDispatcher(page).forward(request, response);
-
+		int result = new MyPageService_mh().delete1Rent(rentSeq);
 
 	}
 

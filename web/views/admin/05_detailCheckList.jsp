@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*, com.kh.hp.admin.model.vo.* "%>
-
-
 <%
-    
     ArrayList<DetailInspectionVO> DetailInspectionVOList = (ArrayList<DetailInspectionVO>) request.getAttribute("DetailInspectionVOList");
-	String mainImg  = (String) request.getAttribute("mainImg");
-	ArrayList<AttachmentVO> fileList = 
-			(ArrayList<AttachmentVO>) request.getAttribute("fileList");
-	AttachmentVO titleImg = fileList.get(0);
+	String[] mainImg  = (String[]) request.getAttribute("mainImg");
+	String rentSeq = request.getParameter("rentSeq");
+//	ArrayList<AttachmentVO> fileList = (ArrayList<AttachmentVO>) request.getAttribute("fileList");
+//	AttachmentVO titleImg = fileList.get(0);
 
     %>
 <!DOCTYPE html>
@@ -134,7 +131,7 @@
 									<option>검수완료</option>
 									<%
 										}
-									%> 
+									%>
 								</select> <br>
 							</div>
 
@@ -144,20 +141,21 @@
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="mainimg">대표이미지</label>
 						<div class="col-sm-10">
-						<img alt="<%=request.getContextPath() %>/images/profilePhotos/<%=mainImg %>" src=""> 
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-sm-2" for="Registration">공연장등록증</label>
-						<div class="col-sm-10">
-						<button onclick="location.href='<%=request.getContextPath()%>/download.tn?num=<%=titleImg.getAttchSeq()%>'">다운로드</button>
+						<img alt="" src="<%=request.getContextPath() %>/images/profilePhotos/<%=mainImg[0] %>">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="img">내부이미지</label>
 						<div class="col-sm-10">
-						
-
+						<%for(int i=1; i<mainImg.length; i++){ %>
+						<img alt="" src="<%=request.getContextPath() %>/images/profilePhotos/<%=mainImg[i] %>">
+						<%} %>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="Registration">공연장등록증</label>
+						<div class="col-sm-10">
+						<input type="button" onclick="location.href='<%=request.getContextPath()%>/download.tn?rentSeq=<%=rentSeq %>'" value="다운로드">
 						</div>
 					</div>
 					<div class="form-group">

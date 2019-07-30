@@ -39,7 +39,7 @@ $(function(){
 
     $(function(){
     	// 시설 안내 정보 가져오기
-    	var rentSeq = 1;	// 수정필요
+    	var rentSeq = requestRentSeq;	// 수정필요
     	var imgType = 1;
 
     	if(rentSeq > 0) {	// 수정필요
@@ -66,6 +66,7 @@ $(function(){
 	// 시설 안내 정보 가져오기
 	function getFacInfo(rentSeq) {
 		var url = 'facInfo';
+		console.log("rentSeq::" + rentSeq);
 
 		$.ajax({
 		    url:url, 					// request 보낼 서버의 경로

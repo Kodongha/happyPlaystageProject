@@ -8,8 +8,8 @@
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage(); 
-	
+	int endPage = pi.getEndPage();
+
  %>
 
 <!DOCTYPE html>
@@ -148,6 +148,12 @@
 margin-top: -100px;
 margin-left: 600px;
 }
+tbody > tr:hover{
+	background:#e6f2ff;
+}
+tboydy > tr:active{
+	background:#cce6ff;
+}
 </style>
 
 </head>
@@ -157,7 +163,7 @@ margin-left: 600px;
 			$("#userSearchForm").submit();
 		});
 	});
-	
+
 
 </script>
 <body>
@@ -233,7 +239,7 @@ margin-left: 600px;
 					<tr>
 						<th>회원번호</th>
 						<th>이메일(아이디)</th>
-						<th>이름</th>						
+						<th>이름</th>
 						<th>연락처</th>
 						<th>대관승인여부</th>
 						<th>탈퇴여부</th>
@@ -261,24 +267,24 @@ margin-left: 600px;
 	</div>
 	<div class="pagingArea">
 			<button onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=1'"><<</button>
-			
+
 			<% if(currentPage <= 1){ %>
 			<button disabled><</button>
 			<% }else { %>
 			<button onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=currentPage - 1%>'"><</button>
 			<% } %>
-			
-			<% for(int p = startPage; p <= endPage; p++){ 
+
+			<% for(int p = startPage; p <= endPage; p++){
 				if(currentPage == p){
 			%>
 					<button disabled><%= p %></button>
 			<% } else { %>
 					<button onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=p%>'"><%= p %></button>
-			<% 
+			<%
 				}
-			   } 
+			   }
 			%>
-			
+
 			<% if(currentPage >= maxPage){ %>
 			<button disabled>></button>
 			<% }else{ %>

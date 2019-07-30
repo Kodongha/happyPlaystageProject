@@ -2,20 +2,20 @@
 	pageEncoding="UTF-8" import="java.util.*, com.kh.hp.admin.model.vo.* "%>
 
 <%
-  
+
 	ArrayList<SetRegPermissionsVO> SetRegPermissionsVOList = (ArrayList<SetRegPermissionsVO>) request
 	.getAttribute("SetRegPermissionsVOList");
-  
+
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
 	int listCount = pi.getListCount();
-	int currentPage = pi.getCurrentPage();	
+	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
-	
+
 	System.out.println("3_aut");
 	System.out.println(SetRegPermissionsVOList);
-  
+
   %>
 <!DOCTYPE html>
 <html>
@@ -160,6 +160,15 @@
 	border: none;
 	border-radius: 6px 6px 6px 6px;
 }
+.button:hover {
+	background:darkgray;
+}
+tbody > tr:hover{
+	background:#e6f2ff;
+}
+tbody > tr:active{
+	background:#cce6ff;
+}
 </style>
 
 </head>
@@ -194,18 +203,13 @@
 					<input class="form-control" id="ex1" type="text"
 						style="width: 250px;">
 				</div>
-
 			</div>
-
-
 
 
 
 			<div id="users4">
 				<label id="userno">등록구분</label>
 			</div>
-
-
 			<div id="users5">
 				<div class="col-sm-2" id="select">
 					<select class="form-control" id="gender1" style="width: 100px">
@@ -213,20 +217,8 @@
 						<option>승인대기</option>
 						<option>승인완료</option>
 					</select>
-
 				</div>
-
-
-
-
-
-
-
-
-
 				<button type="button" class="btn btn-warning" id="searchbutton">검색</button>
-
-
 			</div>
 		</div>
 
@@ -244,43 +236,29 @@
 						<th>승인유무</th>
 					</tr>
 
-					<%
-									for (SetRegPermissionsVO  SetRegPermissions : SetRegPermissionsVOList) {
-								%>
 				</thead>
-			
+
 				<tbody>
+					<%for (SetRegPermissionsVO  SetRegPermissions : SetRegPermissionsVOList) {%>
 					<tr>
 						<td><%=SetRegPermissions.getUserSeq()%></td>
 						<td><%=SetRegPermissions.getUserNm()%></td>
 						<td><%=SetRegPermissions.getUserPhone() %></td>
-						<td><%=SetRegPermissions.getOriginNm() %></td>					
+						<td><%=SetRegPermissions.getOriginNm() %></td>
 						<%if(SetRegPermissions.getUserGradeStatus() == 1){%>
 							<td>승인대기</td>
 						<%} else {%>
 							<td>승인완료</td>
 						<%} %>
 
-						</tr>
 						<td><input type="button" value="O" class="button"> <input
 							type="button" value="X" class="button"></td>
-					</tr>
+						</tr>
+					<%}%>
 				</tbody>
-					<%
-								}
-							%> 
 			</table>
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
 
 	<jsp:include page="/views/common/footer.jsp" />
 </body>

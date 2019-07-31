@@ -171,12 +171,6 @@ margin-top:-55px;
 							<input type="hidden" class="form-control" id="leaveDt" name="leaveDt" style="width: 500px;" readonly="readonly">
 					<%} %>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="file">첨부파일:</label>
-						<div class="col-sm-10">
-							<input type="file" id="ex_filename" class="upload-hidden">
-						</div>
-					</div>
-					<div class="form-group">
 						<label class="control-label col-sm-2" for="cd" >대관등록승인</label>
 						<div class="col-sm-10">
 							<div class="col-sm-2" id="select" style="width: 100px;">

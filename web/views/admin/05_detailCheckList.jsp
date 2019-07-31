@@ -141,17 +141,19 @@
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="mainimg">대표이미지</label>
 						<div class="col-sm-10">
-						<img alt="" src="<%=request.getContextPath() %>/images/profilePhotos/<%=mainImg[0] %>">
+						<img alt="" src="<%=request.getContextPath() %>/images/profilePhotos/<%=mainImg[0] %>"  width="500px" height="400px">
 						</div>
 					</div>
+					<br><br><br><br>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="img">내부이미지</label>
 						<div class="col-sm-10">
 						<%for(int i=1; i<mainImg.length; i++){ %>
-						<img alt="" src="<%=request.getContextPath() %>/images/profilePhotos/<%=mainImg[i] %>">
+						<img alt="" src="<%=request.getContextPath() %>/images/profilePhotos/<%=mainImg[i] %>"  width="500px" height="400px">
 						<%} %>
 						</div>
 					</div>
+					<br><br><br><br>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="Registration">공연장등록증</label>
 						<div class="col-sm-10">

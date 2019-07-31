@@ -71,7 +71,7 @@ public class SetRegPermissionsDao {
 				setRegPermissionsVO.setUserNm(rset.getString("USER_NM"));
 				setRegPermissionsVO.setUserPhone(rset.getString("USER_PHONE"));
 				setRegPermissionsVO.setOriginNm(rset.getString("ORIGIN_NM"));
-				setRegPermissionsVO.setUserGradeStatus(rset.getInt("USER_GRADE_STATUS"));
+				setRegPermissionsVO.setUserGradeCd(rset.getInt("USER_GRADE_CD"));
 			
 				System.out.println("22");
 				

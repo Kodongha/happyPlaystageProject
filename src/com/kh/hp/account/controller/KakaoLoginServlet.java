@@ -1,12 +1,17 @@
 package com.kh.hp.account.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.kh.hp.account.model.service.KakaoService;
 
 /**
  * Servlet implementation class KakaoLoginServlet
@@ -32,6 +37,23 @@ public class KakaoLoginServlet extends HttpServlet {
 
 		String code = request.getParameter("code");
 		System.out.println(code);
+
+		// 카카오 access, refresh 토큰 받아오기
+
+		HashMap<String, String> tokenMap = new KakaoService().getTokenInfo(code);
+
+		Iterator<String> iter = tokenMap.keySet().iterator();
+		while(iter.hasNext()) {
+			String key = iter.next();
+			System.out.println(key + ":" + tokenMap.get(key));
+		}
+
+		// 토큰의 기간 만료 확인한 후 만료 경우, 업데이트 처리
+		String accessToken = tokenMap.get("accessToken");
+		HashMap<String, String> tokenValidation = new KakaoService().validationToken(accessToken);
+
+
+
 
 	}
 

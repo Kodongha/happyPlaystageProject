@@ -1,3 +1,4 @@
+<%@page import="com.kh.hp.rent.model.vo.DetFacAndRentDetFacVO"%>
 <%@page import="com.kh.hp.rent.model.vo.RentImgVO"%>
 <%@page import="com.kh.hp.rent.model.vo.AttachmentVO"%>
 <%@page import="com.kh.hp.rent.model.vo.CautionsVO"%>
@@ -53,11 +54,14 @@
 	RentBasicVO rentBasicVO = (RentBasicVO) rentInfo.get("rentBasicVO");
  	ArrayList<FacInfoVO> facInfoVOList = (ArrayList<FacInfoVO>) rentInfo.get("facInfoVOList");
 	ArrayList<CautionsVO> cautionsVOList = (ArrayList<CautionsVO>) rentInfo.get("cautionsVOList");
+	ArrayList<RentDetVO> rentDetVOList = (ArrayList<RentDetVO>) rentInfo.get("rentDetVOList");
 	ArrayList<AttachmentVO> attachmentVOList = (ArrayList<AttachmentVO>) rentInfo.get("attachmentVOList");
 	ArrayList<RentImgVO> rentImgVOList = (ArrayList<RentImgVO>) rentInfo.get("rentImgVOList");
-%>
+	ArrayList<DetFacAndRentDetFacVO> rentDetFacVOList = (ArrayList<DetFacAndRentDetFacVO>) rentInfo.get("DetFacAndRentDetFacVO");
+	%>
 <script>
 	$(function(){
+		//====== step1 ========
 		$("#hallNm").val('<%=rentBasicVO.getHallNm()%>');
 		$("#hallSimIntro").val('<%=rentBasicVO.getHallSimIntro()%>');
 		$("#hallDetIntro").val('<%=rentBasicVO.getHallDetIntro()%>');
@@ -65,6 +69,7 @@
 		$("#address").val('<%=rentBasicVO.getAddress()%>');
 		$("#rentEmail").val('<%=rentBasicVO.getRentEmail()%>');
 
+		//====== step2 ========
 		//휴대폰번호
 		var rentPhone = "<%= rentBasicVO.getRentPhone()%>";
 		var rentPhoneArr = rentPhone.split('-');
@@ -86,8 +91,29 @@
 		console.log(mainTelArr[0]);
 		console.log(mainTelArr[1]);
 		console.log(mainTelArr[2]);
-		
+
 		$("#hallRegisCerPath").val("");
+
+		<%for(int i=0; i<rentDetVOList.size(); i++) {
+			System.out.println(rentDetVOList.get(i).getRentPrice());
+			System.out.println(rentDetVOList);
+		}
+		%>
+
+		//====== step3 ========
+		$("#availStartTm").val('<%=rentBasicVO.getAvailStartTm()%>');
+		$("#availEndTm").val('<%=rentBasicVO.getAvailEndTm()%>');
+		$("#rentPrice").val('<%=rentDetVOList.get(0).getRentPrice()%>');
+		$("#minRsvTm").val('<%=rentBasicVO.getMinRsvTm()%>');
+		$("#maxHeadCount").val('<%=rentDetVOList.get(0).getMaxHeadCount()%>');
+
+<%-- 		<% if(rentBasicVO.getUseTimeUnit().equals("시간") {%>
+			$("input[name=userTimeUnit]").val('시간').attr("checked", true);
+			$("input[name=userTimeUnit]").val('일').attr("checked", false);
+			$("input[name=userTimeUnit]").val('월').attr("checked", false);
+		<% }%> --%>
+
+
 
 	});
 </script>
@@ -159,7 +185,7 @@
 						</div>
 						<!-- step3 -->
 						<div class="tab-pane" role="tabpanel" id="step3">
-							<%-- <%@include file="step3.jsp" %> --%>
+						 	<%@include file="step3.jsp" %>
 						</div>
 						<!-- step4 -->
 						<div class="tab-pane" role="tabpanel" id="step4">

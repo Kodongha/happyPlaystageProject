@@ -8,12 +8,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.hp.myPage.model.dao.MyPageDao_mh;
 import com.kh.hp.rent.model.vo.AttachmentVO;
 import com.kh.hp.rent.model.vo.CautionsVO;
+import com.kh.hp.rent.model.vo.DetFacAndRentDetFacVO;
+import com.kh.hp.rent.model.vo.DetFacVO;
 import com.kh.hp.rent.model.vo.FacInfoVO;
 import com.kh.hp.rent.model.vo.RentBasicVO;
 import com.kh.hp.rent.model.vo.RentDetVO;
@@ -313,6 +316,86 @@ public class ModifyDao {
 
 		return rentImgVOList;
 
+	}
+
+	/**
+	 * DET_FAC 테이블 정보 가져오기
+	 * @param con
+	 * @param rentSeq
+	 * @return
+	 */
+	public ArrayList<DetFacVO> selectDetFac(Connection con, int rentSeq) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<DetFacVO> detFacVOList = null;
+
+		String query = prop.getProperty("selectDetFacAll");
+
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+
+			detFacVOList = new ArrayList<DetFacVO>();
+
+			while(rset.next()) {
+				DetFacVO detFacVO = new DetFacVO();
+
+				detFacVO.setDetFacSeq(rset.getInt("DET_FAC_SEQ"));
+				detFacVO.setDetFacNm(rset.getString("DET_FAC_NM"));
+				detFacVO.setDetFacImgPath(rset.getString("DET_FAC_IMG_PATH"));
+
+				detFacVOList.add(detFacVO);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+
+		return detFacVOList;
+	}
+
+	/**
+	 * RENT_DET_FAC 정보
+	 * @param con
+	 * @param rentSeq
+	 * @return
+	 */
+	public ArrayList<DetFacAndRentDetFacVO> selectRentDetFacList(Connection con, int rentSeq) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<DetFacAndRentDetFacVO> rentDetFacVOList = null;
+
+		String query = prop.getProperty("selectRentDetFacList");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, rentSeq);
+
+			rset = pstmt.executeQuery();
+			rentDetFacVOList = new ArrayList<DetFacAndRentDetFacVO>();
+
+			while(rset.next()) {
+
+				DetFacAndRentDetFacVO rentDetFacVO = new DetFacAndRentDetFacVO();
+				rentDetFacVO.setRentDetFacSeq(rset.getInt("RENT_DET_FAC_SEQ"));
+				rentDetFacVO.setRentSeq(rset.getInt("RENT_SEQ"));
+				rentDetFacVO.setDetFacSeq(rset.getInt("DET_FAC_SEQ"));
+				rentDetFacVO.setDetFacNm(rset.getString("DET_FAC_NM"));
+				rentDetFacVO.setDetFacImgPath(rset.getString("DET_FAC_IMG_PATH"));
+
+				rentDetFacVOList.add(rentDetFacVO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return rentDetFacVOList;
 	}
 
 }

@@ -14,6 +14,7 @@ import com.kh.hp.rent.model.vo.DetFacAndRentDetFacVO;
 import com.kh.hp.rent.model.vo.DetFacVO;
 import com.kh.hp.rent.model.vo.FacInfoVO;
 import com.kh.hp.rent.model.vo.RentBasicVO;
+import com.kh.hp.rent.model.vo.RentCloseVO;
 import com.kh.hp.rent.model.vo.RentDetVO;
 import com.kh.hp.rent.model.vo.RentImgVO;
 
@@ -44,8 +45,10 @@ public class ModifyService {
 		ArrayList<RentImgVO> rentImgVOList = modifyDao.selectRentImg(con, rentSeq);
 		//DET_FAC 테이블
 		ArrayList<DetFacVO> detFacVOList = modifyDao.selectDetFac(con, rentSeq);
-		//RENT_DET_FAC
+		//RENT_DET_FAC 테이블
 		ArrayList<DetFacAndRentDetFacVO>  rentDetFacVOList = modifyDao.selectRentDetFacList(con, rentSeq);
+		//RENT_CLOSE 테이블
+		ArrayList<RentCloseVO> rentCloseVOList = modifyDao.selectRentCloseList(con, rentSeq);
 
 
 		// 리스트 추가
@@ -57,6 +60,7 @@ public class ModifyService {
 		rentBasicInfoMap.put("rentImgVOList", rentImgVOList);
 		rentBasicInfoMap.put("detFacVOList", detFacVOList);
 		rentBasicInfoMap.put("rentDetFacVOList", rentDetFacVOList);
+		rentBasicInfoMap.put("rentCloseVOList", rentCloseVOList);
 
 
 		for(AttachmentVO attachmentVO : attachmentVOList) {

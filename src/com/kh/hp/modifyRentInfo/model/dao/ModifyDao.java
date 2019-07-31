@@ -19,6 +19,7 @@ import com.kh.hp.rent.model.vo.DetFacAndRentDetFacVO;
 import com.kh.hp.rent.model.vo.DetFacVO;
 import com.kh.hp.rent.model.vo.FacInfoVO;
 import com.kh.hp.rent.model.vo.RentBasicVO;
+import com.kh.hp.rent.model.vo.RentCloseVO;
 import com.kh.hp.rent.model.vo.RentDetVO;
 import com.kh.hp.rent.model.vo.RentImgVO;
 
@@ -396,6 +397,52 @@ public class ModifyDao {
 		}
 
 		return rentDetFacVOList;
+	}
+
+	/**
+	 * 휴무정보 가져오기
+	 * @param con
+	 * @param rentSeq
+	 * @return
+	 */
+	public ArrayList<RentCloseVO> selectRentCloseList(Connection con, int rentSeq) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<RentCloseVO> rentCloseList = null;
+
+		String query = prop.getProperty("selectRentCloseList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, rentSeq);
+
+			rset = pstmt.executeQuery();
+
+			rentCloseList = new ArrayList<RentCloseVO>();
+			while(rset.next()) {
+				RentCloseVO rentCloseVO = new RentCloseVO();
+				rentCloseVO.setRentCloseSeq(rset.getInt("RENT_CLOSE_SEQ"));
+				rentCloseVO.setRegCloseCd(rset.getInt("REG_CLOSE_CD"));
+				rentCloseVO.setCusCloseNm(rset.getString("CUS_CLOSE_NM"));
+				rentCloseVO.setCusCloseStart(rset.getDate("CUS_CLOSE_START"));
+				rentCloseVO.setCusCloseEnd(rset.getDate("CUS_CLOSE_END"));
+				rentCloseVO.setCusCloseWeekOkDay(rset.getString("CUS_CLOSE_WEEK_OK_DAY"));
+				rentCloseVO.setRegCloseWeekOfDay(rset.getString("REG_CLOSE_WEEK_OF_DAY"));
+				rentCloseVO.setRegCloseDt(rset.getString("REG_CLOSE_DT"));
+				rentCloseVO.setRentSeq(rset.getInt("RENT_SEQ"));
+				rentCloseVO.setRegCloseNm(rset.getString("REG_CLOSE_NM"));
+
+				rentCloseList.add(rentCloseVO);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return rentCloseList;
 	}
 
 }

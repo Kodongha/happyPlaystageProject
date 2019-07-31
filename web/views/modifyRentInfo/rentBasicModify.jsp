@@ -1,3 +1,4 @@
+<%@page import="com.kh.hp.rent.model.vo.RentCloseVO"%>
 <%@page import="com.kh.hp.rent.model.vo.DetFacAndRentDetFacVO"%>
 <%@page import="com.kh.hp.rent.model.vo.RentImgVO"%>
 <%@page import="com.kh.hp.rent.model.vo.AttachmentVO"%>
@@ -58,6 +59,7 @@
 	ArrayList<AttachmentVO> attachmentVOList = (ArrayList<AttachmentVO>) rentInfo.get("attachmentVOList");
 	ArrayList<RentImgVO> rentImgVOList = (ArrayList<RentImgVO>) rentInfo.get("rentImgVOList");
 	ArrayList<DetFacAndRentDetFacVO> rentDetFacVOList = (ArrayList<DetFacAndRentDetFacVO>) rentInfo.get("DetFacAndRentDetFacVO");
+	ArrayList<RentCloseVO> rentCloseVOList = (ArrayList<RentCloseVO>) rentInfo.get("rentCloseVOList");
 	%>
 <script>
 	$(function(){
@@ -107,13 +109,19 @@
 		$("#minRsvTm").val('<%=rentBasicVO.getMinRsvTm()%>');
 		$("#maxHeadCount").val('<%=rentDetVOList.get(0).getMaxHeadCount()%>');
 
-<%-- 		<% if(rentBasicVO.getUseTimeUnit().equals("시간") {%>
-			$("input[name=userTimeUnit]").val('시간').attr("checked", true);
-			$("input[name=userTimeUnit]").val('일').attr("checked", false);
-			$("input[name=userTimeUnit]").val('월').attr("checked", false);
-		<% }%> --%>
+		<% if(rentBasicVO.getUseTimeUnit().equals("시간")) {%>
+			$("#useTimeUnit1").attr("checked", true);
+		<% } else if(rentBasicVO.getUseTimeUnit().equals("일")) {%>
+ 			$("#useTimeUnit2").attr("checked", true);
+		<% } else {%>
+			$("#useTimeUnit3").attr("checked", true);
+		<% } %>
 
-
+		$("#regCloseCd > option").each(function(){
+			if($(this).val() == <%=rentCloseVOList.get(0).getRegCloseCd()%>){
+				$(this).attr("selected", true);
+			}
+		})
 
 	});
 </script>

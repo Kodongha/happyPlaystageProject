@@ -1,3 +1,5 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <%@page import="com.kh.hp.rent.model.vo.DetFacVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -99,10 +101,10 @@
 		</div>
 
 		<br><br><br><br><br><br><br><br>
-
 		<!-- 시설 세부항목 -->
 		<h2>시설 세부항목 설정</h2>
 		<hr style="background: black">
+
 		<div class="container">
 			<%for(int i=0; i<detFacVOList.size(); i++) {%>
 			<div class="detFacIcon" align="center" id="detFacIcon_<%=detFacVOList.get(i).getDetFacSeq() %>">
@@ -135,7 +137,6 @@
 				});
 			});
 		</script>
-
 		<br><br>
 
 		<h2>휴무일 설정</h2>

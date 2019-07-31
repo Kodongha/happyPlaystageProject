@@ -10,6 +10,8 @@ import java.util.Map;
 import com.kh.hp.modifyRentInfo.model.dao.ModifyDao;
 import com.kh.hp.rent.model.vo.AttachmentVO;
 import com.kh.hp.rent.model.vo.CautionsVO;
+import com.kh.hp.rent.model.vo.DetFacAndRentDetFacVO;
+import com.kh.hp.rent.model.vo.DetFacVO;
 import com.kh.hp.rent.model.vo.FacInfoVO;
 import com.kh.hp.rent.model.vo.RentBasicVO;
 import com.kh.hp.rent.model.vo.RentDetVO;
@@ -40,6 +42,10 @@ public class ModifyService {
 		ArrayList<AttachmentVO> attachmentVOList = modifyDao.selectAttachment(con, rentSeq);
 		//RENT_IMG 테이블
 		ArrayList<RentImgVO> rentImgVOList = modifyDao.selectRentImg(con, rentSeq);
+		//DET_FAC 테이블
+		ArrayList<DetFacVO> detFacVOList = modifyDao.selectDetFac(con, rentSeq);
+		//RENT_DET_FAC
+		ArrayList<DetFacAndRentDetFacVO>  rentDetFacVOList = modifyDao.selectRentDetFacList(con, rentSeq);
 
 
 		// 리스트 추가
@@ -49,12 +55,25 @@ public class ModifyService {
 		rentBasicInfoMap.put("rentDetVOList", rentDetVOList);
 		rentBasicInfoMap.put("attachmentVOList", attachmentVOList);
 		rentBasicInfoMap.put("rentImgVOList", rentImgVOList);
+		rentBasicInfoMap.put("detFacVOList", detFacVOList);
+		rentBasicInfoMap.put("rentDetFacVOList", rentDetFacVOList);
+
 
 		for(AttachmentVO attachmentVO : attachmentVOList) {
-			System.out.println(attachmentVO);
+			//System.out.println(attachmentVO);
 		}
 
 		return rentBasicInfoMap;
+	}
+
+	public ArrayList<DetFacVO> getDetFac(int rentSeq) {
+		Connection con = getConnection();
+
+		ModifyDao modifyDao = new ModifyDao();
+
+		ArrayList<DetFacVO> detFacVOList = modifyDao.selectDetFac(con, rentSeq);
+
+		return detFacVOList;
 	}
 
 

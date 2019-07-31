@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.hp.modifyRentInfo.model.service.ModifyService;
+import com.kh.hp.rent.model.vo.DetFacVO;
 
 /**
  * Servlet implementation class MoveModifyFormSevlet
@@ -41,13 +42,16 @@ public class MoveModifyFormSevlet extends HttpServlet {
 		ModifyService modifyService = new ModifyService();
 
 		Map<String, Object> rentInfo = modifyService.getrentInfo(rentSeq);
+		ArrayList<DetFacVO> detFacVOList = modifyService.getDetFac(rentSeq);
+
 
 		String page = "";
-		if(rentInfo != null) {
+		if(rentInfo != null && detFacVOList != null) {
 			page="views/modifyRentInfo/rentBasicModify.jsp";
 			request.setAttribute("rentInfo", rentInfo);
+			request.setAttribute("detFacVOList", detFacVOList);
 		} else {
-
+			System.out.println("널입니다.!!!!!!!!!!!!!!!");
 		}
 
 		request.getRequestDispatcher(page).forward(request, response);

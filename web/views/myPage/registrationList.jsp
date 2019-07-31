@@ -37,7 +37,7 @@
 </style>
 <SCRIPT type="text/javascript">
 	$(function(){
-		$("#editBtn").click(function(){
+		$("button[name=editBtn]").click(function(){
 			console.log("aa");
 			var rentSeqVal = $(this).next().val();
 			location.href = '<%=request.getContextPath()%>/moveModifyRentForm.up?rentSeq=' + rentSeqVal;
@@ -77,15 +77,15 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<button class="btns btn btn-warning" id="editBtn">수정</button>
+				<button class="btns btn btn-warning" id="editBtn" name="editBtn">수정</button>
 				<input type="hidden" id="rentSeqInput" value="<%=list.get(i).getRentSeq()%>">
 			</td>
 			<td colspan="2">
-				<button class="btns btn btn-warning detailBtn" id="detailBtn">보기</button>
+				<button class="btns btn btn-warning detailBtn" id="detailBtn" name="detailBtn">보기</button>
 				<input type="hidden" id="rentSeqInput" value="<%=list.get(i).getRentSeq()%>">
 			</td>
 			<td colspan="1">
-				<button class="btns btn btn-default deleteBtn" id="deleteBtn">삭제</button>
+				<button class="btns btn btn-default deleteBtn" id="deleteBtn" name="deleteBtn">삭제</button>
 				<input type="hidden" id="rentSeqInput" value="<%=list.get(i).getRentSeq()%>">
 			</td>
 		</tr>

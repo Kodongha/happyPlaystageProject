@@ -4,19 +4,19 @@ public class SetRegPermissionsVO   implements java.io.Serializable{
 	private int userSeq;
 	private String userNm;
 	private String userPhone;
-	private int userGradeStatus;
+	private int userGradeCd;
 	private String originNm ;
 	
 	
 	public SetRegPermissionsVO () {}
 
 
-	public SetRegPermissionsVO(int userSeq, String userNm, String userPhone, int userGradeStatus, String originNm) {
+	public SetRegPermissionsVO(int userSeq, String userNm, String userPhone, int userGradeCd, String originNm) {
 		super();
 		this.userSeq = userSeq;
 		this.userNm = userNm;
 		this.userPhone = userPhone;
-		this.userGradeStatus = userGradeStatus;
+		this.userGradeCd = userGradeCd;
 		this.originNm = originNm;
 	}
 
@@ -51,13 +51,13 @@ public class SetRegPermissionsVO   implements java.io.Serializable{
 	}
 
 
-	public int getUserGradeStatus() {
-		return userGradeStatus;
+	public int getUserGradeCd() {
+		return userGradeCd;
 	}
 
 
-	public void setUserGradeStatus(int userGradeStatus) {
-		this.userGradeStatus = userGradeStatus;
+	public void setUserGradeCd(int userGradeCd) {
+		this.userGradeCd = userGradeCd;
 	}
 
 
@@ -74,7 +74,7 @@ public class SetRegPermissionsVO   implements java.io.Serializable{
 	@Override
 	public String toString() {
 		return "SetRegPermissionsVO [userSeq=" + userSeq + ", userNm=" + userNm + ", userPhone=" + userPhone
-				+ ", userGradeStatus=" + userGradeStatus + ", originNm=" + originNm + "]";
+				+ ", userGradeCd=" + userGradeCd + ", originNm=" + originNm + "]";
 	}
 
 	

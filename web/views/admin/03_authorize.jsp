@@ -2,9 +2,8 @@
 	pageEncoding="UTF-8" import="java.util.*, com.kh.hp.admin.model.vo.* "%>
 
 <%
-
 	ArrayList<SetRegPermissionsVO> SetRegPermissionsVOList = (ArrayList<SetRegPermissionsVO>) request
-	.getAttribute("SetRegPermissionsVOList");
+			.getAttribute("SetRegPermissionsVOList");
 
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
 	int listCount = pi.getListCount();
@@ -12,11 +11,7 @@
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
-
-	System.out.println("3_aut");
-	System.out.println(SetRegPermissionsVOList);
-
-  %>
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -160,14 +155,22 @@
 	border: none;
 	border-radius: 6px 6px 6px 6px;
 }
+
 .button:hover {
-	background:darkgray;
+	background: darkgray;
 }
-tbody > tr:hover{
-	background:#e6f2ff;
+
+tbody>tr:hover {
+	background: #e6f2ff;
 }
-tbody > tr:active{
-	background:#cce6ff;
+
+tbody>tr:active {
+	background: #cce6ff;
+}
+
+.pagingArea{
+margin-top: -300px;
+margin-left: 600px;
 }
 </style>
 
@@ -239,27 +242,84 @@ tbody > tr:active{
 				</thead>
 
 				<tbody>
-					<%for (SetRegPermissionsVO  SetRegPermissions : SetRegPermissionsVOList) {%>
+					<%
+						for (SetRegPermissionsVO SetRegPermissions : SetRegPermissionsVOList) {
+					%>
 					<tr>
 						<td><%=SetRegPermissions.getUserSeq()%></td>
 						<td><%=SetRegPermissions.getUserNm()%></td>
-						<td><%=SetRegPermissions.getUserPhone() %></td>
-						<td><%=SetRegPermissions.getOriginNm() %></td>
-						<%if(SetRegPermissions.getUserGradeStatus() == 1){%>
-							<td>승인대기</td>
-						<%} else {%>
-							<td>승인완료</td>
-						<%} %>
+						<td><%=SetRegPermissions.getUserPhone()%></td>
+						<td><%=SetRegPermissions.getOriginNm()%></td>
+						<%
+							if (SetRegPermissions.getUserGradeCd() == 1) {
+						%>
+						<td>승인대기</td>
+						<%
+							} else {
+						%>
+						<td>승인완료</td>
+						<%
+							}
+						%>
 
 						<td><input type="button" value="O" class="button"> <input
 							type="button" value="X" class="button"></td>
-						</tr>
-					<%}%>
+					</tr>
+					<%
+						}
+					%>
 				</tbody>
 			</table>
 		</div>
 	</div>
+	<div class="pagingArea">
+		<button
+			onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=1'"><<</button>
 
+		<%
+			if (currentPage <= 1) {
+		%>
+		<button disabled><</button>
+		<%
+			} else {
+		%>
+		<button
+			onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=currentPage - 1%>'"><</button>
+		<%
+			}
+		%>
+
+		<%
+			for (int p = startPage; p <= endPage; p++) {
+				if (currentPage == p) {
+		%>
+		<button disabled><%=p%></button>
+		<%
+			} else {
+		%>
+		<button
+			onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=p%>'"><%=p%></button>
+		<%
+			}
+			}
+		%>
+
+		<%
+			if (currentPage >= maxPage) {
+		%>
+		<button disabled>></button>
+		<%
+			} else {
+		%>
+		<button
+			onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=currentPage + 1%>'">></button>
+		<%
+			}
+		%>
+
+		<button
+			onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=maxPage%>'">>></button>
+	</div>
 	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

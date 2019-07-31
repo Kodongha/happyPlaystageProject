@@ -3,6 +3,9 @@
 
 <%
  ArrayList<User> list = (ArrayList<User>) request.getAttribute("list");
+
+User user  = new User();
+
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -144,27 +147,28 @@
 	margin-left: 330px;
 	margin-top: 40px;
 }
-.pagingArea{
-margin-top: -100px;
-margin-left: 600px;
+
+.pagingArea {
+	margin-top: -100px;
+	margin-left: 600px;
 }
-tbody > tr:hover{
-	background:#e6f2ff;
+
+tbody>tr:hover {
+	background: #e6f2ff;
 }
-tboydy > tr:active{
-	background:#cce6ff;
+
+tboydy>tr:active {
+	background: #cce6ff;
 }
 </style>
 
 </head>
 <script type="text/javascript">
-	$(function(){
-		$("#searchbutton").click(function(){
+	$(function() {
+		$("#searchbutton").click(function() {
 			$("#userSearchForm").submit();
 		});
 	});
-
-
 </script>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
@@ -178,24 +182,25 @@ tboydy > tr:active{
 		<div id="line"></div>
 		<br>
 
-		<form action="<%=request.getContextPath() %>/userSearch.ad" method="get" id="userSearchForm">
+		<form action="<%=request.getContextPath() %>/userSearch.ad"
+			method="get" id="userSearchForm">
 			<div id="area">
 				<div id="users1">
 					<label id="userno">회원번호</label>
 					<div id="input">
-						<input class="form-control" id="userSeqStart" name="userSeqStart" type="text"
-							style="width: 100px;">
+						<input class="form-control" id="userSeqStart" name="userSeqStart"
+							type="text" style="width: 100px;" value=<%=user.getUserNm() %> >
 					</div>
 					<div id="wave">~</div>
 					<div id="input1">
-						<input class="form-control" id="userSeqEnd" name="userSeqEnd" type="text"
-							style="width: 100px;">
+						<input class="form-control" id="userSeqEnd" name="userSeqEnd"
+							type="text" style="width: 100px;">
 					</div>
 
 					<label id="userno">회원명</label>
 					<div id="input">
 						<input class="form-control" id="userNm" name="userNm" type="text"
-							style="width: 250px;">
+							style="width: 250px;" value=<%=user.getUserNm() %>>
 					</div>
 				</div>
 
@@ -205,7 +210,8 @@ tboydy > tr:active{
 
 				<div id="users3">
 					<div class="col-sm-2">
-						<select class="form-control" id="userGradeStatus" name="userGradeStatus" style="width:100px">
+						<select class="form-control" id="userGradeStatus"
+							name="userGradeStatus" style="width: 100px">
 							<option>선택</option>
 							<option>Y</option>
 							<option>N</option>
@@ -221,13 +227,15 @@ tboydy > tr:active{
 
 					<div id="users5">
 						<div class="col-sm-2" id="select">
-							<select class="form-control" id="leaveTf" name="leaveTf" style="width:100px">
+							<select class="form-control" id="leaveTf" name="leaveTf"
+								style="width: 100px">
 								<option>선택</option>
 								<option>Y</option>
 								<option>N</option>
 							</select>
 						</div>
-						<button type="button" class="btn btn-warning" id="searchbutton">검색</button>
+						<button type="button" class="btn btn-warning" id="searchbutton"
+							onclick="location.href='<%=request.getContextPath()%>/searchUser.ad'">검색</button>
 					</div>
 				</div>
 			</div>
@@ -245,61 +253,67 @@ tboydy > tr:active{
 						<th>탈퇴여부</th>
 					</tr>
 					<%for(User u : list ) {%>
-				</thead>
-				<tbody>
-					<tr onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=u.getUserSeq() %>'">
+						</thead>
+						<tbody>
+							<tr
+								onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=u.getUserSeq() %>'">
 
-						<th><%=u.getUserSeq() %></th>
-						<th><%=u.getUserEmail() %>/</th>
-						<th><%=u.getUserNm() %></th>
-						<th><%=u.getUserPhone() %></th>
-						<%if(u.getUserGradeCd() == 1){%>
-							<th>N</th>
-						<%} else {%>
-							<th>Y</th>
-						<%} %>
-						<th><%=u.getLeaveTf() %> </th>
-					</tr>
-					<%} %>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div class="pagingArea">
-			<button onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=1'"><<</button>
+								<th><%=u.getUserSeq() %></th>
+								<th><%=u.getUserEmail() %>/</th>
+								<th><%=u.getUserNm() %></th>
+								<th><%=u.getUserPhone() %></th>
+								<%if(u.getUserGradeCd() == 1){%>
+								<th>N</th>
+								<%} else {%>
+								<th>Y</th>
+								<%} %>
+								<th><%=u.getLeaveTf() %></th>
+							</tr>
+							<%} %>
+						</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="pagingArea">
+					<button
+						onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=1'"><<</button>
 
-			<% if(currentPage <= 1){ %>
-			<button disabled><</button>
-			<% }else { %>
-			<button onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=currentPage - 1%>'"><</button>
-			<% } %>
+					<% if(currentPage <= 1){ %>
+					<button disabled><</button>
+					<% }else { %>
+					<button
+						onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=currentPage - 1%>'"><</button>
+					<% } %>
 
-			<% for(int p = startPage; p <= endPage; p++){
+					<% for(int p = startPage; p <= endPage; p++){
 				if(currentPage == p){
 			%>
 					<button disabled><%= p %></button>
-			<% } else { %>
-					<button onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=p%>'"><%= p %></button>
-			<%
+					<% } else { %>
+					<button
+						onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=p%>'"><%= p %></button>
+					<%
 				}
 			   }
 			%>
 
-			<% if(currentPage >= maxPage){ %>
-			<button disabled>></button>
-			<% }else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=currentPage + 1%>'">></button>
-			<% } %>
+					<% if(currentPage >= maxPage){ %>
+					<button disabled>></button>
+					<% }else{ %>
+					<button
+						onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=currentPage + 1%>'">></button>
+					<% } %>
 
-			<button onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=maxPage%>'">>></button>
-		</div>
-
-
-
-
+					<button
+						onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=maxPage%>'">>></button>
+				</div>
 
 
 
-	<jsp:include page="/views/common/footer.jsp" />
+
+
+
+
+				<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

@@ -216,7 +216,7 @@
 			</h1>
 			<br>
 		</div>
-		<divid="viewzone" >
+		<div id="viewzone" >
 			<div id="viewzone-left">
 				<div id=left-1>
 					<div id="left-1-tite"  style="font-weight: bold">마리아 칼라스 홀</div>

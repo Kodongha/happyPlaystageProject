@@ -75,7 +75,7 @@ h4 {
 		<label for="이용소감">공연장 이용 소감</label> <input type="text" name="reviewContent" class="form-control" name="reviewCon" id="reviewContent">
 	</div>
 	<div class="form-group">
-		<label for="이미지">별점</label> <input type="number" placeholder="이미지는 최대 1개만 첨부 가능합니다."
+		<label for="이미지">별점</label> <input type="number" min = "1" max = "5" placeholder="별점을 숫자로 입력해 주세요."
 			class="form-control" id="ran" name="ran">
 
 	</div>

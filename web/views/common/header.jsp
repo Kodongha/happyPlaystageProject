@@ -63,9 +63,9 @@
 		<!-- 검색 관련 -->
 		<ul class="nav navbar-nav navbar-right">
 			<li>
-				<form class="navbar-form navbar-left" action="/action_page.php">
+				<form class="navbar-form navbar-left" action="<%=request.getContextPath() %>/moveRentList.rt">
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Search" name="search">
+						<input type="text" class="form-control" placeholder="Search" name="searchString">
 						<div class="input-group-btn">
 							<button class="btn btn-default" type="submit">
 								<i class="glyphicon glyphicon-search"></i>

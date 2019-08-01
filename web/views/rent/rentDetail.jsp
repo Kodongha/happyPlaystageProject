@@ -86,10 +86,34 @@
 	}
 </style>
 
+
+</head>
+<body>
+	<jsp:include page="/views/common/header.jsp" />
+
 <script type="text/javascript">
 	$(function(){
 		$("#proposeBtn").click(function(){
-			$("#propForm").submit();
+
+			if(<%=session.getAttribute("user") == null%>){
+				alert("로그인을 해주세요.");
+			} else {
+				if(!$('#schedule').val()){
+					alert('예약 날짜를 입력해주세요.');
+				} else {
+					if(!$('#headCount').val()){
+						alert("예약 인원을 입력해주세요.");
+					} else {
+						if($('#headCount').val() > <%=rentDetVOList.get(0).getMaxHeadCount()%>){
+							alert("수용 인원을 초과합니다.(최대 수용 인원 : <%=rentDetVOList.get(0).getMaxHeadCount()%>)");
+						} else {
+							$("#propForm").submit();
+						}
+					}
+				}
+			}
+
+
 			/*
 			if($("#schedule")){
 				$("#schedule").focus();
@@ -105,9 +129,6 @@
 	});
 </script>
 
-</head>
-<body>
-	<jsp:include page="/views/common/header.jsp" />
 	<div class="thumb-crop">
 		<img class="auto" src="<%=request.getContextPath() %>/images/profilePhotos/<%=rentImgVOList.get(0).getChangeNm() %>" alt="<%=rentImgVOList.get(0).getOriginNm() %>">
 	</div>
@@ -198,6 +219,7 @@
 							<input class="form-control" name="headCount" id="headCount" type="number" step="10" style="width: 100%" placeholder="인원을 입력하세요."/>
 							<br>
 							<button type="button" class="btn btn-success" id="proposeBtn" style="width: 100%; float: right;">신청</button>
+
 							<script type="text/javascript">
 								$('#schedule').dateRangePicker({
 									startDate: new Date(),
@@ -256,6 +278,7 @@
 								    }
 								}
 							</script>
+
 						</div>
 						<input type="hidden" name="rentSeq" id="rentSeq" value="<%=rentBasicVO.getRentSeq() %>">
 					</form>
@@ -407,11 +430,6 @@
 				});
 
 			</script>
-
-			<script type="text/javascript">
-
-			</script>
-
 		</div>
 	</div>
 </div>

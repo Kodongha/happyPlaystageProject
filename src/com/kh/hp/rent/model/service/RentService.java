@@ -178,6 +178,7 @@ public class RentService {
 		} else {
 			rollback(con);
 		}
+
 		close(con);
 
 		return result;
@@ -315,6 +316,8 @@ public class RentService {
 		rentInfoList.add(rentDetVOList);
 		rentInfoList.add(rentPropVO);
 
+		close(con);
+
 		return rentInfoList;
 	}
 
@@ -341,6 +344,17 @@ public class RentService {
 
 		close(con);
 		return result;
+	}
+
+	public ArrayList<RefundTypeVO> getrentRefundTypeInfo(int rentRefundTypeSeq) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		ArrayList<RefundTypeVO> refundTypeVOList = new RentDao().getrentRefundTypeInfo(con, rentRefundTypeSeq);
+
+		close(con);
+
+		return refundTypeVOList;
 	}
 
 }

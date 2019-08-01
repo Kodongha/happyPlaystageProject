@@ -35,6 +35,10 @@ public class MoveRentList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		String searchString = request.getParameter("searchString");
+		System.out.println("searchString::" + searchString);
+
+
 		int currentPage;
 		int limit;
 		int maxPage;

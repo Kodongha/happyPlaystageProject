@@ -95,7 +95,11 @@ public class InsertProposeServlet extends HttpServlet {
 
 			int result = new RentService().insertPorp(rentPropVO, attachmentVO);
 
-			System.out.println("result:::" + result);
+			if(result > 0) {
+				response.sendRedirect(request.getContextPath() + "/applyInfo1");
+			} else {
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			}
 
 		}
 	}

@@ -41,7 +41,7 @@ System.out.println("list:::::::::::::::::::::::::"+list);
 </head>
 <body>
 <jsp:include page="/views/common/header.jsp" />
-	<h1 align=center style="color:gray">대관 신청 내역</h1>
+	<h1 align=center style="color:gray">대관 사용 내역</h1>
 	<form action="<%=request.getContextPath() %>/searchApplyInfo" method="post">
 	<div class="tab1" style="width:650px;border:1.5px solid black">
 	<table align="center">

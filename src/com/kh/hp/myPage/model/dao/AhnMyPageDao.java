@@ -1440,6 +1440,7 @@ public class AhnMyPageDao {
 				AhnUsingInfoVO b = new AhnUsingInfoVO();
 				
 				b.setHallNm(rset.getString("HALL_NM"));
+				b.setCompNm(rset.getString("COMP_NM"));
 				b.setPropSeq(rset.getInt("PROP_SEQ"));
 				b.setRentSeq(rset.getInt("RENT_SEQ"));
 				b.setUserSeq(rset.getInt("USER_SEQ"));

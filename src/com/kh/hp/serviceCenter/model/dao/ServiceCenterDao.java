@@ -617,6 +617,100 @@ public class ServiceCenterDao {
 		return result;
 	}
 
+	/**
+	 *
+	 * 검색조건 주고 자주묻는 질문 조회
+	 * @param con
+	 * @param category
+	 * @param keyword
+	 * @return
+	 */
+	public ArrayList<FaQVO> searchAllFAQ(Connection con, String category, String keyword) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<FaQVO> list= null;
+
+		String query = prop.getProperty("selectAllFaQ");
+
+		try {
+			stmt = con.createStatement();
+
+			rset = stmt.executeQuery(query);
+
+			list = new ArrayList<FaQVO>();
+
+			while(rset.next()) {
+				FaQVO faq = new FaQVO();
+
+				faq.setFnqCate(rset.getString("FNQ_CATE"));
+				faq.setFnqQuestion(rset.getString("FNQ_QUESTION"));
+				faq.setFnqAnswer(rset.getString("FNQ_ANSWER"));
+
+				list.add(faq);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+
+		return list;
+	}
+
+	/**
+	 *
+	 * 카테고리만 값이 있는 검색
+	 * @param con
+	 * @param category
+	 * @param keyword
+	 * @return
+	 */
+	public ArrayList<FaQVO> searchCategory(Connection con, String category, String keyword) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<FaQVO> list= null;
+
+		String query = prop.getProperty("selectCategory");
+
+		System.out.println("&%^&^&%^& : " + category);
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, category);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<FaQVO>();
+
+			while(rset.next()) {
+				FaQVO faq = new FaQVO();
+
+				faq.setFnqCate(rset.getString("FNQ_CATE"));
+				faq.setFnqQuestion(rset.getString("FNQ_QUESTION"));
+				faq.setFnqAnswer(rset.getString("FNQ_ANSWER"));
+
+				list.add(faq);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
+	}
+
+	public ArrayList<FaQVO> searchTwo(Connection con, String category, String keyword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }

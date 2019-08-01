@@ -59,10 +59,10 @@ body {
 	<hr>
 	<div id="search">
 		<div class="container" style="margin:30px 0 0 15px;">
-			<form action="/action_page.php">
+			<form action="<%=request.getContextPath() %>/searchFAQ.sc" method="post">
 						<div class="form-group search col-sm-5">
 							<label for="sel1">카테고리 선택</label>
-							<select class="form-control" id="sel1">
+							<select class="form-control" id="sel1" name="category">
 								<option>전체</option>
 								<option>회원</option>
 								<option>예약 및 결제</option>
@@ -71,18 +71,15 @@ body {
 								<option>기타</option>
 							</select>
 						</div>
-					</form>
 					<label for="sel2">도움말 검색</label>
 					<div class="input-group search col-sm-7 search1" id="sel2">
-					<input type="text" class="form-control" placeholder="검색어를 입력해주세요."
-						name="search">
+					<input type="text" class="form-control" placeholder="검색어를 입력해주세요." name="keyword">
 					<div class="input-group-btn">
 						<button class="btn btn-default" type="submit">
 							<i class="glyphicon glyphicon-search"></i>&nbsp; 검색
 						</button>
 					</div>
 				</div>
-
 			</form>
 		</div>
 	</div>

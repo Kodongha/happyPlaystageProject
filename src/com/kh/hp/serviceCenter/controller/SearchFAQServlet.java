@@ -1,11 +1,16 @@
 package com.kh.hp.serviceCenter.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.kh.hp.serviceCenter.model.service.ServiceCenterService;
+import com.kh.hp.serviceCenter.model.vo.FaQVO;
 
 /**
  * Servlet implementation class SearchFAQServlet
@@ -27,8 +32,25 @@ public class SearchFAQServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("%%% FAQ 서블릿 호출 &&&");
-		String[] category = request.getParameterValues("category");
 
+		String category = request.getParameter("category");
+		String keyword = request.getParameter("keyword");
+
+/*		System.out.println("%%%"+category);
+		System.out.println("%%%%"+keyword);*/
+
+		ArrayList<FaQVO> list = new ServiceCenterService().searchFAQ(category, keyword);
+
+		System.out.println(list);
+		String page="";
+
+		if(list != null) {
+			request.setAttribute("list", list);
+			request.setAttribute("category", category);
+
+			page="views/serviceCenter/fAQ.jsp";
+		}
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

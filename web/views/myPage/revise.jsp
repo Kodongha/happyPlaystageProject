@@ -82,8 +82,55 @@ input {
 }
 </style>
 
-<title>내 정보 수정</title>
+<SCRIPT type="text/javascript">
+	function loadImg(value){
+		console.log("haha");
+		if(value.files && value.files[0]){
+			var reader = new FileReader();
 
+			reader.onload = function(e){
+				$("#profileImg").attr("src", e.target.result);
+			}
+			reader.readAsDataURL(value.files[0]);
+		}
+	}
+
+	$(function(){
+		$('#changePhotoBtn').click(function(){
+
+			$('#profilePhoto').click();
+
+		});
+
+
+		$('#profilePhoto').change(function(){
+
+
+			var photoForm = $("#photoForm")[0];
+			var photoFormData = new FormData(photoForm);
+
+
+			console.log(photoForm);
+
+			$.ajax({
+				url:'chageProfilePhoto.my',
+				processData: false,
+				contentType: false,
+				data: photoFormData,
+				type: 'POST',
+				success: function(data){
+					console.log("succ");
+				},
+				error: function(error){
+					console.log("error");
+				}
+			});
+		});
+
+	});
+
+</SCRIPT>
+<title>내 정보 수정</title>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
@@ -93,14 +140,19 @@ input {
 	</h2>
 	<div id="mainArea" align="center">
 	<br><br>
-	<form action="<%=request.getContextPath()%>/changeProfile.mp" method="post" encType="multipart/form-data">
-		<div id="imgArea" algin="center">
-			<img id="profileImg">
+	<div id="imgArea" algin="center">
+		<img id="profileImg">
+	</div>
+	<br>
+	<button class="btn btn-default" id="changePhotoBtn">프로필 사진 변경</button>
+
+	<FORM id="photoForm" action="<%=request.getContextPath() %>/changePhoto.my" method="post" enctype="multipart/form-data">
+		<div id="fileArea">
+			<INPUT type="file" id="profilePhoto" name="profilePhoto" onchange="loadImg(this);" />
 		</div>
-		<br>
-		<button type="submit" class="btn btn-default">프로필 사진 변경</button>
-	</form>
-		<br><br>
+	</FORM>
+
+	<br><br>
 		<form action="<%=request.getContextPath()%>/updateUser.mp" method="post">
 			<div id="profile">
 				<h3>
@@ -134,15 +186,16 @@ input {
 			<hr style="width: 750px;">
 			<button type="reset" class="ui button btns" onclick="goMyPage();">취소하기</button>&nbsp;&nbsp;&nbsp;
 			<button type="submit" class="ui secondary button btns" id="btn1">변경하기</button>
+		</form>
 	</div>
 
 	<div id="fileArea">
 		<input type="file" id="upload" name="upload" onchange="loadImg(this)">
 	</div>
-		</form>
 
-	<script>
-         $(function(){
+	<!-- <script>
+
+	$(function(){
             $("#fileArea").hide();
 
             $("#imgArea").click(function(){
@@ -161,7 +214,8 @@ input {
             reader.readAsDataURL(value.files[0]);
          }
        }
-      </script>
+
+      </script> -->
 
 
 	<script>

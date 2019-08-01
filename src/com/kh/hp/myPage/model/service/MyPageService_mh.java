@@ -237,6 +237,25 @@ public class MyPageService_mh {
 	}
 
 
+	public int changeProfilePhoto(UserImgVO userImgVO) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		MyPageDao_mh myPageDao_mh = new MyPageDao_mh();
+
+		int selectResult = myPageDao_mh.selectHaveProfile(con, userImgVO);
+		System.out.println("selectResult:::" + selectResult);
+
+		int updateResult = 0;
+		int insertResult = 0;
+		if(selectResult == 0) {
+			insertResult = myPageDao_mh.insertProfilePhoto(con, userImgVO);
+		}
+
+		return 0;
+	}
+
+
 
 }
 

@@ -287,6 +287,44 @@ public class MyPageDao_mh {
 		return result;
 	}
 
+	public int selectHaveProfile(Connection con, UserImgVO userImgVO) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+
+		String query = prop.getProperty("selectHaveProfile");
+
+		try {
+
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userImgVO.getUserSeq());
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()){
+				result = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int insertProfilePhoto(Connection con, UserImgVO userImgVO) {
+		// TODO Auto-generated method stub
+
+
+
+		return 0;
+	}
+
 
 
 

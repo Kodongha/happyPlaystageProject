@@ -3,6 +3,7 @@ package com.kh.hp.myPage.model.vo;
 import java.util.Date;
 
 public class UserImgVO implements java.io.Serializable{
+
 	private int userSeq;
 	private String originNm;
 	private String changeNm;

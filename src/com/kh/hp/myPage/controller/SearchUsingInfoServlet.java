@@ -85,23 +85,7 @@ public class SearchUsingInfoServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-		//검색목록 전체를 입력하고 검색했을때 추출할 list
-		ArrayList<AhnUsingInfoVO> list = new AhnMyPageService().searchCheck( userInfo, rentSeq, hallNm, useStart, useEnd, currentPage, limit);
-		//공연장 고유번호 => 입력no,	공연장 이름 => 입력, 일자 => 입력
-		/*ArrayList<AhnUsingInfoVO> list2 = new AhnMyPageService().searchCheck2(userInfo, hallNm, useStart, useEnd, currentPage, limit);
-		//공연장 고유번호 => 입력,	공연장 이름 => 입력no, 일자 => 입력
-		ArrayList<AhnUsingInfoVO> list3 = new AhnMyPageService().searchCheck3(userInfo, rentSeq, useStart, useEnd, currentPage, limit);
-		//공연장 고유번호 => 입력, 공연장 이름 => 입력, 일자 => 입력no
-		ArrayList<AhnUsingInfoVO> list4 = new AhnMyPageService().searchCheck4(userInfo, rentSeq, hallNm, currentPage, limit);
-		//공연장 고유번호 => 입력,	공연장 이름 => 입력no, 일자 => 입력no
-		ArrayList<AhnUsingInfoVO> list5 = new AhnMyPageService().searchCheck5(userInfo, rentSeq, currentPage, limit);
-		//공연장 고유번호 => 입력no,	공연장 이름 => 입력, 일자 => 입력no
-		ArrayList<AhnUsingInfoVO> list6 = new AhnMyPageService().searchCheck6(userInfo, hallNm, currentPage, limit);
-		//공연장 고유번호 => 입력no,	공연장 이름 => 입력no, 일자 => 입력
-		ArrayList<AhnUsingInfoVO> list7 = new AhnMyPageService().searchCheck7(userInfo, useStart, useEnd, currentPage, limit);
-		//공연장 고유번호 => 입력no,	공연장 이름 => 입력no, 일자 => 입력no
-		ArrayList<AhnUsingInfoVO> list8 = new AhnMyPageService().searchCheck8(userInfo, currentPage, limit);*/
-		
+		ArrayList<AhnUsingInfoVO> list = new AhnMyPageService().searchUsingDetail( userInfo, rentSeq, hallNm, useStart, useEnd);
 		
 		String page = "";
 		
@@ -114,9 +98,7 @@ public class SearchUsingInfoServlet extends HttpServlet {
 			request.setAttribute("msg", "검색내역 조회 실패!");
 		}
 		
-		
 		request.getRequestDispatcher(page).forward(request, response);
-		
 		
 	}
 	

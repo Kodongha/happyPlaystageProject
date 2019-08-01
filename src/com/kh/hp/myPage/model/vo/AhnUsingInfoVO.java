@@ -120,8 +120,4 @@ public class AhnUsingInfoVO implements java.io.Serializable{
 				+ propStatus + ", useStartDt=" + useStartDt + ", useEndDt=" + useEndDt + "]";
 	}
 
-	
-	
-	
-	
 }

@@ -67,5 +67,4 @@ public class AhnLevelupVO implements java.io.Serializable{
 				+ userNm + ", userNick=" + userNick + ", userPhone=" + userPhone + "]";
 	}
 
-	
 }

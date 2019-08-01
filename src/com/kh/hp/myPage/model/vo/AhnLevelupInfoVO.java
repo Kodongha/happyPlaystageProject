@@ -66,6 +66,4 @@ public class AhnLevelupInfoVO implements java.io.Serializable {
 				+ userGradeStatus + ", gradeReqDt=" + gradeReqDt + ", gradeUpDt=" + gradeUpDt + "]";
 	}
 
-	
-	
 }

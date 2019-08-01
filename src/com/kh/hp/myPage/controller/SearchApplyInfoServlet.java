@@ -98,9 +98,7 @@ public class SearchApplyInfoServlet extends HttpServlet {
 			request.setAttribute("msg", "검색내역 조회 실패!");
 		}
 		
-		
 		request.getRequestDispatcher(page).forward(request, response);
-		
 		
 	}
 

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class AhnMyPageVO implements Serializable {
-
 	private int userSeq;
 	private String userEmail;
 	private String userPwd;
@@ -139,7 +138,5 @@ public class AhnMyPageVO implements Serializable {
 				+ ", userNick=" + userNick + ", userPhone=" + userPhone + ", userGradeCd=" + userGradeCd + ", enrollDt="
 				+ enrollDt + ", snsCd=" + snsCd + ", leaveTf=" + leaveTf + ", leaveDt=" + leaveDt + "]";
 	}
-	
-	
 
 }

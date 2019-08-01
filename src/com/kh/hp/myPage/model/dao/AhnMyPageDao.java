@@ -373,6 +373,7 @@ public class AhnMyPageDao {
 	}
 
 	public int insertImage(Connection con, AhnLevelupInfoVO l) {
+		System.out.println("들어옴1");
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -390,10 +391,11 @@ public class AhnMyPageDao {
 			close(pstmt);
 		}
 		
-		return 0;
+		return result;
 	}
 
 	public int insertAttachment(Connection con, ArrayList<AhnAttachmentVO> fileList) {
+		System.out.println("들어옴2");
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -402,10 +404,18 @@ public class AhnMyPageDao {
 			try {
 				for(int i = 0; i < fileList.size(); i++) {
 				pstmt = con.prepareStatement(query);
-				pstmt.setInt(1, fileList.get(i).getUserSeq());
-				pstmt.setString(2, fileList.get(i).getOriginNm());
-				pstmt.setString(3, fileList.get(i).getChangeNm());
-				pstmt.setString(4, fileList.get(i).getFilePath());
+				pstmt.setString(1, fileList.get(i).getOriginNm());
+				pstmt.setString(2, fileList.get(i).getChangeNm());
+				pstmt.setString(3, fileList.get(i).getFilePath());
+				pstmt.setInt(4, fileList.get(i).getUserSeq());
+				/*int level = 0;
+				if(i == 0) {
+					level = 0;
+				}else {
+					level = 1;
+				}
+				
+				pstmt.setInt(5, level);*/
 				
 				result += pstmt.executeUpdate();
 				

@@ -19,6 +19,7 @@
 	ArrayList<AhnUsingInfoVO> list = (ArrayList<AhnUsingInfoVO>) request.getAttribute("list");
 	System.out.println("list : " + list);
 	ArrayList<Object> rentInfos = (ArrayList<Object>) request.getAttribute("rentInfos");
+	System.out.println("rentInfos : " + rentInfos);
 	RentBasicVO rentBasicVO = (RentBasicVO) rentInfos.get(0);
 	ArrayList<CautionsVO> cautionsVOList = (ArrayList<CautionsVO>) rentInfos.get(1);
 	ArrayList<FacInfoVO> facInfoVOList = (ArrayList<FacInfoVO>) rentInfos.get(2);

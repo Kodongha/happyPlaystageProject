@@ -86,13 +86,14 @@ public class LevelUpInfoServlet extends HttpServlet {
 				at.setFilePath(savePath);
 				at.setOriginNm(originFiles.get(i));
 				at.setChangeNm(saveFiles.get(i));
-				
+				at.setUserSeq(levelUpInfo);
 				fileList.add(at);
 			}
 			
 			System.out.println("controller board : " + levelUpInfo);
 			System.out.println("controller attachment list : " + fileList);
 			
+			// int result = new AhnMyPageService().insertImage(levelUpInfo, fileList);
 			int result = new AhnMyPageService().insertImage(l, fileList);
 			
 			String page = "";
@@ -111,6 +112,57 @@ public class LevelUpInfoServlet extends HttpServlet {
 			}
 			request.getRequestDispatcher(page).forward(request, response);
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*int levelUpInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
+		
+		
+		
+		
+		AhnLevelupInfoVO l = new AhnLevelupInfoVO();
+		l.setUserSeq(levelUpInfo);
+		
+		System.out.println("insert levelup : " + l);
+		
+		int result = new AhnMyPageService().insertLevelOne(l, levelUpInfo);
+		
+		String page = "";
+		
+		if(result > 0) {
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "등업 신청이 완료되었습니다");
+			request.getRequestDispatcher(page).forward(request, response);
+		}else {
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "등업 신청 실패했습니다");
+			request.getRequestDispatcher(page).forward(request, response);
+		}*/
+		
+		
 		
 	}
 

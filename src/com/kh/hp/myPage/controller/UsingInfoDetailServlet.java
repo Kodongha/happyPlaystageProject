@@ -52,10 +52,10 @@ public class UsingInfoDetailServlet extends HttpServlet {
 		ArrayList<AhnUsingInfoVO> list = new AhnMyPageService().searchUsingDetail( userInfo, rentSeq, hallNm, useStart, useEnd);
 		
 		System.out.println("rentInfos : " + rentInfos);
-		System.out.println("list : " + list);
 		
 		String page = "";
 		if(rentInfos != null) {
+			System.out.println("list : " + list + "를 넘겨줌");
 			request.setAttribute("rentInfos", rentInfos);
 			request.setAttribute("list", list);
 			page = "views/myPage/usingInfoDetail.jsp";

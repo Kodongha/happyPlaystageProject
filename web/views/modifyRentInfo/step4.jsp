@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
 <%
 	ArrayList<RefundTypeVO> refundTypeVOList = (ArrayList<RefundTypeVO>) request.getAttribute("refundTypeVOList");
+	System.out.println("refundTypeVOList +++++++++" + refundTypeVOList);
 %>
 
 	<div class="container">
@@ -18,7 +19,7 @@
 
 		<br>
 
-		<!-- 공연장명 -->
+		<!-- 대표명 -->
 		<div class="form-group">
 			<label class="necessary">*</label><label for="ceoNm">대표자명</label> <br><br>
 			<input type="text" class="form-control" id="ceoNm" placeholder="대표자명을 입력해주세요." name="ceoNm">
@@ -127,13 +128,13 @@
 
 		<div class="form-group" style="display: inline; float:left; margin: 0 3% 0 3%">
 			<label class="necessary">*</label><label for="accNo">계좌번호</label> <br><br>
-			<input name="accNo" id="accNo" type="text" class="form-control" name="email" placeholder="Email" style="width: 400px">
+			<input name="accNo" id="accNo" type="text" class="form-control" placeholder="계좌번호" style="width: 400px">
 			<br>
 		</div>
 
 		<div class="form-group" style="display: inline; float: left; margin: 0 3% 0 3%">
-			<label class="necessary">*</label><label for="mailTel1">예금주</label> <br><br>
-			<input id="accHolder" type="text" class="form-control" name="accHolder" placeholder="Email" style="width: 200px">
+			<label class="necessary">*</label><label for="accHolder">예금주</label> <br><br>
+			<input id="accHolder" type="text" class="form-control" placeholder="예금주" style="width: 200px">
 			<br>
 		</div>
 
@@ -187,5 +188,5 @@
 
 		<br><br>
 		<button type="button" class="btn btn-danger prev-step" style="width: 49%;">취소</button>
-		<button type="submit" class="btn btn-success next-step" style="width: 49%; float: right;">신청</button>
+		<button type="submit" class="btn btn-success next-step" style="width: 49%; float: right;">수정</button>
 	</div>

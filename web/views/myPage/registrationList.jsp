@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<%@page import="com.kh.hp.rent.model.vo.RentImgVO"%>
 <%@page import="com.kh.hp.myPage.model.vo.RegistListVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -73,7 +74,7 @@
 			<td><%=list.get(i).getRentSeq()%>&nbsp;&nbsp; <%=list.get(i).getHallNm() %></td>
 		</tr>
 		<tr>
-			<td colspan="5"><img src="/happyPlaystage/images/rent/rent1.jpg"></td>
+			<td colspan="5"><img src="<%=request.getContextPath()%>/images/rent/rent1.jpg"></td>
 		</tr>
 		<tr>
 			<td colspan="2">

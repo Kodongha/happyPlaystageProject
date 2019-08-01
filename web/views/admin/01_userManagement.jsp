@@ -15,8 +15,6 @@ User user  = new User();
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
-	System.out.println("startpage : " + startPage);
-	System.out.println("endpage : " + endPage);
 
  %>
 

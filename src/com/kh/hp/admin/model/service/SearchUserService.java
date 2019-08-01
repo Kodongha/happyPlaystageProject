@@ -4,16 +4,14 @@ import static com.kh.hp.common.JDBCTemplate.*;
 
 
 import java.sql.Connection;
-import java.sql.Date;
+
 import java.util.ArrayList;
 
-import com.kh.hp.account.model.vo.UserVO;
+
 import com.kh.hp.admin.model.dao.SearchUserDao;
 import com.kh.hp.admin.model.dao.UserDao;
 import com.kh.hp.admin.model.vo.User;
-import com.kh.hp.myPage.model.dao.AhnMyPageDao;
-import com.kh.hp.myPage.model.vo.AhnApplyInfoVO;
-import com.kh.hp.myPage.model.vo.AhnUsingInfoVO;
+
 
 public class SearchUserService {
 
@@ -140,4 +138,134 @@ public class SearchUserService {
 
 		return result;
 	}
+
+	//대관승인등록으로만 검색 카운트 
+	public int getListCountforCd(String userGradeCd) {
+		Connection con = getConnection();
+		int result = 0;
+
+		result = new SearchUserDao().getListCountforCd(con, userGradeCd);
+
+
+		close(con);
+
+		return result;
+	}
+
+
+	//탈퇴여부로만 카운트
+	public int getListCountforleave(String leaveTf) {
+		
+		Connection con = getConnection();
+		int result = 0;
+
+		result = new SearchUserDao().getListCountforleave(con, leaveTf);
+
+
+		close(con);
+
+		return result;
+	}
+
+	//회원번호, 회원명 카운팅
+	public int getListCountforSeqNm(String userSeq1, String userSeq2, String userNm) {
+		
+		Connection con = getConnection();
+		int result = 0;
+
+		result = new SearchUserDao().getListCountforSeqNm(con, userSeq1,userSeq2,userNm );
+
+
+		close(con);
+
+		return result;
+	}
+
+	//회원번호,승인등록으로 카운팅
+	public int getListCountforSeqCd(String userSeq1, String userSeq2, String userGradeCd) {
+		Connection con = getConnection();
+		int result = 0;
+
+		result = new SearchUserDao().getListCountforSeqCd(con, userSeq1,userSeq2,userGradeCd );
+
+
+		close(con);
+
+		return result;
+	}
+
+	//회원번호,탈퇴여부로만 카운팅
+	public int getListCountforSeqleave(String userSeq1, String userSeq2, String leaveTf) {
+		Connection con = getConnection();
+		int result = 0;
+
+		result = new SearchUserDao().getListCountforSeqleave(con, userSeq1,userSeq2,leaveTf );
+
+
+		close(con);
+
+		return result;
+	}
+
+
+	//회원명, 승인여부로 카운팅
+	public int getListCountforNmCd(String userNm, String userGradeCd) {
+		
+		Connection con = getConnection();
+		int result = 0;
+
+		result = new SearchUserDao().getListCountforNmCd(con,userNm, userGradeCd );
+
+
+		close(con);
+
+		return result;
+	}
+
+	//회원명, 탈퇴여부로 카운팅
+	public int getListCountforNmleave(String userNm, String leaveTf) {
+		
+		Connection con = getConnection();
+		int result = 0;
+
+		result = new SearchUserDao().getListCountforNmleave(con,userNm, leaveTf );
+
+
+		close(con);
+
+		return result;
+	}
+
+	//승인여부,탈퇴여부로 카운팅
+	public int getListCountforCdleave(String userGradeCd, String leaveTf) {
+		
+		Connection con = getConnection();
+		int result = 0;
+
+		result = new SearchUserDao().getListCountforCdleave(con,userGradeCd, leaveTf );
+
+
+		close(con);
+
+		return result;
+	}
+
+
+	//전체검색시 카운팅
+	public int getListCountforAll() {
+		
+		Connection con = getConnection();
+		int result = 0;
+
+		result = new SearchUserDao().getListCountforAll(con);
+
+
+		close(con);
+
+		return result;
+	}
+
+
+
+
 }

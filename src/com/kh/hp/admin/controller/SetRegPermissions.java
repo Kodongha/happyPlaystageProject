@@ -58,7 +58,10 @@ public class SetRegPermissions extends HttpServlet {
 		//한 페이지에 보여질 목록 갯수
 		limit = 10;
 
-		//전체 목록 갯수를 리턴받음
+		//탈퇴회원을 뺀 나머지 목록을 받아야
+		
+		//int listCount = new  SearchUserService().SetRegList()
+		
 		int listCount = new UserService().getListCount();
 
 		System.out.println("listCount : " + listCount);

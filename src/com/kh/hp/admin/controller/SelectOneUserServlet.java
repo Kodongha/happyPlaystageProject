@@ -50,7 +50,6 @@ public class SelectOneUserServlet extends HttpServlet {
 		//회원조회용 서비스
 		User oneUser = new UserService().selectOne(userSeq);
 
-		System.out.println("oneUser:::" + oneUser);
 
 
 		//request.getRequestDispatcher(page).forward(request, response);

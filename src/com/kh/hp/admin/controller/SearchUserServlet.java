@@ -22,29 +22,33 @@ import com.kh.hp.admin.model.vo.User;
 @WebServlet("/searchUser.ad")
 public class SearchUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SearchUserServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public SearchUserServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("회원검색서블릿으로 들어왔나요 ?");
-		
-		//int userSeq = Integer.parseInt(request.getParameter("userSeq"));
+
+		String userSeq1 = request.getParameter("userSeq1");
+		String userSeq2 = request.getParameter("userSeq2");
 		String userNm = request.getParameter("userNm");
-		//String serGradeCd = request.getParameter("serGradeCd");
-		//String leaveTf = request.getParameter("leaveTf");
-		
-		System.out.println(userNm);
-		
-		
+		String userGradeCd = request.getParameter("userGradeCd");
+		String leaveTf = request.getParameter("leaveTf");
+
+		System.out.println("userSeq1::" + userSeq1);
+		System.out.println("userSeq2::" + userSeq2);
+		System.out.println("userNm::" + userNm);
+		System.out.println("userGradeCd::" + userGradeCd);
+		System.out.println("leaveTf::" + leaveTf);
+
 		//페이징처리 전
 		//ArrayList<User> list = new UserService().selectAll();
 
@@ -90,27 +94,31 @@ public class SearchUserServlet extends HttpServlet {
 		PageInfo pi = 
 				new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
-	/*	ArrayList<User> searchUserList = new SearchUserService().searchUserList(userSeq ,userNm ,serGradeCd, leaveTf,currentPage, limit);*/
 
-		
-		/*String page = "";
+
+		ArrayList<User> searchUserList = new SearchUserService().searchUserList(userSeq1 ,userSeq2, userNm ,userGradeCd, leaveTf,currentPage, limit);
+
+
+		System.out.println("서블릿 -searchUserList:::::" + searchUserList);
+
+
+
+
+
+		String page = "";
 
 		if(searchUserList != null) {
+			
 			request.setAttribute("searchUserList", searchUserList);
 			request.setAttribute("pi", pi);
 			page = "views/admin/01_userManagement.jsp";
-
+			
+			request.getRequestDispatcher(page).forward(request, response);
+			
 		} else {
-			request.setAttribute("msg", "목록조회실패");
-			page = "views/main/main.jsp";
-
+			page = request.getContextPath() + "/selectAllUser.ad";
+			response.sendRedirect(page);
 		}
-		
-		
-		
-		request.getRequestDispatcher(page).forward(request, response);
-*/
-		
 	}
 
 	/**

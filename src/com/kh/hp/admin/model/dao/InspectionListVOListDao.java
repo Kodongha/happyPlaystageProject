@@ -37,8 +37,6 @@ public class InspectionListVOListDao {
 	//대관등록검수
 	public ArrayList<InspectionListVO> InspectionList(Connection con, int currentPage, int limit) {
 
-		System.out.println("대관등록검수 DAO까지 왔나요???");
-
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<InspectionListVO> InspectionListVOList = null;
@@ -72,8 +70,6 @@ public class InspectionListVOListDao {
 				inspectionListVO.setInspTf(rset.getString("INSP_TF"));
 
 				InspectionListVOList.add(inspectionListVO);
-
-				System.out.println("대관등록검수:::::" + inspectionListVO);
 
 
 			}

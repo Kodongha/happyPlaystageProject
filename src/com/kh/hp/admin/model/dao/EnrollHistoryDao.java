@@ -34,8 +34,7 @@ public class EnrollHistoryDao {
 	//페이징처리후 회원관리상세내역 - 등록내역조회
 	public ArrayList<EnrollHistoryVO> EnrollHistoryVOList(Connection con, int userSeq, int currentPage1, int limit1) {
 
-		System.out.println("등록내역dao까지왔니?");
-
+		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<EnrollHistoryVO> enrollHistoryVOList = null;
@@ -57,9 +56,9 @@ public class EnrollHistoryDao {
 			rset = pstmt.executeQuery();
 		
 		
-			System.out.println("111111");
+			
 			enrollHistoryVOList = new ArrayList<EnrollHistoryVO>();
-			System.out.println("222");
+			
 			
 			
 			while(rset.next()) {
@@ -74,14 +73,10 @@ public class EnrollHistoryDao {
 				enrollHistoryVO.setRentEnrollDt(rset.getDate("RENT_ENROLL_DT"));
 				enrollHistoryVO.setRentEnrollStatus(rset.getString("RENT_ENROLL_STATUS"));
 				enrollHistoryVO.setUserNm(rset.getString("USER_NM"));
-				
-				System.out.println("enrollHistoryVO:::" + enrollHistoryVO);
+			
 				
 				enrollHistoryVOList.add(enrollHistoryVO);
-				System.out.println("enrollHistoryVO 보여죵");
-				
-				System.out.println(enrollHistoryVO);
-
+			
 			}
 
 		} catch (SQLException e) {

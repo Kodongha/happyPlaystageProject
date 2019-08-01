@@ -29,50 +29,7 @@ public class UserDao {
 		}
 	}
 
-	/*public ArrayList<User> selectAll(Connection con) {
-		ArrayList<User> list = null;
-		Statement stmt = null;
-		ResultSet rset = null;
 
-
-		String query = prop.getProperty("selectAll");
-
-		try {
-			stmt = con.createStatement();
-
-			rset = stmt.executeQuery(query);
-
-			list = new ArrayList<User>();
-
-			while(rset.next()) {
-				User u = new User();
-
-				u.setUserSeq(rset.getInt("USER_SEQ"));
-				u.setUserEmail(rset.getString("USER_EMAIL"));
-				u.setUserPwd(rset.getString("USER_PWD"));
-				u.setUserNm(rset.getString("USER_NICK"));
-				u.setUserNick(rset.getString("USER_NICK"));
-				u.setUserPhone(rset.getString("USER_PHONE"));
-				u.setUserGradeCd(rset.getInt("USER_GRADE_CO"));
-				u.setEnrollDt(rset.getDate("ENROLL_DT"));
-				u.setSnsCd(rset.getInt("SNS_CD"));
-				u.setLeaveTf(rset.getString("LEAVE_TF").charAt(0));
-				u.setLeaveDt(rset.getDate("LEAVE_DT"));
-
-
-				list.add(u);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(stmt);
-			close(rset);
-		}
-
-
-		return list;
-	}*/
 
 	//회원수 전체 조회용 메소드
 
@@ -146,10 +103,7 @@ public class UserDao {
 
 
 				list.add(user);
-				System.out.println("리스트를 보여죵");
-
-				System.out.println(user);
-
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -204,15 +158,6 @@ public class UserDao {
 
 		return oneUser;
 	}
-
-
-
-
-
-
-
-
-
 
 }
 

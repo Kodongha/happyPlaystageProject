@@ -4,6 +4,10 @@
 <%
  ArrayList<User> list = (ArrayList<User>) request.getAttribute("list");
 
+	ArrayList<User> searchUserList  = (ArrayList<User>) request.getAttribute("searchUserList");
+	
+	System.out.println("뷰 -searchUserList::::" + searchUserList);
+
 User user  = new User();
 
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
@@ -182,25 +186,25 @@ tboydy>tr:active {
 		<div id="line"></div>
 		<br>
 
-		<form action="<%=request.getContextPath() %>/userSearch.ad"
+		<form action="<%=request.getContextPath() %>/searchUser.ad"
 			method="get" id="userSearchForm">
 			<div id="area">
 				<div id="users1">
 					<label id="userno">회원번호</label>
 					<div id="input">
-						<input class="form-control" id="userSeqStart" name="userSeqStart"
-							type="text" style="width: 100px;" value=<%=user.getUserNm() %> >
+						<input class="form-control" id="userSeq1" name="userSeq1"
+							type="text" style="width: 100px;"  >
 					</div>
 					<div id="wave">~</div>
 					<div id="input1">
-						<input class="form-control" id="userSeqEnd" name="userSeqEnd"
+						<input class="form-control" id="userSeq2" name="userSeq2"
 							type="text" style="width: 100px;">
 					</div>
 
 					<label id="userno">회원명</label>
 					<div id="input">
 						<input class="form-control" id="userNm" name="userNm" type="text"
-							style="width: 250px;" value=<%=user.getUserNm() %>>
+							style="width: 250px;">
 					</div>
 				</div>
 
@@ -210,8 +214,8 @@ tboydy>tr:active {
 
 				<div id="users3">
 					<div class="col-sm-2">
-						<select class="form-control" id="userGradeStatus"
-							name="userGradeStatus" style="width: 100px">
+						<select class="form-control" id="userGradeCd"
+							name="userGradeCd" style="width: 100px">
 							<option>선택</option>
 							<option>Y</option>
 							<option>N</option>
@@ -234,8 +238,8 @@ tboydy>tr:active {
 								<option>N</option>
 							</select>
 						</div>
-						<button type="button" class="btn btn-warning" id="searchbutton"
-							onclick="location.href='<%=request.getContextPath()%>/searchUser.ad'">검색</button>
+						<button type="submit" class="btn btn-warning" id="searchbutton"
+							>검색</button>
 					</div>
 				</div>
 			</div>

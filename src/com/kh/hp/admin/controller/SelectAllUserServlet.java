@@ -30,7 +30,7 @@ public class SelectAllUserServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("들어왔나욤?");
+		
 
 		//페이징처리 전
 		//ArrayList<User> list = new UserService().selectAll();

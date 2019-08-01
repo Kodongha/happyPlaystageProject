@@ -35,7 +35,7 @@ public class SetRegPermissionsDao {
 
 	//대관등록권한설정
 	public ArrayList<SetRegPermissionsVO> SetRegPermissionsList(Connection con, int currentPage, int limit) {
-		System.out.println("대관등록권한설정 DAO까지 왔나요???");
+	
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -61,10 +61,10 @@ public class SetRegPermissionsDao {
 			
 			SetRegPermissionsVOList = new ArrayList<SetRegPermissionsVO> ();
 		
-			System.out.println("1");
+	
 
 			while(rset.next()) {
-				System.out.println("while in!!");
+			
 				SetRegPermissionsVO setRegPermissionsVO  = new SetRegPermissionsVO();
 				
 				setRegPermissionsVO.setUserSeq(rset.getInt("USER_SEQ"));
@@ -73,16 +73,12 @@ public class SetRegPermissionsDao {
 				setRegPermissionsVO.setOriginNm(rset.getString("ORIGIN_NM"));
 				setRegPermissionsVO.setUserGradeCd(rset.getInt("USER_GRADE_CD"));
 			
-				System.out.println("22");
+				
 				
 				System.out.println(setRegPermissionsVO);
 				
 				
 				SetRegPermissionsVOList.add(setRegPermissionsVO);
-				System.out.println("33");
-				
-
-				System.out.println("등록권한설정리스트:::::" + setRegPermissionsVO);
 			
 
 				

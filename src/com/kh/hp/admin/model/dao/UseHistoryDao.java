@@ -80,7 +80,6 @@ public class UseHistoryDao {
 
 				UseHistoryVOlist.add(useHistoryVO);
 				
-				System.out.println("리스트를 보여죵:::"+useHistoryVO);
 
 			}
 		} catch (SQLException e) {

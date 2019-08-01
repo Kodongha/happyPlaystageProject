@@ -32,8 +32,7 @@ public class DetailInspectionDao {
 	}
 
 	public ArrayList<DetailInspectionVO> DetailInspection(Connection con,int rentSeq) {
-		System.out.println("대관등록검수 DAO까지 왔나요?");
-
+	
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -74,7 +73,7 @@ public class DetailInspectionDao {
 				
 				DetailInspectionVOList.add(detailInspectionVO);
 
-				System.out.println("대관등록검수상세:::::" + detailInspectionVO);
+			
 
 			}
 

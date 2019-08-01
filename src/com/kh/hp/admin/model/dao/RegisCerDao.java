@@ -69,8 +69,7 @@ public class RegisCerDao {
 			close(rset);
 		}
 
-		System.out.println("등록증 dao 마지막라인");
-		System.out.println("등록증dao에서의 출력:::::" +file);
+	
 		return file;
 	}
 }

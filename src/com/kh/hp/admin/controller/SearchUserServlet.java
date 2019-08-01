@@ -95,7 +95,9 @@ public class SearchUserServlet extends HttpServlet {
 		int listCount = 0;
 
 		//전체검색시 
-		if((userSeq1Tf && userSeq2Tf) && userNmTf && userGradeCdTf && !leaveTfTf ) {
+		if((!userSeq1Tf && userSeq2Tf) && !userNmTf && !userGradeCdTf && !leaveTfTf ) {
+			listCount = new SearchUserService().getListCountforAll();
+			
 			
 			//이름만검색시
 		}else if(!(userSeq1Tf && userSeq2Tf) && userNmTf && !userGradeCdTf && !leaveTfTf) {
@@ -111,35 +113,39 @@ public class SearchUserServlet extends HttpServlet {
 			
 			//대관등록승인으로만 검색
 		}else if(!(userSeq1Tf && userSeq2Tf) && !userNmTf && userGradeCdTf && !leaveTfTf ) {
-			//listCount = new SearchUserService().getListCountforSeq(userGradeCd);
+			listCount = new SearchUserService().getListCountforCd(userGradeCd);
 			
 			
 			//탈퇴로만 검색
 		}else if(!(userSeq1Tf && userSeq2Tf) && !userNmTf && !userGradeCdTf && leaveTfTf ) {
+			listCount = new SearchUserService().getListCountforleave(leaveTf);
 		
 
 			//회원번호,회원명으로만 검색 
 		}else if((userSeq1Tf && userSeq2Tf) && userNmTf && !userGradeCdTf && !leaveTfTf ) {
+			listCount = new SearchUserService().getListCountforSeqNm(userSeq1, userSeq2, userNm);
+			
 			
 			//회원번호,대관등록승인으로만 검색
 		}else if((userSeq1Tf && userSeq2Tf) && !userNmTf && userGradeCdTf && !leaveTfTf ) {
-		
+			listCount = new SearchUserService().getListCountforSeqCd(userSeq1, userSeq2, userGradeCd);
 
 			//회원번호,탈퇴여부로만 검색
 		}else if((userSeq1Tf && userSeq2Tf) && !userNmTf && !userGradeCdTf && leaveTfTf ) {
-		
+			listCount = new SearchUserService().getListCountforSeqleave(userSeq1, userSeq2, leaveTf);
 
 			//회원명, 대관등록승인으로 검색
 		}else if(!(userSeq1Tf && userSeq2Tf) && userNmTf && userGradeCdTf && !leaveTfTf ) {
-		
+			listCount = new SearchUserService().getListCountforNmCd(userNm, userGradeCd);
 
 			//회원명, 탈퇴여부로 검색
 		}else if(!(userSeq1Tf && userSeq2Tf) && userNmTf && !userGradeCdTf && leaveTfTf ) {
-			
+			listCount = new SearchUserService().getListCountforNmleave(userNm,  leaveTf);
 
 
 			//대관등록승인, 탈퇴여부로 검색
 		}else if(!(userSeq1Tf && userSeq2Tf) && !userNmTf && userGradeCdTf && leaveTfTf ) {
+			listCount = new SearchUserService().getListCountforCdleave(userGradeCd,  leaveTf);
 		
 		}
 			

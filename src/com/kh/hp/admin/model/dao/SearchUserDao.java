@@ -248,7 +248,7 @@ public class SearchUserDao {
 				user.setUserGradeCd(rset.getInt("USER_GRADE_CD"));	
 
 
-		
+
 
 
 				SearchUserleave.add(user);
@@ -263,7 +263,7 @@ public class SearchUserDao {
 			close(pstmt);
 			close(rset);
 		}
-		
+
 		System.out.println(" 회원만탈퇴:::::" + SearchUserleave);
 		return SearchUserleave;
 	}
@@ -459,7 +459,7 @@ public class SearchUserDao {
 		}
 
 
-	
+
 		return SearchUserSeqleave;
 	}
 
@@ -524,8 +524,8 @@ public class SearchUserDao {
 			close(pstmt);
 			close(rset);
 		}
-		
-		
+
+
 		return SearchUserNmCd;
 	}
 
@@ -546,7 +546,7 @@ public class SearchUserDao {
 
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
-			
+
 
 
 			pstmt.setString(1, userNm);
@@ -582,15 +582,15 @@ public class SearchUserDao {
 			close(pstmt);
 			close(rset);
 		}
-		
-		
+
+
 		return SearchUserNmleave;
 	}
 
 	//대관등록승인 ,탈퇴여부로 검색
 	public ArrayList<User> SearchUserCdleave(Connection con, String userGradeCd, String leaveTf, int currentPage,
 			int limit) {
-		
+
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -649,8 +649,8 @@ public class SearchUserDao {
 			close(pstmt);
 			close(rset);
 		}
-		
-		
+
+
 		return SearchUserCdleave;
 	}
 
@@ -659,48 +659,369 @@ public class SearchUserDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int listCount = 0;
-		
+
 		String query = prop.getProperty("getListCountforName");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, userNm);
-			
+
 			rset = pstmt.executeQuery();
-			
+
 			if(rset.next()) {
 				listCount= rset.getInt("COUNT");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return listCount;
 	}
 
 	//회원번호로만 조회시 카운트
 	public int getListCountforSeq(Connection con, String userSeq1, String userSeq2) {
-		
-	
+
+
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int listCount = 0;
-		
+
 		String query = prop.getProperty("getListCountforSeq");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
-			//pstmt.setString(1, userNm);
-			
+			pstmt.setString(1, userSeq1);
+			pstmt.setString(2, userSeq2);
+
 			rset = pstmt.executeQuery();
-			
+
 			if(rset.next()) {
 				listCount= rset.getInt("COUNT");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
+
+
 		return listCount;
 	}
+
+	//대관승인등록으로만 검색 카운트
+	public int getListCountforCd(Connection con, String userGradeCd) {
+
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int listCount = 0;
+		int userGradeCd1 = 0;
+
+
+		String query = prop.getProperty("getListCountforCd");
+
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			if(userGradeCd.equals("Y")) {
+
+				userGradeCd1 = 2 ;
+			}else {
+				userGradeCd1 = 1;
+			}
+
+
+			pstmt.setInt(1, userGradeCd1);
+
+
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				listCount= rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+		return listCount;
+	}
+
+	//탈퇴여부로만 카운트
+	public int getListCountforleave(Connection con, String leaveTf) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int listCount = 0;
+
+		String query = prop.getProperty("getListCountforleave");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, leaveTf);
+
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				listCount= rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("탈퇴여부카운팅::" +listCount);
+
+		return listCount;
+	}
+
+
+	//회원번호,회원명으로 카운팅
+	public int getListCountforSeqNm(Connection con, String userSeq1, String userSeq2, String userNm) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int listCount = 0;
+
+		String query = prop.getProperty("getListCountforSeqNm");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userSeq1);
+			pstmt.setString(2, userSeq2);
+			pstmt.setString(3, userNm);
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				listCount= rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+
+		return listCount;
+	}
+
+	//회원번호, 승인등록으로 카운팅 
+	public int getListCountforSeqCd(Connection con, String userSeq1, String userSeq2, String userGradeCd) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int listCount = 0;
+		int userGradeCd1 = 0;
+
+
+		String query = prop.getProperty("getListCountforSeqCd");
+
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			if(userGradeCd.equals("Y")) {
+
+				userGradeCd1 = 2 ;
+			}else {
+				userGradeCd1 = 1;
+			}
+
+			pstmt.setString(1, userSeq1);
+			pstmt.setString(2, userSeq2);
+			pstmt.setInt(3, userGradeCd1);
+
+
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				listCount= rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+		return listCount;
+	}
+
+	//회원번호,탈퇴여부로만 카운팅
+	public int getListCountforSeqleave(Connection con, String userSeq1, String userSeq2, String leaveTf) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int listCount = 0;
+
+
+
+		String query = prop.getProperty("getListCountforSeqleave");
+
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+
+
+			pstmt.setString(1, userSeq1);
+			pstmt.setString(2, userSeq2);
+			pstmt.setString(3, leaveTf);
+
+
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				listCount= rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+		return listCount;
+	}
+
+	//회원명, 승인여부로 카운팅 
+	public int getListCountforNmCd(Connection con, String userNm, String userGradeCd) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int listCount = 0;
+		int userGradeCd1 = 0;
+
+
+		String query = prop.getProperty("getListCountforNmCd");
+
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			if(userGradeCd.equals("Y")) {
+
+				userGradeCd1 = 2 ;
+			}else {
+				userGradeCd1 = 1;
+			}
+
+			pstmt.setString(1, userNm);
+			pstmt.setInt(2, userGradeCd1);
+
+
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				listCount= rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+		return listCount;
+	}
+
+	//회원명, 탈퇴여부로 카운팅
+	public int getListCountforNmleave(Connection con, String userNm, String leaveTf) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int listCount = 0;
+
+
+
+		String query = prop.getProperty("getListCountforNmleave");
+
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+
+
+			pstmt.setString(1, userNm);
+			pstmt.setString(2, leaveTf);
+
+
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				listCount= rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+		return listCount;
+	}
+
+	//승인여부, 탈퇴여부로 카운팅 
+	public int getListCountforCdleave(Connection con, String userGradeCd, String leaveTf) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int listCount = 0;
+		int userGradeCd1 = 0;
+
+
+		String query = prop.getProperty("getListCountforCdleave");
+
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			if(userGradeCd.equals("Y")) {
+
+				userGradeCd1 = 2 ;
+			}else {
+				userGradeCd1 = 1;
+			}
+
+		
+			pstmt.setInt(1, userGradeCd1);
+			pstmt.setString(2, leaveTf);
+
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				listCount= rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+		return listCount;
+	}
+
+	//전체검색시 카운팅
+	public int getListCountforAll(Connection con) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int listCount = 0;
+
+		String query = prop.getProperty("getListCountforAll");
+
+		try {
+			pstmt = con.prepareStatement(query);
+	
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				listCount= rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+
+		return listCount;
+	}
+
+	
+
 }

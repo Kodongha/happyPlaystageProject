@@ -35,14 +35,14 @@ public class SetRegPermissionsDao {
 
 	//대관등록권한설정
 	public ArrayList<SetRegPermissionsVO> SetRegPermissionsList(Connection con, int currentPage, int limit) {
-	
+
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<SetRegPermissionsVO> SetRegPermissionsVOList = null;
 
 		String query = prop.getProperty("SetRegPermissionsList");
-		
+
 
 		try {
 
@@ -56,36 +56,32 @@ public class SetRegPermissionsDao {
 
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
-			
+
 			rset = pstmt.executeQuery();
-			
+
 			SetRegPermissionsVOList = new ArrayList<SetRegPermissionsVO> ();
-		
-	
+
+
 
 			while(rset.next()) {
-			
+
 				SetRegPermissionsVO setRegPermissionsVO  = new SetRegPermissionsVO();
-				
+
 				setRegPermissionsVO.setUserSeq(rset.getInt("USER_SEQ"));
 				setRegPermissionsVO.setUserNm(rset.getString("USER_NM"));
 				setRegPermissionsVO.setUserPhone(rset.getString("USER_PHONE"));
 				setRegPermissionsVO.setOriginNm(rset.getString("ORIGIN_NM"));
 				setRegPermissionsVO.setUserGradeCd(rset.getInt("USER_GRADE_CD"));
-			
-				
-				
-				System.out.println(setRegPermissionsVO);
-				
-				
-				SetRegPermissionsVOList.add(setRegPermissionsVO);
-			
 
-				
+
+
+				System.out.println(setRegPermissionsVO);
+
+
+				SetRegPermissionsVOList.add(setRegPermissionsVO);
+
 			}
-			
-			
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -95,14 +91,6 @@ public class SetRegPermissionsDao {
 		return SetRegPermissionsVOList;
 	}
 
+	
+
 }
-
-
-
-
-
-
-
-
-
-

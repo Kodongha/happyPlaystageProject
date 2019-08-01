@@ -1,23 +1,30 @@
 package com.kh.hp.admin.model.vo;
 
+import java.sql.Date;
+
 public class SetRegPermissionsVO   implements java.io.Serializable{
 	private int userSeq;
 	private String userNm;
 	private String userPhone;
 	private int userGradeCd;
 	private String originNm ;
+	private Date gradeUpDt;
+	private String userGradeStatus;
 	
 	
 	public SetRegPermissionsVO () {}
 
 
-	public SetRegPermissionsVO(int userSeq, String userNm, String userPhone, int userGradeCd, String originNm) {
+	public SetRegPermissionsVO(int userSeq, String userNm, String userPhone, int userGradeCd, String originNm,
+			Date gradeUpDt, String userGradeStatus) {
 		super();
 		this.userSeq = userSeq;
 		this.userNm = userNm;
 		this.userPhone = userPhone;
 		this.userGradeCd = userGradeCd;
 		this.originNm = originNm;
+		this.gradeUpDt = gradeUpDt;
+		this.userGradeStatus = userGradeStatus;
 	}
 
 
@@ -71,12 +78,33 @@ public class SetRegPermissionsVO   implements java.io.Serializable{
 	}
 
 
+	public Date getGradeUpDt() {
+		return gradeUpDt;
+	}
+
+
+	public void setGradeUpDt(Date gradeUpDt) {
+		this.gradeUpDt = gradeUpDt;
+	}
+
+
+	public String getUserGradeStatus() {
+		return userGradeStatus;
+	}
+
+
+	public void setUserGradeStatus(String userGradeStatus) {
+		this.userGradeStatus = userGradeStatus;
+	}
+
+
 	@Override
 	public String toString() {
 		return "SetRegPermissionsVO [userSeq=" + userSeq + ", userNm=" + userNm + ", userPhone=" + userPhone
-				+ ", userGradeCd=" + userGradeCd + ", originNm=" + originNm + "]";
+				+ ", userGradeCd=" + userGradeCd + ", originNm=" + originNm + ", gradeUpDt=" + gradeUpDt
+				+ ", userGradeStatus=" + userGradeStatus + "]";
 	}
 
-	
+
 	
 }

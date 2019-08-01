@@ -1,7 +1,6 @@
 package com.kh.hp.admin.controller;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.hp.account.model.vo.UserVO;
 import com.kh.hp.admin.model.service.SearchUserService;
 import com.kh.hp.admin.model.service.UserService;
 import com.kh.hp.admin.model.vo.PageInfo;
@@ -68,11 +66,92 @@ public class SearchUserServlet extends HttpServlet {
 
 		//한 페이지에 보여질 목록 갯수
 		limit = 10;
+		
+		
+		boolean userSeq1Tf = false;
+		boolean userSeq2Tf = false;
+		boolean userNmTf = false;
+		boolean userGradeCdTf = false;
+		boolean leaveTfTf = false;
+
+		// 입력값 확인
+		if(userSeq1 != null && !userSeq1.equals("")) {
+			userSeq1Tf = true;
+		}
+		if(userSeq2 != null && !userSeq2.equals("")) {
+			userSeq2Tf = true;
+		}
+		if(userNm != null && !userNm.equals("")) {
+			userNmTf = true;
+		}
+		if(!leaveTf.equals("선택")) {
+			leaveTfTf = true;
+		}
+		if(!userGradeCd.equals("선택")) {
+			userGradeCdTf = true;
+		}
+
+
+		int listCount = 0;
+
+		//전체검색시 
+		if((userSeq1Tf && userSeq2Tf) && userNmTf && userGradeCdTf && !leaveTfTf ) {
+			
+			//이름만검색시
+		}else if(!(userSeq1Tf && userSeq2Tf) && userNmTf && !userGradeCdTf && !leaveTfTf) {
+		
+			listCount = new SearchUserService().getListCountforName(userNm);
+			
+			
+			//회원번호로만 검색
+		}else if((userSeq1Tf && userSeq2Tf) && !userNmTf && !userGradeCdTf && !leaveTfTf ) {
+			
+			listCount = new SearchUserService().getListCountforSeq(userSeq1, userSeq2);
+			
+			
+			//대관등록승인으로만 검색
+		}else if(!(userSeq1Tf && userSeq2Tf) && !userNmTf && userGradeCdTf && !leaveTfTf ) {
+			//listCount = new SearchUserService().getListCountforSeq(userGradeCd);
+			
+			
+			//탈퇴로만 검색
+		}else if(!(userSeq1Tf && userSeq2Tf) && !userNmTf && !userGradeCdTf && leaveTfTf ) {
+		
+
+			//회원번호,회원명으로만 검색 
+		}else if((userSeq1Tf && userSeq2Tf) && userNmTf && !userGradeCdTf && !leaveTfTf ) {
+			
+			//회원번호,대관등록승인으로만 검색
+		}else if((userSeq1Tf && userSeq2Tf) && !userNmTf && userGradeCdTf && !leaveTfTf ) {
+		
+
+			//회원번호,탈퇴여부로만 검색
+		}else if((userSeq1Tf && userSeq2Tf) && !userNmTf && !userGradeCdTf && leaveTfTf ) {
+		
+
+			//회원명, 대관등록승인으로 검색
+		}else if(!(userSeq1Tf && userSeq2Tf) && userNmTf && userGradeCdTf && !leaveTfTf ) {
+		
+
+			//회원명, 탈퇴여부로 검색
+		}else if(!(userSeq1Tf && userSeq2Tf) && userNmTf && !userGradeCdTf && leaveTfTf ) {
+			
+
+
+			//대관등록승인, 탈퇴여부로 검색
+		}else if(!(userSeq1Tf && userSeq2Tf) && !userNmTf && userGradeCdTf && leaveTfTf ) {
+		
+		}
+			
+		
+		
+		
 
 		//전체 목록 갯수를 리턴받음
-		int listCount = new UserService().getListCount();
-
-		//System.out.println("listCount : " + listCount);
+		/*listCount = new UserService().getListCount();
+		System.out.println("갯수 : " + listCount);
+*/
+		System.out.println("listCount : " + listCount);
 
 		//총 페이지 수 계산
 		//예를 들면, 목록 수가 124개이면 페이지 수는 13페이지이다.
@@ -81,7 +160,7 @@ public class SearchUserServlet extends HttpServlet {
 		//현재 페이지에서 보여줄 시작 페이지 숫자
 		//아래쪽에 페이지 수가 10개씩 보여지게 한다면
 		//1, 11, 21, 31, ....
-		startPage = (((int)((double) currentPage / limit + 0.9)) - 1) * 10 + 1;
+		startPage = (((int)((double) currentPage / limit + 0.9)) - 1) * 10+ 1;
 
 		//목록 아래 쪽에 보여질 마지막 페이지 수
 		//10, 20, 30,...
@@ -99,7 +178,7 @@ public class SearchUserServlet extends HttpServlet {
 		ArrayList<User> searchUserList = new SearchUserService().searchUserList(userSeq1 ,userSeq2, userNm ,userGradeCd, leaveTf,currentPage, limit);
 
 
-		System.out.println("서블릿 -searchUserList:::::" + searchUserList);
+		
 
 
 
@@ -109,7 +188,7 @@ public class SearchUserServlet extends HttpServlet {
 
 		if(searchUserList != null) {
 			
-			request.setAttribute("searchUserList", searchUserList);
+			request.setAttribute("list", searchUserList);
 			request.setAttribute("pi", pi);
 			page = "views/admin/01_userManagement.jsp";
 			

@@ -50,6 +50,11 @@
 .btn-default {
 	margin-left: 800px;
 }
+
+.btn-default1 {
+	margin-left: 900px;
+	margin-top:-55px;
+}
 </style>
 
 </head>
@@ -162,7 +167,9 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default">검수완료</button>
+							<button type="button" 	onclick="location.href='<%=request.getContextPath()%>/updateInpection.ad?rentSeq=<%=rentSeq %>'" class="btn btn-default">검수완료</button>
+							<br>
+							<button type="button" 	onclick="location.href='<%=request.getContextPath()%>/refuseInpection.ad?rentSeq=<%=rentSeq %>'" class="btn btn-default1">거절</button>
 						</div>
 					</div>
 				</form>

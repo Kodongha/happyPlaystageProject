@@ -42,23 +42,26 @@
 			</select>
 		</div>
 
+		<!-- 가격 -->
 		<div class="form-group" style="display: inline; width: 49%; float: right;">
 			<label class="necessary">*</label><label for="rentPrice">가격</label>
 			<br><br><br>
-			<input type="number" id="rentPrice" class="form-control" name="rentPrice" style="width: 200px; min-width: 200px; display:inline; margin: 0 2% 0 0" value="0">
+			<input type="text" id="rentPrice" class="form-control" name="rentPrice" style="width: 200px; min-width: 200px; display:inline; margin: 0 2% 0 0" value="0">
 		</div>
 
+		<br><br><br><br><br><br><br><br>
 		<!-- 사용 시간 단위 -->
 		<div class="form-group" style="display: inline-block;">
 			<label class="necessary">*</label><label for="availStartTm">사용 시간 단위</label>
-			<div class="container" >
-			<label class="radio-inline"><input type="radio" id="useTimeUnit1" name="useTimeUnit" value="시간" checked>시간 단위</label>
-			<label class="radio-inline"><input type="radio" id="useTimeUnit2" name="useTimeUnit" value="일">일 단위</label>
-			<label class="radio-inline"><input type="radio" id="useTimeUnit3" name="useTimeUnit" value="월">월 단위</label>
-		</div>
+			<br><br>
+			<select class="form-control" name="useTimeUnit" id="useTimeUnit" style="width: 200px; min-width: 200px; display:inline; margin: 0 2% 0 0">
+				<option value="시간">시간 단위</option>
+				<option value="일">일 단위</option>
+				<option value="월">월 단위</option>
+			</select>
 		</div>
 
-		<br>
+		<br><br><br>
 
 		<!-- 최소 예약 시간 -->
 		<div class="form-group" style="display: inline; width: 49%; float: left;">

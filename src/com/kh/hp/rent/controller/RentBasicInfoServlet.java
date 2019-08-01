@@ -56,7 +56,7 @@ public class RentBasicInfoServlet extends HttpServlet {
 			/*#################################### S T E P - 1 ####################################*/
 //			int userSeq = ((UserVO)request.getSession().getAttribute("user")).getUserSeq(); // 작성자 회원번호
 			int userSeq = 2;
-			int maxSize = 1024 * 1024 * 10; // 제한 MB
+			int maxSize = 1024 * 1024 * 50; // 제한 MB
 
 			String rootPath = request.getSession().getServletContext().getRealPath("/");
 
@@ -138,7 +138,12 @@ public class RentBasicInfoServlet extends HttpServlet {
 			int regCloseCd = Integer.parseInt(multipartRequest.getParameter("regCloseCd"));
 			String selectedDetFacIcon = multipartRequest.getParameter("selectedDetFacIcon");
 			String cusCloseNm = multipartRequest.getParameter("cusCloseNm");
-			int rentPrice = Integer.parseInt(multipartRequest.getParameter("rentPrice"));
+			String priceTemp = multipartRequest.getParameter("rentPrice");
+			System.out.println("priceTemp:::"+priceTemp);
+			int rentPrice = Integer.parseInt(priceTemp.replace(",", ""));
+			System.out.println("rentPrice:::"+rentPrice);
+
+
 
 			String cusClosedate = multipartRequest.getParameter("cusClosedate");
 			Date cusCloseStart = null;
@@ -370,12 +375,12 @@ public class RentBasicInfoServlet extends HttpServlet {
 			System.out.println("result:::::::" + result);
 
 			String page = "";
-			/*
+
 			if(result == 1) {
 				page = request.getContextPath() + "/moveMain.main";
 				response.sendRedirect(page);
 			}
-*/
+
 		}
 	}
 

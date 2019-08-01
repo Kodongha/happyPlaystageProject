@@ -23,46 +23,22 @@
 <title>Insert title here</title>
 <style>
 	.ui.cards {
-    padding-left: 14%;
-	}
-	#search {
-		text-align:center;
+		padding-left: 8%;
 	}
 </style>
 </head>
 <body>
 <jsp:include page="/views/common/header.jsp" />
 
-<div id="search">
+	
 
-	<label for="location">지역</label>
-		<div class="ui compact menu">
-			<div class="ui simple dropdown item" name="location">
-				지역 <i class="dropdown icon"></i>
-				<div class="menu">
-					<div class="item">Choice 1</div>
-					<div class="item">Choice 2</div>
-					<div class="item">Choice 3</div>
-				</div>
-			</div>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-		</div>
-		&nbsp;&nbsp;&nbsp;&nbsp; <label
-			for="date">이용일</label> <input type="date" name="date"> <label
-			for="price">가격</label> <input type="number" name="price"> ~ <input
-			type="number">
-		<div>
-			<button class="ui yellow button">필터</button>
-		</div>
-
-	</div>
 <hr>
 	<div class="container" align="center" id='containerDiv'>
-		<div class="ui link cards">
+		<div class="ui link cards" align="center">
 			<%for(RentListVO rentListVO : list) { %>
-			<div class="card" align="center">
+			<div class="card" align="center" style="width:260px;">
 				<input type="hidden" value="<%=rentListVO.getRentSeq() %>" id="rentSeq">
-				<div class="image" style="width: 290px; height: 210px">
+				<div class="image" style="width: 260px; height: 210px">
 					<img src="<%=request.getContextPath() %>/images/profilePhotos/<%=rentListVO.getChangeNm() %>" style="width:100%; height: 100%">
 				</div>
 				<div class="content">
@@ -121,8 +97,8 @@
 
 						for(var key in data){
 							var $input = $('<input type="hidden" value="" id="rentSeq">');
-							var $carDiv = $("<div class='card' align='center'>");
-							var $imageDiv = $('<div class="image" style="width: 290px; height: 210px">');
+							var $carDiv = $("<div class='card' align='center' style='width: 260px;'>");
+							var $imageDiv = $('<div class="image" style="width: 260px; height: 210px">');
 							var $img = $('<img src="" style="width:100%; height: 100%">');
 							var $contentDiv = $('<div class="content">');
 							var $headDiv = $('<div class="header"></div>');

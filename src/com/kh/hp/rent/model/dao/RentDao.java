@@ -145,7 +145,7 @@ public class RentDao {
 			pstmt.setString(13, requestRentBasicVO.getAvailStartTm());
 			pstmt.setString(14, requestRentBasicVO.getAvailEndTm());
 			pstmt.setInt(15, requestRentBasicVO.getMinRsvTm());
-			pstmt.setString(16, "시간");	// 사용 시간 단위
+			pstmt.setString(16, requestRentBasicVO.getUseTimeUnit());	// 사용 시간 단위
 			pstmt.setString(17, requestRentBasicVO.getCompNm());
 			pstmt.setString(18, requestRentBasicVO.getCeoNm());
 			pstmt.setString(19, requestRentBasicVO.getCorpNo());
@@ -1013,6 +1013,40 @@ public class RentDao {
 		}
 
 		return currval;
+	}
+
+	public ArrayList<RefundTypeVO> getrentRefundTypeInfo(Connection con, int rentRefundTypeSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<RefundTypeVO> refundTypeVOList = null;
+
+		String query = prop.getProperty("getrentRefundTypeInfo");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, rentRefundTypeSeq);
+
+			rset = pstmt.executeQuery();
+
+			refundTypeVOList = new ArrayList<RefundTypeVO>();
+			while(rset.next()) {
+				RefundTypeVO refundTypeVO = new RefundTypeVO();
+				refundTypeVO.setRefundType(rset.getInt("REFUND_TYPE"));
+				refundTypeVO.setDtCd(rset.getInt("DT_CD"));
+				refundTypeVO.setRefundDeductPer(rset.getInt("REFUND_DEDUCT_PER"));
+				refundTypeVOList.add(refundTypeVO);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return refundTypeVOList;
 	}
 
 }

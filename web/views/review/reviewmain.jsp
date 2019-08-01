@@ -45,9 +45,9 @@
 	<h2 align="center">리뷰ZONE</h2>
 		<div class="ui link cards">
 		<%for(ReviewMainVO reviewMainVO : list) { %>
-			<div class="card" align="center">
+			<div class="card" align="center" style="width:260px;">
 
-				<div class="image" style="width: 290px; height: 210px">
+				<div class="image" style="width: 260px; height: 210px">
 					<img src="<%=request.getContextPath() %>/images/profilePhotos/<%=reviewMainVO.getChangeNm() %>" style="width:100%; height: 100%">
 				</div>
 				<div class="content">
@@ -57,7 +57,7 @@
 				<div class="extra content">
 					<span class="rating">
 						<%for(int i=0; i<reviewMainVO.getRating(); i++) {%>
-							
+
 						<%} %>
 					</span>
 					<span>
@@ -67,7 +67,7 @@
 			</div>
 			<%} %>
 		</div> --%>
-		
+
 	<h2 align="center">리뷰ZONE</h2>
 	<p align="center">이용자들의 생생한 후기를 만나보세요</p>
 <hr>
@@ -75,15 +75,18 @@
 	<div class="container" align="center" id='containerDiv'>
 		<div class="ui link cards">
 			<%for(ReviewMainVO reviewMainVO : list) { %>
-			<div class="card" align="center">
-			
-				<input type="hidden" value="422" id="rentSeq">
-				<div class="image" style="width: 290px; height: 210px">
+			<div class="card" align="center" style="width:260px;">
+
+				<div class="image" style="width: 260px; height: 210px">
 					<img src="<%=request.getContextPath() %>/images/profilePhotos/<%=reviewMainVO.getChangeNm() %>" style="width:100%; height: 100%">
 				</div>
 				<div class="content">
 					<div class="hallNm"><h3><%=reviewMainVO.getHallNm() %></h3></div>
 					<div class="address"><%=reviewMainVO.getAddress() %></div>
+					<br><br>
+					<span>
+						<b>[ <i class="reviewContent"></i><%=reviewMainVO.getReviewContent() %> ]</b>
+					</span>
 				</div>
 				<div class="extra content">
 					<span class="rating">
@@ -91,18 +94,16 @@
 							★
 					<%} %>
 					</span>
-					<span>
-						<i class="reviewContent"></i><%=reviewMainVO.getReviewContent() %>
-					</span>
+
 				</div>
 			</div>
-				<%} %>
+			<%} %>
 		</div>
-</div>
+	</div>
 
-		
-		
-		
-		
+
+
+
+
 </body>
 </html>

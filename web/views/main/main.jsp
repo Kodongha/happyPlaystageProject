@@ -1,9 +1,11 @@
+<%@page import="com.kh.hp.account.model.vo.ReviewMainVO"%>
 <%@page import="com.kh.hp.main.model.vo.MainRentVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-   ArrayList<MainRentVO> responseMainRentVOList = (ArrayList<MainRentVO>) request.getAttribute("responseMainRentVOList");
+	ArrayList<MainRentVO> responseMainRentVOList = (ArrayList<MainRentVO>) request.getAttribute("responseMainRentVOList");
+	ArrayList<ReviewMainVO> reviewMainVOList = (ArrayList<ReviewMainVO>) request.getAttribute("reviewMainVOList");
 %>
 <!DOCTYPE html>
 <html>
@@ -121,13 +123,12 @@
 	</div>
 	<br>
 	<br>
-	<%--
 	<!-- 카드 -->
 	<div class="container" align="center">
 		<div class="ui link cards">
 			<%for(MainRentVO mainRentVO : responseMainRentVOList) { %>
-			<div class="card" align="center">
-				<div class="image" style="width: 290px; height: 210px">
+			<div class="card" align="center" style="width:260px;">
+				<div class="image" style="width: 260px; height: 210px">
 					<img src="<%=request.getContextPath() %>/images/profilePhotos/<%=mainRentVO.getChangeNm() %>" style="width:100%; height: 100%">
 				</div>
 				<div class="content">
@@ -144,11 +145,10 @@
 			<%} %>
 		</div>
 	</div>
-	 --%>
-	<!-- 리뷰 -->
 	<hr>
 	<br>
 	<br>
+	<!-- 리뷰 -->
 	<div>
 		<h2 align="center">
 			<b>Review</b>
@@ -157,59 +157,32 @@
 	<br>
 	<br>
 	<!-- 카드 -->
-	<div class="ui link cards" align="center">
-		<div class="card" align="center">
-			<div class="image">
-				<img src="../../images/rent/rent1.jpg">
-			</div>
-			<div class="content">
-				<div class="header">엘지 아트센터</div>
-				<div class="meta">
-					<span class="date">Coworker</span>
+	<div class="container" align="center" id='containerDiv'>
+		<div class="ui link cards">
+			<%for(ReviewMainVO reviewMainVO : reviewMainVOList) { %>
+			<div class="card" align="center" style="width:260px;">
+
+				<div class="image" style="width: 260px; height: 210px">
+					<img src="<%=request.getContextPath() %>/images/profilePhotos/<%=reviewMainVO.getChangeNm() %>" style="width:100%; height: 100%">
 				</div>
-				<div class="description">역삼동 679번지 강남구 서울특별시</div>
-			</div>
-			<div class="extra content">
-				<span class="right floated"> 2019.07.15 </span> <span> <i
-					class="user icon"></i> 450,000 원 /일
-				</span>
-			</div>
-		</div>
-		<div class="card">
-			<div class="image">
-				<img src="../../images/rent/rent2.jpg">
-			</div>
-			<div class="content">
-				<div class="header">Molly</div>
-				<div class="meta">
-					<span class="date">Coworker</span>
+				<div class="content">
+					<div class="hallNm"><h3><%=reviewMainVO.getHallNm() %></h3></div>
+					<div class="address"><%=reviewMainVO.getAddress() %></div>
+					<br><br>
+					<span>
+						<b>[ <i class="reviewContent"></i><%=reviewMainVO.getReviewContent() %> ]</b>
+					</span>
 				</div>
-				<div class="description">Molly is a personal assistant living in Paris.</div>
-			</div>
-			<div class="extra content">
-				<span class="right floated"> Joined in 2011 </span>
-				<span>
-					<i class="user icon"></i> 35 Friends
-				</span>
-			</div>
-		</div>
-		<div class="card">
-			<div class="image">
-				<img src="../../images/rent/rent3.jpg">
-			</div>
-			<div class="content">
-				<div class="header">Elyse</div>
-				<div class="meta">
-					<a>Coworker</a>
+				<div class="extra content">
+					<span class="rating">
+					<%for(int i=0; i<reviewMainVO.getRating(); i++) {%>
+							★
+					<%} %>
+					</span>
+
 				</div>
-				<div class="description">Elyse is a copywriter working in New
-					York.</div>
 			</div>
-			<div class="extra content">
-				<span class="right floated"> Joined in 2014 </span>
-				<span> <i class="user icon"></i> 151 Friends
-				</span>
-			</div>
+			<%} %>
 		</div>
 	</div>
 
@@ -219,7 +192,7 @@ $('.special.cards .image').dimmer({
    });
 </script>
 
-
+<br><br>
 
 
 <jsp:include page="/views/common/footer.jsp" />

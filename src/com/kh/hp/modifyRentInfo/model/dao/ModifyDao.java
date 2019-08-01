@@ -18,6 +18,7 @@ import com.kh.hp.rent.model.vo.CautionsVO;
 import com.kh.hp.rent.model.vo.DetFacAndRentDetFacVO;
 import com.kh.hp.rent.model.vo.DetFacVO;
 import com.kh.hp.rent.model.vo.FacInfoVO;
+import com.kh.hp.rent.model.vo.RefundTypeVO;
 import com.kh.hp.rent.model.vo.RentBasicVO;
 import com.kh.hp.rent.model.vo.RentCloseVO;
 import com.kh.hp.rent.model.vo.RentDetVO;
@@ -78,6 +79,11 @@ public class ModifyDao {
 				rentBasicVO.setCeoNm(rset.getString("CEO_NM"));
 				rentBasicVO.setCorpNo(rset.getString("CORP_NO"));
 				rentBasicVO.setCorpAddress(rset.getString("CORP_ADDRESS"));
+				rentBasicVO.setSettleEmail(rset.getString("SETTLE_EMAIL"));
+				rentBasicVO.setSettlePhone(rset.getString("SETTLE_PHONE"));
+				rentBasicVO.setBankNm(rset.getString("BANK_NM"));
+				rentBasicVO.setAccNo(rset.getString("ACC_NO"));
+				rentBasicVO.setAccHolder(rset.getString("ACC_HOLDER"));
 				rentBasicVO.setRentEnrollDt(rset.getDate("RENT_ENROLL_DT"));
 				rentBasicVO.setUseTimeUnit(rset.getString("USE_TIME_UNIT"));
 				rentBasicVO.setMinRsvTm(rset.getInt("MIN_RSV_TM"));
@@ -443,6 +449,38 @@ public class ModifyDao {
 		}
 
 		return rentCloseList;
+	}
+
+	public ArrayList<RefundTypeVO> selectRefunctTypeAll(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<RefundTypeVO> refundTypeVOList = null;
+
+		String query = prop.getProperty("selectRefunctTypeAll");
+
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+
+			refundTypeVOList = new ArrayList<RefundTypeVO>();
+
+			while(rset.next()) {
+				RefundTypeVO refundTypeVO = new RefundTypeVO();
+				refundTypeVO.setRefundSeq(rset.getInt("REFUND_SEQ"));
+				refundTypeVO.setRefundType(rset.getInt("REFUND_TYPE"));
+				refundTypeVO.setDtCd(rset.getInt("DT_CD"));
+				refundTypeVO.setRefundDeductPer(rset.getInt("REFUND_DEDUCT_PER"));
+				refundTypeVOList.add(refundTypeVO);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+
+		return refundTypeVOList;
 	}
 
 }

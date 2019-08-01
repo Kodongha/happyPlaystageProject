@@ -1,5 +1,6 @@
 package com.kh.hp.modifyRentInfo.model.service;
 
+import static com.kh.hp.common.JDBCTemplate.close;
 import static com.kh.hp.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
@@ -8,11 +9,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.kh.hp.modifyRentInfo.model.dao.ModifyDao;
+import com.kh.hp.rent.model.dao.RentDao;
 import com.kh.hp.rent.model.vo.AttachmentVO;
 import com.kh.hp.rent.model.vo.CautionsVO;
 import com.kh.hp.rent.model.vo.DetFacAndRentDetFacVO;
 import com.kh.hp.rent.model.vo.DetFacVO;
 import com.kh.hp.rent.model.vo.FacInfoVO;
+import com.kh.hp.rent.model.vo.RefundTypeVO;
 import com.kh.hp.rent.model.vo.RentBasicVO;
 import com.kh.hp.rent.model.vo.RentCloseVO;
 import com.kh.hp.rent.model.vo.RentDetVO;
@@ -41,8 +44,8 @@ public class ModifyService {
 		ArrayList<RentDetVO> rentDetVOList = modifyDao.selectRentDet(con, rentSeq);
 		//ATTACHMENT 테이블
 		ArrayList<AttachmentVO> attachmentVOList = modifyDao.selectAttachment(con, rentSeq);
-		//RENT_IMG 테이블
-		ArrayList<RentImgVO> rentImgVOList = modifyDao.selectRentImg(con, rentSeq);
+/*		//RENT_IMG 테이블
+		ArrayList<RentImgVO> rentImgVOList = modifyDao.selectRentImg(con, rentSeq);*/
 		//DET_FAC 테이블
 		ArrayList<DetFacVO> detFacVOList = modifyDao.selectDetFac(con, rentSeq);
 		//RENT_DET_FAC 테이블
@@ -57,7 +60,7 @@ public class ModifyService {
 		rentBasicInfoMap.put("cautionsVOList", cautionsVOList);
 		rentBasicInfoMap.put("rentDetVOList", rentDetVOList);
 		rentBasicInfoMap.put("attachmentVOList", attachmentVOList);
-		rentBasicInfoMap.put("rentImgVOList", rentImgVOList);
+/*		rentBasicInfoMap.put("rentImgVOList", rentImgVOList);*/
 		rentBasicInfoMap.put("detFacVOList", detFacVOList);
 		rentBasicInfoMap.put("rentDetFacVOList", rentDetFacVOList);
 		rentBasicInfoMap.put("rentCloseVOList", rentCloseVOList);
@@ -70,6 +73,11 @@ public class ModifyService {
 		return rentBasicInfoMap;
 	}
 
+	/**
+	 * 세부시설 가져오기
+	 * @param rentSeq
+	 * @return
+	 */
 	public ArrayList<DetFacVO> getDetFac(int rentSeq) {
 		Connection con = getConnection();
 
@@ -78,6 +86,23 @@ public class ModifyService {
 		ArrayList<DetFacVO> detFacVOList = modifyDao.selectDetFac(con, rentSeq);
 
 		return detFacVOList;
+	}
+
+	/**
+	 * 환불유형 가져오기
+	 * @param rentSeq
+	 * @return
+	 */
+	public ArrayList<RefundTypeVO> getRefundType(int rentSeq) {
+		Connection con = getConnection();
+
+		ModifyDao modifyDao = new ModifyDao();
+
+		ArrayList<RefundTypeVO> refundTypeVOList = modifyDao.selectRefunctTypeAll(con);
+
+		close(con);
+
+		return refundTypeVOList;
 	}
 
 

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.hp.modifyRentInfo.model.service.ModifyService;
 import com.kh.hp.rent.model.vo.DetFacVO;
+import com.kh.hp.rent.model.vo.RefundTypeVO;
+import com.kh.hp.rent.model.vo.RentImgVO;
 
 /**
  * Servlet implementation class MoveModifyFormSevlet
@@ -43,13 +45,14 @@ public class MoveModifyFormSevlet extends HttpServlet {
 
 		Map<String, Object> rentInfo = modifyService.getrentInfo(rentSeq);
 		ArrayList<DetFacVO> detFacVOList = modifyService.getDetFac(rentSeq);
-
+		ArrayList<RefundTypeVO> refundTypeVOList = modifyService.getRefundType(rentSeq);
 
 		String page = "";
-		if(rentInfo != null && detFacVOList != null) {
+		if(rentInfo != null && detFacVOList != null && refundTypeVOList != null) {
 			page="views/modifyRentInfo/rentBasicModify.jsp";
 			request.setAttribute("rentInfo", rentInfo);
 			request.setAttribute("detFacVOList", detFacVOList);
+			request.setAttribute("refundTypeVOList", refundTypeVOList);
 		} else {
 			System.out.println("널입니다.!!!!!!!!!!!!!!!");
 		}

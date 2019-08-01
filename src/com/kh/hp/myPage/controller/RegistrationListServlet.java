@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.hp.account.model.vo.UserVO;
 import com.kh.hp.myPage.model.service.MyPageService_mh;
 import com.kh.hp.myPage.model.vo.RegistListVO;
+import com.kh.hp.rent.model.vo.RentImgVO;
 
 /**
  * Servlet implementation class RegistrationListServlet
@@ -37,9 +38,12 @@ public class RegistrationListServlet extends HttpServlet {
 		UserVO userVO = ((UserVO) request.getSession().getAttribute("user"));
 		int userSeq = userVO.getUserSeq();
 
+
+
 		System.out.println(userSeq);
 
-		ArrayList<RegistListVO> list = new MyPageService_mh().selectRegistList(userSeq);
+		MyPageService_mh myPageService_mh = new MyPageService_mh();
+		ArrayList<RegistListVO> list = myPageService_mh.selectRegistList(userSeq);
 
 		String page= "";
 		if (list != null) {

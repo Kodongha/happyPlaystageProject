@@ -60,7 +60,7 @@
 	ArrayList<RentImgVO> rentImgVOList = (ArrayList<RentImgVO>) rentInfo.get("rentImgVOList");
 	ArrayList<DetFacAndRentDetFacVO> rentDetFacVOList = (ArrayList<DetFacAndRentDetFacVO>) rentInfo.get("DetFacAndRentDetFacVO");
 	ArrayList<RentCloseVO> rentCloseVOList = (ArrayList<RentCloseVO>) rentInfo.get("rentCloseVOList");
-	%>
+%>
 <script>
 	$(function(){
 		//====== step1 ========
@@ -71,6 +71,11 @@
 		$("#address").val('<%=rentBasicVO.getAddress()%>');
 		$("#rentEmail").val('<%=rentBasicVO.getRentEmail()%>');
 
+		var file = "<%=attachmentVOList.get(0).getOriginNm()%>";
+		$("#hallRegisCerPath").val('<%=attachmentVOList.get(0).getOriginNm()%>');
+		console.log(file);
+
+		<%-- $("#hallRegisCerPath").val('<%=attachmentVOList.get(0).getFilePath()%>' + '<%=attachmentVOList.get(0).getOriginNm()%>'); --%>
 		//====== step2 ========
 		//휴대폰번호
 		var rentPhone = "<%= rentBasicVO.getRentPhone()%>";
@@ -122,6 +127,40 @@
 				$(this).attr("selected", true);
 			}
 		})
+
+
+		//====== step4 ========
+		$("#compNm").val('<%=rentBasicVO.getCompNm()%>');
+		$("#ceoNm").val('<%=rentBasicVO.getCeoNm()%>');
+
+		//사업자번호
+		var corpNo = "<%= rentBasicVO.getCorpNo()%>";
+		var corpNoArr = corpNo.split('-');
+
+		$("#corpNo1").val(corpNoArr[0]);
+		$("#corpNo2").val(corpNoArr[1]);
+		$("#corpNo3").val(corpNoArr[2]);
+
+		//사업장 주소
+		var corpAddress = '<%=rentBasicVO.getCorpAddress()%>';
+		var corpAddressArr = corpAddress.split('§§');
+		$("#corpAddress1").val(corpAddressArr[0]);
+		$("#corpAddress2").val(corpAddressArr[1]);
+
+		$("#settleEmail").val('<%= rentBasicVO.getSettleEmail() %>');
+
+		//정산용 연락처
+		var settlePhone = "<%= rentBasicVO.getSettlePhone()%>";
+		var settlePhoneArr = settlePhone.split('-');
+
+		$("#settlePhone1").val(settlePhoneArr[0]);
+		$("#settlePhone2").val(settlePhoneArr[1]);
+		$("#settlePhone3").val(settlePhoneArr[2]);
+
+		$("#bankNm").val('<%=rentBasicVO.getBankNm()%>');
+		$("#accNo").val('<%=rentBasicVO.getAccNo()%>');
+		$("#accHolder").val('<%=rentBasicVO.getAccHolder()%>');
+
 
 	});
 </script>
@@ -197,7 +236,7 @@
 						</div>
 						<!-- step4 -->
 						<div class="tab-pane" role="tabpanel" id="step4">
-							<%-- <%@include file="step4.jsp" %> --%>
+							<%@include file="step4.jsp" %>
 						</div>
 						<!-- complete -->
 						<%@include file="complete.jsp" %>

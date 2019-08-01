@@ -73,7 +73,7 @@ body {
 				<label for="notice" id="noticeLabel">공지사항 검색</label>
 				<!-- <div id="d1">공지사항 검색</div> -->
 				<div class="input-group" id="notice">
-					<input type="text" class="form-control" placeholder="검색어를 입력해주세요." name="searchValue">
+					<input type="text" class="form-control" placeholder="검색어를 입력하세요." name="searchValue">
 					<div class="input-group-btn">
 						<button class="btn btn-default" type="submit">
 							<i class="glyphicon glyphicon-search"></i>&nbsp; 검색

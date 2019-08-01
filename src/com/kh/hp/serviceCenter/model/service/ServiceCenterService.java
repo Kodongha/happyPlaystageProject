@@ -255,4 +255,32 @@ public class ServiceCenterService {
 		return targetUserSeq;
 	}
 
+	/**
+	 * 자주묻는 질문 검색
+	 * @param category
+	 * @param keyword
+	 * @return
+	 */
+	public ArrayList<FaQVO> searchFAQ(String category, String keyword) {
+		Connection con = getConnection();
+
+		ArrayList<FaQVO> list = null;
+
+		ServiceCenterDao sd = new ServiceCenterDao();
+
+		if (category != null && keyword.equals("")) {
+			System.out.println("카테고리만 지정");
+			if(category.equals("전체")) {
+				list = sd.searchAllFAQ(con, category, keyword);
+			}else {
+				list = sd.searchCategory(con, category, keyword);
+			}
+		} else if (category != null && keyword != null) {
+			System.out.println("둘다 값이 있음");
+			list = sd.searchTwo(con, category, keyword);
+		}
+
+		return list;
+	}
+
 }

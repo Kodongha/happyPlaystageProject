@@ -1,12 +1,15 @@
 package com.kh.hp.admin.model.service;
 
 import static com.kh.hp.common.JDBCTemplate.close;
+import static com.kh.hp.common.JDBCTemplate.commit;
 import static com.kh.hp.common.JDBCTemplate.getConnection;
+import static com.kh.hp.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.hp.admin.model.dao.SetRegPermissionsDao;
+import com.kh.hp.admin.model.dao.UpdateOneUserDao;
 import com.kh.hp.admin.model.dao.UseHistoryDao;
 import com.kh.hp.admin.model.dao.UserDao;
 import com.kh.hp.admin.model.vo.SetRegPermissionsVO;
@@ -36,12 +39,7 @@ public class SetRegPermissionsService {
 		close(con);
 
 		return SetRegPermissionsVOList;
-		
-		
-		
-		
-		
-		
+	
 
 	}
 

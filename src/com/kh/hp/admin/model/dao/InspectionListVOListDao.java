@@ -69,6 +69,7 @@ public class InspectionListVOListDao {
 				inspectionListVO.setOriginNm(rset.getString("ORIGIN_NM"));
 				inspectionListVO.setInspTf(rset.getString("INSP_TF"));
 
+
 				InspectionListVOList.add(inspectionListVO);
 
 

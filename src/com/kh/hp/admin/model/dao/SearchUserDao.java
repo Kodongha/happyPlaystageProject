@@ -248,7 +248,7 @@ public class SearchUserDao {
 				user.setUserGradeCd(rset.getInt("USER_GRADE_CD"));	
 
 
-				System.out.println("SearchUserleave:::::" + SearchUserleave);
+		
 
 
 				SearchUserleave.add(user);
@@ -263,6 +263,8 @@ public class SearchUserDao {
 			close(pstmt);
 			close(rset);
 		}
+		
+		System.out.println(" 회원만탈퇴:::::" + SearchUserleave);
 		return SearchUserleave;
 	}
 
@@ -650,5 +652,55 @@ public class SearchUserDao {
 		
 		
 		return SearchUserCdleave;
+	}
+
+	//이름으로만 조회시 카운트
+	public int getListCountforName(Connection con, String userNm) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int listCount = 0;
+		
+		String query = prop.getProperty("getListCountforName");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userNm);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount= rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return listCount;
+	}
+
+	//회원번호로만 조회시 카운트
+	public int getListCountforSeq(Connection con, String userSeq1, String userSeq2) {
+		
+	
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int listCount = 0;
+		
+		String query = prop.getProperty("getListCountforSeq");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			//pstmt.setString(1, userNm);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount= rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return listCount;
 	}
 }

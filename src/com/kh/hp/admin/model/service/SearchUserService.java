@@ -1,7 +1,7 @@
 package com.kh.hp.admin.model.service;
 
-import static com.kh.hp.common.JDBCTemplate.close;
-import static com.kh.hp.common.JDBCTemplate.getConnection;
+import static com.kh.hp.common.JDBCTemplate.*;
+
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -105,35 +105,39 @@ public class SearchUserService {
 			//대관등록승인, 탈퇴여부로 검색
 		}else if(!(userSeq1Tf && userSeq2Tf) && !userNmTf && userGradeCdTf && leaveTfTf ) {
 			searchUserList = new  SearchUserDao().SearchUserCdleave(con,  userGradeCd,leaveTf, currentPage, limit);
-			
-
-			/* }else if((userSeq1Tf && userSeq2Tf) && userNmTf && userGradeCdTf && !leaveTfTf ) {
-
-		 }else if((userSeq1Tf && userSeq2Tf) && userNmTf && userGradeCdTf && !leaveTfTf ) {
-
-		 }else if((userSeq1Tf && userSeq2Tf) && userNmTf && userGradeCdTf && !leaveTfTf ) {
-
-		 }else if((userSeq1Tf && userSeq2Tf) && userNmTf && userGradeCdTf && !leaveTfTf ) {
-
-		 }else if((userSeq1Tf && userSeq2Tf) && userNmTf && userGradeCdTf && !leaveTfTf ) {*/
-
-
 
 		}
-
-
-
-
-
-
-
-
-
-
-
 
 		return searchUserList;
 
 
+	}
+
+
+	//회원명으로만 검색 카운트
+	public int getListCountforName(String userNm) {
+		Connection con = getConnection();
+		int result = 0;
+
+		result = new SearchUserDao().getListCountforName(con, userNm);
+
+
+		close(con);
+
+		return result;
+	}
+
+	//회원명으로만 검색 카운트
+	public int getListCountforSeq(String userSeq1, String userSeq2) {
+
+		Connection con = getConnection();
+		int result = 0;
+
+		result = new SearchUserDao().getListCountforSeq(con, userSeq1,userSeq2);
+
+
+		close(con);
+
+		return result;
 	}
 }

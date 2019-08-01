@@ -168,9 +168,9 @@ tbody>tr:active {
 	background: #cce6ff;
 }
 
-.pagingArea{
-margin-top: -300px;
-margin-left: 600px;
+.pagingArea {
+	margin-top: -300px;
+	margin-left: 600px;
 }
 </style>
 
@@ -188,89 +188,96 @@ margin-left: 600px;
 		<br>
 
 		<!--검색영역 -->
-		<div id="search">
-			<div id="users1">
-				<label id="userno">회원번호</label>
-				<div id="input">
-					<input class="form-control" id="ex1" type="text"
-						style="width: 100px;">
-				</div>
-				<div id="wave">~</div>
-				<div id="input1">
-					<input class="form-control" id="ex1" type="text"
-						style="width: 100px;">
+		<form>
+			<div id="search">
+				<div id="users1">
+					<label id="userno">회원번호</label>
+					<div id="input">
+						<input class="form-control" id="ex1" type="text"
+							style="width: 100px;">
+					</div>
+					<div id="wave">~</div>
+					<div id="input1">
+						<input class="form-control" id="ex1" type="text"
+							style="width: 100px;">
+					</div>
+
+					<label id="userno">회원명</label>
+					<div id="input">
+						<input class="form-control" id="ex1" type="text"
+							style="width: 250px;">
+					</div>
 				</div>
 
-				<label id="userno">회원명</label>
-				<div id="input">
-					<input class="form-control" id="ex1" type="text"
-						style="width: 250px;">
+
+
+				<div id="users4">
+					<label id="userno">등록구분</label>
+				</div>
+				<div id="users5">
+					<div class="col-sm-2" id="select">
+						<select class="form-control" id="gender1" style="width: 100px">
+							<option>선택</option>
+							<option>승인대기</option>
+							<option>승인완료</option>
+						</select>
+					</div>
+					<button type="button" class="btn btn-warning" id="searchbutton">검색</button>
 				</div>
 			</div>
-
-
-
-			<div id="users4">
-				<label id="userno">등록구분</label>
-			</div>
-			<div id="users5">
-				<div class="col-sm-2" id="select">
-					<select class="form-control" id="gender1" style="width: 100px">
-						<option>선택</option>
-						<option>승인대기</option>
-						<option>승인완료</option>
-					</select>
-				</div>
-				<button type="button" class="btn btn-warning" id="searchbutton">검색</button>
-			</div>
-		</div>
-
+		</form>
 		<br> <br>
-		<div class="container">
 
-			<table class="table">
-				<thead>
-					<tr>
-						<th>회원번호</th>
-						<th>이름</th>
-						<th>연락처</th>
-						<th>공연장등록증첨부파일</th>
-						<th>등록구분</th>
-						<th>승인유무</th>
-					</tr>
+			<div class="container">
 
-				</thead>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>회원번호</th>
+							<th>이름</th>
+							<th>연락처</th>
+							<th>공연장등록증첨부파일</th>
+							<th>등록구분</th>
+							<th>승인유무</th>
+						</tr>
 
-				<tbody>
-					<%
-						for (SetRegPermissionsVO SetRegPermissions : SetRegPermissionsVOList) {
-					%>
-					<tr>
-						<td><%=SetRegPermissions.getUserSeq()%></td>
-						<td><%=SetRegPermissions.getUserNm()%></td>
-						<td><%=SetRegPermissions.getUserPhone()%></td>
-						<td><%=SetRegPermissions.getOriginNm()%></td>
+					</thead>
+
+					<tbody>
 						<%
-							if (SetRegPermissions.getUserGradeCd() == 1) {
+							for (SetRegPermissionsVO SetRegPermissions : SetRegPermissionsVOList) {
 						%>
-						<td>승인대기</td>
-						<%
-							} else {
-						%>
-						<td>승인완료</td>
+						<tr>
+							<td><%=SetRegPermissions.getUserSeq()%></td>
+							<td><%=SetRegPermissions.getUserNm()%></td>
+							<td><%=SetRegPermissions.getUserPhone()%></td>
+							<td><%=SetRegPermissions.getOriginNm()%></td>
+							<%
+								if (SetRegPermissions.getUserGradeCd() == 1) {
+							%>
+							<td>승인대기</td>
+							<%
+								} else {
+							%>
+							<td>승인완료</td>
+							<%
+								}
+							%>
+
+							
+
+							<td><input type="button" value="O" class="button" 
+							onclick="location.href='<%=request.getContextPath()%>/updateSetReg.ad?userSeq=<%=SetRegPermissions.getUserSeq() %>'"> 
+							<input type="button" value="X" class="button"
+							onclick="location.href='<%=request.getContextPath()%>/cancelSetReg.ad?userSeq=<%=SetRegPermissions.getUserSeq() %>'"> </td>
+						</tr>
 						<%
 							}
 						%>
+					</tbody>
+				</table>
+			</div>
 
-						<td><input type="button" value="O" class="button"> <input
-							type="button" value="X" class="button"></td>
-					</tr>
-					<%
-						}
-					%>
-				</tbody>
-			</table>
-		</div>
 	</div>
 	<div class="pagingArea">
 		<button

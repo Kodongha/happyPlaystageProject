@@ -4,9 +4,8 @@
 <%
  ArrayList<User> list = (ArrayList<User>) request.getAttribute("list");
 
-	ArrayList<User> searchUserList  = (ArrayList<User>) request.getAttribute("searchUserList");
 	
-	System.out.println("뷰 -searchUserList::::" + searchUserList);
+	/* System.out.println("뷰 -searchUserList::::" + list); */
 
 User user  = new User();
 
@@ -16,6 +15,8 @@ User user  = new User();
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
+	System.out.println("startpage : " + startPage);
+	System.out.println("endpage : " + endPage);
 
  %>
 
@@ -280,13 +281,13 @@ tboydy>tr:active {
 				</div>
 				<div class="pagingArea">
 					<button
-						onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=1'"><<</button>
+						onclick="location.href='<%=request.getContextPath()%>/searchUser.ad?currentPage=1'"><<</button>
 
 					<% if(currentPage <= 1){ %>
 					<button disabled><</button>
 					<% }else { %>
 					<button
-						onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=currentPage - 1%>'"><</button>
+						onclick="location.href='<%=request.getContextPath()%>/searchUser.ad?currentPage=<%=currentPage - 1%>'"><</button>
 					<% } %>
 
 					<% for(int p = startPage; p <= endPage; p++){
@@ -295,7 +296,7 @@ tboydy>tr:active {
 					<button disabled><%= p %></button>
 					<% } else { %>
 					<button
-						onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=p%>'"><%= p %></button>
+						onclick="location.href='<%=request.getContextPath()%>/searchUser.ad?currentPage=<%=p%>'"><%= p %></button>
 					<%
 				}
 			   }
@@ -305,11 +306,11 @@ tboydy>tr:active {
 					<button disabled>></button>
 					<% }else{ %>
 					<button
-						onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=currentPage + 1%>'">></button>
+						onclick="location.href='<%=request.getContextPath()%>/searchUser.ad?currentPage=<%=currentPage + 1%>'">></button>
 					<% } %>
 
 					<button
-						onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=maxPage%>'">>></button>
+						onclick="location.href='<%=request.getContextPath()%>/searchUser.ad?currentPage=<%=maxPage%>'">>></button>
 				</div>
 
 

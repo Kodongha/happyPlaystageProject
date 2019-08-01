@@ -113,9 +113,17 @@ public class AhnMyPageService {
 		
 		int result1 = new AhnMyPageDao().insertImage(con, l);
 		
+		/*if(result1 > 0) {
+			int userSeq = new AhnMyPageDao().selectCurrval(con);
+			
+			for(int i = 0; i < fileList.size(); i++) {
+				fileList.get(i).setUserSeq(userSeq);
+			}
+		}*/
+		
 		int result2 = new AhnMyPageDao().insertAttachment(con, fileList);
 		
-		if(result1 > 0 && result2 > 0) {
+		if(result2 > 0) {
 			commit(con);
 			result = 1;
 		}else {

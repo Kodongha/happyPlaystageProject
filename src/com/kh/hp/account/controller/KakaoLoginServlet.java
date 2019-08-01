@@ -39,7 +39,6 @@ public class KakaoLoginServlet extends HttpServlet {
 		System.out.println(code);
 
 		// 카카오 access, refresh 토큰 받아오기
-
 		HashMap<String, String> tokenMap = new KakaoService().getTokenInfo(code);
 
 		Iterator<String> iter = tokenMap.keySet().iterator();
@@ -48,10 +47,14 @@ public class KakaoLoginServlet extends HttpServlet {
 			System.out.println(key + ":" + tokenMap.get(key));
 		}
 
-		// 토큰의 기간 만료 확인한 후 만료 경우, 업데이트 처리
+		// 사용자 정보 가져오기
 		String accessToken = tokenMap.get("accessToken");
-		HashMap<String, String> tokenValidation = new KakaoService().validationToken(accessToken);
+		HashMap<String, Object> userInfo = new KakaoService().getUserInfo(accessToken);
 
+		// 토큰의 기간 만료 확인한 후 만료 경우, 업데이트 처리
+		/*
+		HashMap<String, String> tokenValidation = new KakaoService().validationToken(accessToken);
+		*/
 
 
 

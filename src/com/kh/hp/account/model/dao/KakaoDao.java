@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.HashMap;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class KakaoDao {
@@ -31,6 +32,7 @@ public class KakaoDao {
 	 */
 	public HashMap<String, String> getTokenInfo(String code) {
 		// TODO Auto-generated method stub
+
 		final String REQUEST_URL = "https://kauth.kakao.com/oauth/token";
 		final String PARAM_1 = "grant_type=authorization_code";
 		final String PARAM_2 = "client_id=";
@@ -160,5 +162,65 @@ public class KakaoDao {
 		}
 
 		return null;
+	}
+
+
+	public HashMap<String, Object> getUserInfo(String accessToken) {
+		// TODO Auto-generated method stub
+
+		HashMap<String, Object> userInfo = new HashMap<>();
+		final String REQUEST_URL = "https://kapi.kakao.com/v2/user/me";
+
+		URL url;
+		try {
+			url = new URL(REQUEST_URL);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod(METHOD_POST);
+
+			conn.setRequestProperty("Authorization", "Bearer " + accessToken);
+
+			int responseCode = conn.getResponseCode();
+	        System.out.println("responseCode : " + responseCode);
+
+	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+	        String line = "";
+	        String result = "";
+
+	        while ((line = br.readLine()) != null) {
+	            result += line;
+	        }
+	        System.out.println("response body : " + result);
+
+	        JsonParser parser = new JsonParser();
+	        JsonElement element = parser.parse(result);
+
+	        String id = element.getAsJsonObject().get("id").getAsString();
+	        JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
+	        JsonObject kakaoAccount = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+
+	        String nickname = properties.getAsJsonObject().get("nickname").getAsString();
+	        String email = "";
+	        String hasEmail = "";
+
+	        if(kakaoAccount.getAsJsonObject().get("email") != null) {
+	        	email = kakaoAccount.getAsJsonObject().get("email").getAsString();
+	        	hasEmail = kakaoAccount.getAsJsonObject().get("has_email").getAsString();
+	        }
+
+	        userInfo.put("id", id);
+	        userInfo.put("nickname", nickname);
+	        userInfo.put("hasEmail", hasEmail);
+	        userInfo.put("email", email);
+
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return userInfo;
 	}
 }

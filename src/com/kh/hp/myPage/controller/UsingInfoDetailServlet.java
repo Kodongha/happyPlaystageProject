@@ -1,8 +1,8 @@
 package com.kh.hp.myPage.controller;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.ArrayList;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.hp.account.model.vo.UserVO;
 import com.kh.hp.myPage.model.service.AhnMyPageService;
 import com.kh.hp.myPage.model.vo.AhnUsingInfoVO;
-import com.kh.hp.myPage.model.vo.PageInfo;
 import com.kh.hp.rent.model.service.RentService;
 
 /**
@@ -39,21 +38,26 @@ public class UsingInfoDetailServlet extends HttpServlet {
 		int userInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
 		int rentSeq = Integer.parseInt(request.getParameter("rentSeq"));
 		String hallNm = request.getParameter("hallNm");
-		Date useStart = null;
-		Date useEnd = null;
+		Date useStart = Date.valueOf(request.getParameter("useStart"));
+		Date useEnd = Date.valueOf(request.getParameter("useEnd"));
 		
 		System.out.println("useSeq : " + userInfo);
 		System.out.println("rentSeq ::: " + rentSeq);
 		System.out.println("hallNm : " + hallNm);
 		System.out.println("useStart : " + useStart);
 		System.out.println("useEnd : " + useEnd);
+		
 		RentService rentService = new RentService();
 		ArrayList<Object> rentInfos = AhnMyPageService.selectRentOne(rentSeq);
 		ArrayList<AhnUsingInfoVO> list = new AhnMyPageService().searchUsingDetail( userInfo, rentSeq, hallNm, useStart, useEnd);
 		
+		System.out.println("rentInfos : " + rentInfos);
+		System.out.println("list : " + list);
+		
 		String page = "";
 		if(rentInfos != null) {
 			request.setAttribute("rentInfos", rentInfos);
+			request.setAttribute("list", list);
 			page = "views/myPage/usingInfoDetail.jsp";
 		} else {
 			page = "views/common/errorPage.jsp";

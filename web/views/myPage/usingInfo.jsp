@@ -66,7 +66,7 @@
 	<br>
 	<div class="tab2" style="width:790px;">
 	
-	<table style="width:790px; height:113px; text-align:center; margin:auto; border-collapse: collapse;">
+	<table style="width:790px; height:60px; text-align:center; margin:auto; border-collapse: collapse;">
 		<tr>
 		<td id="tab1">공연장 고유번호</td>
 		<td id="tab1">상호명</td>
@@ -105,6 +105,7 @@
 	</table>
 	</div>
 	<%-- 페이징처리 --%>
+	<% if(maxPage >= 2) { %>
 		<div class="pagingArea" align="center">
 			<button onclick="location.href='<%=request.getContextPath()%>/usingInfo?currentPage=1'"><<</button>
 			
@@ -133,6 +134,7 @@
 
 			<button onclick="location.href='<%=request.getContextPath()%>/usingInfo?currentPage=<%=maxPage%>'">>></button>
 		</div>
+		<% } %>
 		<script type="text/javascript">
 		$('#cusClosedate').dateRangePicker();
 	</script>

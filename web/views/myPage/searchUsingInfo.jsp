@@ -3,6 +3,7 @@
     pageEncoding="UTF-8" import="com.kh.hp.myPage.model.vo.*, java.util.*"%>
 <%
  ArrayList<AhnUsingInfoVO> list = (ArrayList<AhnUsingInfoVO>)request.getAttribute("list");
+System.out.println("list:::::::::::::::::::::::::"+list);
 //AhnUsingInfoVO responseUserVO = (AhnUsingInfoVO) request.getAttribute("responseUserVO");
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
 	int listCount = pi.getListCount();
@@ -40,8 +41,8 @@
 </head>
 <body>
 <jsp:include page="/views/common/header.jsp" />
-	<h1 align=center style="color:gray">대관 사용 내역</h1>
-	<form action="<%=request.getContextPath() %>/searchUsingInfo"  method="post">
+	<h1 align=center style="color:gray">대관 신청 내역</h1>
+	<form action="<%=request.getContextPath() %>/searchApplyInfo" method="post">
 	<div class="tab1" style="width:650px;border:1.5px solid black">
 	<table align="center">
 		<tr>
@@ -68,7 +69,7 @@
 	<br>
 	<div class="tab2" style="width:790px;">
 	
-	<table style="width:790px; height:113px; text-align:center; margin:auto; border-collapse: collapse;">
+	<table style="width:790px; height:60px; text-align:center; margin:auto; border-collapse: collapse;">
 		<tr>
 		<td id="tab1">공연장 고유번호</td>
 		<td id="tab1">상호명</td>
@@ -76,9 +77,8 @@
 		<td id="tab1">사용공간 이름</td>
 		</tr>
 		<% for(int i = 0; i < list.size(); i++){
-			
 			%>
-			<tr onclick="location.href='<%=request.getContextPath()%>/usingInfoDetail?rentSeq=<%=list.get(i).getRentSeq()%> && hallNm=<%=list.get(i).getHallNm()%> && useStart=<%=list.get(i).getUseStartDt()%> && useEnd=<%=list.get(i).getUseEndDt()%>'">
+			<tr onclick="location.href='<%=request.getContextPath()%>/usingInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>'">
 			<td id="tab2"><%= list.get(i).getRentSeq() %></td>
 			<td id="tab2"><%= list.get(i).getCompNm() %></td>
 			<td id="tab2"><%= list.get(i).getUseStartDt() %> ~ <%= list.get(i).getUseEndDt() %></td>
@@ -107,6 +107,7 @@
 	</table>
 	</div>
 	<%-- 페이징처리 --%>
+	<% if(maxPage >= 2) { %>
 		<div class="pagingArea" align="center">
 			<button onclick="location.href='<%=request.getContextPath()%>/searchUsingInfo?currentPage=1'"><<</button>
 			
@@ -135,6 +136,7 @@
 
 			<button onclick="location.href='<%=request.getContextPath()%>/searchUsingInfo?currentPage=<%=maxPage%>'">>></button>
 		</div>
+		<% } %>
 		<script type="text/javascript">
 		$('#cusClosedate').dateRangePicker();
 	</script>

@@ -11,11 +11,13 @@
 <%@page import="com.kh.hp.rent.model.vo.FacInfoVO"%>
 <%@page import="com.kh.hp.rent.model.vo.CautionsVO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.kh.hp.myPage.model.vo.*, java.util.*"%>
+<%@page import="com.kh.hp.myPage.model.vo.AhnUsingInfoVO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	ArrayList<AhnUsingInfoVO> list = (ArrayList<AhnUsingInfoVO>)request.getAttribute("list");
+
+	ArrayList<AhnUsingInfoVO> list = (ArrayList<AhnUsingInfoVO>) request.getAttribute("list");
+	System.out.println("list : " + list);
 	ArrayList<Object> rentInfos = (ArrayList<Object>) request.getAttribute("rentInfos");
 	RentBasicVO rentBasicVO = (RentBasicVO) rentInfos.get(0);
 	ArrayList<CautionsVO> cautionsVOList = (ArrayList<CautionsVO>) rentInfos.get(1);
@@ -25,9 +27,7 @@
 	ArrayList<RentCloseVO> rentCloseVOList = (ArrayList<RentCloseVO>) rentInfos.get(5);
 	ArrayList<RentRefundTypeVO> rentRefundTypeVOList = (ArrayList<RentRefundTypeVO>) rentInfos.get(6);
 	ArrayList<RentPropVO> rentPropVOList = (ArrayList<RentPropVO>) rentInfos.get(7);
-	
-	 
-	
+
 	/* 데이터 가공 */
 	String detailIntro = rentBasicVO.getHallDetIntro().replace("\r\n", "<br>");
 
@@ -39,6 +39,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <!-- bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -51,10 +54,29 @@
 <link rel="stylesheet" href="/happyPlaystage/css/common/daterangepicker.min.css">
 <script type="text/javascript" src="/happyPlaystage/js/common/jquery.daterangepicker.min.js"></script>
 
-<style type="text/css">
-
-
-	h1, h2 {
+<style>
+div {
+		margin:auto;
+	}
+	
+	thead tr {
+    background-color: gray;
+  
+  } 
+  td {
+    border: 1px solid lightgray;
+  }
+  
+  label {
+  	margin-left:auto;
+  	margin-right:auto;
+  }
+  
+  tbody tr:nth-child(1) {
+    background-color: #b4b4b4;
+  }
+  
+  h1, h2 {
 		font-weight: bold;
 	}
 
@@ -88,27 +110,6 @@
 	  width: auto;
 	  height: auto;
 	}
-	
-	div {
-		margin:auto;
-	}
-	
-	thead tr {
-    background-color: gray;
-  
-  } 
-  td {
-    border: 1px solid lightgray;
-  }
-  
-  label {
-  	margin-left:auto;
-  	margin-right:auto;
-  }
-  
-  tbody tr:nth-child(1) {
-    background-color: #b4b4b4;
-  }
 </style>
 
 <script type="text/javascript">
@@ -137,27 +138,34 @@
 		<img class="auto" src="<%=request.getContextPath() %>/images/profilePhotos/<%=rentImgVOList.get(0).getChangeNm() %>" alt="<%=rentImgVOList.get(0).getOriginNm() %>">
 	</div>
 	
-	<div>
+	<br><br>
+	
 	<table style="width:790px; height:113px; text-align:center; margin:auto; border-collapse: collapse;">
 		<tr>
-		<td id="tab1">공연장 고유번호</td>
-		<td id="tab1">상호명</td>
-		<td id="tab1">사용일자</td>
-		<td id="tab1">사용공간 이름</td>
+		<td>공연장 고유번호</td>
+		<td>상호명</td>
+		<td>사용일자</td>
+		<td>사용공간 이름</td>
 		</tr>
-		<% for(int i = 0; i < list.size(); i++){
-			
-			%>
-			<tr>
-			<td id="tab2"><%= list.get(i).getRentSeq() %></td>
-			<td id="tab2"><%= list.get(i).getCompNm() %></td>
-			<td id="tab2"><%= list.get(i).getUseStartDt() %> ~ <%= list.get(i).getUseEndDt() %></td>
-			<td id="tab2"><%= list.get(i).getHallNm() %></td>
-			</tr>		
-		<% } %>
-		
+		<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		</tr>
+		<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		</tr>
+		<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		</tr>
 	</table>
-	</div>
 	
 	<hr>
 	
@@ -211,15 +219,42 @@
 					</a>
 				</div>
 			</div>
-			
-			<div style="width:790px;">
-	
+
+<!-- 결제창 -->
 			<div class="container" style="width: 30%; height:510px; background: white; float: right;">
-				
+				<br>
+				<label style="float: left;"><b>세부공간 선택</b></label><label style="color:red; float: right;"><b>필수선택</b></label>
+				<br>
+				<hr style="border: solid 1px blue; width: 100%">
+				<p align="center">예약을 하시려면 호스트의 승인이 필요합니다. <br>
+				승인 후에 호스트가 결제방법을 안내드립니다 !</p>
+
+				<div class="radio" align="center">
+					<%for(int i=0; i<rentDetVOList.size(); i++){%>
+						<%if(i==0){ %>
+						<label><input type="radio" name="rentDetail" checked="checked"><%=rentDetVOList.get(i).getDetAddress() %></label>
+						<%} else {%>
+						<label><input type="radio" name="rentDetail"><%=rentDetVOList.get(i).getDetAddress() %></label>
+						<%} %>
+						<label style="color:blue;">&#8361; &nbsp; <%=rentDetVOList.get(i).getRentPrice() %></label> <label style="color:#c2c2c2">/ <%=rentBasicVO.getUseTimeUnit() %></label>
+					<%} %>
+				</div>
 				<div class="container-fluid" style="width:100%; padding: 3% 3% 3% 3%; margin-top: 5%">
-					
+					<div class="container" align="center" style="width:100%; height:150px;">
+						<img src="<%=request.getContextPath() %>/images/profilePhotos/<%=rentImgVOList.get(0).getChangeNm() %>" alt="<%=rentImgVOList.get(0).getOriginNm() %>" style="object-fit: cover; width: 90%">
+					</div>
 					<form action="<%=request.getContextPath() %>/movePropose.rt" method="post" id="propForm" name="propForm" autocomplete="off">
 						<div>
+							<hr>
+								<p class="text-muted"> ·  최소 <%=rentBasicVO.getMinRsvTm() %>시간 부터</p>
+							<hr>
+							<p class="text-muted">* 날짜 선택</p>
+							<input name="schedule" class="form-control" id="schedule" placeholder="날짜를 선택하세요.">
+							<br>
+							<p class="text-muted">* 인원 입력</p>
+							<input class="form-control" name="headCount" id="headCount" type="number" step="10" style="width: 100%" placeholder="인원을 입력하세요."/>
+							<br>
+							<button type="button" class="btn btn-success" id="proposeBtn" style="width: 100%; float: right;">신청</button>
 							<script type="text/javascript">
 								$('#schedule').dateRangePicker({
 									startDate: new Date(),

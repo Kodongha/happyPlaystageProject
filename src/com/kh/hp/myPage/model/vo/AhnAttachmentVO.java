@@ -3,7 +3,6 @@ package com.kh.hp.myPage.model.vo;
 import java.sql.Date;
 
 public class AhnAttachmentVO implements java.io.Serializable{
-	
 	private String originNm;
 	private String changeNm;
 	private String filePath;
@@ -108,6 +107,5 @@ public class AhnAttachmentVO implements java.io.Serializable{
 				+ ", uploadDt=" + uploadDt + ", fileType=" + fileType + ", rentSeq=" + rentSeq + ", propSeq=" + propSeq
 				+ ", userSeq=" + userSeq + ", subType=" + subType + "]";
 	}
-	
 	
 }

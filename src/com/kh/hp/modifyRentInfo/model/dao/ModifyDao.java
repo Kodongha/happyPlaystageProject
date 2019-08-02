@@ -98,6 +98,8 @@ public class ModifyDao {
 			close(pstmt);
 		}
 
+		System.out.println("modifyDao --------------"+rentBasicVO);
+
 		return rentBasicVO;
 	}
 

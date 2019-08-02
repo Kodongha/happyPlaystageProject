@@ -36,6 +36,7 @@ public class ModifyService {
 
 		// RENT_BAISC 테이블
 		RentBasicVO rentBasicVO = modifyDao.selectRentBasic(con, rentSeq);
+		System.out.println("modifyService ::::::" + rentBasicVO);
 		//FAC_INFO 테이블
 		ArrayList<FacInfoVO> facInfoVOList = modifyDao.selectFacInfo(con, rentSeq);
 		//CAUTIONS 테이블

@@ -707,8 +707,81 @@ public class ServiceCenterDao {
 	}
 
 	public ArrayList<FaQVO> searchTwo(Connection con, String category, String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("SEARCH TWO 호출됨!!!!");
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<FaQVO> list= null;
+
+		String query = prop.getProperty("selectCateKey");
+
+		System.out.println("&%^&^&%^& : " + category);
+		System.out.println("&%^&^&%^& : " + keyword);
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, category);
+			pstmt.setString(2, keyword);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<FaQVO>();
+
+			while(rset.next()) {
+				FaQVO faq = new FaQVO();
+
+				faq.setFnqCate(rset.getString("FNQ_CATE"));
+				faq.setFnqQuestion(rset.getString("FNQ_QUESTION"));
+				faq.setFnqAnswer(rset.getString("FNQ_ANSWER"));
+
+				list.add(faq);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
+	}
+
+	public ArrayList<FaQVO> searchOnlyValue(Connection con, String category, String keyword) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<FaQVO> list= null;
+
+		String query = prop.getProperty("searchOnlyValue");
+
+		System.out.println("&%^&^&%^& : " + category);
+		System.out.println("&%^&^&%^& : " + keyword);
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, keyword);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<FaQVO>();
+
+			while(rset.next()) {
+				FaQVO faq = new FaQVO();
+
+				faq.setFnqCate(rset.getString("FNQ_CATE"));
+				faq.setFnqQuestion(rset.getString("FNQ_QUESTION"));
+				faq.setFnqAnswer(rset.getString("FNQ_ANSWER"));
+
+				list.add(faq);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
 	}
 
 

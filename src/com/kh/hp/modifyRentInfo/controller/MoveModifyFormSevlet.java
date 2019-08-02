@@ -47,6 +47,8 @@ public class MoveModifyFormSevlet extends HttpServlet {
 		ArrayList<DetFacVO> detFacVOList = modifyService.getDetFac(rentSeq);
 		ArrayList<RefundTypeVO> refundTypeVOList = modifyService.getRefundType(rentSeq);
 
+		System.out.println("%%%%%%%%%%%%%%%%%"+rentInfo);
+
 		String page = "";
 		if(rentInfo != null && detFacVOList != null && refundTypeVOList != null) {
 			page="views/modifyRentInfo/rentBasicModify.jsp";

@@ -380,7 +380,11 @@
 				</tr>
 				<tr>
 					<td><label>웹사이트</label></td>
+					<%if(rentBasicVO.getWebsite() == null){%>
+					<td></td>
+					<%} else {%>
 					<td><%=rentBasicVO.getWebsite() %></td>
+					<%} %>
 				</tr>
 			</table>
 
@@ -399,8 +403,6 @@
 				        center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
 				        level: 5 // 지도의 확대 레벨
 				    };
-
-
 
 				var map = new daum.maps.Map(mapContainer, mapOption);
 				//주소-좌표 변환 객체를 생성

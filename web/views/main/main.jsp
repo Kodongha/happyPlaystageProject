@@ -124,6 +124,7 @@
 	<br>
 	<br>
 	<!-- 카드 -->
+
 	<div class="container" align="center">
 		<div class="ui link cards">
 			<%for(MainRentVO mainRentVO : responseMainRentVOList) { %>
@@ -145,6 +146,7 @@
 			<%} %>
 		</div>
 	</div>
+
 	<hr>
 	<br>
 	<br>
@@ -185,7 +187,6 @@
 			<%} %>
 		</div>
 	</div>
-
    <script>
 $('.special.cards .image').dimmer({
      on: 'hover'

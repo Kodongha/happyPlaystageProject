@@ -67,7 +67,7 @@ public class MoveRentList extends HttpServlet {
 
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
-		ArrayList<RentListVO> list = new RentService().selectRentList(currentPage, limit);
+		ArrayList<RentListVO> list = new RentService().selectRentList(currentPage, limit, searchString);
 
 		System.out.println("list.size():::" + list.size());
 

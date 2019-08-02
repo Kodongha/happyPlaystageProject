@@ -17,7 +17,7 @@ import com.kh.hp.account.model.vo.UserVO;
 @WebServlet("/findId.acc")
 public class FindIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -32,15 +32,15 @@ public class FindIdServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userName = request.getParameter("userName");
 		String userPhone = request.getParameter("userPhone");
-		
+
 		System.out.println("userName:::"+userName);
 		System.out.println("userPhone:::"+userPhone);
-		
+
 		UserVO uv = new FindIdService().findId(userName, userPhone);
-		
+
 		System.out.println("인증!");
 		System.out.println("uv::::" + uv);
-		
+
 		String page = "";
 		if(uv != null) {
 			page = "views/account/findIdSc.jsp";
@@ -52,7 +52,7 @@ public class FindIdServlet extends HttpServlet {
 			System.out.println("");
 		}
 		request.getRequestDispatcher(page).forward(request, response);
-		
+
 	}
 
 	/**

@@ -92,8 +92,8 @@ table {
 }
 
 #kakao-login-btn{
-	
-	
+
+
 }
 </style>
 
@@ -104,7 +104,7 @@ table {
 			$('.ab').prop('checked', this.checked);
 		});
 	});
-	
+
 	//유효성
 	function check() {
 		if (fr.userPwd.value != fr.userPwd2.value) {
@@ -114,7 +114,7 @@ table {
 
 		if (fr.userEmail.value == "" || fr.userPwd.value == ""
 				|| fr.userPwd2.value == "" || fr.userNm.value == ""
-				|| fr.userNick.value == "" || fr.userPhone.value == "" 
+				|| fr.userNick.value == "" || fr.userPhone.value == ""
 				|| fr.ab1.checked == false || fr.ab2.checked == false) {
 			alert("모두 입력하세요.");
 			if (fr.userEmail.value == "") {
@@ -136,14 +136,14 @@ table {
 				fr.userPhone.focus();
 			}
 			if (fr.ab1.checked){
-				
+
 			}
 			if (fr.ab2.checked){
-				
+
 			}
-			
+
 			console.log(fr.ab1.checked);
-			
+
 			return false;
 
 		} else {
@@ -151,19 +151,19 @@ table {
 		}
 
 	};
-	
+
 	//아이디 중복
 	$(function(){
 		$("#idCheck").click(function(){
 			var userEmail = $("#userEmail").val();
-		
+
 			$.ajax({
 				url:"<%=request.getContextPath()%>/idCheck.acc",
 				type:"post",
 				data:{userEmail:userEmail},
 				success:function(data){
 					console.log(data);
-					
+
 					if(data === "fail"){
 						alert("중복된 이메일 입니다.")
 					}else{
@@ -176,10 +176,8 @@ table {
 			});
 		});
 	});
-	
+
 </script>
-
-
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
@@ -259,7 +257,7 @@ table {
 				<div>
 					<a id="kakao-login-btn"></a>
    					 <a href="http://developers.kakao.com/logout"></a>
-				
+
 				</div>
 		</div>
 
@@ -278,7 +276,7 @@ table {
              alert(JSON.stringify(err));
           }
         });
-    
+
     </script>
 	<jsp:include page="/views/common/footer.jsp" />
 

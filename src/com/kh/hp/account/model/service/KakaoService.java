@@ -1,8 +1,12 @@
 package com.kh.hp.account.model.service;
 
+import static com.kh.hp.common.JDBCTemplate.*;
+
+import java.sql.Connection;
 import java.util.HashMap;
 
 import com.kh.hp.account.model.dao.KakaoDao;
+import com.kh.hp.account.model.vo.KakaoTokenMngVO;
 
 public class KakaoService {
 
@@ -39,10 +43,28 @@ public class KakaoService {
 	 */
 	public HashMap<String, Object> getUserInfo(String accessToken) {
 		// TODO Auto-generated method stub
+		Connection con = getConnection();
 
-		HashMap<String, Object> userInfo = new KakaoDao().getUserInfo(accessToken);
+		// 사용자 정보 가져오기
+		HashMap<String, Object> userInfoMap = new KakaoDao().getUserInfo(accessToken);
 
-		return userInfo;
+		// 사용자가 가입자인지 아닌지 구분
+		KakaoTokenMngVO kakaoTokenMngVO = new KakaoDao().selectStoredAccessToken(con, userInfoMap);
+
+		userInfoMap.put("kakaoTokenMngVO", kakaoTokenMngVO);
+
+		return userInfoMap;
+	}
+
+	public int insertKakaoUser(KakaoTokenMngVO kakaoTokenMngVO) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		int insertRentBasicResult = new KakaoDao().insertUserInfo(con, kakaoTokenMngVO);
+
+
+
+		return 0;
 	}
 
 }

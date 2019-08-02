@@ -49,8 +49,19 @@ public class KakaoLoginServlet extends HttpServlet {
 
 		// 사용자 정보 가져오기
 		String accessToken = tokenMap.get("accessToken");
-		HashMap<String, Object> userInfo = new KakaoService().getUserInfo(accessToken);
+		String refreshToken = tokenMap.get("refreshToken");
+		HashMap<String, Object> userInfoMap = new KakaoService().getUserInfo(accessToken);
 
+		userInfoMap.put("accessToken", accessToken);
+		userInfoMap.put("refreshToken", refreshToken);
+
+		// 회원가입을 하지 않은 유저라면 추가 회원가입 폼으로 이동
+		if(userInfoMap.get("kakaoTokenMngVO") == null) {
+			request.setAttribute("userInfoMap", userInfoMap);
+			request.getRequestDispatcher("views/account/kakaoSignup.jsp").forward(request, response);
+		}
+		
+		
 		// 토큰의 기간 만료 확인한 후 만료 경우, 업데이트 처리
 		/*
 		HashMap<String, String> tokenValidation = new KakaoService().validationToken(accessToken);

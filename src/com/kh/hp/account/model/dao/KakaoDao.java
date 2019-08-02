@@ -1,7 +1,10 @@
 package com.kh.hp.account.model.dao;
 
+import static com.kh.hp.common.JDBCTemplate.close;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -9,13 +12,32 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Properties;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.kh.hp.account.model.vo.KakaoTokenMngVO;
 
 public class KakaoDao {
+
+	private Properties prop = new Properties();
+
+	public KakaoDao() {
+		String fileName = ReviewDao.class.getResource("/sql/account/kakao-query.properties").getPath();
+
+		try {
+			prop.load(new FileReader(fileName));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	// 메소드
 	private final String METHOD_GET = "GET";
@@ -24,6 +46,8 @@ public class KakaoDao {
 	// 기타 정보
 	private final String REST_API_KEY = "ea861fadd8d5b486bbcd4ae127c3404d";
 	private final String REDIRECT_URL = "http://localhost:8001/happyPlaystage/kakaoLogin.acc";
+
+
 
 	/**
 	 * 카카오 access, refresh 토큰 받아오기
@@ -111,6 +135,11 @@ public class KakaoDao {
 	}
 
 
+	/**
+	 * 토큰의 기간 만료 확인한 후 만료 경우, 업데이트 처리
+	 * @param accessToken
+	 * @return
+	 */
 	public HashMap<String, String> validationToken(String accessToken) {
 		// TODO Auto-generated method stub
 		URL url;
@@ -165,6 +194,11 @@ public class KakaoDao {
 	}
 
 
+	/**
+	 * 사용자 정보 가져오기
+	 * @param accessToken
+	 * @return
+	 */
 	public HashMap<String, Object> getUserInfo(String accessToken) {
 		// TODO Auto-generated method stub
 
@@ -222,5 +256,109 @@ public class KakaoDao {
 		}
 
 		return userInfo;
+	}
+
+
+	/**
+	 * 토큰의 기간 만료 확인한 후 만료 경우, 업데이트 처리
+	 * @param con
+	 * @param userInfo
+	 * @return
+	 */
+	public KakaoTokenMngVO selectStoredAccessToken(Connection con, HashMap<String, Object> userInfo) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		KakaoTokenMngVO kakaoTokenMngVO = null;
+
+		String query = prop.getProperty("selectStoredAccessToken");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, (String) userInfo.get("id"));
+
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				kakaoTokenMngVO = new KakaoTokenMngVO();
+				kakaoTokenMngVO.setUserSeq(rset.getInt("USER_SEQ"));
+				kakaoTokenMngVO.setAccessToken(rset.getString("ACCESS_TOKEN"));
+				kakaoTokenMngVO.setRefreshToken(rset.getString("REFRESH_TOKEN"));
+				kakaoTokenMngVO.setKakaoUnqId(rset.getString("KAKAO_UNQ_ID"));
+				kakaoTokenMngVO.setMailTf(rset.getString("MAIL_TF"));
+				kakaoTokenMngVO.setTokenUpdateDt(rset.getDate("TOKEN_UPDATE_DT"));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return kakaoTokenMngVO;
+	}
+
+
+	public int updateKaKaoUserInfo(Connection con, HashMap<String, Object> userInfo) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("updateKaKaoUserInfo");
+
+		try {
+
+			pstmt = con.prepareStatement(query);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return 0;
+	}
+
+
+	public int insertUserInfo(Connection con, KakaoTokenMngVO kakaoTokenMngVO) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertUserInfo");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, kakaoTokenMngVO.getUserEmail());
+			pstmt.setString(2, kakaoTokenMngVO.getUserNm());
+			pstmt.setString(3, kakaoTokenMngVO.getUserNick());
+			pstmt.setString(4, kakaoTokenMngVO.getUserPhone());
+			pstmt.setInt(5, kakaoTokenMngVO.getUserGradeCd());
+			pstmt.setInt(6, kakaoTokenMngVO.getSnsCd());
+			pstmt.setInt(7, kakaoTokenMngVO.getLeaveTf());
+
+			result = pstmt.executeUpdate();
+			/*
+			USER_SEQ
+			USER_EMAIL
+			USER_PWD
+			USER_NM
+			USER_NICK
+			USER_PHONE
+			USER_GRADE_CD
+			ENROLL_DT
+			SNS_CD
+			LEAVE_TF
+			LEAVE_DT
+			*/
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
 	}
 }

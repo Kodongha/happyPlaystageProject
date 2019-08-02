@@ -43,4 +43,17 @@ public class SetRegPermissionsService {
 
 	}
 
-}
+	//대관등록권한설정 전체 카운팅 
+	public int SetRegListCount() {
+		
+		Connection con = getConnection();
+
+		int listCount = new SetRegPermissionsDao().SetRegListCount(con);
+
+		return listCount;
+
+		}
+
+	}
+
+

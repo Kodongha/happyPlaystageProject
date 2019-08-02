@@ -60,9 +60,9 @@ public class SetRegPermissions extends HttpServlet {
 
 		//탈퇴회원을 뺀 나머지 목록을 받아야
 		
-		//int listCount = new  SearchUserService().SetRegList()
+		int listCount = new  SetRegPermissionsService().SetRegListCount();
 		
-		int listCount = new UserService().getListCount();
+		//int listCount = new UserService().getListCount();
 
 		System.out.println("listCount : " + listCount);
 

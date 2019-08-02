@@ -7,7 +7,7 @@
 </head>
 <body>
 <script type="text/javascript">
-	location.href="/happyPlaystage/views/main/main.jsp";
+location.href='<%=request.getContextPath() %>/moveMain.main';
 </script>
 </body>
 </html>

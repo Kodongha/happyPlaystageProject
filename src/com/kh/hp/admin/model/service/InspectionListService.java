@@ -14,14 +14,7 @@ import com.kh.hp.admin.model.vo.SetRegPermissionsVO;
 
 public class InspectionListService {
 
-	public int getListCount() {
-		Connection con = getConnection();
 
-		int listCount = new UserDao().getListCount(con);
-
-
-		return listCount;
-	}
 
 
 	//대관등록검수

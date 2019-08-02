@@ -82,7 +82,7 @@ public class InspectionListVOListDao {
 			close(rset);
 		}
 
-
+		System.out.println("InspectionListVOList::::" +InspectionListVOList);
 		return InspectionListVOList;
 	}
 }

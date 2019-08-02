@@ -78,6 +78,7 @@ margin-left:1150px;
 		<div id="line"></div>
 
 		<br> <br>
+		<form>
 		<div class="container">
 			<table class="table table-bordered">
 				<thead>
@@ -106,8 +107,8 @@ margin-left:1150px;
 				</tbody>
 			</table>
 		</div>
-
-		     <button type="button" class="btn btn-warning" id="searchbutton">등록</button>
+	</form>
+		<button type="button" class="btn btn-warning" id="searchbutton">등록</button>
 	</div>
 
 <jsp:include page="/views/common/footer.jsp" />

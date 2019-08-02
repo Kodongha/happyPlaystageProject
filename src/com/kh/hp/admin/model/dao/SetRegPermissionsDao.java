@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -89,6 +90,37 @@ public class SetRegPermissionsDao {
 			close(rset);
 		}
 		return SetRegPermissionsVOList;
+	}
+
+	//대관등록권한설정 전체 카운팅 
+	public int SetRegListCount(Connection con) {
+		
+		System.out.println(" SetRegListCount!!!!");
+		Statement stmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+
+		String query  = prop.getProperty("SetRegListCount");
+
+		try {
+			stmt = con.createStatement();
+
+			rset = stmt.executeQuery(query);
+
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(stmt);
+			close(rset);
+		}
+		
+		System.out.println("SetRegListCount::::::" + listCount);
+		return listCount;
 	}
 
 	

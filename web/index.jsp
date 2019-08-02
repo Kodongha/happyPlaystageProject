@@ -7,7 +7,7 @@
 </head>
 <body>
 <script type="text/javascript">
-location.href='<%=request.getContextPath() %>/moveMain.main';
+	location.href='<%=request.getContextPath() %>/moveMain.main';
 </script>
 </body>
 </html>

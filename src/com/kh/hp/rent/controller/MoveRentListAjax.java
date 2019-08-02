@@ -35,6 +35,9 @@ public class MoveRentListAjax extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		String searchString = request.getParameter("searchString");
+		System.out.println("searchString::" + searchString);
+
 		int currentPage;
 		int limit;
 		int maxPage;
@@ -63,7 +66,7 @@ public class MoveRentListAjax extends HttpServlet {
 
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
-		ArrayList<RentListVO> list = new RentService().selectRentList(currentPage, limit);
+		ArrayList<RentListVO> list = new RentService().selectRentList(currentPage, limit, searchString);
 
 		System.out.println("list.size():::" + list.size());
 

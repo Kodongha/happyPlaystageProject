@@ -203,13 +203,25 @@ public class RentService {
 	 * 대관 정보 리스트 가져오기
 	 * @param currentPage
 	 * @param limit
+	 * @param searchString
 	 * @return
 	 */
-	public ArrayList<RentListVO> selectRentList(int currentPage, int limit) {
+	public ArrayList<RentListVO> selectRentList(int currentPage, int limit, String searchString) {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
 
-		ArrayList<RentListVO> rentListVOList = new RentDao().selectRentList(con, currentPage, limit);
+		ArrayList<RentListVO> rentListVOList = null;
+		// 검색 결과가 없을 때
+		if(searchString == null) {
+			System.out.println("Search not in");
+			rentListVOList = new RentDao().selectRentList(con, currentPage, limit);
+
+		// 검색 결과가 있을 때
+		} else {
+			System.out.println("Seach in");
+			rentListVOList = new RentDao().selectSearchRentList(con, currentPage, limit, searchString);
+		}
+
 
 		close(con);
 

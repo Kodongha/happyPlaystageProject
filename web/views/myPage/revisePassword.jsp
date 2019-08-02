@@ -99,7 +99,7 @@ body {
     $(function(){
         $("#alert-success").hide();
         $("#alert-danger").hide();
-        $("input").keyup(function(){
+        $("#newPwd2").keyup(function(){
             var newPwd1=$("#newPwd1").val();
             var newPwd2=$("#newPwd2").val();
             if(newPwd1 != "" || newPwd2 != ""){
@@ -108,12 +108,19 @@ body {
                     $("#alert-danger").hide();
                     $("#btn1").removeAttr("disabled");
                 }else{
-                    $("#alert-success").hide();
-                    $("#alert-danger").show();
-                    $("#btn1").attr("disabled", "disabled");
+                	if(newPwd2 == null){
+                    	$("#alert-success").hide();
+                    	$("#alert-danger").hide();
+                    	$("#btn1").attr("disabled", "disabled");
+                	}else {
+                		$("#alert-success").hide();
+                    	$("#alert-danger").show();
+                    	$("#btn1").attr("disabled", "disabled");
+                	}
+
                 }
             }
-        });
+         });
     });
 </script>
 

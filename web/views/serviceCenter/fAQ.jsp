@@ -27,7 +27,7 @@ body {
 }
 
 #search {
-	width: 78%;
+	width: 80%;
 	height: 130px;
 	border: 3px solid #3479ba;
 	/* margin-left:10%; */

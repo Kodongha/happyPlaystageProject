@@ -11,12 +11,12 @@
 <%@page import="com.kh.hp.rent.model.vo.FacInfoVO"%>
 <%@page import="com.kh.hp.rent.model.vo.CautionsVO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.kh.hp.myPage.model.vo.AhnUsingInfoVO" %>
+<%@page import="com.kh.hp.myPage.model.vo.AhnApplyInfoVO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 
-   ArrayList<AhnUsingInfoVO> list = (ArrayList<AhnUsingInfoVO>) request.getAttribute("list");
+   ArrayList<AhnApplyInfoVO> list = (ArrayList<AhnApplyInfoVO>) request.getAttribute("list");
    System.out.println("list : " + list);
    ArrayList<Object> rentInfos = (ArrayList<Object>) request.getAttribute("rentInfos");
    System.out.println("rentInfos : " + rentInfos);
@@ -150,9 +150,9 @@ div {
          </tr>
          <tr>
             <td id="tab2"><%= list.get(0).getRentSeq() %></td>
-            <td id="tab2"><%= list.get(0).getCompNm() %></td>
-            <td id="tab2"><%= list.get(0).getUseStartDt() %> ~ <%= list.get(0).getUseEndDt() %></td>
             <td id="tab2"><%= list.get(0).getHallNm() %></td>
+            <td id="tab2"><%= list.get(0).getUseStartDt() %> ~ <%= list.get(0).getUseEndDt() %></td>
+            <td id="tab2"><%= list.get(0).getPropStatus() %></td>
          </tr>
       </table>
    </div>

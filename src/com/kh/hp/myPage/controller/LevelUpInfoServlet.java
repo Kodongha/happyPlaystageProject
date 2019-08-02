@@ -96,73 +96,20 @@ public class LevelUpInfoServlet extends HttpServlet {
 			// int result = new AhnMyPageService().insertImage(levelUpInfo, fileList);
 			int result = new AhnMyPageService().insertImage(l, fileList);
 			
-			String page = "";
 			
 			if(result > 0) {
-				page = "views/common/errorPage.jsp";
-				request.setAttribute("msg", "등업신청이 정상적으로 처리되었습니다.");
+				response.sendRedirect("moveMain.main");
 			}else {
 				
 				for(int i = 0; i < saveFiles.size(); i++) {
 					File failedFile = new File(savePath + saveFiles.get(i));
 					failedFile.delete();
 				}
-				page = "views/common/errorPage.jsp";
-				request.setAttribute("msg", "등업신청에 실패했습니다");
+				response.sendRedirect("moveMain.main");
+				
 			}
-			request.getRequestDispatcher(page).forward(request, response);
+			
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*int levelUpInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
-		
-		
-		
-		
-		AhnLevelupInfoVO l = new AhnLevelupInfoVO();
-		l.setUserSeq(levelUpInfo);
-		
-		System.out.println("insert levelup : " + l);
-		
-		int result = new AhnMyPageService().insertLevelOne(l, levelUpInfo);
-		
-		String page = "";
-		
-		if(result > 0) {
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "등업 신청이 완료되었습니다");
-			request.getRequestDispatcher(page).forward(request, response);
-		}else {
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "등업 신청 실패했습니다");
-			request.getRequestDispatcher(page).forward(request, response);
-		}*/
-		
-		
 		
 	}
 

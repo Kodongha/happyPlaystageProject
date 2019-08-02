@@ -1230,8 +1230,9 @@ public class AhnMyPageDao {
 		return list;
 	}
 
-	public ArrayList<AhnUsingInfoVO> searchUsingDetail1(Connection con, int userInfo, int rentSeq, String hallNm,
+	public ArrayList<AhnUsingInfoVO> searchUsingDetail(Connection con, int userInfo, int rentSeq, String hallNm,
 			Date useStart, Date useEnd) {
+		System.out.println("dao까지는 잘 들어오는데 왜 안될까..");
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<AhnUsingInfoVO> list = null;
@@ -1277,109 +1278,13 @@ public class AhnMyPageDao {
 		return list;
 	}
 
-	public ArrayList<AhnUsingInfoVO> searchUsingDetail2(Connection con, int userInfo, String hallNm, Date useStart,
-			Date useEnd) {
+	public ArrayList<AhnApplyInfoVO> searchApplyDetail(Connection con, int userInfo, int rentSeq, String hallNm,
+			Date useStart, Date useEnd, String propStatus) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		ArrayList<AhnUsingInfoVO> list = null;
+		ArrayList<AhnApplyInfoVO> list = null;
 		
-		String query = prop.getProperty("searchUsingDetail2");
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			
-			pstmt.setInt(1, userInfo);
-			pstmt.setString(2, hallNm);
-			pstmt.setDate(3, useStart);
-			pstmt.setDate(4, useEnd);
-			
-			rset = pstmt.executeQuery();
-			
-			list = new ArrayList<AhnUsingInfoVO>();
-			
-			while(rset.next()) {
-				AhnUsingInfoVO b = new AhnUsingInfoVO();
-				
-				b.setHallNm(rset.getString("HALL_NM"));
-				b.setCompNm(rset.getString("COMP_NM"));
-				b.setPropSeq(rset.getInt("PROP_SEQ"));
-				b.setRentSeq(rset.getInt("RENT_SEQ"));
-				b.setUserSeq(rset.getInt("USER_SEQ"));
-				b.setPropNm(rset.getString("PROP_NM"));
-				b.setPropDt(rset.getDate("PROP_DT"));
-				b.setPropStatus(rset.getString("PROP_STATUS"));
-				b.setUseStartDt(rset.getDate("USE_START_DT"));
-				b.setUseEndDt(rset.getDate("USE_END_DT"));
-				
-				list.add(b);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-			close(rset);
-		}
-		
-		System.out.println("DAO LIST : " + list);
-		
-		return list;
-	}
-
-	public ArrayList<AhnUsingInfoVO> searchUsingDetail3(Connection con, int userInfo, int rentSeq, Date useStart,
-			Date useEnd) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		ArrayList<AhnUsingInfoVO> list = null;
-		
-		String query = prop.getProperty("searchUsingDetail3");
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			
-			pstmt.setInt(1, userInfo);
-			pstmt.setInt(2, rentSeq);
-			pstmt.setDate(3, useStart);
-			pstmt.setDate(4, useEnd);
-			
-			rset = pstmt.executeQuery();
-			
-			list = new ArrayList<AhnUsingInfoVO>();
-			
-			while(rset.next()) {
-				AhnUsingInfoVO b = new AhnUsingInfoVO();
-				
-				b.setHallNm(rset.getString("HALL_NM"));
-				b.setPropSeq(rset.getInt("PROP_SEQ"));
-				b.setRentSeq(rset.getInt("RENT_SEQ"));
-				b.setUserSeq(rset.getInt("USER_SEQ"));
-				b.setPropNm(rset.getString("PROP_NM"));
-				b.setPropDt(rset.getDate("PROP_DT"));
-				b.setPropStatus(rset.getString("PROP_STATUS"));
-				b.setUseStartDt(rset.getDate("USE_START_DT"));
-				b.setUseEndDt(rset.getDate("USE_END_DT"));
-				
-				list.add(b);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-			close(rset);
-		}
-		
-		System.out.println("DAO LIST : " + list);
-		
-		return list;
-	}
-
-	public ArrayList<AhnUsingInfoVO> searchUsingDetail4(Connection con, int userInfo, int rentSeq, String hallNm) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		ArrayList<AhnUsingInfoVO> list = null;
-		
-		String query = prop.getProperty("searchUsingDetail4");
+		String query = prop.getProperty("searchApplyDetail1");
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -1387,13 +1292,15 @@ public class AhnMyPageDao {
 			pstmt.setInt(1, userInfo);
 			pstmt.setInt(2, rentSeq);
 			pstmt.setString(3, hallNm);
+			pstmt.setDate(4, useStart);
+			pstmt.setDate(5, useEnd);
 			
 			rset = pstmt.executeQuery();
 			
-			list = new ArrayList<AhnUsingInfoVO>();
+			list = new ArrayList<AhnApplyInfoVO>();
 			
 			while(rset.next()) {
-				AhnUsingInfoVO b = new AhnUsingInfoVO();
+				AhnApplyInfoVO b = new AhnApplyInfoVO();
 				
 				b.setHallNm(rset.getString("HALL_NM"));
 				b.setPropSeq(rset.getInt("PROP_SEQ"));
@@ -1414,190 +1321,6 @@ public class AhnMyPageDao {
 			close(pstmt);
 			close(rset);
 		}
-		
-		System.out.println("DAO LIST : " + list);
-		
-		return list;
-	}
-
-	public ArrayList<AhnUsingInfoVO> searchUsingDetail5(Connection con, int userInfo, int rentSeq) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		ArrayList<AhnUsingInfoVO> list = null;
-		
-		String query = prop.getProperty("searchUsingDetail5");
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			
-			pstmt.setInt(1, userInfo);
-			pstmt.setInt(2, rentSeq);
-			
-			rset = pstmt.executeQuery();
-			
-			list = new ArrayList<AhnUsingInfoVO>();
-			
-			while(rset.next()) {
-				AhnUsingInfoVO b = new AhnUsingInfoVO();
-				
-				b.setHallNm(rset.getString("HALL_NM"));
-				b.setCompNm(rset.getString("COMP_NM"));
-				b.setPropSeq(rset.getInt("PROP_SEQ"));
-				b.setRentSeq(rset.getInt("RENT_SEQ"));
-				b.setUserSeq(rset.getInt("USER_SEQ"));
-				b.setPropNm(rset.getString("PROP_NM"));
-				b.setPropDt(rset.getDate("PROP_DT"));
-				b.setPropStatus(rset.getString("PROP_STATUS"));
-				b.setUseStartDt(rset.getDate("USE_START_DT"));
-				b.setUseEndDt(rset.getDate("USE_END_DT"));
-				
-				list.add(b);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-			close(rset);
-		}
-		
-		System.out.println("DAO LIST : " + list);
-		
-		return list;
-	}
-
-	public ArrayList<AhnUsingInfoVO> searchUsingDetail6(Connection con, int userInfo, String hallNm) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		ArrayList<AhnUsingInfoVO> list = null;
-		
-		String query = prop.getProperty("searchUsingDetail6");
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			
-			pstmt.setInt(1, userInfo);
-			pstmt.setString(2, hallNm);
-			
-			rset = pstmt.executeQuery();
-			
-			list = new ArrayList<AhnUsingInfoVO>();
-			
-			while(rset.next()) {
-				AhnUsingInfoVO b = new AhnUsingInfoVO();
-				
-				b.setHallNm(rset.getString("HALL_NM"));
-				b.setPropSeq(rset.getInt("PROP_SEQ"));
-				b.setRentSeq(rset.getInt("RENT_SEQ"));
-				b.setUserSeq(rset.getInt("USER_SEQ"));
-				b.setPropNm(rset.getString("PROP_NM"));
-				b.setPropDt(rset.getDate("PROP_DT"));
-				b.setPropStatus(rset.getString("PROP_STATUS"));
-				b.setUseStartDt(rset.getDate("USE_START_DT"));
-				b.setUseEndDt(rset.getDate("USE_END_DT"));
-				
-				list.add(b);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-			close(rset);
-		}
-		
-		System.out.println("DAO LIST : " + list);
-		
-		return list;
-		
-	}
-
-	public ArrayList<AhnUsingInfoVO> searchUsingDetail7(Connection con, int userInfo, Date useStart, Date useEnd) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		ArrayList<AhnUsingInfoVO> list = null;
-		
-		String query = prop.getProperty("searchUsingDetail7");
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			
-			pstmt.setInt(1, userInfo);
-			pstmt.setDate(2, useStart);
-			pstmt.setDate(3, useEnd);
-			
-			rset = pstmt.executeQuery();
-			
-			list = new ArrayList<AhnUsingInfoVO>();
-			
-			while(rset.next()) {
-				AhnUsingInfoVO b = new AhnUsingInfoVO();
-				
-				b.setHallNm(rset.getString("HALL_NM"));
-				b.setPropSeq(rset.getInt("PROP_SEQ"));
-				b.setRentSeq(rset.getInt("RENT_SEQ"));
-				b.setUserSeq(rset.getInt("USER_SEQ"));
-				b.setPropNm(rset.getString("PROP_NM"));
-				b.setPropDt(rset.getDate("PROP_DT"));
-				b.setPropStatus(rset.getString("PROP_STATUS"));
-				b.setUseStartDt(rset.getDate("USE_START_DT"));
-				b.setUseEndDt(rset.getDate("USE_END_DT"));
-				
-				list.add(b);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-			close(rset);
-		}
-		
-		System.out.println("DAO LIST : " + list);
-		
-		return list;
-	}
-
-	public ArrayList<AhnUsingInfoVO> searchUsingDetail8(Connection con, int userInfo) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		ArrayList<AhnUsingInfoVO> list = null;
-		
-		String query = prop.getProperty("searchUsingDetail8");
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			
-			pstmt.setInt(1, userInfo);
-			
-			rset = pstmt.executeQuery();
-			
-			list = new ArrayList<AhnUsingInfoVO>();
-			
-			while(rset.next()) {
-				AhnUsingInfoVO b = new AhnUsingInfoVO();
-				
-				b.setHallNm(rset.getString("HALL_NM"));
-				b.setPropSeq(rset.getInt("PROP_SEQ"));
-				b.setRentSeq(rset.getInt("RENT_SEQ"));
-				b.setUserSeq(rset.getInt("USER_SEQ"));
-				b.setPropNm(rset.getString("PROP_NM"));
-				b.setPropDt(rset.getDate("PROP_DT"));
-				b.setPropStatus(rset.getString("PROP_STATUS"));
-				b.setUseStartDt(rset.getDate("USE_START_DT"));
-				b.setUseEndDt(rset.getDate("USE_END_DT"));
-				
-				list.add(b);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-			close(rset);
-		}
-		
-		System.out.println("DAO LIST : " + list);
 		
 		return list;
 	}

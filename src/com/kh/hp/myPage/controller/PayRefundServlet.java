@@ -33,6 +33,7 @@ public class PayRefundServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("payRefund 들어옴");
 		int userInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
 		int propSeq = Integer.parseInt(request.getParameter("propSeq"));
 		

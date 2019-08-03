@@ -90,30 +90,11 @@
 			<td id="tab2"><%= list.get(i).getUseStartDt() %> ~ <%= list.get(i).getUseEndDt() %></td>
 			<td id="tab2"><%= list.get(i).getPropStatus() %>
 			<% if(list.get(i).getPropStatus().equals("신청")){ %>
-				<button onclick="location.href='<%=request.getContextPath()%>/payRefund?propSeq=<%=list.get(i).getPropSeq() %>'">결제취소</button>
+				<button type="submit" onclick="location.href='<%=request.getContextPath()%>/payRefund?propSeq=<%=list.get(i).getPropSeq() %>'">결제취소</button></td>
 			<% } %>
-			</td>
 			</tr>
 		<% } %>
 		
-		<%-- <tr>
-		<td id="tab2"><%= list.get(0).getRentSeq() %></td>
-		<td id="tab2"><%= list.get(0).getPropNm() %></td>
-		<td id="tab2"><%= list.get(0).getUseStartDt() %></td>
-		<td id="tab2"><%= list.get(0).getPropNm() %></td>
-		</tr>
-		<tr>
-		<td id="tab2"></td>
-		<td id="tab2"></td>
-		<td id="tab2"></td>
-		<td id="tab2"></td>
-		</tr>
-		<tr>
-		<td id="tab2"></td>
-		<td id="tab2"></td>
-		<td id="tab2"></td>
-		<td id="tab2"></td>
-		</tr> --%>
 	</table>
 	</div>
 	<%-- 페이징처리 --%>

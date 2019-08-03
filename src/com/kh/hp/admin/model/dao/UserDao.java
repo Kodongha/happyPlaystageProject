@@ -118,8 +118,6 @@ public class UserDao {
 	//회원 조회용 메소드
 	public User selectOne(Connection con, int userSeq) {
 
-	System.err.println("selectone dao까지 왔나요????");
-
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		User oneUser = null;

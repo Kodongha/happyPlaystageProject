@@ -2,10 +2,10 @@
 	pageEncoding="UTF-8" import="java.util.*,  com.kh.hp.admin.model.vo.*"%>
 
 <%
+	NoticeVO noticeVO = (NoticeVO) request.getAttribute("noticeVO");
 
-
-
-	%> 
+	System.out.println("상세공지사항에 뷰에 들어왔니?" + noticeVO);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +53,7 @@
 }
 
 #text1 {
-	width: 180px;
+	width: 500px;
 	height: 30px;
 	margin-left: 70px;
 }
@@ -66,9 +66,15 @@
 	text-align: center;
 }
 
-#searchbutton {
-	margin-left: 1150px;
+#Modifiedbutton {
+	margin-left: 1090px;
 }
+#cancelbutton {
+	margin-left: 1150px;
+	margin-top:-55px;
+}
+
+
 </style>
 
 </head>
@@ -78,45 +84,56 @@
 	<div id="center" class="fram">
 		<!-- 타이틀 -->
 		<h2 id="text1">
-			<strong>공지사항등록</strong>
+			<strong>공지사항-관리자</strong>
 
 		</h2>
 		<!-- 회원관리내역과 검색창 사이의 선 -->
 		<div id="line"></div>
 
 		<br> <br>
-			<form action="<%= request.getContextPath() %>/noticeWirte.ad" method="get">
-		<div class="container">
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th width="100px" class="name" >공지구분</th>
-						<th width="180px"><select class="form-control" id="option1" name = "noticeCate">
-								<option>선택</option>
-								<option>안내</option>
-								<option>중요</option>
-								<option>긴급</option>
-						</select></th>
-						<th class="name"><input type="text" size="100px" name = "noticeTitle" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"></th>
+		<form action="<%=request.getContextPath()%>/updateNotice.ad"
+			method="get">
+			<div class="container">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th width="100px" class="name" name="noticeCate">공지<%=noticeVO.getNoticeSeq() %></th>
+							
+							<th width="180px"><select class="form-control" id="option1"
+								name="noticeCate">
+									<option><%=noticeVO.getNoticeCate()%></option>
+									<option>안내</option>
+									<option>중요</option>
+									<option>긴급</option>
+							</select></th>
+							<th class="name"><input type="text" size="100px"
+								name="noticeTitle"
+								style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"
+								value=<%=noticeVO.getNoticeTitile()%>></th>
 
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td colspan="3" height="450px">
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="3" height="450px">
 
-							<div class="form-group">
-								<textarea class="form-control" rows="25" id="content" name = "noticeContent" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"
-> </textarea>
-							</div>
+								<div class="form-group">
+									<textarea
+										style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"
+										class="form-control" rows="25" id="content"
+										name="noticeContent"><%=noticeVO.getNoticeContent()%> </textarea>
+								</div>
 
-						</td>
-				</tbody>
-			</table>
-		</div>
+							</td>
+					</tbody>
+				</table>
+			</div>
 
-		<button type="submit" class="btn btn-warning" id="searchbutton">등록</button>
-	</form>
+			<button type="submit" class="btn btn-warning" id="Modifiedbutton">수정</button>
+			</form>
+			
+			<button type="button" class="btn btn-warning" id="cancelbutton"
+			onclick="location.href='<%=request.getContextPath()%>/SelectNotice'">취소</button>
 	</div>
 
 	<jsp:include page="/views/common/footer.jsp" />

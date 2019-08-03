@@ -9,9 +9,9 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.hp.myPage.model.dao.MyPageDao_mh;
-
 import com.kh.hp.myPage.model.vo.MyPageUserVO;
 import com.kh.hp.myPage.model.vo.RegistListVO;
+import com.kh.hp.myPage.model.vo.RentPropAndAttachmentVO;
 import com.kh.hp.myPage.model.vo.UserImgVO;
 
 public class MyPageService_mh {
@@ -233,10 +233,17 @@ public class MyPageService_mh {
 
 		int result = new MyPageDao_mh().delete1Rent(con, rentSeq);
 
+		close(con);
+
 		return result;
 	}
 
 
+	/**
+	 * 프로필 사진 변경(작업 중)
+	 * @param userImgVO
+	 * @return
+	 */
 	public int changeProfilePhoto(UserImgVO userImgVO) {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
@@ -252,9 +259,83 @@ public class MyPageService_mh {
 			insertResult = myPageDao_mh.insertProfilePhoto(con, userImgVO);
 		}
 
+		close(con);
+
 		return 0;
 	}
 
+
+	/**
+	 * 신청자 리스트 가져오기
+	 * @param rentSeq
+	 * @return
+	 */
+	public ArrayList<RentPropAndAttachmentVO> getProposeUserList(int rentSeq) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		ArrayList<RentPropAndAttachmentVO> proposeUserList = new MyPageDao_mh().getProposeUserList(con, rentSeq);
+
+		close(con);
+
+		System.out.println("proposeUserList:::" + proposeUserList);
+		return proposeUserList;
+
+	}
+
+
+	/**
+	 * 신청 수락 버튼 클릭시 상태 변경
+	 * @param propSeq
+	 * @return
+	 */
+	public int changePropStatusConfirm(int propSeq) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		int updateResult = new MyPageDao_mh().updatePropStatusConfirm(con, propSeq);
+		int insertResult = 0;
+		if(updateResult > 0) {
+			insertResult = new MyPageDao_mh().insertPropStatusConfirm(con, propSeq);
+		}
+
+		if(insertResult > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+
+		close(con);
+
+		return insertResult;
+	}
+
+
+	/**
+	 * 신청 거절 버튼 클릭시 상태 변경
+	 * @param propSeq
+	 * @return
+	 */
+	public int changePropStatusReject(int propSeq) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		int updateResult = new MyPageDao_mh().updatePropStatusReject(con, propSeq);
+		int insertResult = 0;
+		if(updateResult > 0) {
+			insertResult = new MyPageDao_mh().insertPropStatusReject(con, propSeq);
+		}
+
+		if(insertResult > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+
+		close(con);
+
+		return insertResult;
+	}
 
 
 }

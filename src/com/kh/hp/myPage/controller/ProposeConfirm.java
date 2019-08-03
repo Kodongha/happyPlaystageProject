@@ -1,7 +1,6 @@
 package com.kh.hp.myPage.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,19 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.kh.hp.myPage.model.service.MyPageService_mh;
-import com.kh.hp.myPage.model.vo.RentPropAndAttachmentVO;
 
 /**
- * Servlet implementation class RegistUserListServlet
+ * Servlet implementation class ProposeConfirm
  */
-@WebServlet("/registUserList.mp")
-public class RegistUserListServlet extends HttpServlet {
+@WebServlet("/proposeConfirm.mp")
+public class ProposeConfirm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegistUserListServlet() {
+    public ProposeConfirm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,18 +30,19 @@ public class RegistUserListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("신청자 리스트 가져오기 서블릿 호출");
+		// TODO Auto-generated method stub
 
-		int rentSeq = Integer.parseInt(request.getParameter("rentSeq"));
+		int propSeq = Integer.parseInt(request.getParameter("propSeq"));
+		System.out.println("propSeq :: " + propSeq);
 
-		System.out.println("선택된 공연장의 공연장 번호 :::::::::" + rentSeq);
+		int result = new MyPageService_mh().changePropStatusConfirm(propSeq);
 
-		ArrayList<RentPropAndAttachmentVO> proposeUserList = new MyPageService_mh().getProposeUserList(rentSeq);
-
-		if(proposeUserList != null) {
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			new Gson().toJson(proposeUserList, response.getWriter());
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		if(result > 0) {
+			new Gson().toJson(1, response.getWriter());
+		} else {
+			new Gson().toJson(0, response.getWriter());
 		}
 
 	}

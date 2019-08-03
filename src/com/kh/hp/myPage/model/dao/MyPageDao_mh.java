@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.kh.hp.account.model.vo.UserVO;
 import com.kh.hp.myPage.model.vo.MyPageUserVO;
 import com.kh.hp.myPage.model.vo.RegistListVO;
+import com.kh.hp.myPage.model.vo.RentPropAndAttachmentVO;
 import com.kh.hp.myPage.model.vo.UserImgVO;
 
 public class MyPageDao_mh {
@@ -287,6 +288,12 @@ public class MyPageDao_mh {
 		return result;
 	}
 
+	/**
+	 * 프로필 사진 유무 체크
+	 * @param con
+	 * @param userImgVO
+	 * @return
+	 */
 	public int selectHaveProfile(Connection con, UserImgVO userImgVO) {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt = null;
@@ -317,6 +324,12 @@ public class MyPageDao_mh {
 		return result;
 	}
 
+	/**
+	 * 프로필 사진 변경
+	 * @param con
+	 * @param userImgVO
+	 * @return
+	 */
 	public int insertProfilePhoto(Connection con, UserImgVO userImgVO) {
 		// TODO Auto-generated method stub
 
@@ -325,7 +338,178 @@ public class MyPageDao_mh {
 		return 0;
 	}
 
+	/**
+	 * 신청자 리스트 가져오기
+	 * @param con
+	 * @param rentSeq
+	 * @return
+	 */
+	public ArrayList<RentPropAndAttachmentVO> getProposeUserList(Connection con, int rentSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<RentPropAndAttachmentVO> proposeUserList = null;
+
+		String query = prop.getProperty("getProposeUserList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, rentSeq);
+
+			rset = pstmt.executeQuery();
+
+			proposeUserList = new ArrayList<RentPropAndAttachmentVO>();
+			while(rset.next()) {
+				RentPropAndAttachmentVO rentPropAndAttachmentVO = new RentPropAndAttachmentVO();
+				rentPropAndAttachmentVO.setPropSeq(rset.getInt("PROP_SEQ"));
+				rentPropAndAttachmentVO.setRentSeq(rset.getInt("RENT_SEQ"));
+				rentPropAndAttachmentVO.setUserSeq(rset.getInt("USER_SEQ"));
+				rentPropAndAttachmentVO.setPropNm(rset.getString("PROP_NM"));
+				rentPropAndAttachmentVO.setPropPhone(rset.getString("PROP_PHONE"));
+				rentPropAndAttachmentVO.setPropEmail(rset.getString("PROP_EMAIL"));
+				rentPropAndAttachmentVO.setPropReqContent(rset.getString("PROP_REQ_CONTENT"));
+				rentPropAndAttachmentVO.setPropDt(rset.getDate("PROP_DT"));
+				rentPropAndAttachmentVO.setPropStatus(rset.getString("PROP_STATUS"));
+				rentPropAndAttachmentVO.setUseStartDt(rset.getDate("USE_START_DT"));
+				rentPropAndAttachmentVO.setUseEndDt(rset.getDate("USE_END_DT"));
+				rentPropAndAttachmentVO.setUseStartTm(rset.getInt("USE_START_TM"));
+				rentPropAndAttachmentVO.setUseEndTm(rset.getInt("USE_END_TM"));
+				rentPropAndAttachmentVO.setPayAmount(rset.getInt("PAY_AMOUNT"));
+				rentPropAndAttachmentVO.setPropHeadCount(rset.getInt("PROP_HEAD_COUNT"));
+				rentPropAndAttachmentVO.setAttchSeq(rset.getInt("ATTCH_SEQ"));
+				rentPropAndAttachmentVO.setOriginNm(rset.getString("ORIGIN_NM"));
+				rentPropAndAttachmentVO.setChangeNm(rset.getString("CHANGE_NM"));
+				rentPropAndAttachmentVO.setFilePath(rset.getString("FILE_PATH"));
+
+				proposeUserList.add(rentPropAndAttachmentVO);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return proposeUserList;
+	}
+
+	/**
+	 * 신청 수락 버튼 클릭시 상태 변경
+	 * @param con
+	 * @param propSeq
+	 * @return
+	 */
+	public int updatePropStatusConfirm(Connection con, int propSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("updatePropStatusConfirm");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, propSeq);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	/**
+	 * 수락버튼 클릭 시 로그 INSERT
+	 * @param con
+	 * @param propSeq
+	 * @return
+	 */
+	public int insertPropStatusConfirm(Connection con, int propSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertPropStatusConfirm");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, propSeq);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	/**
+	 * 거절버튼 클릭 시 상태 변경
+	 * @param con
+	 * @param propSeq
+	 * @return
+	 */
+	public int updatePropStatusReject(Connection con, int propSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("updatePropStatusReject");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, propSeq);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
 
 
 
+	/**
+	 * 거절버튼 클릭 시 로그 INSERT
+	 * @param con
+	 * @param propSeq
+	 * @return
+	 */
+	public int insertPropStatusReject(Connection con, int propSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertPropStatusReject");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, propSeq);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
 }

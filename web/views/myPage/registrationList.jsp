@@ -38,29 +38,152 @@
 	<br>
 	<form action="<%=request.getContextPath() %>/registUserList.mp" method="post">
       	 <div class="container">
-      	 	<select class="form-control" id="sel1" onchange="sendValue()">
+      	 	<select class="form-control" id="sel1">
    				<option selected disabled>[등록날짜 : 공연장명] 공연장을 선택하세요.</option>
    				<% for(int i=0; i<list.size(); i++) { %>
-   				<option value="<%=list.get(i).getRentSeq()%>">
-   					<%=list.get(i).getRentEnrollDt()%> : <%=list.get(i).getHallNm()%> : <%=list.get(i).getRentSeq()%>
+   				<option value="<%=list.get(i).getRentSeq()%>" id="option<%=0%>">
+   					<%=list.get(i).getRentEnrollDt()%> : <%=list.get(i).getHallNm()%>
    				</option>
    				<% } %>
    			</select>
    			<button class="btn btn-default" type="submit" id="searchBtn"><i class="glyphicon glyphicon-search "></i></button>
       	 </div>
-       	 <input type="hidden" name="rentSeq" id="rentSeq">
     </form>
 
-  	<script>
-  			function sendValue(){
-  	 			var value = $("#sel1 option:selected").val();
-  	 			console.log(value);
+	<div class="container" style="padding-top :5%;" id="proposeListDiv">
+		<table class="table" id="proposeListTable">
+			<thead>
+			<tr>
+				<th>예약 번호</th>
+				<th>예약자 명</th>
+				<th>핸드폰 번호</th>
+				<th>이메일</th>
+				<th>기간</th>
+				<th>인원</th>
+				<th>요청사항</th>
+				<th>공연 계획서</th>
+				<th>신청 날짜</th>
+				<th></th>
+				<th></th>
+			</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
 
-  	 			var rentSeq = $("#rentSeq").val();
-  	 			console.log("rentSeq.val() : " + rentSeq);
-  	 			rentSeq = value;
-  	 			console.log("afterrentSeq : " + rentSeq);
-  	 		}
+  	<script>
+  		$(function(){
+			// 첫 페이지 로딩 때, 테이블 숨기기
+  			$('#proposeListDiv').hide();
+
+			// 수락 버튼
+  			$(document).on('click', '#confirmBtn', function(){
+  				var confirmTf = confirm('해당 신청자를 수락하시겠습니까?');
+  				var propSeq = $(this).parents('tbody').children().children().eq(0).text();
+
+  				$.ajax({
+  					url:'proposeConfirm.mp',
+  					data:{propSeq: propSeq},
+  					type:'post',
+  					success: function(data){
+  						location.reload();
+  					},
+  					error: function(){
+  						console.log("error");
+  					}
+  				});
+
+
+  			});
+
+  			// 거절 버튼
+  			$(document).on('click', '#rejectBtn', function(){
+  				var confirmTf = confirm('해당 신청자를 거절하시겠습니까?');
+  				var propSeq = $(this).parents('tbody').children().children().eq(0).text();
+
+  				$.ajax({
+  					url:'proposeReject.mp',
+  					data:{propSeq: propSeq},
+  					type:'post',
+  					success: function(data){
+  						location.reload();
+  					},
+  					error: function(){
+  						console.log("error");
+  					}
+  				});
+  			});
+
+  			// selectbox 변경될 때마다 값 불러오기
+  			$('#sel1').change(function(){
+
+  				var rentSeq = $(this).val();
+
+  				$.ajax({
+  					url:'registUserList.mp',
+  					data:{rentSeq: rentSeq},
+  					type:'post',
+  					success: function(data){
+  						console.log(data);
+
+  						$('#proposeListTable tbody').remove();
+
+
+  						var proposeListTable = $('#proposeListTable');
+  						var $tbody = $('<tbody/>', {align:'center'})
+
+  						for(var key in data){
+	  						var $tr = $('<tr/>');
+	  						var $userSeqTd = $('<td/>');
+	  						var $propNmTd = $('<td/>');
+	  						var $propPhoneTd = $('<td/>');
+	  						var $propEmailTd = $('<td/>');
+	  						var $startDateAndEndDateTd = $('<td/>');
+	  						var $propHeadCountTd = $('<td/>');
+	  						var $propReqContentTd = $('<td/>');
+	  						var $attchTd = $('<td/>');
+	  						var $propDtTd = $('<td/>');
+	  						var $confirmBtnTd = $("<td/>");
+	  						var $rejectBtnTd = $("<td/>");
+
+	  						var $confirmBtn = $('<button/>', {class : 'btn btn-success', id:'confirmBtn', name:"confirmBtn", text:"수락"});
+	  						var $rejectBtn = $('<button/>', {class : 'btn btn-danger', id:'rejectBtn', name:"rejectBtn", text:"거절"});
+
+  							$userSeqTd.text(data[key].propSeq);
+  							$propNmTd.text(data[key].propNm);
+  							$propPhoneTd.text(data[key].propPhone);
+  							$propEmailTd.text(data[key].propEmail);
+  							$startDateAndEndDateTd.text(data[key].useStartDt + " ~ " + data[key].useEndDt);
+  							$propHeadCountTd.text(data[key].propHeadCount);
+  							$propReqContentTd.text(data[key].propReqContent);
+  							$attchTd.text(data[key].userSeq);
+  							$propDtTd.text(data[key].propDt);
+  							$confirmBtnTd.append($confirmBtn);
+  							$rejectBtnTd.append($rejectBtn);
+
+  							$tr.append($userSeqTd);
+  							$tr.append($propNmTd);
+  							$tr.append($propPhoneTd);
+  							$tr.append($propEmailTd);
+  							$tr.append($startDateAndEndDateTd);
+  							$tr.append($propHeadCountTd);
+  							$tr.append($propReqContentTd);
+  							$tr.append($attchTd);
+  							$tr.append($propDtTd);
+  							$tr.append($confirmBtnTd);
+  							$tr.append($rejectBtnTd);
+	  						$tbody.append($tr);
+						}
+  						proposeListTable.append($tbody);
+
+  						$('#proposeListDiv').show()
+  					},
+  					error: function(){
+  						console.log(error);
+  					}
+  				});
+  			});
+  		});
 	</script>
 
 

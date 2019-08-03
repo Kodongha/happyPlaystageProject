@@ -75,6 +75,7 @@
 	<table style="width:790px; height:60px; text-align:center; margin:auto; border-collapse: collapse;">
 		<tr>
 		<td id="tab1">신청 공연장 고유번호</td>
+		<td id="tab1">신청번호</td>
 		<td id="tab1">공연장 이름</td>
 		<td id="tab1">사용할 일자</td>
 		<td id="tab1">신청 상태</td>
@@ -82,11 +83,16 @@
 		<% for(int i = 0; i < list.size(); i++){
 			
 			%>
-			<tr>
+			<tr onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'">
 			<td id="tab2"><%= list.get(i).getRentSeq() %></td>
+			<td id="tab2"><%= list.get(i).getPropSeq() %></td>
 			<td id="tab2"><%= list.get(i).getHallNm() %></td>
 			<td id="tab2"><%= list.get(i).getUseStartDt() %> ~ <%= list.get(i).getUseEndDt() %></td>
-			<td id="tab2"><%= list.get(i).getPropStatus() %></td>
+			<td id="tab2"><%= list.get(i).getPropStatus() %>
+			<% if(list.get(i).getPropStatus().equals("신청")){ %>
+				<button onclick="location.href='<%=request.getContextPath()%>/payRefund?propSeq=<%=list.get(i).getPropSeq() %>'">결제취소</button>
+			<% } %>
+			</td>
 			</tr>
 		<% } %>
 		

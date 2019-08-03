@@ -35,7 +35,7 @@ public class SearchUsingInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("왜 사용내역 서치가 안될까..");
 		int userInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
 		int rentSeq = Integer.parseInt(request.getParameter("rentSeq"));
 		String hallNm = request.getParameter("hallNm");
@@ -85,7 +85,7 @@ public class SearchUsingInfoServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-		ArrayList<AhnUsingInfoVO> list = new AhnMyPageService().searchUsingDetail( userInfo, rentSeq, hallNm, useStart, useEnd);
+		ArrayList<AhnUsingInfoVO> list = new AhnMyPageService().searchCheck( userInfo, rentSeq, hallNm, useStart, useEnd, startPage, endPage);
 		
 		String page = "";
 		

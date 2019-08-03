@@ -11,6 +11,7 @@ import com.kh.hp.myPage.model.vo.AhnAttachmentVO;
 import com.kh.hp.myPage.model.vo.AhnLevelupInfoVO;
 import com.kh.hp.myPage.model.vo.AhnLevelupVO;
 import com.kh.hp.myPage.model.vo.AhnMyPageVO;
+import com.kh.hp.myPage.model.vo.AhnPayRefundVO;
 import com.kh.hp.myPage.model.vo.AhnUsingInfoVO;
 import com.kh.hp.rent.model.dao.RentDao;
 import com.kh.hp.rent.model.vo.CautionsVO;
@@ -292,39 +293,7 @@ public class AhnMyPageService {
 		
 		String rentSeq1 = String.valueOf(rentSeq);
 		
-		if(rentSeq1 != null && hallNm != null && useStart != null && useEnd != null) {
-			System.out.println("ooooin1");
-			list = new AhnMyPageDao().searchUsingDetail1(con, userInfo, rentSeq, hallNm, useStart, useEnd);
-		
-		}else if(rentSeq1 == null && hallNm != null && useStart != null && useEnd != null) {
-			System.out.println("ooooin2");
-			list = new AhnMyPageDao().searchUsingDetail2(con, userInfo, hallNm, useStart, useEnd);
-			
-		}else if(rentSeq1 != null && hallNm == null && useStart != null && useEnd != null) {
-			System.out.println("ooooin3");
-			list = new AhnMyPageDao().searchUsingDetail3(con, userInfo, rentSeq, useStart, useEnd);
-			
-		}else if(rentSeq1 != null && hallNm != null && useStart == null && useEnd == null) {
-			System.out.println("ooooin4");
-			list = new AhnMyPageDao().searchUsingDetail4(con, userInfo, rentSeq, hallNm);
-			
-		}else if(rentSeq1 != null && hallNm == null && useStart == null && useEnd == null) {
-			System.out.println("ooooin5");
-			list = new AhnMyPageDao().searchUsingDetail5(con, userInfo, rentSeq);
-			
-		}else if(rentSeq1 == null && hallNm != null && useStart == null && useEnd == null) {
-			System.out.println("ooooin6");
-			list = new AhnMyPageDao().searchUsingDetail6(con, userInfo, hallNm);
-			
-		}else if(rentSeq1 == null && hallNm == null && useStart != null && useEnd != null) {
-			System.out.println("ooooin7");
-			list = new AhnMyPageDao().searchUsingDetail7(con, userInfo, useStart, useEnd);
-			
-		}else if(rentSeq1 == null && hallNm == null && useStart == null && useEnd == null) {
-			System.out.println("ooooin8");
-			list = new AhnMyPageDao().searchUsingDetail8(con, userInfo);
-			
-		}
+		list = new AhnMyPageDao().searchUsingDetail(con, userInfo, rentSeq, hallNm, useStart, useEnd);
 		
 		close(con);
 		
@@ -332,5 +301,38 @@ public class AhnMyPageService {
 		
 		return list;
 	}
+
+	public ArrayList<AhnApplyInfoVO> searchApplyDetail(int userInfo, int rentSeq, String hallNm, Date useStart,
+			Date useEnd, String propStatus) {
+		Connection con = getConnection();
+		System.out.println("service in!!");
+		ArrayList<AhnApplyInfoVO> list = null;
+		
+		String rentSeq1 = String.valueOf(rentSeq);
+		
+		list = new AhnMyPageDao().searchApplyDetail(con, userInfo, rentSeq, hallNm, useStart, useEnd, propStatus);
+		
+		return list;
+	}
+
+	public int payRefundInsert(int userInfo, int propSeq) {
+		Connection con = getConnection();
+		System.out.println("insertImage in!!!");
+		int result = 0;
+		
+		int result1 = new AhnMyPageDao().payRefundInsert(con, userInfo, propSeq);
+		
+		if(result1 > 0) {
+			commit(con);
+			result = 1;
+		}else {
+			rollback(con);
+		}
+		
+		return result;
+		
+	}
+
+	
 	
 }

@@ -1355,5 +1355,26 @@ public class AhnMyPageDao {
 		
 		return result;
 	}
+
+	public int applyChange(Connection con, int userInfo, int propSeq) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertApplyChange");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, propSeq);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 }

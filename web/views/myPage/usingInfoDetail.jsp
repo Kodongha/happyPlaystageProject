@@ -143,16 +143,20 @@ div {
    <div class="container">
       <table class="table table-striped">
          <tr>
-         <td>공연장 고유번호</td>
-         <td>상호명</td>
-         <td>사용일자</td>
-         <td>사용공간 이름</td>
+         <td>사용자명</td>
+         <td>사용자 연락처</td>
+         <td>사용자 이메일</td>
+         <td>사용일</td>
+         <td>사용공간</td>
+         <td>사용인원</td>
          </tr>
          <tr>
-            <td id="tab2"><%= list.get(0).getRentSeq() %></td>
-            <td id="tab2"><%= list.get(0).getCompNm() %></td>
+         	<td id="tab2"><%= list.get(0).getPropNm() %></td>
+         	<td id="tab2"><%= list.get(0).getPropPhone() %></td>
+         	<td id="tab2"><%= list.get(0).getPropEmail() %></td>
             <td id="tab2"><%= list.get(0).getUseStartDt() %> ~ <%= list.get(0).getUseEndDt() %></td>
             <td id="tab2"><%= list.get(0).getHallNm() %></td>
+            <td id="tab2"><%= list.get(0).getPropHeadCount() %></td>
          </tr>
       </table>
    </div>

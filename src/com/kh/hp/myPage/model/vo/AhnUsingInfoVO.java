@@ -13,11 +13,15 @@ public class AhnUsingInfoVO implements java.io.Serializable{
 	private String propStatus;
 	private Date useStartDt;
 	private Date useEndDt;
+	private int propHeadCount;
+	private String propReqContent;
+	private String propPhone;
+	private String propEmail;
 	
 	public AhnUsingInfoVO() {}
 	
 	public AhnUsingInfoVO(String hallNm, String compNm, int propSeq, int rentSeq, int userSeq, String propNm,
-			Date propDt, String propStatus, Date useStartDt, Date useEndDt) {
+			Date propDt, String propStatus, Date useStartDt, Date useEndDt, int propHeadCount, String propReqContent, String propPhone, String propEmail) {
 		super();
 		this.hallNm = hallNm;
 		this.compNm = compNm;
@@ -29,9 +33,11 @@ public class AhnUsingInfoVO implements java.io.Serializable{
 		this.propStatus = propStatus;
 		this.useStartDt = useStartDt;
 		this.useEndDt = useEndDt;
+		this.propHeadCount = propHeadCount;
+		this.propReqContent = propReqContent;
+		this.propPhone = propPhone;
+		this.propEmail = propEmail;
 	}
-
-
 
 	public String getHallNm() {
 		return hallNm;
@@ -113,11 +119,47 @@ public class AhnUsingInfoVO implements java.io.Serializable{
 		this.useEndDt = useEndDt;
 	}
 
+	public int getPropHeadCount() {
+		return propHeadCount;
+	}
+
+	public void setPropHeadCount(int propHeadCount) {
+		this.propHeadCount = propHeadCount;
+	}
+
+	public String getPropReqContent() {
+		return propReqContent;
+	}
+
+	public void setPropReqContent(String propReqContent) {
+		this.propReqContent = propReqContent;
+	}
+
+	public String getPropPhone() {
+		return propPhone;
+	}
+
+	public void setPropPhone(String propPhone) {
+		this.propPhone = propPhone;
+	}
+
+	public String getPropEmail() {
+		return propEmail;
+	}
+
+	public void setPropEmail(String propEmail) {
+		this.propEmail = propEmail;
+	}
+
 	@Override
 	public String toString() {
 		return "AhnUsingInfoVO [hallNm=" + hallNm + ", compNm=" + compNm + ", propSeq=" + propSeq + ", rentSeq="
 				+ rentSeq + ", userSeq=" + userSeq + ", propNm=" + propNm + ", propDt=" + propDt + ", propStatus="
-				+ propStatus + ", useStartDt=" + useStartDt + ", useEndDt=" + useEndDt + "]";
+				+ propStatus + ", useStartDt=" + useStartDt + ", useEndDt=" + useEndDt + ", propHeadCount="
+				+ propHeadCount + ", propReqContent=" + propReqContent + ", propPhone=" + propPhone + ", propEmail="
+				+ propEmail + "]";
 	}
+
+	
 
 }

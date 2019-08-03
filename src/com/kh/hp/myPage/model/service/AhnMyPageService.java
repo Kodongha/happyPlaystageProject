@@ -11,6 +11,7 @@ import com.kh.hp.myPage.model.vo.AhnAttachmentVO;
 import com.kh.hp.myPage.model.vo.AhnLevelupInfoVO;
 import com.kh.hp.myPage.model.vo.AhnLevelupVO;
 import com.kh.hp.myPage.model.vo.AhnMyPageVO;
+import com.kh.hp.myPage.model.vo.AhnPayRefundVO;
 import com.kh.hp.myPage.model.vo.AhnUsingInfoVO;
 import com.kh.hp.rent.model.dao.RentDao;
 import com.kh.hp.rent.model.vo.CautionsVO;
@@ -313,5 +314,25 @@ public class AhnMyPageService {
 		
 		return list;
 	}
+
+	public int payRefundInsert(int userInfo, int propSeq) {
+		Connection con = getConnection();
+		System.out.println("insertImage in!!!");
+		int result = 0;
+		
+		int result1 = new AhnMyPageDao().payRefundInsert(con, userInfo, propSeq);
+		
+		if(result1 > 0) {
+			commit(con);
+			result = 1;
+		}else {
+			rollback(con);
+		}
+		
+		return result;
+		
+	}
+
+	
 	
 }

@@ -1264,6 +1264,10 @@ public class AhnMyPageDao {
 				b.setPropStatus(rset.getString("PROP_STATUS"));
 				b.setUseStartDt(rset.getDate("USE_START_DT"));
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				b.setPropHeadCount(rset.getInt("PROP_HEAD_COUNT"));
+				b.setPropReqContent(rset.getString("PROP_REQ_CONTENT"));
+				b.setPropPhone(rset.getString("PROP_PHONE"));
+				b.setPropEmail(rset.getString("PROP_EMAIL"));
 				
 				list.add(b);
 			}
@@ -1311,6 +1315,10 @@ public class AhnMyPageDao {
 				b.setPropStatus(rset.getString("PROP_STATUS"));
 				b.setUseStartDt(rset.getDate("USE_START_DT"));
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				b.setPropHeadCount(rset.getInt("PROP_HEAD_COUNT"));
+				b.setPropReqContent(rset.getString("PROP_REQ_CONTENT"));
+				b.setPropPhone(rset.getString("PROP_PHONE"));
+				b.setPropEmail(rset.getString("PROP_EMAIL"));
 				
 				list.add(b);
 			}
@@ -1323,6 +1331,29 @@ public class AhnMyPageDao {
 		}
 		
 		return list;
+	}
+
+	public int payRefundInsert(Connection con, int userInfo, int propSeq) {
+		System.out.println("들어옴1");
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertPayRefund");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userInfo);
+			pstmt.setInt(2, propSeq);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 	
 }

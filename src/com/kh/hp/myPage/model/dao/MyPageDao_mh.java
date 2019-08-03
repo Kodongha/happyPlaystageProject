@@ -261,7 +261,7 @@ public class MyPageDao_mh {
 				RegistListVO registListVO = new RegistListVO();
 				registListVO.setRentSeq(rset.getInt("RENT_SEQ"));
 				registListVO.setHallNm(rset.getString("HALL_NM"));
-				registListVO.setFilePath(rset.getString("FILE_PATH"));
+				registListVO.setRentEnrollDt(rset.getDate("RENT_ENROLL_DT"));
 
 				list.add(registListVO);
 			}

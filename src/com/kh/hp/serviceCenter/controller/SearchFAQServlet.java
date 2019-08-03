@@ -47,6 +47,7 @@ public class SearchFAQServlet extends HttpServlet {
 		if(list != null) {
 			request.setAttribute("list", list);
 			request.setAttribute("category", category);
+			request.setAttribute("keyword", keyword);
 
 			page="views/serviceCenter/fAQ.jsp";
 		}

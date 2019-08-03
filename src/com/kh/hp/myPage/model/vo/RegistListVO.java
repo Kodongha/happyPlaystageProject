@@ -8,16 +8,18 @@ public class RegistListVO implements java.io.Serializable{
 	private String hallNm;
 	private int imgType;
 	private String filePath;
+	private Date rentEnrollDt;
 
-	public RegistListVO() {}
+	public RegistListVO(){}
 
-	public RegistListVO(int rentSeq, int userSeq, String hallNm, int imgType, String filePath) {
+	public RegistListVO(int rentSeq, int userSeq, String hallNm, int imgType, String filePath, Date rentEnrollDt) {
 		super();
 		this.rentSeq = rentSeq;
 		this.userSeq = userSeq;
 		this.hallNm = hallNm;
 		this.imgType = imgType;
 		this.filePath = filePath;
+		this.rentEnrollDt = rentEnrollDt;
 	}
 
 	public int getRentSeq() {
@@ -60,13 +62,19 @@ public class RegistListVO implements java.io.Serializable{
 		this.filePath = filePath;
 	}
 
+	public Date getRentEnrollDt() {
+		return rentEnrollDt;
+	}
+
+	public void setRentEnrollDt(Date rentEnrollDt) {
+		this.rentEnrollDt = rentEnrollDt;
+	}
+
 	@Override
 	public String toString() {
 		return "RegistListVO [rentSeq=" + rentSeq + ", userSeq=" + userSeq + ", hallNm=" + hallNm + ", imgType="
-				+ imgType + ", filePath=" + filePath + "]";
+				+ imgType + ", filePath=" + filePath + ", rentEnrollDt=" + rentEnrollDt + "]";
 	}
-
-
 
 
 }

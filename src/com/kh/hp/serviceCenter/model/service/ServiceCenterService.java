@@ -277,7 +277,6 @@ public class ServiceCenterService {
 			}
 		} else if (category != null && keyword != null) {
 			System.out.println("둘다 값이 있음");
-
 			if(category.equals("전체")) {
 				list = sd.searchOnlyValue(con, category, keyword);
 			} else {

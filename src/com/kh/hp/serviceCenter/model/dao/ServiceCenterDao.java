@@ -747,6 +747,7 @@ public class ServiceCenterDao {
 	}
 
 	public ArrayList<FaQVO> searchOnlyValue(Connection con, String category, String keyword) {
+		System.out.println("searchOnlyValue 호출됨!!!!");
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<FaQVO> list= null;

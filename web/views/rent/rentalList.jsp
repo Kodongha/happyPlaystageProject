@@ -30,7 +30,7 @@
 <body>
 <jsp:include page="/views/common/header.jsp" />
 
-	
+
 
 <hr>
 	<div class="container" align="center" id='containerDiv'>
@@ -87,7 +87,7 @@
 				currentPage++;
 
 				$.ajax({
-					url:"moveRentListAjax.rt",
+					url:'moveRentListAjax.rt?searchString=<%=request.getParameter("searchString")%>',
 					data:{type:"ajax", currentPage:currentPage},
 					type:"post",
 					success:function(data){

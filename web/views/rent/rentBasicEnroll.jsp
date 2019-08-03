@@ -95,7 +95,7 @@
 	                </ul>
 	            </div>
 
-	           <form action="<%=request.getContextPath() %>/moveRentBasicInfo.rent" method="post" enctype="multipart/form-data">
+	           <form action="<%=request.getContextPath() %>/moveRentBasicInfo.rent" method="post" enctype="multipart/form-data" id="enrollForm">
 	                <div class="tab-content">
 
 						<!-- step1 -->

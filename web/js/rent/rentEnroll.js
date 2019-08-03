@@ -9,26 +9,23 @@ $(function(){
 
     //Wizard
     $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-
         var $target = $(e.target);
-
         if ($target.parent().hasClass('disabled')) {
             return false;
         }
     });
 
     $(".next-step").click(function (e) {
-
         var $active = $('.wizard .nav-tabs li.active');
         $active.next().removeClass('disabled');
         nextTab($active);
-    scroll(0,0);
+        scroll(0,0);
     });
     $(".prev-step").click(function (e) {
 
         var $active = $('.wizard .nav-tabs li.active');
         prevTab($active);
-
+        scroll(0,0);
     });
 
     /*시설 안내 추가 관련*/
@@ -221,7 +218,161 @@ $(function(){
 	  return sReturn;
   }
 
+  // 환불 기준
+  $("input[name=rentRefundTypeSeq]").change(function(){
+
+      var rentRefundTypeSeq = $(this).val();
+      $.ajax({
+        url:'getrentRefundTypeInfo.rt',
+        data:{rentRefundTypeSeq:rentRefundTypeSeq},
+        type:'POST',
+        success: function(data){
+
+          $('#refundTable tr').remove();
+
+          // var $table = $('<table/>', {class:'table', id:'refundTable'});
+		  var refundTable = $('#refundTable');
+
+          for(var key in data){
+            var $tr = $('<tr/>')
+            var $td1 = $('<td/>', {width:'100px', align:'center'});
+            var $td2 = $('<td/>', {width:'100px', align:'center'});
+
+            if(data[key].dtCd == 1){
+              $td1.text('이용 당일');
+            } else if(data[key].dtCd == 2){
+              $td1.text('이용 전날');
+            } else {
+              $td1.text('이용 ' + data[key].dtCd + '일 전');
+
+            }
+            $td2.text(data[key].refundDeductPer + '%');
+
+            $tr.append($td1);
+            $tr.append($td2);
+
+            refundTable.append($tr);
+          }
+        },
+        error: function(){
+          console.log("error");
+        }
+
+      });
+    });
+
+  	// 신청버튼
+	$('#submitBtn').click(function(){
+		var result = false;
+		result = fnSearchAccessToken();
+		if(result){
+			console.log("성공");
+			$('#enrollForm').submit();
+		} else {
+			console.log("실패");
+			alert('계좌정보가 불일치합니다.');
+			$('#bankNm').focus();
+		}
+	});
 
 });
+// 사용자 인증을 위한 Function
+function fnSearchAccessToken(){
 
+	var client_id = 'l7xx8afc5179c3be41bb94c13f4a9354e25a';
+	var client_secret = '4cc0d8fa519f4732ba0c0882f6a06b4f';
+	var grant_type = "client_credentials";
+	var scope = "oob";
 
+	var result = false;
+
+	$.ajax({
+		//url: "/tpt/test/getOauthToken",
+		url : "https://testapi.open-platform.or.kr/oauth/2.0/token",
+		type : "POST",
+		//cache: false,
+		contenType : "application/json",
+		async: false,
+		data : {
+			"client_id" : client_id,
+			"client_secret" : client_secret,
+			"grant_type" : grant_type,
+			"scope" : scope
+		},
+		dataType : "json",
+		success : function(data, data2, data3) {
+			var list = JSON.parse(data3.responseText);
+			$("#access_token").val(list.access_token);
+			$("#user_seq_no").val(list.user_seq_no);
+			result = fnSearchRealName();
+		},
+		error : function(data, data2, data3) {
+			alert('error!!!');
+		}
+	});
+
+	return result;
+}
+
+// 계좌 실명조회를 위한 Function
+function fnSearchRealName() {
+
+	$.support.cors = true;
+	var reqDate = new Date();
+	var year = reqDate.getFullYear() +"";
+	var month = (reqDate.getMonth() + 1) >= 10?reqDate.getMonth() + 1 + "":"0" + (reqDate.getMonth() + 1);
+	var date = (reqDate.getDate() >= 10?reqDate.getDate() + "":"0" + reqDate.getDate());
+	var hour = reqDate.getHours() >= 10?reqDate.getHours() + "":"0" + reqDate.getHours();
+	var min = reqDate.getMinutes() >= 10?reqDate.getMinutes() + "":"0" + reqDate.getMinutes();
+	var sec = reqDate.getSeconds() >= 10?reqDate.getSeconds() + "":"0" + reqDate.getSeconds();
+
+	var currentTime = year + month + date + hour + min + sec;
+	console.log(currentTime)
+
+	var bank_code_std = $("#bankNm").val();
+	var account_num = $("#accNo").val();
+	var account_holder_info = $("#accBirth").val();
+	var tran_dtime = currentTime;
+	var access_token = "Bearer " + $("#access_token").val();
+
+	var result = false;
+	console.log("bank_code_std :: " + bank_code_std);
+	console.log("account_num :: " + account_num);
+	console.log("account_holder_info :: " + account_holder_info);
+	console.log("tran_dtime :: " + currentTime);
+	console.log("access_token :: " + access_token);
+
+	var resData = {
+			"bank_code_std" : bank_code_std,
+			"account_num" : account_num,
+			"account_holder_info" : account_holder_info,
+			"tran_dtime" : tran_dtime
+		};
+
+	$.ajax({
+		url : "https://testapi.open-platform.or.kr/v1.0/inquiry/real_name",
+		beforeSend : function(request) {
+			request.setRequestHeader("Authorization",
+					access_token);
+		},
+		type : "POST",
+		data : JSON.stringify(resData),
+		dataType : "json",
+		async: false,
+		success : function(data, data2, data3) {
+			console.log(data)
+			if (data.account_holder_name == $("#accHolder").val()) {
+				result = true;
+			} else {
+				result = false;
+			}
+		},
+		error : function(data, data2, data3) {
+			alert('error!!!');
+
+			result = false;
+		}
+	});
+
+	return result;
+}

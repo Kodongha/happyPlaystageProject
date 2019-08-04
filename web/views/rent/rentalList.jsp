@@ -19,6 +19,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
+<link href="/happyPlaystage/css/common/all.min.css" rel="stylesheet">
+<script src="/happyPlaystage/js/common/all.min.js"></script>
+
 <script type="text/javascript" src="/happyPlaystage/js/common/jquery.oLoader.min.js"></script>
 <title>Insert title here</title>
 <style>
@@ -51,6 +54,13 @@
 						<i class="user icon"></i> <%=rentListVO.getRentPrice() %>
 					</span>
 				</div>
+			</div>
+			<%} %>
+
+			<%if(list.size() == 0){ %>
+			<div class="container" style="padding-top: 10%; padding-bottom: 20%;">
+				<i class="fas fa-ban" style="width: 200px; height: 200px;"></i>
+				<h1 style="padding-top: 5%;">검색 결과가 없습니다.</h1>
 			</div>
 			<%} %>
 		</div>
@@ -130,7 +140,7 @@
 
 						$('.cards .image').dimmer({
 							  on: 'hover'
-						});
+				});
 
 						$(function(){
 							$('.card').click(function(){

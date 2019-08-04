@@ -57,6 +57,7 @@ public class MyPageDao_mh {
 				myPageInfo.setUserNick(rset.getString("USER_NICK"));
 				myPageInfo.setUserPhone(rset.getString("USER_PHONE"));
 				myPageInfo.setUserGradeCd(rset.getInt("USER_GRADE_CD"));
+				myPageInfo.setSnsCd(rset.getInt("SNS_CD"));
 			}
 
 		} catch (SQLException e) {

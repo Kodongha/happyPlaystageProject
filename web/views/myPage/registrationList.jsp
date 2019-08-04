@@ -20,11 +20,7 @@
 <title>Insert title here</title>
 <style>
  #sel1 {
- 	width: 95%;
- 	float:left;
- }
- #searchBtn {
- 	width: 5%;
+ 	width: 90%;
  }
 </style>
 
@@ -37,7 +33,7 @@
 	</h2>
 	<br>
 	<form action="<%=request.getContextPath() %>/registUserList.mp" method="post">
-      	 <div class="container">
+      	 <div class="container" align="center">
       	 	<select class="form-control" id="sel1">
    				<option selected disabled>[등록날짜 : 공연장명] 공연장을 선택하세요.</option>
    				<% for(int i=0; i<list.size(); i++) { %>
@@ -46,7 +42,6 @@
    				</option>
    				<% } %>
    			</select>
-   			<button class="btn btn-default" type="submit" id="searchBtn"><i class="glyphicon glyphicon-search "></i></button>
       	 </div>
     </form>
 

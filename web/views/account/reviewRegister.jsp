@@ -46,7 +46,19 @@ h4 {
 	height: 200px;
 	text-align: left;
 }
-
+.starR{
+	background: url("") no-repeat right 0;
+  background-size: auto 100%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  /* text-indent: -9999px; */
+  cursor: pointer;
+}
+.starR.on{
+	background-position:0 0;
+	color:red;
+}
 
 </style>
 
@@ -74,15 +86,25 @@ h4 {
 	<div class="form-group">
 		<label for="이용소감">공연장 이용 소감</label> <input type="text" name="reviewContent" class="form-control" name="reviewCon" id="reviewContent">
 	</div>
-	<div class="form-group">
-		<label for="이미지">별점</label> <input type="number" min = "1" max = "5" placeholder="별점을 숫자로 입력해 주세요."
-			class="form-control" id="ran" name="ran">
 
+	<div class="starRev" align="center">
+  		<span class="starR on">★</span>
+  		<span class="starR">★</span>
+  		<span class="starR">★</span>
+  		<span class="starR">★</span>
+  		<span class="starR">★</span>
 	</div>
+
 	<input type="hidden" id="propSeq" name="propSeq" value="<%=rs.getPropSeq()%>">
 	<input type="hidden" id="rentSeq" name="rentSeq" value="<%=rs.getRentSeq()%>">
 
-
+	<script>
+	$('.starRev span').click(function(){
+		  $(this).parent().children('span').removeClass('on');
+		  $(this).addClass('on').prevAll('span').addClass('on');
+		  return false;
+		});
+	</script>
 
 
 

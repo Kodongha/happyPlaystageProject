@@ -62,6 +62,7 @@ body {
 			<div id="inputArea">
 			 	<div id="inputs" align="center">
 			 		<div id="idForm">
+			 		<br>
 					<label for="userEmail">아이디</label><br>
 					<h3 name="userEmail"><b><%=mypageInfo.getUserEmail()%></b></h3>
 					</div>

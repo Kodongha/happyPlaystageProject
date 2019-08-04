@@ -79,7 +79,18 @@
 			</div>
 					<input type="submit" class="btn btn-warning" id="searchbutton" value="등록">
 		</div>
+		<div class="tab2" style="width:790px;">
+	
+	<table style="width:790px; height:60px; text-align:center; margin:auto; border-collapse: collapse;">
+		<tr>
+		<td id="tab1">신청 공연장 고유번호</td>
+		<td id="tab1">신청번호</td>
+		<td id="tab1">공연장 이름</td>
+		<td id="tab1">사용할 일자</td>
+		<td id="tab1">신청 상태</td>
+		</tr>
 	</form>
+	
 	<br><br><br><br><br><br><br><br>
 	<jsp:include page="/views/common/footer.jsp" />
 </body>

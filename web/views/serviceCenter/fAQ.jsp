@@ -103,6 +103,10 @@ body {
 		<%} %>
 	</div>
 
+		<% if(list.size() == 0) { %>
+			<h4 align="center">검색 결과가 없습니다.</h4>
+		<% } %>
+
 <jsp:include page="/views/common/footer.jsp" />
 
 </body>

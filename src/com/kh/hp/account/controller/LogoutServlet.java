@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.hp.account.model.service.KakaoService;
+import com.kh.hp.account.model.vo.UserVO;
+
 /**
  * Servlet implementation class LogoutServlet
  */
@@ -27,8 +30,16 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getSession().invalidate();
+		int userSeq = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
+		int snsCd = ((UserVO) request.getSession().getAttribute("user")).getSnsCd();
 
+		// 카카오 계정 로그인이라면,
+		if(snsCd == 1) {
+			String logoutKakaoUnqId = new KakaoService().logoutKakaoAccount(userSeq);
+			System.out.println("카카오 로그아웃 아이디 : " + logoutKakaoUnqId);
+		}
+
+		request.getSession().invalidate();
 		response.sendRedirect(request.getContextPath() + "/moveMain.main");
 	}
 

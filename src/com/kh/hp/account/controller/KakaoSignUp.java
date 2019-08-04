@@ -6,9 +6,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.kh.hp.account.model.dao.KakaoDao;
 import com.kh.hp.account.model.service.KakaoService;
 import com.kh.hp.account.model.vo.KakaoTokenMngVO;
+import com.kh.hp.account.model.vo.UserVO;
 
 /**
  * Servlet implementation class KakaoSignUp
@@ -39,6 +42,11 @@ public class KakaoSignUp extends HttpServlet {
 		String refreshToken = request.getParameter("refreshToken");
 		String kakaoUnqId = request.getParameter("kakaoUnqId");
 		String mailTf = request.getParameter("mailTf");
+		if(mailTf.equals("true")) {
+			mailTf = "Y";
+		} else {
+			mailTf = "N";
+		}
 
 		System.out.println("userEmail :: " + userEmail);
 		System.out.println("userNm :: " + userNm);
@@ -62,8 +70,21 @@ public class KakaoSignUp extends HttpServlet {
 		kakaoTokenMngVO.setSnsCd(1);
 		kakaoTokenMngVO.setLeaveTf('N');
 
-		int result = new KakaoService().insertKakaoUser(kakaoTokenMngVO);
-		System.out.println("result::::" + result);
+		int userSeq = new KakaoService().insertKakaoUser(kakaoTokenMngVO);
+		System.out.println("userSeq::::" + userSeq);
+
+		// responseUserVO setting
+		UserVO responseUserVO = new KakaoService().getUserInfoForKakao(userSeq);
+
+		HttpSession session = request.getSession();
+		session.setAttribute("user", responseUserVO);
+
+		if(responseUserVO != null) {
+			response.sendRedirect(request.getContextPath() + "/moveMain.main");
+		} else {
+			request.setAttribute("loginFlag", false);
+			request.getRequestDispatcher("views/account/login.jsp").forward(request, response);
+		}
 	}
 
 	/**

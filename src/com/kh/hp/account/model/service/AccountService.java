@@ -93,4 +93,11 @@ public class AccountService {
 		return newPwd;
 	}
 
+	public UserVO getUserInfoForKakao(int userSeq) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		return null;
+	}
+
 }

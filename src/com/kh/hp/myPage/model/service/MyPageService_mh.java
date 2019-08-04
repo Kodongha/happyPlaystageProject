@@ -161,16 +161,7 @@ public class MyPageService_mh {
 		int result = 0;
 
 		MyPageDao_mh MyPageDao = new MyPageDao_mh();
-
-		// DB 정보
-		MyPageUserVO responseMyPageUserVO = MyPageDao.selectMyPageInfo(con, userSeq);
-
-		// DB정보와 입력받은 pwd 비교
-		boolean type1 = responseMyPageUserVO.getUserPwd().equals(pwd1);
-
-		if(type1) {
-			result = MyPageDao.updateLeaveTF(con, userSeq);
-		}
+		result = MyPageDao.updateLeaveTF(con, userSeq);
 
 		if(result > 0) {
 			commit(con);
@@ -181,6 +172,27 @@ public class MyPageService_mh {
 		close(con);
 
 		return result;
+	}
+
+
+	/** 회원탈퇴
+	 * @param userSeq
+	 * @param pwd1
+	 * @return
+	 */
+	public boolean checkPassword(int userSeq, String pwd1) {
+		Connection con = getConnection();
+		MyPageDao_mh MyPageDao = new MyPageDao_mh();
+
+		// DB 정보
+		MyPageUserVO responseMyPageUserVO = MyPageDao.selectMyPageInfo(con, userSeq);
+
+		// DB정보와 입력받은 pwd 비교
+		boolean type1 = responseMyPageUserVO.getUserPwd().equals(pwd1);
+
+		close(con);
+
+		return type1;
 	}
 
 

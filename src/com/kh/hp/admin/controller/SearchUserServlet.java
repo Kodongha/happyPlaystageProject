@@ -201,7 +201,7 @@ public class SearchUserServlet extends HttpServlet {
 			request.getRequestDispatcher(page).forward(request, response);
 			
 		} else {
-			page = request.getContextPath() + "/selectAllUser.ad";
+			page = request.getContextPath() + "/searchUser.ad?userSeq1=&userSeq2=&userNm=&userGradeCd=선택&leaveTf=선택";
 			response.sendRedirect(page);
 		}
 	}

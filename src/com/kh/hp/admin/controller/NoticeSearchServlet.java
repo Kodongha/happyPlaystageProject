@@ -45,28 +45,23 @@ public class NoticeSearchServlet extends HttpServlet {
 		
 		ArrayList<NoticeVO> noticeSearch = new NoticeService().noticeSearch(search,cate);
 
-
+		System.out.println("noticeSearch:::::::::::" + noticeSearch);
 		String page = " ";
 		
 		if(noticeSearch !=null) {
 			
-			request.setAttribute("noticeSearch", noticeSearch);
+			request.setAttribute("Noticelist", noticeSearch);
 			request.setAttribute("search", search);
 			request.setAttribute("cate", cate);
 			
 			page = "views/admin/ManagerNotice.jsp";
 			
 			
+			request.getRequestDispatcher(page).forward(request, response);
 		}else {
 			
 			
 		}
-
-
-
-
-
-
 	}
 
 	/**

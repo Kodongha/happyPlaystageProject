@@ -200,7 +200,7 @@ public class NoticeDao {
 		Statement stmt = null;
 		ResultSet  rset = null;
 		ArrayList<NoticeVO> noticeSearch = null;
-
+		
 
 		String query = prop.getProperty("noticeAllSearch");
 
@@ -211,6 +211,7 @@ public class NoticeDao {
 			rset = stmt.executeQuery(query);
 
 			noticeSearch = new ArrayList<NoticeVO>();
+
 
 			while(rset.next()) {
 
@@ -225,9 +226,9 @@ public class NoticeDao {
 				searchAllNotice.setNoticeWrDt(rset.getDate("NOTICE_WR_DT"));
 				searchAllNotice.setNoticeRemoveTf(rset.getString("NOTICE_REMOVE_TF"));
 
+				noticeSearch.add(searchAllNotice);
 
 			}
-
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -236,19 +237,146 @@ public class NoticeDao {
 			close(stmt);
 		}
 
-
 		return noticeSearch;
 	}
 
+	//카테고리만 검색
+	public  ArrayList<NoticeVO> searchCate(Connection con, String cate, String search) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<NoticeVO> noticeSearch = null;
+		
+		String query = prop.getProperty("searchCate");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, cate);
+			
+			rset = pstmt.executeQuery();
+			
+			noticeSearch = new ArrayList<NoticeVO>();
 
 
+			while(rset.next()) {
+
+				NoticeVO	searchAllNotice = new NoticeVO();
+
+
+				searchAllNotice.setNoticeSeq(rset.getInt("NOTICE_SEQ"));
+				searchAllNotice.setNoticeCate(rset.getString("NOTICE_CATE"));
+				searchAllNotice.setNoticeTitile(rset.getString("NOTICE_TITLE"));
+				searchAllNotice.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+				searchAllNotice.setUserSeq(rset.getInt("USER_SEQ"));
+				searchAllNotice.setNoticeWrDt(rset.getDate("NOTICE_WR_DT"));
+				searchAllNotice.setNoticeRemoveTf(rset.getString("NOTICE_REMOVE_TF"));
+
+				noticeSearch.add(searchAllNotice);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return noticeSearch;
+	}
+	
+	//내용으로만 검색
+	public ArrayList<NoticeVO> searchValue(Connection con, String cate, String search) {
+		System.out.println("내용검색");
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<NoticeVO> noticeSearch = null;
+		
+		String query = prop.getProperty("searchValue");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, search);
+			
+			rset = pstmt.executeQuery();
+			
+			noticeSearch = new ArrayList<NoticeVO>();
+
+
+			while(rset.next()) {
+
+				NoticeVO searchAllNotice = new NoticeVO();
+
+
+				searchAllNotice.setNoticeSeq(rset.getInt("NOTICE_SEQ"));
+				searchAllNotice.setNoticeCate(rset.getString("NOTICE_CATE"));
+				searchAllNotice.setNoticeTitile(rset.getString("NOTICE_TITLE"));
+				searchAllNotice.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+				searchAllNotice.setUserSeq(rset.getInt("USER_SEQ"));
+				searchAllNotice.setNoticeWrDt(rset.getDate("NOTICE_WR_DT"));
+				searchAllNotice.setNoticeRemoveTf(rset.getString("NOTICE_REMOVE_TF"));
+
+				noticeSearch.add(searchAllNotice);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return noticeSearch;
+	}
+	
+	//둘다인경우
+	public ArrayList<NoticeVO> searchTwo(Connection con, String cate, String search) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<NoticeVO> noticeSearch = null;
+		
+		String query = prop.getProperty("searchTwo");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, search);
+			pstmt.setString(2, cate);
+			
+			rset = pstmt.executeQuery();
+			
+			noticeSearch = new ArrayList<NoticeVO>();
+
+
+			while(rset.next()) {
+
+				NoticeVO searchAllNotice = new NoticeVO();
+
+
+				searchAllNotice.setNoticeSeq(rset.getInt("NOTICE_SEQ"));
+				searchAllNotice.setNoticeCate(rset.getString("NOTICE_CATE"));
+				searchAllNotice.setNoticeTitile(rset.getString("NOTICE_TITLE"));
+				searchAllNotice.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+				searchAllNotice.setUserSeq(rset.getInt("USER_SEQ"));
+				searchAllNotice.setNoticeWrDt(rset.getDate("NOTICE_WR_DT"));
+				searchAllNotice.setNoticeRemoveTf(rset.getString("NOTICE_REMOVE_TF"));
+
+				noticeSearch.add(searchAllNotice);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return noticeSearch;
+	}
 }
-
-
-
-
-
-
 
 
 

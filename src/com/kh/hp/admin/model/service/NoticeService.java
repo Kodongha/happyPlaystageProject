@@ -86,63 +86,38 @@ public class NoticeService {
 
 	//공지사항 검색 (전체검색만)
 	public ArrayList<NoticeVO> noticeSearch(String search, String cate) {
+		System.out.println("전체검색공지사항 들어왔나요");
+
 		Connection con = getConnection();
 		ArrayList<NoticeVO> noticeSearch  = null; 
-		
-		
 
-		if(cate.equals("선택")) {
-		 noticeSearch = new  NoticeDao().searchAllNotice(con, cate, search);
-			
-			
-		}
+		if (cate != null && search.equals("")) {	
 
-
-		return noticeSearch;
-	}
-}
-
-	//공지사항검색
-	/*
-	public ArrayList<NoticeVO> noticeSearch(String search, String cate) {	
-
-		System.out.println("공지사항 검색에 들어왔나요 ???");
-		Connection con = getConnection();
-
-		ArrayList<NoticeVO> noticeSearch = null;
-
-		//공지유무만 검색
-		if (cate != null && search.equals("")) {
-			System.out.println("카테고리만 지정");
-
-			//공지유무중에서도 선택으로 되어있느경우 
 			if(cate.equals("선택")) {
 				noticeSearch = new  NoticeDao().searchAllNotice(con, cate, search);
-
-				//공지유무에서 선택이 아닌 경우 
-				//			}else {
-				//				noticeSearch = NoticeDao.searchCate(con, cate, search);
-				//			}
-
-				//검색과, 공지유무 둘다 
-			}/* else if (cate != null && search != null) {
-			System.out.println("둘다 값이 있음");
-
-
-			//검색으로만 검색 
-			if(cate.equals("선택")) {
-				noticeSearch = NoticeDao.searchOnlyValue(con, cate, search);
-
-
-				//검색과, 공지유무 둘다 
-			} else {
-				noticeSearch = NoticeDao.searchTwo(con, cate, search);
+				//카테고리만 검색
+			}else {
+				noticeSearch = new NoticeDao().searchCate(con, cate, search);
 			}
 
-		}		
-			return noticeSearch;
-		}	}
-	 */
+
+		}else if (cate != null && search != null) {
+			//내용으로만검
+			if(cate.equals("선택")) {
+
+				noticeSearch = new NoticeDao().searchValue(con, cate, search);
 
 
+				//검색과, 공지유무 둘다
+			} else {
+				noticeSearch = new NoticeDao().searchTwo(con, cate, search);
+				
+			}
+
+
+		}
+
+		return noticeSearch;
+	}	
+}
 

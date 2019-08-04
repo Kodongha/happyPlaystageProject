@@ -53,7 +53,7 @@
 
 .btn-default1 {
 	margin-left: 900px;
-	margin-top:-55px;
+	margin-top: -55px;
 }
 </style>
 
@@ -124,16 +124,22 @@
 						<div class="col-sm-10">
 							<div class="col-sm-2" id="select" style="width: 150px;">
 								<select class="form-control" id="inspTf">
-									 <%
+									<%
 										if (DetailInspectionVOList.get(0).getInspTf().equals('Y')) {
 									%>
-									<option>검수대기</option>
+									<option>검수요청</option>
+									<option>검수거절</option>
 									<option selected="selected">검수완료</option>
+									<% }else if (DetailInspectionVOList.get(0).getInspTf().equals('F')) {%>
+									<option>검수요청</option>
+									<option>검수완료</option>
+									<option selected="selected">검수거절</option>
 									<%
 										} else {
 									%>
 									<option selected="selected">검수대기</option>
 									<option>검수완료</option>
+									<option>검수거절</option>
 									<%
 										}
 									%>
@@ -146,30 +152,46 @@
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="mainimg">대표이미지</label>
 						<div class="col-sm-10">
-						<img alt="" src="<%=request.getContextPath() %>/images/profilePhotos/<%=mainImg[0] %>"  width="500px" height="400px">
+							<img alt=""
+								src="<%=request.getContextPath() %>/images/profilePhotos/<%=mainImg[0] %>"
+								width="500px" height="400px">
 						</div>
 					</div>
-					<br><br><br><br>
+					<br>
+					<br>
+					<br>
+					<br>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="img">내부이미지</label>
 						<div class="col-sm-10">
-						<%for(int i=1; i<mainImg.length; i++){ %>
-						<img alt="" src="<%=request.getContextPath() %>/images/profilePhotos/<%=mainImg[i] %>"  width="500px" height="400px">
-						<%} %>
+							<%for(int i=1; i<mainImg.length; i++){ %>
+							<img alt=""
+								src="<%=request.getContextPath() %>/images/profilePhotos/<%=mainImg[i] %>"
+								width="500px" height="400px">
+							<%} %>
 						</div>
 					</div>
-					<br><br><br><br>
+					<br>
+					<br>
+					<br>
+					<br>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="Registration">공연장등록증</label>
 						<div class="col-sm-10">
-						<input type="button" onclick="location.href='<%=request.getContextPath()%>/download.tn?rentSeq=<%=rentSeq %>'" value="다운로드">
+							<input type="button"
+								onclick="location.href='<%=request.getContextPath()%>/download.tn?rentSeq=<%=rentSeq %>'"
+								value="다운로드">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="button" 	onclick="location.href='<%=request.getContextPath()%>/updateInpection.ad?rentSeq=<%=rentSeq %>'" class="btn btn-default">검수완료</button>
+							<button type="button"
+								onclick="location.href='<%=request.getContextPath()%>/updateInpection.ad?rentSeq=<%=rentSeq %>'"
+								class="btn btn-default">검수완료</button>
 							<br>
-							<button type="button" 	onclick="location.href='<%=request.getContextPath()%>/refuseInpection.ad?rentSeq=<%=rentSeq %>'" class="btn btn-default1">거절</button>
+							<button type="button"
+								onclick="location.href='<%=request.getContextPath()%>/refuseInpection.ad?rentSeq=<%=rentSeq %>'"
+								class="btn btn-default1">거절</button>
 						</div>
 					</div>
 				</form>

@@ -174,24 +174,28 @@ int endPage = pi.getEndPage();
 	margin-left: 330px;
 	margin-top: 40px;
 }
-.pagingArea{
-margin-top: -100px;
-margin-left: 600px;
+
+.pagingArea {
+	margin-top: -100px;
+	margin-left: 600px;
 }
-#attachTd:hover{
+
+#attachTd:hover {
 	font-weight: bold;
-	cursor:pointer;
+	cursor: pointer;
 }
-tbody > tr:hover{
-	background:#e6f2ff;
+
+tbody>tr:hover {
+	background: #e6f2ff;
 }
-tbody > tr:active{
-	background:#cce6ff;
+
+tbody>tr:active {
+	background: #cce6ff;
 }
 </style>
 
 <script type="text/javascript">
-
+	
 </script>
 
 </head>
@@ -234,7 +238,8 @@ tbody > tr:active{
 				<div class="col-sm-2">
 					<select class="form-control" id="select1">
 						<option>선택</option>
-						<option>검수대기</option>
+						<option>검수요청</option>
+						<option>검수거절</option>
 						<option>검수완료</option>
 					</select>
 				</div>
@@ -249,8 +254,7 @@ tbody > tr:active{
 				</div>
 			</div>
 
-			<br>
-			<br>
+			<br> <br>
 			<div class="container">
 
 				<table class="table">
@@ -269,7 +273,8 @@ tbody > tr:active{
 					</thead>
 					<tbody>
 						<tr>
-						<tr onclick="location.href='<%=request.getContextPath()%>/detailInspection.ad?rentSeq=<%=InspectionList.getRentSeq() %>'">
+						<tr
+							onclick="location.href='<%=request.getContextPath()%>/detailInspection.ad?rentSeq=<%=InspectionList.getRentSeq() %>'">
 							<td><%=InspectionList.getRentSeq() %></td>
 							<td><%=InspectionList.getHallNm() %></td>
 							<td><%=InspectionList.getRentEmail() %></td>
@@ -278,45 +283,52 @@ tbody > tr:active{
 
 							<% if(InspectionList.getInspTf().equals("Y")){%>
 							<td>검수완료</td>
-							<%} else {%>
-								<td>검수대기</td>
-							<%} %>
-							</tr>
+							<%} else if (InspectionList.getInspTf().equals("F")) {%>
+							<td>검수거절</td>
+							<%}else{ %>
+							<td>검수요청</td>
 							<% } %>
+						</tr>
+						<% } %>
 					</tbody>
 				</table>
 			</div>
 		</div>
 
 	</div>
-	<div class="pagingArea">
-			<button onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=1'"><<</button>
+	<%-- <div class="pagingArea">
+		<button
+			onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=1'"><<</button>
 
-			<% if(currentPage <= 1){ %>
-			<button disabled><</button>
-			<% }else { %>
-			<button onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=<%=currentPage - 1%>'"><</button>
-			<% } %>
+		<% if(currentPage <= 1){ %>
+		<button disabled><</button>
+		<% }else { %>
+		<button
+			onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=<%=currentPage - 1%>'"><</button>
+		<% } %>
 
-			<% for(int p = startPage; p <= endPage; p++){
+		<% for(int p = startPage; p <= endPage; p++){
 				if(currentPage == p){
 			%>
-					<button disabled><%= p %></button>
-			<% } else { %>
-					<button onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=<%=p%>'"><%= p %></button>
-			<%
+		<button disabled><%= p %></button>
+		<% } else { %>
+		<button
+			onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=<%=p%>'"><%= p %></button>
+		<%
 				}
 			   }
 			%>
 
-			<% if(currentPage >= maxPage){ %>
-			<button disabled>></button>
-			<% }else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=<%=currentPage + 1%>'">></button>
-			<% } %>
+		<% if(currentPage >= maxPage){ %>
+		<button disabled>></button>
+		<% }else{ %>
+		<button
+			onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=<%=currentPage + 1%>'">></button>
+		<% } %>
 
-			<button onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=<%=maxPage%>'">>></button>
-		</div>
+		<button
+			onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=<%=maxPage%>'">>></button>
+	</div> --%>
 	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

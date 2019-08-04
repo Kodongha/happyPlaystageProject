@@ -175,14 +175,12 @@ tboydy>tr:active {
 		<div id="line"></div>
 		<br>
 
-		<form action="<%=request.getContextPath()%>/selectNotice.ad"
-			method="get" id="userSearchForm">
+		<form action="<%=request.getContextPath()%>/noticeSearch.ad" method="get">
 			<div id="area">
 				<div id="users1">
 					<label id="userno">검색</label>
 					<div id="input">
-						<input class="form-control" id="userNm" name="userNm" type="text"
-							style="width: 250px;">
+						<input class="form-control"  name="search" type="text" style="width: 250px;">
 					</div>
 				</div>
 
@@ -200,8 +198,7 @@ tboydy>tr:active {
 
 					<div id="users5">
 						<div class="col-sm-2" id="select">
-							<select class="form-control" id="leaveTf" name="leaveTf"
-								style="width: 100px">
+							<select class="form-control" id="noticeCate" name="cate" style="width: 100px">
 								<option>선택</option>
 								<option>안내</option>
 								<option>중요</option>
@@ -213,38 +210,43 @@ tboydy>tr:active {
 				</div>
 			</div>
 		</form>
+		
 		<br> <br>
-		<div class="container">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>구분</th>
-						<th>제목</th>
-						<th>작성일</th>
-					</tr>
-					<%
-						for (NoticeVO Notice : Noticelist) {
-					%>
-				</thead>
-				<tbody>
-					<tr
-						onclick="location.href='<%=request.getContextPath()%>/detailNotice.ad?noticeSeq=<%=Notice.getNoticeSeq()%>'">
-						<td><%=Notice.getNoticeSeq()%></td>
-						<td><%=Notice.getNoticeCate()%></td>
-						<td><%=Notice.getNoticeTitile()%></td>
-						<td><%=Notice.getNoticeWrDt()%></td>
-					</tr>
-					<%
-						}
-					%>
-				</tbody>
-			</table>
+		<form action="<%=request.getContextPath()%>/selectNotice.ad"
+			method="get" id="userSearchForm">
+			<div class="container">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>구분</th>
+							<th>제목</th>
+							<th>작성일</th>
+						</tr>
+						<%
+							for (NoticeVO Notice : Noticelist) {
+						%>
+					</thead>
+					<tbody>
+						<tr
+							onclick="location.href='<%=request.getContextPath()%>/detailNotice.ad?noticeSeq=<%=Notice.getNoticeSeq()%>'">
+							<td><%=Notice.getNoticeSeq()%></td>
+							<td><%=Notice.getNoticeCate()%></td>
+							<td><%=Notice.getNoticeTitile()%></td>
+							<td><%=Notice.getNoticeWrDt()%></td>
+						</tr>
+						<%
+							}
+						%>
+					</tbody>
+				</table>
+				</div>
+		</form>
+		<button type="button" class="btn btn-warning" id="writebutton"
+			onclick="location.href='<%=request.getContextPath()%>/views/admin/10_noticeWirte.jsp'">등록</button>
 
-			<button type="button" class="btn btn-warning" id="writebutton"
-				onclick="location.href='<%=request.getContextPath()%>/views/admin/10_noticeWirte.jsp'">등록</button>
-		</div>
+	</div>
 
-		<jsp:include page="/views/common/footer.jsp" />
+	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

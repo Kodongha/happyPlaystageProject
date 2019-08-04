@@ -1,6 +1,8 @@
 package com.kh.hp.admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,21 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.hp.admin.model.service.NoticeService;
-import com.kh.hp.admin.model.service.UpdateOneUserService;
+import com.kh.hp.admin.model.service.SearchUserService;
 import com.kh.hp.admin.model.vo.NoticeVO;
-import com.kh.hp.admin.model.vo.UpdateUserVO;
+import com.kh.hp.admin.model.vo.User;
 
 /**
- * Servlet implementation class UpdateNoticeServlet
+ * Servlet implementation class NoticeSearchServlet
  */
-@WebServlet("/updateNotice.ad")
-public class UpdateNoticeServlet extends HttpServlet {
+@WebServlet("/noticeSearch.ad")
+public class NoticeSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UpdateNoticeServlet() {
+	public NoticeSearchServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -32,43 +34,40 @@ public class UpdateNoticeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		System.out.println("공지사항 검색영역으로 들어왔니?");
 
-		System.out.println("공지사항 업데이트서블릿입니다 ");
+		String search = request.getParameter("search");
+		String cate  = request.getParameter("cate");
 
-		int noticeSeq = Integer.parseInt(request.getParameter("noticeSeq"));
-		String noticeCate  =request.getParameter("noticeCate");
-		String noticeTitile = request.getParameter("noticeTitle");
-		String noticeContent =request.getParameter("noticeContent");
-
-	
-
-		NoticeVO updateNotice = new NoticeVO ();
-
-
-		updateNotice.setNoticeSeq(noticeSeq);
-		updateNotice.setNoticeCate(noticeCate);
-		updateNotice.setNoticeTitile(noticeTitile);
-		updateNotice.setNoticeContent(noticeContent);
+		System.out.println("noticeSearch:::" + search);
+		System.out.println("noticeCate:::" + cate);
 		
-		int result = new NoticeService().updateNotice(updateNotice);
 		
-		String page = "";
+		ArrayList<NoticeVO> noticeSearch = new NoticeService().noticeSearch(search,cate);
 
-	if(result > 0) {
+
+		String page = " ";
+		
+		if(noticeSearch !=null) {
 			
-			request.getRequestDispatcher("/SelectNotice").forward(request, response);
-		
+			request.setAttribute("noticeSearch", noticeSearch);
+			request.setAttribute("search", search);
+			request.setAttribute("cate", cate);
+			
+			page = "views/admin/ManagerNotice.jsp";
+			
+			
 		}else {
-		
-			page = "views/main/main.jsp";
-
+			
+			
 		}
+
+
+
+
+
+
 	}
-
-
-
-
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

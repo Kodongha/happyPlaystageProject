@@ -8,11 +8,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import com.kh.hp.admin.model.vo.NoticeVO;
 import com.kh.hp.admin.model.vo.User;
+import com.kh.hp.serviceCenter.model.vo.FaQVO;
 
 public class NoticeDao {
 
@@ -145,20 +148,101 @@ public class NoticeDao {
 			close(pstmt);
 		}
 
-	
+
 
 
 
 		return result;
 	}
 
+	//공지사항 수정
+	public int updateNotice(Connection con, NoticeVO updateNotice) {
 
-	
+
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("updateNotice");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			pstmt.setString(1, updateNotice.getNoticeCate());
+			pstmt.setString(2, updateNotice.getNoticeTitile());
+			pstmt.setString(3, updateNotice.getNoticeContent());
+			pstmt.setInt(4, updateNotice.getNoticeSeq());
+
+			result = pstmt.executeUpdate();
+
+
+
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+
+		System.out.println("공지사항 업데이트 결과 :::::" + result);
+		return result;
+	}
+
+	/**
+	 * 
+	 * 전체 검색 하는 메소드
+	 * @param con
+	 * @param cate
+	 * @param search
+	 * @return
+	 */
+	public  ArrayList<NoticeVO> searchAllNotice(Connection con, String cate, String search) {
+		Statement stmt = null;
+		ResultSet  rset = null;
+		ArrayList<NoticeVO> noticeSearch = null;
+
+
+		String query = prop.getProperty("noticeAllSearch");
+
+
+		try {
+			stmt = con.createStatement();
+
+			rset = stmt.executeQuery(query);
+
+			noticeSearch = new ArrayList<NoticeVO>();
+
+			while(rset.next()) {
+
+				NoticeVO	searchAllNotice = new NoticeVO();
+
+
+				searchAllNotice.setNoticeSeq(rset.getInt("NOTICE_SEQ"));
+				searchAllNotice.setNoticeCate(rset.getString("NOTICE_CATE"));
+				searchAllNotice.setNoticeTitile(rset.getString("NOTICE_TITLE"));
+				searchAllNotice.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+				searchAllNotice.setUserSeq(rset.getInt("USER_SEQ"));
+				searchAllNotice.setNoticeWrDt(rset.getDate("NOTICE_WR_DT"));
+				searchAllNotice.setNoticeRemoveTf(rset.getString("NOTICE_REMOVE_TF"));
+
+
+			}
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+
+
+		return noticeSearch;
+	}
+
+
 
 }
-
-
-
 
 
 

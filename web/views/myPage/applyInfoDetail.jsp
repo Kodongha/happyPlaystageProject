@@ -141,32 +141,43 @@ div {
    <br><br>
    <!-- <table style="width:790px; height:113px; text-align:center; margin:auto; border-collapse: collapse;"> -->
    <div class="container">
-      <table class="table table-striped">
-         <tr>
-         <td>예약자명</td>
-         <td>예약자 연락처</td>
-         <td>예약자 이메일</td>
-         <td>신청일</td>
-         <td>예약공간</td>
-         <td>예약인원</td>
-         <td>요청사항</td>
-         </tr>
-         <tr>
-         	<td id="tab2"><%= list.get(0).getPropNm() %></td>
-         	<td id="tab2"><%= list.get(0).getPropPhone() %></td>
-         	<td id="tab2"><%= list.get(0).getPropEmail() %></td>
-            <td id="tab2"><%= list.get(0).getPropDt() %></td>
-            <td id="tab2"><%= list.get(0).getHallNm() %></td>
-            <td id="tab2"><%= list.get(0).getPropHeadCount() %></td>
-            <td id="tab2"><%= list.get(0).getPropReqContent() %></td>
-         </tr>
-      </table>
-   </div>
+		<table class="table" style="text-align: center">
+			<tr>
+				<td>예약자명</td>
+				<td id="tab2"><%=list.get(0).getPropNm()%></td>
+			</tr>
+			<tr>
+				<td>예약자 연락처</td>
+				<td id="tab2"><%=list.get(0).getPropPhone()%></td>
+			</tr>
+			<tr>
+				<td>예약자 이메일</td>
+				<td id="tab2"><%=list.get(0).getPropEmail()%></td>
+			</tr>
+			<tr>
+				<td>신청일</td>
+				<td id="tab2"><%=list.get(0).getPropDt()%></td>
+			</tr>
+			<tr>
+				<td>예약공간</td>
+				<td id="tab2"><%=list.get(0).getHallNm()%></td>
+			</tr>
+			<tr>
+				<td>예약인원</td>
+				<td id="tab2"><%=list.get(0).getPropHeadCount()%></td>
+			</tr>
+			<tr>
+				<td>요청사항</td>
+				<td id="tab2"><%=list.get(0).getPropReqContent()%></td>
+			</tr>
+		</table>
+	</div>
+	
    <hr>
    
    <div class="container">
       <div class="form-group">
-         <h1><%=rentBasicVO.getHallNm() %></h1>
+         <h1><%=rentBasicVO.getHallNm()%></h1>
          <h3 style="margin-bottom: 0%">
             <%=rentBasicVO.getHallSimIntro() %><br>
          </h3>

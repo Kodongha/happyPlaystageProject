@@ -321,9 +321,8 @@ public class AhnMyPageService {
 		int result = 0;
 		
 		int result1 = new AhnMyPageDao().payRefundInsert(con, userInfo, propSeq);
-		int result2 = new AhnMyPageDao().applyChange(con, userInfo, propSeq);
 		
-		if(result1 > 0 && result2 > 0) {
+		if(result1 > 0) {
 			commit(con);
 			result = 1;
 		}else {
@@ -332,6 +331,23 @@ public class AhnMyPageService {
 		
 		return result;
 		
+	}
+
+	public int applyInfoChangeInsert(int userInfo, int propSeq) {
+		Connection con = getConnection();
+		System.out.println("insertImage in!!!");
+		int result = 0;
+		
+		int result1 = new AhnMyPageDao().applyChange(con, userInfo, propSeq);
+		
+		if(result1 > 0) {
+			commit(con);
+			result = 1;
+		}else {
+			rollback(con);
+		}
+		
+		return result;
 	}
 
 	

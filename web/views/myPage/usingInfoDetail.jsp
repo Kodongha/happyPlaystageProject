@@ -141,25 +141,34 @@ div {
    <br><br>
    <!-- <table style="width:790px; height:113px; text-align:center; margin:auto; border-collapse: collapse;"> -->
    <div class="container">
-      <table class="table table-striped">
-         <tr>
-         <td>사용자명</td>
-         <td>사용자 연락처</td>
-         <td>사용자 이메일</td>
-         <td>사용일</td>
-         <td>사용공간</td>
-         <td>사용인원</td>
-         </tr>
-         <tr>
-         	<td id="tab2"><%= list.get(0).getPropNm() %></td>
-         	<td id="tab2"><%= list.get(0).getPropPhone() %></td>
-         	<td id="tab2"><%= list.get(0).getPropEmail() %></td>
-            <td id="tab2"><%= list.get(0).getUseStartDt() %> ~ <%= list.get(0).getUseEndDt() %></td>
-            <td id="tab2"><%= list.get(0).getHallNm() %></td>
-            <td id="tab2"><%= list.get(0).getPropHeadCount() %></td>
-         </tr>
-      </table>
-   </div>
+		<table class="table" style="text-align: center">
+			<tr>
+				<td>사용자명</td>
+				<td id="tab2"><%= list.get(0).getPropNm() %></td>
+			</tr>
+			<tr>
+				<td>사용자 연락처</td>
+				<td id="tab2"><%= list.get(0).getPropPhone() %></td>
+			</tr>
+			<tr>
+				<td>사용자 이메일</td>
+				<td id="tab2"><%= list.get(0).getPropEmail() %></td>
+			</tr>
+			<tr>
+				<td>사용일</td>
+				 <td id="tab2"><%= list.get(0).getUseStartDt() %> ~ <%= list.get(0).getUseEndDt() %></td>
+			</tr>
+			<tr>
+				<td>사용공간</td>
+				<td id="tab2"><%= list.get(0).getHallNm() %></td>
+			</tr>
+			<tr>
+				<td>사용인원</td>
+				<td id="tab2"><%= list.get(0).getPropHeadCount() %></td>
+			</tr>
+		</table>
+	</div>
+   
    <hr>
    
    <div class="container">

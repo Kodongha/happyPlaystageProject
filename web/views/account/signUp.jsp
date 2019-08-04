@@ -262,22 +262,34 @@ table {
 		</div>
 
 	</form>
- 	<script type='text/javascript'>
 
-        // 사용할 앱의 JavaScript 키를 설정해 주세요.
-        Kakao.init('d371ecdcb455e35b072949c209feab4b');
-        // 카카오 로그인 버튼을 생성합니다.
-        Kakao.Auth.createLoginButton({
-          container: '#kakao-login-btn',
-          success: function(authObj) {
-            alert(JSON.stringify(authObj));
-          },
-          fail: function(err) {
-             alert(JSON.stringify(err));
-          }
-        });
+ 	<!-- 카카오 로그인 -->
+	<script type='text/javascript'>
+		// javascript 키 설정
+		Kakao.init('4117d1600d82887109d2f11f520fe6ee');
 
-    </script>
+		// 카카오 로그인 버튼 생성
+		Kakao.Auth.createLoginButton({
+			container: '#kakao-login-btn',
+			success: function(authObj) {
+				Kakao.API.request({
+					url: '/v1/user/me',
+
+					success: function(res) {
+						console.log(authObj);
+						console.log(res);
+					}
+				})
+				//location.href = 'https://kauth.kakao.com/oauth/token';
+				location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=ea861fadd8d5b486bbcd4ae127c3404d&redirect_uri=http://localhost:8001/happyPlaystage/kakaoLogin.acc&response_type=code';
+
+			},
+			fail: function(err) {
+				alert(JSON.stringify(err));
+			}
+		});
+	</script>
+
 	<jsp:include page="/views/common/footer.jsp" />
 
 </body>

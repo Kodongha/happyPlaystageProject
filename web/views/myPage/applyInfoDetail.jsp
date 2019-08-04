@@ -56,11 +56,11 @@
 div {
       margin:auto;
    }
-   /* 
+   /*
    thead tr {
     background-color: gray;
-  
-  } 
+
+  }
   td {
     border: 1px solid lightgray;
   }
@@ -69,7 +69,7 @@ div {
      margin-left:auto;
      margin-right:auto;
   }
-  /* 
+  /*
   tbody tr:nth-child(1) {
     background-color: #b4b4b4;
   }
@@ -108,8 +108,8 @@ div {
      width: auto;
      height: auto;
    }
-   
-   
+
+
 </style>
 
 <script type="text/javascript">
@@ -137,7 +137,7 @@ div {
    <div class="thumb-crop">
       <img class="auto" src="<%=request.getContextPath() %>/images/profilePhotos/<%=rentImgVOList.get(0).getChangeNm() %>" alt="<%=rentImgVOList.get(0).getOriginNm() %>">
    </div>
-   
+
    <br><br>
    <!-- <table style="width:790px; height:113px; text-align:center; margin:auto; border-collapse: collapse;"> -->
    <div class="container">
@@ -170,11 +170,14 @@ div {
 				<td>요청사항</td>
 				<td id="tab2"><%=list.get(0).getPropReqContent()%></td>
 			</tr>
+			<tr>
+				<td>가격</td>
+			</tr>
 		</table>
 	</div>
-	
+
    <hr>
-   
+
    <div class="container">
       <div class="form-group">
          <h1><%=rentBasicVO.getHallNm()%></h1>
@@ -376,8 +379,8 @@ div {
 
 		</div>
 	</div>
-	
-	
+
+
 	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

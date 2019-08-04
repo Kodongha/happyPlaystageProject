@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.google.gson.Gson;
 import com.kh.hp.account.model.vo.UserVO;
 import com.kh.hp.common.MyFileRenamePolicy;
 import com.kh.hp.myPage.model.service.MyPageService_mh;
@@ -66,6 +67,13 @@ public class ChangePhotoServlet extends HttpServlet {
 			System.out.println(imgOriginFile);
 
 			int result = new MyPageService_mh().changeProfilePhoto(userImgVO);
+
+			if(result > 0) {
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				new Gson().toJson(result, response.getWriter());
+			}
+
 
 		} // end if
 

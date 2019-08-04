@@ -96,57 +96,57 @@
 
     <!-- 은행명 -->
     <div class="form-group" style="width: 50%; display: inline; float: left;">
-		<label class="necessary">*</label><label for="bankNm">은행명</label> <br>
-		<br>
-		<select class="form-control" name="bankNm" id="bankNm" style="width: 400px;">
-       		<option value=''>선택하세요
-			<option value='003'>기업은행
-			<option value='004' selected="selected" >국민은행
-			<option value='011'>농협중앙회
-			<option value='012'>단위농협
-			<option value='020'>우리은행
-			<option value='031'>대구은행
-			<option value='005'>외환은행
-			<option value='023'>SC제일은행
-			<option value='032'>부산은행
-			<option value='045'>새마을금고
-			<option value='027'>한국씨티은행
-			<option value='034'>광주은행
-			<option value='039'>경남은행
-			<option value='007'>수협
-			<option value='048'>신협
-			<option value='037'>전북은행
-			<option value='035'>제주은행
-			<option value='064'>산림조합
-			<option value='071'>우체국
-			<option value='081'>하나은행
-			<option value='088'>신한은행
-			<option value='209'>동양종금증권
-			<option value='243'>한국투자증권
-			<option value='240'>삼성증권
-			<option value='230'>미래에셋
-			<option value='247'>우리투자증권
-			<option value='218'>현대증권
-			<option value='266'>SK증권
-			<option value='278'>신한금융투자
-			<option value='262'>하이증권
-			<option value='263'>HMC증권
-			<option value='267'>대신증권
-			<option value='270'>하나대투증권
-			<option value='279'>동부증권
-			<option value='280'>유진증권
-			<option value='287'>메리츠증권
-			<option value='291'>신영증권
-			<option value='238'>대우증권
-		</select>
-	</div>
+      <label class="necessary">*</label><label for="bankNm">은행명</label> <br>
+      <br>
+      <select class="form-control" name="bankNm" id="bankNm" style="width: 400px;">
+             <option value=''>선택하세요
+         <option value='003'>기업은행
+         <option value='004' selected="selected" >국민은행
+         <option value='011'>농협중앙회
+         <option value='012'>단위농협
+         <option value='020'>우리은행
+         <option value='031'>대구은행
+         <option value='005'>외환은행
+         <option value='023'>SC제일은행
+         <option value='032'>부산은행
+         <option value='045'>새마을금고
+         <option value='027'>한국씨티은행
+         <option value='034'>광주은행
+         <option value='039'>경남은행
+         <option value='007'>수협
+         <option value='048'>신협
+         <option value='037'>전북은행
+         <option value='035'>제주은행
+         <option value='064'>산림조합
+         <option value='071'>우체국
+         <option value='081'>하나은행
+         <option value='088'>신한은행
+         <option value='209'>동양종금증권
+         <option value='243'>한국투자증권
+         <option value='240'>삼성증권
+         <option value='230'>미래에셋
+         <option value='247'>우리투자증권
+         <option value='218'>현대증권
+         <option value='266'>SK증권
+         <option value='278'>신한금융투자
+         <option value='262'>하이증권
+         <option value='263'>HMC증권
+         <option value='267'>대신증권
+         <option value='270'>하나대투증권
+         <option value='279'>동부증권
+         <option value='280'>유진증권
+         <option value='287'>메리츠증권
+         <option value='291'>신영증권
+         <option value='238'>대우증권
+      </select>
+   </div>
 
     <div class="form-group" style="width: 50%; display: inline; float: right;">
       <label class="necessary">*</label><label for="accNo">계좌번호</label> <br><br>
       <input name="accNo" id="accNo" type="text" class="form-control" placeholder="계좌번호" style="width: 400px" value="1234567890123456">
     </div>
 
-	<br clear="all"><br><br>
+   <br clear="all"><br><br>
 
     <div class="form-group" style="width: 50%; display: inline; float: left;">
       <label class="necessary">*</label><label for="accHolder">예금주</label> <br><br>
@@ -159,11 +159,11 @@
       <h5>* 계좌 인증을 위해 생년월일을 입력 받고 있습니다.</h5>
     </div>
 
-	<div id="accDiv">
-		<input type="hidden" id="access_token">
-		<input type="hidden" id="user_seq_no">
+   <div id="accDiv">
+      <input type="hidden" id="access_token">
+      <input type="hidden" id="user_seq_no">
 
-	</div>
+   </div>
 
 
     <br clear="all"><br><br>
@@ -174,27 +174,34 @@
       <label class="radio-inline"><input type="radio" id="refundType1" name="rentRefundTypeSeq" value="1" checked>유형 1</label>
       <label class="radio-inline"><input type="radio" id="refundType2" name="rentRefundTypeSeq" value="2">유형 2</label>
       <label class="radio-inline"><input type="radio" id="refundType3" name="rentRefundTypeSeq" value="3">유형 3</label>
-      <label class="radio-inline"><input type="radio" id="refundType4" name="rentRefundTypeSeq" value="2">유형 4</label>
+      <label class="radio-inline"><input type="radio" id="refundType4" name="rentRefundTypeSeq" value="4">유형 4</label>
     </div>
     <br><br>
     <div class="container" id="refundDiv">
       <table class="table" id="refundTable">
+         <!-- 초기 화면에서 type 1을 보여준다 -->
         <%for(int i=0; i<refundTypeVOList.size(); i++){
-          if(refundTypeVOList.get(i).getRefundType() == 1){
-        %>
+          if(refundTypeVOList.get(i).getRefundType() == 1){%>
         <tr>
           <%switch(refundTypeVOList.get(i).getDtCd()) {
           case 1:%>
-          <td width="100px" align="center" id="123">이용 당일</td>
+          <td width="100px" align="center" id="123" style="font-weight: bold;">이용 당일</td>
           <%break;
           case 2:%>
-          <td width="100px" align="center">이용 전날</td>
+          <td width="100px" align="center" style="font-weight: bold;">이용 전날</td>
           <%break;
           default:%>
-          <td width="100px" align="center">이용 <%=refundTypeVOList.get(i).getDtCd() %>일 전</td>
+          <td width="100px" align="center" style="font-weight: bold;">이용 <%=refundTypeVOList.get(i).getDtCd() %>일 전</td>
           <%break;
           } // end switch %>
-          <td width="100px" align="center"><%=refundTypeVOList.get(i).getRefundDeductPer() %> %</td>
+
+          <%if(refundTypeVOList.get(i).getRefundDeductPer() == 0) {%>
+          <td width="100px" align="center" style="color: red; font-weight: bold"><%=refundTypeVOList.get(i).getRefundDeductPer() %> %</td>
+          <%} else if(refundTypeVOList.get(i).getRefundDeductPer() == 100){ %>
+          <td width="100px" align="center" style="color: black; font-weight: bold"><%=refundTypeVOList.get(i).getRefundDeductPer() %> %</td>
+        <%} else {%>
+          <td width="100px" align="center" style="color: blue; font-weight: bold"><%=refundTypeVOList.get(i).getRefundDeductPer() %> %</td>
+        <%} %>
         </tr>
         <%
           } // end if

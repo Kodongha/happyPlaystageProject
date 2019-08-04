@@ -39,7 +39,6 @@ body {
 	width: 100px;
 	height: 100px;
 	border-radius: 70px;
-	border: 1px solid red;
 }
 
 table {
@@ -96,15 +95,15 @@ input {
 	}
 
 	$(function(){
+		$('#fileArea').hide();
+
 		$('#changePhotoBtn').click(function(){
 
 			$('#profilePhoto').click();
 
 		});
 
-
 		$('#profilePhoto').change(function(){
-
 
 			var photoForm = $("#photoForm")[0];
 			var photoFormData = new FormData(photoForm);
@@ -120,6 +119,11 @@ input {
 				type: 'POST',
 				success: function(data){
 					console.log("succ");
+					if(data > 0){
+
+					} else {
+						alert("사진 변경에 실패하였습니다.");
+					}
 				},
 				error: function(error){
 					console.log("error");
@@ -141,7 +145,11 @@ input {
 	<div id="mainArea" align="center">
 	<br><br>
 	<div id="imgArea" algin="center">
-		<img id="profileImg">
+		<%if(mypageInfo.getChangeNm() == null || mypageInfo.getChangeNm().equals("")){%>
+		<img id="profileImg" src="images/myPage/person.png">
+		<%} else {%>
+		<img id="profileImg" src="<%=request.getContextPath() + "/images/myPage/myProfile/" + mypageInfo.getChangeNm()%>">
+		<%}%>
 	</div>
 	<br>
 	<button class="btn btn-default" id="changePhotoBtn">프로필 사진 변경</button>

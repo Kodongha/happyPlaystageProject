@@ -3,6 +3,12 @@
 <%
 	UserVO user = (UserVO) session.getAttribute("user");
 %>
+
+<%if(user == null){ %>
+
+<%}else if(user != null && user.getUserGradeCd() == 0) { %>
+
+<%} %>
 <!DOCTYPE html>
 	<!-- Header_Navigator -->
 	<nav class="navbar navbar-inverse">
@@ -16,7 +22,14 @@
 	      <!-- 대관 관련 -->
 	      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">대관<span class="caret"></span></a>
 	        <ul class="dropdown-menu">
-	          <li><a href="<%=request.getContextPath() %>/MoveRentEnroll.rt">대관 등록하기</a></li>
+	        <%if(user == null){ %>
+		          <li><a href="<%=request.getContextPath() %>/views/account/login.jsp">대관 등록하기</a></li>
+			<%}else if(user != null && user.getUserGradeCd() == 0) { %>
+		          <li><a href="<%=request.getContextPath() %>/MoveRentEnroll.rt">대관 등록하기</a></li>
+			<%} else {%>
+		          <li><a href="<%=request.getContextPath() %>/MoveRentEnroll.rt" onclick="javascript: return false;">대관 등록하기</a></li>
+          	<%} %>
+
 	          <li><a href="<%=request.getContextPath() %>/moveRentList.rt">대관 신청하기</a></li>
 	        </ul>
 	      </li>
@@ -25,7 +38,11 @@
 	      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">리뷰<span class="caret"></span></a>
 	        <ul class="dropdown-menu">
 	          <li><a href="<%=request.getContextPath() %>/reviewMain.acc">리뷰 보기</a></li>
-	          <li><a href="<%=request.getContextPath() %>/views/review/beforeriveiw.jsp">리뷰 등록하기</a></li>
+	          <%if(user == null){ %>
+		          <li><a href="<%=request.getContextPath() %>/views/account/login.jsp">대관 등록하기</a></li>
+			  <%} else {%>
+		          <li><a href="<%=request.getContextPath() %>/views/review/beforeriveiw.jsp">리뷰 등록하기</a></li>
+          	  <%} %>
 	        </ul>
 	      </li>
 
@@ -35,18 +52,21 @@
 	          <li><a href="<%=request.getContextPath() %>/notice.sc">공지사항</a></li>
 	          <li><a href="<%=request.getContextPath() %>/faq.sc">자주 묻는 질문</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/serviceCenter/introduce.jsp">회사 소개</a></li>
-	          <li><a href="<%=request.getContextPath() %>/moveRealtimeQnA.sc">1:1 문의</a></li>
+	          <%if(user == null){ %>
+	          	<li><a href="<%=request.getContextPath() %>/views/account/login.jsp">1:1 문의</a></li>
+			  <%} else {%>
+	          	<li><a href="<%=request.getContextPath() %>/moveRealtimeQnA.sc">1:1 문의</a></li>
+          	  <%} %>
+
 	          <li><a href="<%=request.getContextPath() %>/views/serviceCenter/terms.jsp">약관 및 개인정보 보호</a></li>
 	        </ul>
 	      </li>
-
-
 
 		  <!-- 관리자 관련 -->
 		  <%if(user != null && user.getUserGradeCd() == 0){ %>
 	      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">관리자<span class="caret"></span></a>
 	        <ul class="dropdown-menu">
-	          <li><a href="<%=request.getContextPath() %>/searchUser.ad?userSeq1=&userSeq2=&userNm=&userGradeCd=선택&leaveTf=선택">회원 관리</a></li> 
+	          <li><a href="<%=request.getContextPath() %>/searchUser.ad?userSeq1=&userSeq2=&userNm=&userGradeCd=선택&leaveTf=선택">회원 관리</a></li>
 	          <li><a href="<%=request.getContextPath() %>/SetRegPermissions.ad">대관등록 권한설정</a></li>
 	          <li><a href="<%=request.getContextPath() %>/inspectionList.ad">대관등록 검수</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/admin/06_salesStatus.jsp">매출 통계</a></li>

@@ -37,6 +37,7 @@ public class MoveProposeFormServlet extends HttpServlet {
 		String requestProposeDate = request.getParameter("schedule");
 		int requestHeadCount = Integer.parseInt(request.getParameter("headCount"));
 		int requestRentSeq = Integer.parseInt(request.getParameter("rentSeq"));
+		int requestPayAmount = Integer.parseInt(request.getParameter("rentPrice"));
 
 		String [] temp = requestProposeDate.split(" to ");
 
@@ -44,6 +45,7 @@ public class MoveProposeFormServlet extends HttpServlet {
 		rentPropVO.setUseStartDt(Date.valueOf(temp[0]));
 		rentPropVO.setUseEndDt(Date.valueOf(temp[1]));
 		rentPropVO.setPropHeadCount(requestHeadCount);
+		rentPropVO.setPayAmount(requestPayAmount);
 
 		ArrayList<Object> rentInfoList = new RentService().getRentInfoList(requestRentSeq, rentPropVO);
 

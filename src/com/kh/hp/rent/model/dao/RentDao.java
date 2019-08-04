@@ -487,6 +487,39 @@ public class RentDao {
 	}
 
 	/**
+	 * 검색 조건이 있는 경우 리스트 카운트
+	 * @param con
+	 * @param searchString
+	 * @return
+	 */
+	public int selectCountConditionRentList(Connection con, String searchString) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+
+		String query = prop.getProperty("selectCountConditionRentList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, searchString);
+			pstmt.setString(2, searchString);
+
+			rset = pstmt.executeQuery(query);
+
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	/**
 	 * 대관 정보 리스트 가져오기
 	 * @param con
 	 * @param currentPage
@@ -798,6 +831,7 @@ public class RentDao {
 				rentCloseVO.setRegCloseDt(rset.getString("REG_CLOSE_DT"));
 				rentCloseVO.setRentSeq(rset.getInt("RENT_SEQ"));
 				rentCloseVO.setRegCloseNm(rset.getString("REG_CLOSE_NM"));
+				rentCloseVO.setDiffDate(rset.getInt("DIFF_DATE"));
 
 				rentCloseList.add(rentCloseVO);
 			}
@@ -1101,38 +1135,5 @@ public class RentDao {
 		return RentListVOList;
 	}
 
-	/**
-	 * 검색 조건이 있는 경우 리스트 카운트
-	 * @param con
-	 * @param searchString
-	 * @return
-	 */
-	public int selectCountConditionRentList(Connection con, String searchString) {
-		// TODO Auto-generated method stub
-				PreparedStatement pstmt = null;
-				ResultSet rset = null;
-				int result = 0;
-
-				String query = prop.getProperty("selectCountConditionRentList");
-
-				try {
-					pstmt = con.prepareStatement(query);
-					pstmt.setString(1, searchString);
-					pstmt.setString(2, searchString);
-
-					rset = pstmt.executeQuery(query);
-
-					if(rset.next()) {
-						result = rset.getInt(1);
-					}
-
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} finally {
-					close(pstmt);
-				}
-				return result;
-	}
 
 }

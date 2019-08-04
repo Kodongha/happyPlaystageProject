@@ -58,6 +58,11 @@ public class MyPageDao_mh {
 				myPageInfo.setUserPhone(rset.getString("USER_PHONE"));
 				myPageInfo.setUserGradeCd(rset.getInt("USER_GRADE_CD"));
 				myPageInfo.setSnsCd(rset.getInt("SNS_CD"));
+
+				myPageInfo.setOriginNm(rset.getString("ORIGIN_NM"));
+				myPageInfo.setChangeNm(rset.getString("CHANGE_NM"));
+				myPageInfo.setFilePath(rset.getString("FILE_PATH"));
+				myPageInfo.setUploadDt(rset.getDate("UPLOAD_DT"));
 			}
 
 		} catch (SQLException e) {
@@ -326,17 +331,67 @@ public class MyPageDao_mh {
 	}
 
 	/**
-	 * 프로필 사진 변경
+	 * 프로필 사진 입력
 	 * @param con
 	 * @param userImgVO
 	 * @return
 	 */
 	public int insertProfilePhoto(Connection con, UserImgVO userImgVO) {
 		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
 
+		String query = prop.getProperty("insertProfilePhoto");
 
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userImgVO.getUserSeq());
+			pstmt.setString(2, userImgVO.getOriginNm());
+			pstmt.setString(3, userImgVO.getChangeNm());
+			pstmt.setString(4, userImgVO.getFilePath());
 
-		return 0;
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	/**
+	 * 프로필 사진 변경
+	 * @param con
+	 * @param userImgVO
+	 * @return
+	 */
+	public int updateProfilePhoto(Connection con, UserImgVO userImgVO) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("updateProfilePhoto");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userImgVO.getOriginNm());
+			pstmt.setString(2, userImgVO.getChangeNm());
+			pstmt.setString(3, userImgVO.getFilePath());
+			pstmt.setInt(4, userImgVO.getUserSeq());
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
 	}
 
 	/**
@@ -513,4 +568,6 @@ public class MyPageDao_mh {
 
 		return result;
 	}
+
+
 }

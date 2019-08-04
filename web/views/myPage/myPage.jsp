@@ -33,7 +33,11 @@ body {
 #imgArea {
 	width: 100px;
 	height: 100px;
+	<%if(mypageInfo.getChangeNm() == null || mypageInfo.getChangeNm().equals("")){%>
 	background-image: url("images/myPage/person.png");
+	<%} else {%>
+	background-image: url("<%=request.getContextPath() + "/images/myPage/myProfile/" + mypageInfo.getChangeNm()%>");
+	<%}%>
 	background-size: 100% 100%;
 	border-radius:70px;
 }

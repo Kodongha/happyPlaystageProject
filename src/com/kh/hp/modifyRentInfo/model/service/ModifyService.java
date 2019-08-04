@@ -54,6 +54,7 @@ public class ModifyService {
 		//RENT_CLOSE 테이블
 		ArrayList<RentCloseVO> rentCloseVOList = modifyDao.selectRentCloseList(con, rentSeq);
 
+		System.out.println("rentCloseVOList:::::::::::::::::" + rentCloseVOList);
 
 		// 리스트 추가
 		rentBasicInfoMap.put("rentBasicVO", rentBasicVO);

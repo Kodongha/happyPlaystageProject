@@ -193,96 +193,113 @@
 				<p align="center">예약을 하시려면 호스트의 승인이 필요합니다. <br>
 				승인 후에 호스트가 결제방법을 안내드립니다 !</p>
 
-				<div class="radio" align="center">
-					<%for(int i=0; i<rentDetVOList.size(); i++){%>
-						<%if(i==0){ %>
-						<label><input type="radio" name="rentDetail" checked="checked"><%=rentDetVOList.get(i).getDetAddress() %></label>
-						<%} else {%>
-						<label><input type="radio" name="rentDetail"><%=rentDetVOList.get(i).getDetAddress() %></label>
+				<form action="<%=request.getContextPath() %>/movePropose.rt" method="post" id="propForm" name="propForm" autocomplete="off">
+					<div class="radio" align="center">
+						<%for(int i=0; i<rentDetVOList.size(); i++){%>
+							<%if(i==0){ %>
+							<label><input type="radio" name="rentDetail" checked="checked"><%=rentDetVOList.get(i).getDetAddress() %></label>
+							<%} else {%>
+							<label><input type="radio" name="rentDetail"><%=rentDetVOList.get(i).getDetAddress() %></label>
+							<%} %>
+							<label style="color:blue;">&#8361; &nbsp; <%=rentDetVOList.get(i).getRentPrice() %></label> <label style="color:#c2c2c2">/ <%=rentBasicVO.getUseTimeUnit() %></label>
+							<input type="hidden" id="rentPrice" name="rentPrice" value="<%=rentDetVOList.get(i).getRentPrice() %>">
 						<%} %>
-						<label style="color:blue;">&#8361; &nbsp; <%=rentDetVOList.get(i).getRentPrice() %></label> <label style="color:#c2c2c2">/ <%=rentBasicVO.getUseTimeUnit() %></label>
-					<%} %>
-				</div>
-				<div class="container-fluid" style="width:100%; padding: 3% 3% 3% 3%; margin-top: 5%">
-					<div class="container" align="center" style="width:100%; height:150px;">
-						<img src="<%=request.getContextPath() %>/images/profilePhotos/<%=rentImgVOList.get(0).getChangeNm() %>" alt="<%=rentImgVOList.get(0).getOriginNm() %>" style="object-fit: cover; width: 90%">
 					</div>
-					<form action="<%=request.getContextPath() %>/movePropose.rt" method="post" id="propForm" name="propForm" autocomplete="off">
-						<div>
-							<hr>
-								<p class="text-muted"> ·  최소 <%=rentBasicVO.getMinRsvTm() %>시간 부터</p>
-							<hr>
-							<p class="text-muted">* 날짜 선택</p>
-							<input name="schedule" class="form-control" id="schedule" placeholder="날짜를 선택하세요.">
-							<br>
-							<p class="text-muted">* 인원 입력</p>
-							<input class="form-control" name="headCount" id="headCount" type="number" step="10" style="width: 100%" placeholder="인원을 입력하세요."/>
-							<br>
-							<button type="button" class="btn btn-success" id="proposeBtn" style="width: 100%; float: right;">신청</button>
-
-							<script type="text/javascript">
-								$('#schedule').dateRangePicker({
-									startDate: new Date(),
-									selectForward: true,
-									autoClose: true,
-									showDateFilter: function(time, date)
-									{
-										return '<div style="padding:0 5px;">\
-													<span style="font-weight:bold">'+date+'</span>\
-												</div>';
-									},
-									beforeShowDay: function(t)
-									{
-										/* var valid = !(t.getDay() == 0 || t.getDay() == 6);  //disable saturday and sunday */
-										var date = new Date('2019-07-28');
-										/* dateDiff(t, '2019-07-28') */
-
-										<%if(rentPropVOList.size() > 0){ %>
-										var valid = !(
-												<%
-												SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
-												String strDate = "";
-												for(int i=0; i<rentPropVOList.size(); i++){
-													for(int j=0; j<rentPropVOList.get(i).getDiffDate()+1; j++){
-														Calendar cal = new GregorianCalendar();
-														cal.setTime(rentPropVOList.get(i).getUseStartDt());
-														cal.add(Calendar.DAY_OF_YEAR, j);%>
-													dateDiff(t, '<%=fm.format(cal.getTime())%>')
-													<%if(i == rentPropVOList.size() -1 && j == rentPropVOList.get(i).getDiffDate()){%>
-													<%} else {%>||<%}}}%>
-													);
-
-										<%} else {%>
-										valid = !('');
-										<%}%>
-
-										var _class = '';
-										var _tooltip = valid ? '' : 'sold out';
-										return [valid,_class,_tooltip];
-									}
-								});
-
-								function dateDiff(_date1, _date2) {
-								    var diffDate_1 = _date1 instanceof Date ? _date1 : new Date(_date1);
-								    var diffDate_2 = _date2 instanceof Date ? _date2 : new Date(_date2);
-
-								    diffDate_1 = new Date(diffDate_1.getFullYear(), diffDate_1.getMonth()+1, diffDate_1.getDate());
-								    diffDate_2 = new Date(diffDate_2.getFullYear(), diffDate_2.getMonth()+1, diffDate_2.getDate());
-
-								    var diff = Math.abs(diffDate_2.getTime() - diffDate_1.getTime());
-								    diff = Math.ceil(diff / (1000 * 3600 * 24));
-								    if(diff == 0){
-									    return true;
-								    } else {
-								    	return false;
-								    }
-								}
-							</script>
-
+					<div class="container-fluid" style="width:100%; padding: 3% 3% 3% 3%; margin-top: 5%">
+						<div class="container" align="center" style="width:100%; height:150px;">
+							<img src="<%=request.getContextPath() %>/images/profilePhotos/<%=rentImgVOList.get(0).getChangeNm() %>" alt="<%=rentImgVOList.get(0).getOriginNm() %>" style="object-fit: cover; width: 90%">
 						</div>
-						<input type="hidden" name="rentSeq" id="rentSeq" value="<%=rentBasicVO.getRentSeq() %>">
-					</form>
-				</div>
+							<div>
+								<hr>
+									<p class="text-muted"> ·  최소 <%=rentBasicVO.getMinRsvTm() %>시간 부터</p>
+								<hr>
+								<p class="text-muted">* 날짜 선택</p>
+								<input name="schedule" class="form-control" id="schedule" placeholder="날짜를 선택하세요.">
+								<br>
+								<p class="text-muted">* 인원 입력</p>
+								<input class="form-control" name="headCount" id="headCount" type="number" step="10" style="width: 100%" placeholder="인원을 입력하세요."/>
+								<br>
+								<button type="button" class="btn btn-success" id="proposeBtn" style="width: 100%; float: right;">신청</button>
+
+
+								<script type="text/javascript">
+									$('#schedule').dateRangePicker({
+										startDate: new Date(),
+										selectForward: true,
+										autoClose: true,
+										showDateFilter: function(time, date)
+										{
+											return '<div style="padding:0 5px;">\
+														<span style="font-weight:bold">'+date+'</span>\
+													</div>';
+										},
+										beforeShowDay: function(t)
+										{
+											/* var valid = !(t.getDay() == 0 || t.getDay() == 6);  //disable saturday and sunday */
+											var date = new Date('2019-07-28');
+											/* dateDiff(t, '2019-07-28') */
+
+											<%if(rentPropVOList.size() > 0){ %>
+											var valid = !(
+													<%
+													SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+													String strDate = "";
+													for(int i=0; i<rentPropVOList.size(); i++){
+														for(int j=0; j<rentPropVOList.get(i).getDiffDate()+1; j++){
+															Calendar cal = new GregorianCalendar();
+															cal.setTime(rentPropVOList.get(i).getUseStartDt());
+															cal.add(Calendar.DAY_OF_YEAR, j);%>
+														dateDiff(t, '<%=fm.format(cal.getTime())%>')
+														<%if(i == rentPropVOList.size() -1 && j == rentPropVOList.get(i).getDiffDate()){%>
+														<%} else {%>||<%}}}%>
+
+														<%if(rentCloseVOList != null){System.out.println("rentCloseVOList.get(0).getDiffDate():::"+rentCloseVOList.get(0));%>
+														||
+															<%for(int i=0; i<rentCloseVOList.get(0).getDiffDate(); i++){
+															Calendar cal = new GregorianCalendar();
+															cal.setTime(rentCloseVOList.get(0).getCusCloseStart());
+															cal.add(Calendar.DAY_OF_YEAR, i);%>
+															dateDiff(t, '<%=fm.format(cal.getTime())%>')
+															<%if(i == rentCloseVOList.get(0).getDiffDate() - 1){%>
+															<%}else{%>
+															||
+
+															<%}%>
+															<%}%>
+														<%}%>
+														);
+
+											<%} else {%>
+											valid = !('');
+											<%}%>
+
+											var _class = '';
+											var _tooltip = valid ? '' : 'sold out';
+											return [valid,_class,_tooltip];
+										}
+									});
+
+									function dateDiff(_date1, _date2) {
+									    var diffDate_1 = _date1 instanceof Date ? _date1 : new Date(_date1);
+									    var diffDate_2 = _date2 instanceof Date ? _date2 : new Date(_date2);
+
+									    diffDate_1 = new Date(diffDate_1.getFullYear(), diffDate_1.getMonth()+1, diffDate_1.getDate());
+									    diffDate_2 = new Date(diffDate_2.getFullYear(), diffDate_2.getMonth()+1, diffDate_2.getDate());
+
+									    var diff = Math.abs(diffDate_2.getTime() - diffDate_1.getTime());
+									    diff = Math.ceil(diff / (1000 * 3600 * 24));
+									    if(diff == 0){
+										    return true;
+									    } else {
+									    	return false;
+									    }
+									}
+								</script>
+
+							</div>
+							<input type="hidden" name="rentSeq" id="rentSeq" value="<%=rentBasicVO.getRentSeq() %>">
+					</div>
+				</form>
 			</div>
 
 

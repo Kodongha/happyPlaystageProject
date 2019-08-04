@@ -61,6 +61,7 @@ public class InsertProposeServlet extends HttpServlet {
 			String useStartDt = multipartRequest.getParameter("useStartDt");
 			String useEndDt = multipartRequest.getParameter("useEndDt");
 			int propHeadCount = Integer.parseInt(multipartRequest.getParameter("propHeadCount"));
+			int payAmount = Integer.parseInt(multipartRequest.getParameter("payAmount"));
 
 			RentPropVO rentPropVO = new RentPropVO();
 			rentPropVO.setRentSeq(rentSeq);
@@ -72,6 +73,7 @@ public class InsertProposeServlet extends HttpServlet {
 			rentPropVO.setPropHeadCount(propHeadCount);
 			rentPropVO.setUseStartDt(Date.valueOf(useStartDt));
 			rentPropVO.setUseEndDt(Date.valueOf(useEndDt));
+			rentPropVO.setPayAmount(payAmount);
 
 			System.out.println(rentPropVO);
 

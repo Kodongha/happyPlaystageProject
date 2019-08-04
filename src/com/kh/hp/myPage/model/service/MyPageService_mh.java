@@ -267,13 +267,26 @@ public class MyPageService_mh {
 
 		int updateResult = 0;
 		int insertResult = 0;
+		int result = 0;
+
 		if(selectResult == 0) {
 			insertResult = myPageDao_mh.insertProfilePhoto(con, userImgVO);
+		} else {
+			updateResult = myPageDao_mh.updateProfilePhoto(con, userImgVO);
+		}
+
+
+
+		if(insertResult > 0 || updateResult > 0) {
+			result = 1;
+			commit(con);
+		} else {
+			rollback(con);
 		}
 
 		close(con);
 
-		return 0;
+		return result;
 	}
 
 

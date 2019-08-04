@@ -25,6 +25,11 @@
 	System.out.println(rentDetFacVOList);
 	System.out.println(rentDetVOList);
 	System.out.println(rentPropVO);
+
+
+	long diff = rentPropVO.getUseEndDt().getTime() - rentPropVO.getUseStartDt().getTime();
+	long diffDay = diff / 1000 / 60 / 60 / 24;
+
 %>
 <!DOCTYPE html>
 <html>
@@ -121,7 +126,6 @@
 
 
 		<div class="container" style="padding-top: 5%">
-
 			<h2>예약 정보</h2>
 			<hr>
 			<h4 style="display:inline;">예약 날짜</h4>
@@ -129,12 +133,16 @@
 			<br><br>
 			<h4 style="display:inline;">예약 인원</h4>
 			<p class="text-muted" style="display:inline; padding-left: 5%;"><%=rentPropVO.getPropHeadCount() %> 명</p>
+			<br><br>
+			<h4 style="display:inline;">결제 금액</h4>
+			<p class="text-muted" style="display:inline; padding-left: 5%;">&#8361; <%=rentPropVO.getPayAmount() * diffDay %> </p>
 	 	</div>
 
 			<input type="hidden" name="propHeadCount" id="propHeadCount" value="<%=rentPropVO.getPropHeadCount() %>">
 			<input type="hidden" name="useStartDt" id="useStartDt" value="<%=rentPropVO.getUseStartDt() %>">
 			<input type="hidden" name="useEndDt" id="useEndDt" value="<%=rentPropVO.getUseEndDt() %>">
 			<input type="hidden" name="rentSeq" id="rentSeq" value="<%=rentBasicVO.getRentSeq() %>">
+			<input type="hidden" name="payAmount" id="payAmount" value="<%=rentPropVO.getPayAmount() * diffDay %>">
 
 	 		<div class="container" style="padding-top: 5%">
 			<h2>예약자 정보</h2>

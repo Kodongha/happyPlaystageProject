@@ -439,6 +439,7 @@ public class ModifyDao {
 				rentCloseVO.setRegCloseDt(rset.getString("REG_CLOSE_DT"));
 				rentCloseVO.setRentSeq(rset.getInt("RENT_SEQ"));
 				rentCloseVO.setRegCloseNm(rset.getString("REG_CLOSE_NM"));
+				rentCloseVO.setDiffDate(rset.getInt("DIFF_DATE"));
 
 				rentCloseList.add(rentCloseVO);
 			}

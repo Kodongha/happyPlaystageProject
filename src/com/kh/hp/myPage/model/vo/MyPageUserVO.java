@@ -17,12 +17,18 @@ public class MyPageUserVO implements Serializable {
 	private char leaveTf;
 	private Date leaveDt;
 
+	private String originNm;
+	private String changeNm;
+	private String filePath;
+	private Date uploadDt;
+
 	public MyPageUserVO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public MyPageUserVO(int userSeq, String userEmail, String userPwd, String userNm, String userNick, String userPhone,
-			int userGradeCd, Date enrollDt, int snsCd, char leaveTf, Date leaveDt) {
+			int userGradeCd, Date enrollDt, int snsCd, char leaveTf, Date leaveDt, String originNm, String changeNm,
+			String filePath, Date uploadDt) {
 		super();
 		this.userSeq = userSeq;
 		this.userEmail = userEmail;
@@ -35,6 +41,10 @@ public class MyPageUserVO implements Serializable {
 		this.snsCd = snsCd;
 		this.leaveTf = leaveTf;
 		this.leaveDt = leaveDt;
+		this.originNm = originNm;
+		this.changeNm = changeNm;
+		this.filePath = filePath;
+		this.uploadDt = uploadDt;
 	}
 
 	public int getUserSeq() {
@@ -125,11 +135,45 @@ public class MyPageUserVO implements Serializable {
 		this.leaveDt = leaveDt;
 	}
 
+	public String getOriginNm() {
+		return originNm;
+	}
+
+	public void setOriginNm(String originNm) {
+		this.originNm = originNm;
+	}
+
+	public String getChangeNm() {
+		return changeNm;
+	}
+
+	public void setChangeNm(String changeNm) {
+		this.changeNm = changeNm;
+	}
+
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+
+	public Date getUploadDt() {
+		return uploadDt;
+	}
+
+	public void setUploadDt(Date uploadDt) {
+		this.uploadDt = uploadDt;
+	}
+
 	@Override
 	public String toString() {
-		return "UserVO [userSeq=" + userSeq + ", userEmail=" + userEmail + ", userPwd=" + userPwd + ", userNm=" + userNm
-				+ ", userNick=" + userNick + ", userPhone=" + userPhone + ", userGradeCd=" + userGradeCd + ", enrollDt="
-				+ enrollDt + ", snsCd=" + snsCd + ", leaveTf=" + leaveTf + ", leaveDt=" + leaveDt + "]";
+		return "MyPageUserVO [userSeq=" + userSeq + ", userEmail=" + userEmail + ", userPwd=" + userPwd + ", userNm="
+				+ userNm + ", userNick=" + userNick + ", userPhone=" + userPhone + ", userGradeCd=" + userGradeCd
+				+ ", enrollDt=" + enrollDt + ", snsCd=" + snsCd + ", leaveTf=" + leaveTf + ", leaveDt=" + leaveDt
+				+ ", originNm=" + originNm + ", changeNm=" + changeNm + ", filePath=" + filePath + ", uploadDt="
+				+ uploadDt + "]";
 	}
 
 }

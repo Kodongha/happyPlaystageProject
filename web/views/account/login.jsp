@@ -282,6 +282,15 @@ body .container .content .signup-cont {
   font-weight: 700;
   text-decoration: none;
 }
+
+#kakao-login-btn{
+	width:100%;
+	height:50px;
+}
+
+.half bg{
+	background-position: center;
+}
 </style>
 <script type="text/javascript">
 	<%
@@ -315,7 +324,7 @@ body .container .content .signup-cont {
                                              <a href="findId.jsp" class="more">Forgot your Id?</a>
                                              <a href="findPassword.jsp" class="more">Forgot your password?</a>
                                              <a href="signUp.jsp" class="more">Sign Up</a>
-
+												<br>
    												 <input type="submit" value="Sign in" class="submit">
 
    												<div class="f1">
@@ -331,7 +340,7 @@ body .container .content .signup-cont {
                         </div>
                  </div>
           </article>
-          <div class="half bg"></div>
+          <div class="half bg" id="half bg" style="background-position: center"></div>
    </section>
 
 	<!-- 카카오 로그인 -->

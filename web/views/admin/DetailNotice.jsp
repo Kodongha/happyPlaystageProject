@@ -97,8 +97,8 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th width="100px" class="name" name="noticeCate">공지<%=noticeVO.getNoticeSeq() %></th>
-							
+						
+							<th width="100px" class="noticename" ><input type="hidden" name="noticeSeq" value=<%=noticeVO.getNoticeSeq() %> ></th>
 							<th width="180px"><select class="form-control" id="option1"
 								name="noticeCate">
 									<option><%=noticeVO.getNoticeCate()%></option>

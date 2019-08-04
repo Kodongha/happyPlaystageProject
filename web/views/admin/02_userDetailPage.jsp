@@ -381,6 +381,7 @@ margin-top:-55px;
 
 		</div>
 		<button class="btn btn-warning" id="revisebutton">수정</button>
+	
 		<script type="text/javascript">
 			$(function(){
 				$("#revisebutton").click(function(){

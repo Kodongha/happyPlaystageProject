@@ -51,7 +51,7 @@ public class MoveRentListAjax extends HttpServlet {
 
 		limit = 9;
 
-		int listCount = new RentService().selectCountRentList();
+		int listCount = new RentService().selectCountRentList(searchString);
 		System.out.println("@@ list count : " + listCount);
 
 		maxPage = (int)((double)listCount / limit + 0.9);

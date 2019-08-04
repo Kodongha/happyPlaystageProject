@@ -186,13 +186,19 @@ public class RentService {
 
 	/**
 	 * 리스트 페이징을 위해 카운트 가져오기
+	 * @param searchString
 	 * @return
 	 */
-	public int selectCountRentList() {
+	public int selectCountRentList(String searchString) {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
 		int count = 0;
-		count = new RentDao().selectCountRentList(con);
+
+		if(searchString == null || searchString.equals("") || searchString.equals("null")) {
+			count = new RentDao().selectCountRentList(con);
+		} else {
+			count = new RentDao().selectCountConditionRentList(con, searchString);
+		}
 
 		close(con);
 
@@ -212,7 +218,7 @@ public class RentService {
 
 		ArrayList<RentListVO> rentListVOList = null;
 		// 검색 결과가 없을 때
-		if(searchString == null) {
+		if(searchString == null || searchString.equals("") || searchString.equals("null")) {
 			System.out.println("Search not in");
 			rentListVOList = new RentDao().selectRentList(con, currentPage, limit);
 

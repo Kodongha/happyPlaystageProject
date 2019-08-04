@@ -1101,4 +1101,38 @@ public class RentDao {
 		return RentListVOList;
 	}
 
+	/**
+	 * 검색 조건이 있는 경우 리스트 카운트
+	 * @param con
+	 * @param searchString
+	 * @return
+	 */
+	public int selectCountConditionRentList(Connection con, String searchString) {
+		// TODO Auto-generated method stub
+				PreparedStatement pstmt = null;
+				ResultSet rset = null;
+				int result = 0;
+
+				String query = prop.getProperty("selectCountConditionRentList");
+
+				try {
+					pstmt = con.prepareStatement(query);
+					pstmt.setString(1, searchString);
+					pstmt.setString(2, searchString);
+
+					rset = pstmt.executeQuery(query);
+
+					if(rset.next()) {
+						result = rset.getInt(1);
+					}
+
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} finally {
+					close(pstmt);
+				}
+				return result;
+	}
+
 }

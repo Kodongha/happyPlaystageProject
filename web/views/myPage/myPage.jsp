@@ -40,6 +40,7 @@ body {
 table {
 	width: 50%;
 	height: 300px;
+	text-align: center;
 }
 #infoForm th {
 	width: 50%;
@@ -82,10 +83,11 @@ table {
 		<div align="center">
 			<table id="infoForm">
 				<tr>
-					<th>이메일</th><td><%= mypageInfo.getUserEmail() %></td>
+					<td><b>이메일</b></td>
+					<td><%= mypageInfo.getUserEmail() %></td>
 				</tr>
 				<tr>
-					<th>회원등급</th>
+					<td><b>회원등급</b></td>
 					<td>
 						<% if(mypageInfo.getUserGradeCd() == 1) { %>
 							일반 사용자
@@ -97,10 +99,11 @@ table {
 					</td>
 				</tr>
 				<tr>
-					<th>이름</th><td><%= mypageInfo.getUserNm() %></td>
+					<td><b>이름</b></td>
+					<td><%= mypageInfo.getUserNm() %></td>
 				</tr>
 				<tr>
-					<th>연락처</th>
+					<td><b>연락처</b></td>
 					<td>
 						<% if (mypageInfo.getUserPhone() == null) { %>
 						<p>휴대폰 정보 없음</p>
@@ -110,18 +113,14 @@ table {
 					</td>
 				</tr>
 				<tr>
-					<th>SNS 연동 여부</th>
+					<td><b>SNS 연동 여부</b></td>
 					<td rowspan="2">
 						<% if (mypageInfo.getSnsCd() == 1) { %>
-						<img src="images/myPage/person.png" width="50px" height="50px">
-						<p>카카오</p>
-						<% } else if (mypageInfo.getSnsCd() == 2) { %>
-						<p>구글</p>
-						<% } else { %>
-						<img src="images/myPage/kakao.png" width="50px" height="50px">&nbsp;&nbsp;
-						<input type="checkbox" data-toggle="toggle" data-style="ios" data-on=""><br>
-						<img src="images/myPage/google.png" width="50px" height="50px">&nbsp;&nbsp;
-						<input type="checkbox" data-toggle="toggle" data-style="ios">
+						<img src="images/myPage/kakaolink_btn_small.png" width="40px" height="40px">
+						<input type="checkbox" data-toggle="toggle" data-style="ios" checked="checked" disabled="disabled">
+						<%} else { %>
+						<img src="images/myPage/kakaolink_btn_small.png" width="40px" height="40px">
+						<input type="checkbox" data-toggle="toggle" data-style="ios" disabled="disabled">
 						<% } %>
 
 					</td>
@@ -138,6 +137,7 @@ table {
 			function goWithdrawForm(){
 				location.href="<%=request.getContextPath() %>/withdrawal.mp";
 			}
+
 		</script>
 
 	</div>

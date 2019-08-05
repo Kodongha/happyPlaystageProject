@@ -853,6 +853,7 @@ public class AhnMyPageDao {
 					b.setPropStatus(rset.getString("PROP_STATUS"));
 					b.setUseStartDt(rset.getDate("USE_START_DT"));
 					b.setUseEndDt(rset.getDate("USE_END_DT"));
+					b.setPayAmount(rset.getInt("PAY_AMOUNT"));
 
 					list.add(b);
 				}
@@ -906,6 +907,7 @@ public class AhnMyPageDao {
 				b.setPropStatus(rset.getString("PROP_STATUS"));
 				b.setUseStartDt(rset.getDate("USE_START_DT"));
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				b.setPayAmount(rset.getInt("PAY_AMOUNT"));
 
 				list.add(b);
 			}
@@ -961,6 +963,7 @@ public class AhnMyPageDao {
 				b.setPropStatus(rset.getString("PROP_STATUS"));
 				b.setUseStartDt(rset.getDate("USE_START_DT"));
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				b.setPayAmount(rset.getInt("PAY_AMOUNT"));
 
 				list.add(b);
 			}
@@ -1015,6 +1018,7 @@ public class AhnMyPageDao {
 				b.setPropStatus(rset.getString("PROP_STATUS"));
 				b.setUseStartDt(rset.getDate("USE_START_DT"));
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
+				b.setPayAmount(rset.getInt("PAY_AMOUNT"));
 
 				list.add(b);
 			}
@@ -1068,7 +1072,8 @@ public class AhnMyPageDao {
 				b.setPropStatus(rset.getString("PROP_STATUS"));
 				b.setUseStartDt(rset.getDate("USE_START_DT"));
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
-
+				b.setPayAmount(rset.getInt("PAY_AMOUNT"));
+				
 				list.add(b);
 			}
 
@@ -1121,7 +1126,8 @@ public class AhnMyPageDao {
 				b.setPropStatus(rset.getString("PROP_STATUS"));
 				b.setUseStartDt(rset.getDate("USE_START_DT"));
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
-
+				b.setPayAmount(rset.getInt("PAY_AMOUNT"));
+				
 				list.add(b);
 			}
 
@@ -1175,7 +1181,8 @@ public class AhnMyPageDao {
 				b.setPropStatus(rset.getString("PROP_STATUS"));
 				b.setUseStartDt(rset.getDate("USE_START_DT"));
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
-
+				b.setPayAmount(rset.getInt("PAY_AMOUNT"));
+				
 				list.add(b);
 			}
 
@@ -1225,7 +1232,8 @@ public class AhnMyPageDao {
 				b.setPropStatus(rset.getString("PROP_STATUS"));
 				b.setUseStartDt(rset.getDate("USE_START_DT"));
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
-
+				b.setPayAmount(rset.getInt("PAY_AMOUNT"));
+				
 				list.add(b);
 			}
 

@@ -115,14 +115,6 @@ public class AhnMyPageService {
 
 		int result1 = new AhnMyPageDao().insertImage(con, l);
 
-		/*if(result1 > 0) {
-			int userSeq = new AhnMyPageDao().selectCurrval(con);
-
-			for(int i = 0; i < fileList.size(); i++) {
-				fileList.get(i).setUserSeq(userSeq);
-			}
-		}*/
-
 		int result2 = new AhnMyPageDao().insertAttachment(con, fileList);
 
 		if(result2 > 0) {
@@ -141,37 +133,35 @@ public class AhnMyPageService {
 		System.out.println("service in!!");
 		ArrayList<AhnUsingInfoVO> list = null;
 
-		String rentSeq1 = String.valueOf(rentSeq2);
-
-		if(rentSeq1 != null && hallNm != null && useStart != null && useEnd != null) {
+		if(rentSeq2 != 0 && hallNm != null && useStart != null && useEnd != null) {
 			System.out.println("ooooin1");
 			list = new AhnMyPageDao().searchCheck1(con, userInfo, rentSeq2, hallNm, useStart, useEnd, currentPage, limit);
 
-		}else if(rentSeq1 == null && hallNm != null && useStart != null && useEnd != null) {
+		}else if(rentSeq2 == 0 && hallNm != null && useStart != null && useEnd != null) {
 			System.out.println("ooooin2");
 			list = new AhnMyPageDao().searchCheck2(con, userInfo, hallNm, useStart, useEnd, currentPage, limit);
 
-		}else if(rentSeq1 != null && hallNm == null && useStart != null && useEnd != null) {
+		}else if(rentSeq2 != 0 && hallNm == null && useStart != null && useEnd != null) {
 			System.out.println("ooooin3");
 			list = new AhnMyPageDao().searchCheck3(con, userInfo, rentSeq2, useStart, useEnd, currentPage, limit);
 
-		}else if(rentSeq1 != null && hallNm != null && useStart == null && useEnd == null) {
+		}else if(rentSeq2 != 0 && hallNm != null && useStart == null && useEnd == null) {
 			System.out.println("ooooin4");
 			list = new AhnMyPageDao().searchCheck4(con, userInfo, rentSeq2, hallNm, currentPage, limit);
 
-		}else if(rentSeq1 != null && hallNm == null && useStart == null && useEnd == null) {
+		}else if(rentSeq2 != 0 && hallNm == null && useStart == null && useEnd == null) {
 			System.out.println("ooooin5");
 			list = new AhnMyPageDao().searchCheck5(con, userInfo, rentSeq2, currentPage, limit);
 
-		}else if(rentSeq1 == null && hallNm != null && useStart == null && useEnd == null) {
+		}else if(rentSeq2 == 0 && hallNm != null && useStart == null && useEnd == null) {
 			System.out.println("ooooin6");
 			list = new AhnMyPageDao().searchCheck6(con, userInfo, hallNm, currentPage, limit);
 
-		}else if(rentSeq1 == null && hallNm == null && useStart != null && useEnd != null) {
+		}else if(rentSeq2 == 0 && hallNm == null && useStart != null && useEnd != null) {
 			System.out.println("ooooin7");
 			list = new AhnMyPageDao().searchCheck7(con, userInfo, useStart, useEnd, currentPage, limit);
 
-		}else if(rentSeq1 == null && hallNm == null && useStart == null && useEnd == null) {
+		}else if(rentSeq2 == 0 && hallNm == null && useStart == null && useEnd == null) {
 			System.out.println("ooooin8");
 			list = new AhnMyPageDao().searchCheck8(con, userInfo, currentPage, limit);
 
@@ -191,37 +181,37 @@ public class AhnMyPageService {
 		System.out.println("service in!!");
 		ArrayList<AhnApplyInfoVO> list = null;
 
-		String rentSeq1 = String.valueOf(rentSeq2);
+		
 
-		if(rentSeq1 != null && hallNm != null && useStart != null && useEnd != null) {
+		if(rentSeq2 != 0 && hallNm != null && useStart != null && useEnd != null) {
 			System.out.println("ooooin1");
 			list = new AhnMyPageDao().searchApplyCheck1(con, userInfo, rentSeq2, hallNm, useStart, useEnd, currentPage, limit);
 
-		}else if(rentSeq1 == null && hallNm != null && useStart != null && useEnd != null) {
+		}else if(rentSeq2 == 0 && hallNm != null && useStart != null && useEnd != null) {
 			System.out.println("ooooin2");
 			list = new AhnMyPageDao().searchApplyCheck2(con, userInfo, hallNm, useStart, useEnd, currentPage, limit);
 
-		}else if(rentSeq1 != null && hallNm == null && useStart != null && useEnd != null) {
+		}else if(rentSeq2 != 0 && hallNm == null && useStart != null && useEnd != null) {
 			System.out.println("ooooin3");
 			list = new AhnMyPageDao().searchApplyCheck3(con, userInfo, rentSeq2, useStart, useEnd, currentPage, limit);
 
-		}else if(rentSeq1 != null && hallNm != null && useStart == null && useEnd == null) {
+		}else if(rentSeq2 != 0 && hallNm != null && useStart == null && useEnd == null) {
 			System.out.println("ooooin4");
 			list = new AhnMyPageDao().searchApplyCheck4(con, userInfo, rentSeq2, hallNm, currentPage, limit);
 
-		}else if(rentSeq1 != null && hallNm == null && useStart == null && useEnd == null) {
+		}else if(rentSeq2 != 0 && hallNm == null && useStart == null && useEnd == null) {
 			System.out.println("ooooin5");
 			list = new AhnMyPageDao().searchApplyCheck5(con, userInfo, rentSeq2, currentPage, limit);
 
-		}else if(rentSeq1 == null && hallNm != null && useStart == null && useEnd == null) {
+		}else if(rentSeq2 == 0 && hallNm != null && useStart == null && useEnd == null) {
 			System.out.println("ooooin6");
 			list = new AhnMyPageDao().searchApplyCheck6(con, userInfo, hallNm, currentPage, limit);
 
-		}else if(rentSeq1 == null && hallNm == null && useStart != null && useEnd != null) {
+		}else if(rentSeq2 == 0 && hallNm == null && useStart != null && useEnd != null) {
 			System.out.println("ooooin7");
 			list = new AhnMyPageDao().searchApplyCheck7(con, userInfo, useStart, useEnd, currentPage, limit);
 
-		}else if(rentSeq1 == null && hallNm == null && useStart == null && useEnd == null) {
+		}else if(rentSeq2 == 0 && hallNm == null && useStart == null && useEnd == null) {
 			System.out.println("ooooin8");
 			list = new AhnMyPageDao().searchApplyCheck8(con, userInfo, currentPage, limit);
 

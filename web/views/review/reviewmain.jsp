@@ -91,7 +91,7 @@
 				<div class="extra content">
 					<span class="rating">
 					<%for(int i=0; i<reviewMainVO.getRating(); i++) {%>
-							★
+							<span style="color:#fcec03;">★</span>
 					<%} %>
 					</span>
 

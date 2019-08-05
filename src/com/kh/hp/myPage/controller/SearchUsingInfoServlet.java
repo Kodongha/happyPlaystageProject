@@ -43,7 +43,7 @@ public class SearchUsingInfoServlet extends HttpServlet {
 		String useDt = request.getParameter("cusClosedate");
 		Date useStart = null;
 		Date useEnd = null;
-		Integer rentSeq2 = null;
+		int rentSeq2 = 0;
 		
 		if(rentSeq != null && !rentSeq.equals("")) {
 			rentSeq2 = Integer.parseInt(request.getParameter("rentSeq"));

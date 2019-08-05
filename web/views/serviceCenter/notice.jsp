@@ -71,6 +71,11 @@ body {
 .pagination > li > a{
 	font-weight:bold;
 }
+
+.panel-default>.panel-heading {
+	background-color: inherit;
+
+}
 </style>
 
 </head>

@@ -47,6 +47,9 @@ body {
 	width: 20%;
 }
 
+.panel-default>.panel-heading {
+	background-color: inherit;
+}
 </style>
 
 

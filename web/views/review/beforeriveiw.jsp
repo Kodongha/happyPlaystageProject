@@ -1,7 +1,10 @@
+<%@page import="com.kh.hp.account.model.vo.ReviewSearchVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
+	<% ArrayList<ReviewSearchVO> ReviewSearchVO = (ArrayList<ReviewSearchVO>) request.getAttribute("ReviewSearchVO");  %>
+		
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,17 +82,34 @@
 			</div>
 					<input type="submit" class="btn btn-warning" id="searchbutton" value="등록">
 		</div>
-		<div class="tab2" style="width:790px;">
+		</form>
+		
+		<br><br>
+		<div class="container">
 	
-	<table style="width:790px; height:60px; text-align:center; margin:auto; border-collapse: collapse;">
-		<tr>
-		<td id="tab1">신청 공연장 고유번호</td>
-		<td id="tab1">신청번호</td>
-		<td id="tab1">공연장 이름</td>
-		<td id="tab1">사용할 일자</td>
-		<td id="tab1">신청 상태</td>
-		</tr>
-	</form>
+			<table class="table table-hover">
+				<thead>
+					<tr style="background-color: #FACC2E;" align="center">
+						<td>예약 번호</td>
+						<td>공연장 명</td>
+						<td>주소</td>
+						<td>사용 날짜</td>
+					</tr>
+				
+				</thead>
+				<% for(int i=0; i<ReviewSearchVO.size(); i++) { %>
+				<tr align="center">
+					<td><%= ReviewSearchVO.get(i).getPropSeq()%></td>
+					<td><%= ReviewSearchVO.get(i).getHallNm() %></td>
+					<td><%= ReviewSearchVO.get(i).getAddress()%></td>
+					<td><%= ReviewSearchVO.get(i).getUseStartDt()%> ~ <%= ReviewSearchVO.get(i).getUseEndDt()%></td>
+				</tr>
+				<% } %>
+			</table>
+</div>	
+	
+
+	
 	
 	<br><br><br><br><br><br><br><br>
 	<jsp:include page="/views/common/footer.jsp" />

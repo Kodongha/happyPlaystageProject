@@ -11,6 +11,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 <style rel="stylesheet">
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
@@ -440,11 +441,7 @@ body .container .content .signup-cont {
 	        $('.signup-cont').show();
 	    }
 	});
-	$('.container .bg').mousemove(function(e){
-	    var amountMovedX = (e.pageX * -1 / 30);
-	    var amountMovedY = (e.pageY * -1 / 9);
-	    $(this).css('background-position', amountMovedX + 'px ' + amountMovedY + 'px');
-	});
+
 </script>
 </body>
 </html>

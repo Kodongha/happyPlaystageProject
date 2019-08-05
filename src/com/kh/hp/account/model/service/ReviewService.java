@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import com.kh.hp.account.model.dao.ReviewDao;
 import com.kh.hp.account.model.vo.ReviewMainVO;
+import com.kh.hp.account.model.vo.ReviewSearchVO;
 import com.kh.hp.account.model.vo.ReviewVO;
 public class ReviewService {
 
@@ -46,6 +47,16 @@ public class ReviewService {
 		ArrayList<ReviewVO> reviewVOList = new ReviewDao().selectReviewList(con);
 
 		return null;
+	}
+
+	public ArrayList<ReviewSearchVO> selectUsedList(int userSeq) {
+		// TODO Auto-generated method stub
+		
+		Connection con = getConnection();
+
+		ArrayList<ReviewSearchVO> ReviewSearchVO = new ReviewDao().selectUsedList(con, userSeq);
+		
+		return ReviewSearchVO;
 	}
 
 }

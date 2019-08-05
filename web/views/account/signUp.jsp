@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -41,9 +41,10 @@ h2 {
 }
 
 #signUpBtn {
+	margin:-4px;
 	position: relative;
 	vertical-align: top;
-	width: 100%;
+	width: 105%;
 	height: 40px;
 	padding: 0;
 	font-size: 15px;
@@ -83,8 +84,8 @@ table {
 }
 
 #injbu {
-	width: 100px;
-	height: 25px;
+	width: auto;
+	height: auto;
 }
 
 #hr {
@@ -92,7 +93,8 @@ table {
 }
 
 #kakao-login-btn{
-
+	width: auto;
+	height: auto;
 
 }
 </style>
@@ -193,7 +195,7 @@ table {
 				<tr>
 					<td><input class="form-control" id="userEmail" type="email"
 						name="userEmail" placeholder="이메일"></td>
-					<td><input type="button" value="중복확인" onclick="idCheck"
+					<td><input class="btn btn-default" type="button" value="중복확인" onclick="idCheck"
 						id="idCheck">
 					<td>
 				</tr>
@@ -220,7 +222,7 @@ table {
 				<tr>
 					<td><input class="form-control" id="inputdefault"
 						type="password" name="cNumber" placeholder="인증번호 6자리 숫자 입력"></td>
-					<td id="inj"><input id="injbu" type="button" value="인증번호 받기"></td>
+					<td id="inj"><input class="btn btn-default" id="injbu" type="button" value="인증번호 받기"></td>
 				</tr>
 
 
@@ -253,8 +255,10 @@ table {
 					</td>
 
 				</tr>
+				
 			</table>
 				<div>
+			
 					<a id="kakao-login-btn"></a>
    					 <a href="http://developers.kakao.com/logout"></a>
 
@@ -289,7 +293,7 @@ table {
 			}
 		});
 	</script>
-
+</
 	<jsp:include page="/views/common/footer.jsp" />
 
 </body>

@@ -41,7 +41,7 @@
 	          <%if(user == null){ %>
 		          <li><a href="<%=request.getContextPath() %>/views/account/login.jsp">대관 등록하기</a></li>
 			  <%} else {%>
-		          <li><a href="<%=request.getContextPath() %>/views/review/beforeriveiw.jsp">리뷰 등록하기</a></li>
+		          <li><a href="<%=request.getContextPath() %>/reviewEnoll.acc">리뷰 등록하기</a></li>
           	  <%} %>
 	        </ul>
 	      </li>

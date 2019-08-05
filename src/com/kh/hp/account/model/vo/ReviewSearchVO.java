@@ -12,20 +12,21 @@ public class ReviewSearchVO  {
 	private String propReqContent;
 	private Date propDt;
 	private String propStatus;
-	private Date userStartDt;
-	private Date userEndDt;
+	private Date useStartDt;
+	private Date useEndDt;
 	private int useStartTm;
 	private int useEndTm;
 	private int payAmount;
 	private String hallNm;
+	private String address;
 
 	public ReviewSearchVO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public ReviewSearchVO(int propSeq, int rentSeq, int userSeq, String propNm, String propPhone, String propEmail,
-			String propReqContent, Date propDt, String propStatus, Date userStartDt, Date userEndDt, int useStartTm,
-			int useEndTm, int payAmount, String hallNm) {
+			String propReqContent, Date propDt, String propStatus, Date useStartDt, Date useEndDt, int useStartTm,
+			int useEndTm, int payAmount, String hallNm, String address) {
 		super();
 		this.propSeq = propSeq;
 		this.rentSeq = rentSeq;
@@ -36,24 +37,13 @@ public class ReviewSearchVO  {
 		this.propReqContent = propReqContent;
 		this.propDt = propDt;
 		this.propStatus = propStatus;
-		this.userStartDt = userStartDt;
-		this.userEndDt = userEndDt;
+		this.useStartDt = useStartDt;
+		this.useEndDt = useEndDt;
 		this.useStartTm = useStartTm;
 		this.useEndTm = useEndTm;
 		this.payAmount = payAmount;
 		this.hallNm = hallNm;
-	}
-
-
-
-
-
-	public String getHallNm() {
-		return hallNm;
-	}
-
-	public void setHallNm(String hallNm) {
-		this.hallNm = hallNm;
+		this.address = address;
 	}
 
 	public int getPropSeq() {
@@ -128,20 +118,20 @@ public class ReviewSearchVO  {
 		this.propStatus = propStatus;
 	}
 
-	public Date getUserStartDt() {
-		return userStartDt;
+	public Date getUseStartDt() {
+		return useStartDt;
 	}
 
-	public void setUserStartDt(Date userStartDt) {
-		this.userStartDt = userStartDt;
+	public void setUseStartDt(Date useStartDt) {
+		this.useStartDt = useStartDt;
 	}
 
-	public Date getUserEndDt() {
-		return userEndDt;
+	public Date getUseEndDt() {
+		return useEndDt;
 	}
 
-	public void setUserEndDt(Date userEndDt) {
-		this.userEndDt = userEndDt;
+	public void setUseEndDt(Date useEndDt) {
+		this.useEndDt = useEndDt;
 	}
 
 	public int getUseStartTm() {
@@ -168,18 +158,30 @@ public class ReviewSearchVO  {
 		this.payAmount = payAmount;
 	}
 
+	public String getHallNm() {
+		return hallNm;
+	}
+
+	public void setHallNm(String hallNm) {
+		this.hallNm = hallNm;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	@Override
 	public String toString() {
 		return "ReviewSearchVO [propSeq=" + propSeq + ", rentSeq=" + rentSeq + ", userSeq=" + userSeq + ", propNm="
 				+ propNm + ", propPhone=" + propPhone + ", propEmail=" + propEmail + ", propReqContent="
-				+ propReqContent + ", propDt=" + propDt + ", propStatus=" + propStatus + ", userStartDt=" + userStartDt
-				+ ", userEndDt=" + userEndDt + ", useStartTm=" + useStartTm + ", useEndTm=" + useEndTm + ", payAmount="
-				+ payAmount + ", hallNm=" + hallNm + "]";
+				+ propReqContent + ", propDt=" + propDt + ", propStatus=" + propStatus + ", useStartDt=" + useStartDt
+				+ ", useEndDt=" + useEndDt + ", useStartTm=" + useStartTm + ", useEndTm=" + useEndTm + ", payAmount="
+				+ payAmount + ", hallNm=" + hallNm + ", address=" + address + "]";
 	}
-
-
-
-
 
 
 }

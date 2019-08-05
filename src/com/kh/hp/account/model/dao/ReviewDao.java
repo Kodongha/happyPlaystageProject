@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.hp.account.model.vo.ReviewMainVO;
+import com.kh.hp.account.model.vo.ReviewSearchVO;
 import com.kh.hp.account.model.vo.ReviewVO;
 
 public class ReviewDao {
@@ -127,6 +128,52 @@ public class ReviewDao {
 		}
 
 		return null;
+	}
+
+
+	public ArrayList<ReviewSearchVO> selectUsedList(Connection con, int userSeq) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<ReviewSearchVO> ReviewSearchVO = null;
+
+		String query = prop.getProperty("selectRtUsedList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userSeq);
+
+
+			rset = pstmt.executeQuery();
+
+			ReviewSearchVO = new ArrayList<ReviewSearchVO>();
+			while(rset.next()) {
+				ReviewSearchVO rv = new ReviewSearchVO();
+
+				rv.setHallNm(rset.getString("HALL_NM"));
+				rv.setUseStartDt(rset.getDate("USE_START_DT"));
+				rv.setUseEndDt(rset.getDate("USE_END_DT"));
+				rv.setAddress(rset.getString("ADDRESS"));
+				rv.setPropSeq(rset.getInt("PROP_SEQ"));
+
+				ReviewSearchVO.add(rv);
+			}
+			
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		System.out.println("%&%%%^%^%^ : " + ReviewSearchVO);
+
+		return ReviewSearchVO;
+		
+		
+		
+
 	}
 
 }

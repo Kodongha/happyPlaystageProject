@@ -22,6 +22,9 @@
  #sel1 {
  	width: 90%;
  }
+ #tt {
+ 	text-align:center;
+ }
 </style>
 
 </head>
@@ -47,18 +50,18 @@
 
 	<div class="container" style="padding-top :5%;" id="proposeListDiv">
 		<table class="table" id="proposeListTable">
-			<thead>
+			<thead id="tt">
 			<tr>
-				<th>예약 번호</th>
-				<th>예약자 명</th>
-				<th>핸드폰 번호</th>
+				<th style="width:50px;">예약 번호</th>
+				<th style="width:60px;">예약자</th>
+				<th style="width:120px;">핸드폰 번호</th>
 				<th>이메일</th>
-				<th>기간</th>
-				<th>인원</th>
+				<th style="width:110px;">기간</th>
+				<th style="width:50px;">인원</th>
 				<th>요청사항</th>
-				<th>공연 계획서</th>
-				<th>신청 날짜</th>
-				<th></th>
+				<th style="width:90px;">공연 계획서</th>
+				<th style="width:100px;">신청 날짜</th>
+				<th>승인여부</th>
 				<th></th>
 			</tr>
 			</thead>

@@ -197,10 +197,6 @@ input {
 		</form>
 	</div>
 
-	<div id="fileArea">
-		<input type="file" id="upload" name="upload" onchange="loadImg(this)">
-	</div>
-
 	<!-- <script>
 
 	$(function(){

@@ -24,7 +24,7 @@ body {
 
 #mainArea {
 	width: 70%;
-	height: 800px;
+	height: 700px;
 	background-color: white;
 	margin: 0 auto;
 	margin-top: 50px;

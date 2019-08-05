@@ -41,7 +41,7 @@ System.out.println("list:::::::::::::::::::::::::"+list);
 </head>
 <body>
 <jsp:include page="/views/common/header.jsp" />
-	<h2 align="center"><b>대관 신청 내역</b></h2>
+	<h2 align="center"><b>대관 사용 내역</b></h2>
 	<br>
 	<form action="<%=request.getContextPath() %>/searchUsingInfo" method="post">
 	<div class="tab1" style="width:650px;">

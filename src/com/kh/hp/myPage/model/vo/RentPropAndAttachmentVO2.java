@@ -1,8 +1,9 @@
+//RentPropAndAttachmentVO 원래 vo
 package com.kh.hp.myPage.model.vo;
 
 import java.sql.Date;
 
-public class RentPropAndAttachmentVO {
+public class RentPropAndAttachmentVO2 {
 
 	private int propSeq;
 	private int rentSeq;
@@ -11,10 +12,10 @@ public class RentPropAndAttachmentVO {
 	private String propPhone;
 	private String propEmail;
 	private String propReqContent;
-	private String propDt;
+	private Date propDt;
 	private String propStatus;
-	private String useStartDt;
-	private String useEndDt;
+	private Date useStartDt;
+	private Date useEndDt;
 	private int useStartTm;
 	private int useEndTm;
 	private int payAmount;
@@ -29,14 +30,14 @@ public class RentPropAndAttachmentVO {
 	private int fileType;
 	private int subType;
 
-	public RentPropAndAttachmentVO() {
+	public RentPropAndAttachmentVO2() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RentPropAndAttachmentVO(int propSeq, int rentSeq, int userSeq, String propNm, String propPhone,
-			String propEmail, String propReqContent, String propDt, String propStatus, String useStartDt,
-			String useEndDt, int useStartTm, int useEndTm, int payAmount, int diffDate, int propHeadCount, int attchSeq,
-			String originNm, String changeNm, String filePath, Date uploadDt, int fileType, int subType) {
+	public RentPropAndAttachmentVO2(int propSeq, int rentSeq, int userSeq, String propNm, String propPhone,
+			String propEmail, String propReqContent, Date propDt, String propStatus, Date useStartDt, Date useEndDt,
+			int useStartTm, int useEndTm, int payAmount, int diffDate, int propHeadCount, int attchSeq, String originNm,
+			String changeNm, String filePath, Date uploadDt, int fileType, int subType) {
 		super();
 		this.propSeq = propSeq;
 		this.rentSeq = rentSeq;
@@ -62,6 +63,8 @@ public class RentPropAndAttachmentVO {
 		this.fileType = fileType;
 		this.subType = subType;
 	}
+
+
 
 	public int getPropSeq() {
 		return propSeq;
@@ -119,11 +122,11 @@ public class RentPropAndAttachmentVO {
 		this.propReqContent = propReqContent;
 	}
 
-	public String getPropDt() {
+	public Date getPropDt() {
 		return propDt;
 	}
 
-	public void setPropDt(String propDt) {
+	public void setPropDt(Date propDt) {
 		this.propDt = propDt;
 	}
 
@@ -135,19 +138,19 @@ public class RentPropAndAttachmentVO {
 		this.propStatus = propStatus;
 	}
 
-	public String getUseStartDt() {
+	public Date getUseStartDt() {
 		return useStartDt;
 	}
 
-	public void setUseStartDt(String useStartDt) {
+	public void setUseStartDt(Date useStartDt) {
 		this.useStartDt = useStartDt;
 	}
 
-	public String getUseEndDt() {
+	public Date getUseEndDt() {
 		return useEndDt;
 	}
 
-	public void setUseEndDt(String useEndDt) {
+	public void setUseEndDt(Date useEndDt) {
 		this.useEndDt = useEndDt;
 	}
 
@@ -257,7 +260,5 @@ public class RentPropAndAttachmentVO {
 				+ ", originNm=" + originNm + ", changeNm=" + changeNm + ", filePath=" + filePath + ", uploadDt="
 				+ uploadDt + ", fileType=" + fileType + ", subType=" + subType + "]";
 	}
-
-
 
 }

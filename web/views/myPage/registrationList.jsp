@@ -35,7 +35,7 @@
 		<b>대관 등록 내역</b>
 	</h2>
 	<br>
-	<form action="<%=request.getContextPath() %>/registUserList.mp" method="post">
+	<form action="<%=request.getContextPath() %>/registUserList.mp" method="get">
       	 <div class="container" align="center">
       	 	<select class="form-control" id="sel1">
    				<option selected disabled>[등록날짜 : 공연장명] 공연장을 선택하세요.</option>
@@ -84,7 +84,7 @@
   					data:{propSeq: propSeq},
   					type:'post',
   					success: function(data){
-  						location.reload();
+  						parent.location.reload();
   					},
   					error: function(){
   						console.log("error");

@@ -50,7 +50,9 @@ public class LoginServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		session.setAttribute("user", responseUserVO);
-		String tempPassword = (String) session.getAttribute("tempPasswordFlag");
+		String tempPassword = "";
+		tempPassword = (String) session.getAttribute("tempPasswordFlag");
+
 		System.out.println("tempPassword::::::::" + tempPassword);
 		String page = "";
 

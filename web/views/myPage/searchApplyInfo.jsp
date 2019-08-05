@@ -56,7 +56,7 @@
 			<td>
 			<input name="cusClosedate" id="cusClosedate" name="useDt">
 			</td>
-			<td><input type="submit"></td>	
+			<td><input type="submit" style="width:40pt; height:19pt; background-color:white; border:1px solid black; color:black; border-radius: 3px;" value="검색"></td>	
 		</tr>
 	</table>
 	</div>
@@ -75,6 +75,7 @@
 		<td id="tab1">공연장 이름</td>
 		<td id="tab1">사용할 일자</td>
 		<td id="tab1">신청 상태</td>
+		<td id="tab1"></td>
 		</tr>
 		<% for(int i = 0; i < list.size(); i++){
 			
@@ -84,11 +85,12 @@
 			<td id="tab2" onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getPropSeq() %></td>
 			<td id="tab2" onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getHallNm() %></td>
 			<td id="tab2" onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getUseStartDt() %> ~ <%= list.get(i).getUseEndDt() %></td>
-			<td id="tab2"><%= list.get(i).getPropStatus() %>
+			<td id="tab2"><%= list.get(i).getPropStatus() %></td>
+			<td id="tab2">
 			<% if(list.get(i).getPropStatus().equals("승인")){ %>
-				<button>결제</button><button type="submit" onclick="location.href='<%=request.getContextPath()%>/payRefund?propSeq=<%=list.get(i).getPropSeq() %>'">취소</button>
+				<button style="width:31pt; height:15pt; background-color:white; border:0.5px solid black; color:black; border-radius: 3px;">결제</button> <button type="submit" style="width:31pt; height:15pt; background-color:white; border:0.5px solid black; color:black; border-radius: 3px;" onclick="location.href='<%=request.getContextPath()%>/payRefund?propSeq=<%=list.get(i).getPropSeq() %>'">취소</button>
 			<% } else if(list.get(i).getPropStatus().equals("신청")) {%>
-			<button type="submit" onclick="location.href='<%=request.getContextPath()%>/applyInfoChange?propSeq=<%=list.get(i).getPropSeq() %>'">취소</button>
+			<button type="submit" style="width:30pt; height:15pt; background-color:#ff4444; border:0px; color:black; border-radius: 3px;" onclick="location.href='<%=request.getContextPath()%>/applyInfoChange?propSeq=<%=list.get(i).getPropSeq() %>'">취소</button>
 			<% } %>
 			</td>
 			</tr>		

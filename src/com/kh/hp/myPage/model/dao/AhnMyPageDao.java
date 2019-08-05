@@ -251,19 +251,19 @@ public class AhnMyPageDao {
 	}
 
 	//검색후 신청내역 페이징카운트에 대한 DAO메소드
-	public int getListCount2(Connection con, int userInfo, int rentSeq) {
+	public int getListCount2(Connection con, int userInfo, int rentSeq2) {
 		PreparedStatement pstmt = null;
 		int listCount = 0;
 		ResultSet rset = null;
 
 		String query = prop.getProperty("selectListCount2");
 		System.out.println("userInfo : " + userInfo);
-		System.out.println("rentSeq : " + rentSeq);
+		System.out.println("rentSeq : " + rentSeq2);
 
 		try {
 			pstmt = con.prepareStatement(query);
 
-			pstmt.setInt(1, rentSeq);
+			pstmt.setInt(1, rentSeq2);
 			pstmt.setInt(2, userInfo);
 
 			rset = pstmt.executeQuery();
@@ -290,19 +290,19 @@ public class AhnMyPageDao {
 	}
 
 	//검색후 사용내역 페이징카운트에 대한 DAO메소드
-	public int getListCount3(Connection con, int userInfo, int rentSeq) {
+	public int getListCount3(Connection con, int userInfo, int rentSeq2) {
 		PreparedStatement pstmt = null;
 		int listCount = 0;
 		ResultSet rset = null;
 
 		String query = prop.getProperty("selectListCount3");
 		System.out.println("userInfo : " + userInfo);
-		System.out.println("rentSeq : " + rentSeq);
+		System.out.println("rentSeq : " + rentSeq2);
 
 		try {
 			pstmt = con.prepareStatement(query);
 
-			pstmt.setInt(1, rentSeq);
+			pstmt.setInt(1, rentSeq2);
 			pstmt.setInt(2, userInfo);
 
 			rset = pstmt.executeQuery();
@@ -328,7 +328,7 @@ public class AhnMyPageDao {
 	}
 
 	//검색후 사용내역에 대한 DAO메소드
-	public ArrayList<AhnUsingInfoVO> searchCheck1(Connection con, int userInfo, int rentSeq, String hallNm, Date useStart, Date useEnd, int currentPage, int limit) {
+	public ArrayList<AhnUsingInfoVO> searchCheck1(Connection con, int userInfo, int rentSeq2, String hallNm, Date useStart, Date useEnd, int currentPage, int limit) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<AhnUsingInfoVO> list = null;
@@ -343,7 +343,7 @@ public class AhnMyPageDao {
 			int endRow = startRow + limit - 1;
 
 			pstmt.setInt(1, userInfo);
-			pstmt.setInt(2, rentSeq);
+			pstmt.setInt(2, rentSeq2);
 			pstmt.setString(3, hallNm);
 			pstmt.setDate(4, useStart);
 			pstmt.setDate(5, useEnd);
@@ -496,7 +496,7 @@ public class AhnMyPageDao {
 		return list;
 	}
 
-	public ArrayList<AhnUsingInfoVO> searchCheck3(Connection con, int userInfo, int rentSeq, Date useStart, Date useEnd,
+	public ArrayList<AhnUsingInfoVO> searchCheck3(Connection con, int userInfo, int rentSeq2, Date useStart, Date useEnd,
 			int currentPage, int limit) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -512,7 +512,7 @@ public class AhnMyPageDao {
 			int endRow = startRow + limit - 1;
 
 			pstmt.setInt(1, userInfo);
-			pstmt.setInt(2, rentSeq);
+			pstmt.setInt(2, rentSeq2);
 			pstmt.setDate(3, useStart);
 			pstmt.setDate(4, useEnd);
 			pstmt.setInt(5, startRow);
@@ -551,7 +551,7 @@ public class AhnMyPageDao {
 		return list;
 	}
 
-	public ArrayList<AhnUsingInfoVO> searchCheck4(Connection con, int userInfo, int rentSeq, String hallNm,
+	public ArrayList<AhnUsingInfoVO> searchCheck4(Connection con, int userInfo, int rentSeq2, String hallNm,
 			int currentPage, int limit) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -567,7 +567,7 @@ public class AhnMyPageDao {
 			int endRow = startRow + limit - 1;
 
 			pstmt.setInt(1, userInfo);
-			pstmt.setInt(2, rentSeq);
+			pstmt.setInt(2, rentSeq2);
 			pstmt.setString(3, hallNm);
 			pstmt.setInt(4, startRow);
 			pstmt.setInt(5, endRow);
@@ -605,7 +605,7 @@ public class AhnMyPageDao {
 		return list;
 	}
 
-	public ArrayList<AhnUsingInfoVO> searchCheck5(Connection con, int userInfo, int rentSeq, int currentPage,
+	public ArrayList<AhnUsingInfoVO> searchCheck5(Connection con, int userInfo, int rentSeq2, int currentPage,
 			int limit) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -621,7 +621,7 @@ public class AhnMyPageDao {
 			int endRow = startRow + limit - 1;
 
 			pstmt.setInt(1, userInfo);
-			pstmt.setInt(2, rentSeq);
+			pstmt.setInt(2, rentSeq2);
 			pstmt.setInt(3, startRow);
 			pstmt.setInt(4, endRow);
 
@@ -818,7 +818,7 @@ public class AhnMyPageDao {
 
 
 	//검색후 신청내역에 대한 DAO메소드
-		public ArrayList<AhnApplyInfoVO> searchApplyCheck1(Connection con, int userInfo, int rentSeq, String hallNm, Date useStart, Date useEnd, int currentPage, int limit) {
+		public ArrayList<AhnApplyInfoVO> searchApplyCheck1(Connection con, int userInfo, int rentSeq2, String hallNm, Date useStart, Date useEnd, int currentPage, int limit) {
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
 			ArrayList<AhnApplyInfoVO> list = null;
@@ -833,7 +833,7 @@ public class AhnMyPageDao {
 				int endRow = startRow + limit - 1;
 
 				pstmt.setInt(1, userInfo);
-				pstmt.setInt(2, rentSeq);
+				pstmt.setInt(2, rentSeq2);
 				pstmt.setInt(3, startRow);
 				pstmt.setInt(4, endRow);
 
@@ -923,7 +923,7 @@ public class AhnMyPageDao {
 
 	}
 
-	public ArrayList<AhnApplyInfoVO> searchApplyCheck3(Connection con, int userInfo, int rentSeq, Date useStart, Date useEnd,
+	public ArrayList<AhnApplyInfoVO> searchApplyCheck3(Connection con, int userInfo, int rentSeq2, Date useStart, Date useEnd,
 			int currentPage, int limit) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -939,7 +939,7 @@ public class AhnMyPageDao {
 			int endRow = startRow + limit - 1;
 
 			pstmt.setInt(1, userInfo);
-			pstmt.setInt(2, rentSeq);
+			pstmt.setInt(2, rentSeq2);
 			pstmt.setDate(3, useStart);
 			pstmt.setDate(4, useEnd);
 			pstmt.setInt(5, startRow);
@@ -978,7 +978,7 @@ public class AhnMyPageDao {
 
 	}
 
-	public ArrayList<AhnApplyInfoVO> searchApplyCheck4(Connection con, int userInfo, int rentSeq, String hallNm,
+	public ArrayList<AhnApplyInfoVO> searchApplyCheck4(Connection con, int userInfo, int rentSeq2, String hallNm,
 			int currentPage, int limit) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -994,7 +994,7 @@ public class AhnMyPageDao {
 			int endRow = startRow + limit - 1;
 
 			pstmt.setInt(1, userInfo);
-			pstmt.setInt(2, rentSeq);
+			pstmt.setInt(2, rentSeq2);
 			pstmt.setString(3, hallNm);
 			pstmt.setInt(4, startRow);
 			pstmt.setInt(5, endRow);
@@ -1032,7 +1032,7 @@ public class AhnMyPageDao {
 
 	}
 
-	public ArrayList<AhnApplyInfoVO> searchApplyCheck5(Connection con, int userInfo, int rentSeq, int currentPage,
+	public ArrayList<AhnApplyInfoVO> searchApplyCheck5(Connection con, int userInfo, int rentSeq2, int currentPage,
 			int limit) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -1048,7 +1048,7 @@ public class AhnMyPageDao {
 			int endRow = startRow + limit - 1;
 
 			pstmt.setInt(1, userInfo);
-			pstmt.setInt(2, rentSeq);
+			pstmt.setInt(2, rentSeq2);
 			pstmt.setInt(3, startRow);
 			pstmt.setInt(4, endRow);
 
@@ -1330,7 +1330,8 @@ public class AhnMyPageDao {
 				b.setPropReqContent(rset.getString("PROP_REQ_CONTENT"));
 				b.setPropPhone(rset.getString("PROP_PHONE"));
 				b.setPropEmail(rset.getString("PROP_EMAIL"));
-
+				b.setPayAmount(rset.getInt("PAY_AMOUNT"));
+				
 				list.add(b);
 			}
 
@@ -1344,7 +1345,7 @@ public class AhnMyPageDao {
 		return list;
 	}
 
-	public int payRefundInsert(Connection con, int userInfo, int propSeq) {
+	public int payRefundInsert(Connection con, int userInfo, int propSeq, int payAmount) {
 		System.out.println("들어옴1");
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -1353,8 +1354,9 @@ public class AhnMyPageDao {
 
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, userInfo);
-			pstmt.setInt(2, propSeq);
+			pstmt.setInt(1, payAmount);
+			pstmt.setInt(2, userInfo);
+			pstmt.setInt(3, propSeq);
 
 			result = pstmt.executeUpdate();
 

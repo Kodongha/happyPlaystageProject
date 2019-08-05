@@ -36,12 +36,20 @@ public class SearchApplyInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("들어옴");
 		int userInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
-		int rentSeq = Integer.parseInt(request.getParameter("rentSeq"));
+		String rentSeq = request.getParameter("rentSeq");
+		System.out.println("rentSeq : " + rentSeq);
+		//int rentSeq = Integer.parseInt(request.getParameter("rentSeq"));
 		String hallNm = request.getParameter("hallNm");
 		String useDt = request.getParameter("cusClosedate");
 		Date useStart = null;
 		Date useEnd = null;
-
+		int rentSeq2;
+		
+		if(rentSeq != null) {
+			rentSeq2 = Integer.parseInt(request.getParameter("rentSeq"));
+		}else {
+			rentSeq2 = 0;
+		}
 		/*캘린더 설정*/
 		if(useDt != null && !useDt.equals("")) {
 			String[] temp = useDt.split(" to ");
@@ -49,7 +57,7 @@ public class SearchApplyInfoServlet extends HttpServlet {
 			useEnd = Date.valueOf(temp[1]);
 		}
 		
-		System.out.println("rentSeq : " + rentSeq);
+		System.out.println("rentSeq2 : " + rentSeq2);
 		System.out.println("hallNm : " + hallNm);
 		System.out.println("useStart : " + useStart);
 		System.out.println("useEnd : " + useEnd);
@@ -68,7 +76,7 @@ public class SearchApplyInfoServlet extends HttpServlet {
 		
 		limit = 10;
 		
-		int listCount = new AhnMyPageService().getListCount2(userInfo, rentSeq);
+		int listCount = new AhnMyPageService().getListCount2(userInfo, rentSeq2);
 		
 		System.out.println("listCount : " + listCount);
 		
@@ -85,7 +93,7 @@ public class SearchApplyInfoServlet extends HttpServlet {
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
 	
-		ArrayList<AhnApplyInfoVO> list = new AhnMyPageService().searchApplyCheck(userInfo, rentSeq, hallNm, useStart, useEnd, currentPage, limit);
+		ArrayList<AhnApplyInfoVO> list = new AhnMyPageService().searchApplyCheck(userInfo, rentSeq2, hallNm, useStart, useEnd, currentPage, limit);
 		
 		String page = "";
 		

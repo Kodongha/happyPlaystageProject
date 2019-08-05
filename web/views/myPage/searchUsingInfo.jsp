@@ -42,7 +42,7 @@ System.out.println("list:::::::::::::::::::::::::"+list);
 <body>
 <jsp:include page="/views/common/header.jsp" />
 	<h1 align=center style="color:gray">대관 사용 내역</h1>
-	<form action="<%=request.getContextPath() %>/searchApplyInfo" method="post">
+	<form action="<%=request.getContextPath() %>/searchUsingInfo" method="post">
 	<div class="tab1" style="width:650px;border:1.5px solid black">
 	<table align="center">
 		<tr>
@@ -57,7 +57,7 @@ System.out.println("list:::::::::::::::::::::::::"+list);
 			<td>
 				<input name="cusClosedate" id="cusClosedate" name="useDt">	
 			</td>
-			<td><input type="submit"></td>
+			<td><input type="submit" style="width:40pt; height:19pt; background-color:white; border:1px solid black; color:black; border-radius: 3px;" value="검색"></td>
 		</tr>
 	</table>
 	</div>

@@ -1,3 +1,4 @@
+<%@page import="com.kh.hp.account.model.vo.UserVO"%>
 <%@page import="com.kh.hp.account.model.vo.ReviewMainVO"%>
 <%@page import="com.kh.hp.main.model.vo.MainRentVO"%>
 <%@page import="java.util.ArrayList"%>
@@ -89,11 +90,17 @@
                      <br>
                      <br>
                      <div class="container">
-                        <button type="button" class="btn btn-warning btns">
+                        <button type="button" class="btn btn-warning btns" onclick="location.href='<%=request.getContextPath()%>/moveRentList.rt'">
                            <b>공연장 찾아보기</b>
                         </button>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button type="button" class="btn btn-warning btns">
+                        <%if(((UserVO) session.getAttribute("user")) != null && ((UserVO) session.getAttribute("user")).getUserGradeCd() == 1) {%>
+                        <button type="button" class="btn btn-warning btns" onclick="location.href='<%=request.getContextPath()%>/levelUp'">
+                        <%} else if(((UserVO) session.getAttribute("user")) != null && ((UserVO) session.getAttribute("user")).getUserGradeCd() == 2) { %>
+                        <button type="button" class="btn btn-warning btns" onclick="location.href='<%=request.getContextPath()%>/MoveRentEnroll.rt'">
+                        <%} else {%>
+                        <button type="button" class="btn btn-warning btns" onclick="location.href='<%=request.getContextPath()%>/views/account/login.jsp'">
+                        <%} %>
                            <b>공연장 등록하기</b>
                         </button>
                      </div>

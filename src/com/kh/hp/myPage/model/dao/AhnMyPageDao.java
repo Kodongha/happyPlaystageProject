@@ -29,6 +29,7 @@ import com.kh.hp.myPage.model.vo.AhnLevelupVO;
 import com.kh.hp.myPage.model.vo.AhnMyPageVO;
 import com.kh.hp.myPage.model.vo.AhnUsingInfoVO;
 import com.kh.hp.myPage.model.vo.PaymentVO;
+import com.kh.hp.myPage.model.vo.RentPropAndAttachmentVO;
 
 import static com.kh.hp.common.JDBCTemplate.*;
 
@@ -695,7 +696,7 @@ public class AhnMyPageDao {
 				b.setPropStatus(rset.getString("PROP_STATUS"));
 				b.setUseStartDt(rset.getDate("USE_START_DT"));
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
-				
+
 				list.add(b);
 			}
 
@@ -1073,7 +1074,7 @@ public class AhnMyPageDao {
 				b.setUseStartDt(rset.getDate("USE_START_DT"));
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
 				b.setPayAmount(rset.getInt("PAY_AMOUNT"));
-				
+
 				list.add(b);
 			}
 
@@ -1127,7 +1128,7 @@ public class AhnMyPageDao {
 				b.setUseStartDt(rset.getDate("USE_START_DT"));
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
 				b.setPayAmount(rset.getInt("PAY_AMOUNT"));
-				
+
 				list.add(b);
 			}
 
@@ -1182,7 +1183,7 @@ public class AhnMyPageDao {
 				b.setUseStartDt(rset.getDate("USE_START_DT"));
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
 				b.setPayAmount(rset.getInt("PAY_AMOUNT"));
-				
+
 				list.add(b);
 			}
 
@@ -1233,7 +1234,7 @@ public class AhnMyPageDao {
 				b.setUseStartDt(rset.getDate("USE_START_DT"));
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
 				b.setPayAmount(rset.getInt("PAY_AMOUNT"));
-				
+
 				list.add(b);
 			}
 
@@ -1339,7 +1340,7 @@ public class AhnMyPageDao {
 				b.setPropPhone(rset.getString("PROP_PHONE"));
 				b.setPropEmail(rset.getString("PROP_EMAIL"));
 				b.setPayAmount(rset.getInt("PAY_AMOUNT"));
-				
+
 				list.add(b);
 			}
 
@@ -1617,6 +1618,45 @@ public class AhnMyPageDao {
 		}
 
 		return result;
+	}
+
+	/**
+	 * 첨부파일 가져오기
+	 * @param con
+	 * @param propSeq
+	 * @return
+	 */
+	public RentPropAndAttachmentVO selectRentPropAndAttachment(Connection con, String propSeq) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		RentPropAndAttachmentVO rentPropAndAttachmentVO = null;
+
+		String query = prop.getProperty("selectRentPropAndAttachment");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, propSeq);
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				rentPropAndAttachmentVO = new RentPropAndAttachmentVO();
+				rentPropAndAttachmentVO.setAttchSeq(rset.getInt("ATTCH_SEQ"));
+				rentPropAndAttachmentVO.setOriginNm(rset.getString("ORIGIN_NM"));
+				rentPropAndAttachmentVO.setChangeNm(rset.getString("CHANGE_NM"));
+				rentPropAndAttachmentVO.setFilePath(rset.getString("FILE_PATH"));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return rentPropAndAttachmentVO;
 	}
 
 }

@@ -386,10 +386,6 @@ body .container .content .signup-cont {
  												<a id="kakao-login-btn"></a>
 												<a href="http://developers.kakao.com/logout"></a>
    												</div>
-
-
-
-
                                       </div>
                                </form>
                         </div>

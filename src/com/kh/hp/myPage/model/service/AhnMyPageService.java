@@ -16,6 +16,7 @@ import com.kh.hp.myPage.model.vo.AhnLevelupInfoVO;
 import com.kh.hp.myPage.model.vo.AhnLevelupVO;
 import com.kh.hp.myPage.model.vo.AhnUsingInfoVO;
 import com.kh.hp.myPage.model.vo.PaymentVO;
+import com.kh.hp.myPage.model.vo.RentPropAndAttachmentVO;
 import com.kh.hp.rent.model.dao.RentDao;
 import com.kh.hp.rent.model.vo.CautionsVO;
 import com.kh.hp.rent.model.vo.FacInfoVO;
@@ -181,7 +182,7 @@ public class AhnMyPageService {
 		System.out.println("service in!!");
 		ArrayList<AhnApplyInfoVO> list = null;
 
-		
+
 
 		if(rentSeq2 != 0 && hallNm != null && useStart != null && useEnd != null) {
 			System.out.println("ooooin1");
@@ -381,7 +382,21 @@ public class AhnMyPageService {
 			rollback(con);
 		}
 
+		close(con);
+
 		return insertResult;
+	}
+
+	public RentPropAndAttachmentVO selectRentPropAndAttachment(String propSeq) {
+		// TODO Auto-generated method stub
+
+		Connection con = getConnection();
+
+		RentPropAndAttachmentVO rentPropAndAttachmentVO = new AhnMyPageDao().selectRentPropAndAttachment(con, propSeq);
+
+		close(con);
+
+		return rentPropAndAttachmentVO;
 	}
 
 

@@ -32,21 +32,12 @@
 		margin: auto;
 	}
 
-	#tab1 {
-		background-color: darkgray;
-		border: 1px solid lightgray;
-	}
-
-	#tab2 {
-		border: 1px solid lightgray;
-	}
-
-	#hallInfo tbody>tr:hover {
+	#hallInfo tbody > tr:hover {
 		cursor: pointer;
 		background: #e6f2ff;
 	}
 
-	#hallInfo tbody>tr:active {
+	#hallInfo tbody > tr:active {
 		background: #cce6ff;
 	}
 
@@ -159,18 +150,22 @@
 	<form action="<%=request.getContextPath() %>/searchApplyInfo" method="post">
 	<div class="tab1" style="width:650px;">
 	<table align="center">
+		<thead>
 		<tr>
-			<td id="rentSeq">공연장 고유번호</td>
-			<td id="hallNm">공연장 이름</td>
-			<td id="useDt">일자</td>
-			<td></td>
+			<th id="rentSeq">공연장 고유번호</th>
+			<th id="hallNm">공연장 이름</th>
+			<th id="useDt">일자</th>
+			<th></th>
 		</tr>
+		</thead>
+		<tbody>
 		<tr>
 			<td style="padding-right:3%"><input class="form-control" id="rentSeq" type="text" name="rentSeq"></td>
 			<td style="padding-right:3%"><input class="form-control" id="hallNm" type="text" name="hallNm"></td>
 			<td style="padding-right:3%"><input class="form-control" id="cusClosedate" type="text" name="cusClosedate"></td>
 			<td style="padding-right:3%"><button type="submit" class="btn btn-warning">검색</button></td>
 		</tr>
+		</tbody>
 	</table>
 	<!-- 캘린더를 파라미터로 가져와서 split으로 자르는법
 	if(cusClosedate != null && !cusClosedate.equals("")) {
@@ -186,27 +181,29 @@
 
 	<br>
 	<div class="tab2" style="width:790px;">
-	<table style="width:790px; height:60px; text-align:center; margin:auto; border-collapse: collapse;" id="hallInfo">
+	<!-- <table style="width:790px; height:60px; text-align:center; margin:auto; border-collapse: collapse;" id="hallInfo"> -->
+	<table id="hallInfo" class="table" style="text-align: center">
+		<thead>
 		<tr>
-		<td id="tab1">신청 공연장 고유번호</td>
-		<td id="tab1">신청번호</td>
-		<td id="tab1">공연장 이름</td>
-		<td id="tab1">사용할 일자</td>
-		<td id="tab1">가격</td>
-		<td id="tab1">신청 상태</td>
-		<td id="tab1">처리</td>
+		<th>공연장 번호</th>
+		<th>신청번호</th>
+		<th>공연장</th>
+		<th>사용 일자</th>
+		<th>가격</th>
+		<th>상태</th>
+		<th>처리</th>
 		</tr>
-		<% for(int i = 0; i < list.size(); i++){
-
-			%>
+		</thead>
+		<tbody>
+		<% for(int i = 0; i < list.size(); i++){%>
 			<tr>
-			<td id="tab2" onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getRentSeq() %></td>
-			<td id="tab2" onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getPropSeq() %></td>
-			<td id="tab2" onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getHallNm() %></td>
-			<td id="tab2" onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getUseStartDt() %> ~ <%= list.get(i).getUseEndDt() %></td>
-			<td id="tab2" onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getPayAmount() %></td>
-			<td id="tab2" onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getPropStatus() %></td>
-			<td id="tab2">
+			<td onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getRentSeq() %></td>
+			<td onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getPropSeq() %></td>
+			<td onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getHallNm() %></td>
+			<td onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getUseStartDt() %> ~ <%= list.get(i).getUseEndDt() %></td>
+			<td onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getPayAmount() %> ￦</td>
+			<td onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getPropStatus() %></td>
+			<td>
 			<% if(list.get(i).getPropStatus().equals("승인")){ %>
 				<button class="paymentBtn" id="paymentBtn" name="paymentBtn" style="width:31pt; height:15pt; background-color:white; border:0.5px solid black; color:black; border-radius: 3px;">결제</button> <button type="submit" style="width:31pt; height:15pt; background-color:white; border:0.5px solid black; color:black; border-radius: 3px;" onclick="location.href='<%=request.getContextPath()%>/payRefund?propSeq=<%=list.get(i).getPropSeq() %>&payAmount=<%=list.get(i).getPayAmount()%>'">취소</button>
 			<% } else if(list.get(i).getPropStatus().equals("신청")) {%>
@@ -215,7 +212,7 @@
 			</td>
 			</tr>
 		<% } %>
-
+		</tbody>
 	</table>
 	</div>
 	<%-- 페이징처리 --%>

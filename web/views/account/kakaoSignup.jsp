@@ -135,15 +135,31 @@ $(document).ready(function() {
 			var userPhoneVal = $('#userPhone').val();
 			var inputdefaultVal = $('#inputdefault').val();
 
-			boolean flag = true;
-
-			if(userEmailVal){
-
+			if(!userEmailVal){
+				alert("이메일은 필수 입력사항입니다. !");
+				$('#userEmail').focus();
+				return;
 			}
 
 			if(!userNmVal){
-
+				alert("이름을 필수 입력사항입니다. !");
+				$('#userNm').focus();
+				return;
 			}
+
+			if(!userPhoneVal){
+				alert("핸드폰은 필수 입력사항입니다. !");
+				$('#userPhone').focus();
+				return;
+			}
+
+			if(!userPhoneVal){
+				alert("인증번호를 입력해주세요. !");
+				$('#inputdefault').focus();
+				return;
+			}
+
+			$('form[name=fr]').submit();
 
 		});
 
@@ -158,7 +174,7 @@ $(document).ready(function() {
 		<b>카카오 추가 입력 사항</b>
 	</h2>
 
-	<form action="<%=request.getContextPath()%>/kakaoSignUp.acc" method="post" name="fr" onsubmit="return check()">
+	<form action="<%=request.getContextPath()%>/kakaoSignUp.acc" method="post" name="fr">
 		<div class="form-group">
 			<table>
 				<tr>

@@ -30,10 +30,14 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<link href="/happyPlaystage/css/common/all.min.css" rel="stylesheet">
+<script src="/happyPlaystage/js/common/all.min.js"></script>
+
 <script type="text/javascript">
 
 	function getConnection(){
-		ws = new WebSocket("ws://192.168.30.127:8001" + '<%=request.getContextPath()%>/serverStart?userSeq=<%=((UserVO) request.getSession().getAttribute("user")).getUserSeq() %>');
+		ws = new WebSocket("ws://localhost:8001" + '<%=request.getContextPath()%>/serverStart?userSeq=<%=((UserVO) request.getSession().getAttribute("user")).getUserSeq() %>');
 		//서버 시작할 때 동작
 		ws.onopen = function(event){
 			onopen(event);
@@ -92,7 +96,7 @@
 				var sendInput = $("#sendInput");
 				var txaVal = $("#txa").val();
 
-				var sendMessage = '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + ':' + sendInput.val();
+				var sendMessage = '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + '§§' + sendInput.val();
 				ws.send(sendMessage);
 				setMessage = txaVal + "\r\n" + '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + ':' + sendInput.val();
 				$("#txa").val(setMessage);
@@ -102,17 +106,20 @@
 			}
 		});
 	});
-
 </script>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
 
-	<div class="container">
-		<textarea rows="30" cols="50" id="txa"><%=textValue%></textarea>
-		<br>
-		<input size="40" id="sendInput">
-		<button id="sendBtn">보내기</button>
+	<div class="container" align="center">
+		<span style="margin-right: 5%">
+				<i class="fas fa-question-circle" style="width: 200px; height: 200px;"></i>
+		</span>
+		<span>
+			<textarea class="form-control" rows="10" cols="20" id="txa" style="resize: none; width: 400px; margin-bottom: 1%"><%=textValue%></textarea>
+			<input size="40" id="sendInput" class="form-control" style="width: 350px; display: inline-block;">
+			<button id="sendBtn" class="btn btn-default" style="display: ">보내기</button>
+		</span>
 	</div>
 
 	<jsp:include page="/views/common/footer.jsp" />

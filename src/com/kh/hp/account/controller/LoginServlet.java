@@ -50,11 +50,17 @@ public class LoginServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		session.setAttribute("user", responseUserVO);
-
+		String tempPassword = (String) session.getAttribute("tempPasswordFlag");
+		System.out.println("tempPassword::::::::" + tempPassword);
 		String page = "";
 
+
 		if(responseUserVO != null) {
-			page = request.getContextPath() + "/moveMain.main";
+			if(tempPassword.equals("Y")) {
+				page = request.getContextPath() + "/reviseaPwd.mp";
+			} else {
+				page = request.getContextPath() + "/moveMain.main";
+			}
 			response.sendRedirect(page);
 		} else {
 			page = "views/account/login.jsp";

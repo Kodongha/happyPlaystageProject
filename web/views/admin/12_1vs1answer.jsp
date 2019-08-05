@@ -34,7 +34,7 @@
 <script type="text/javascript">
 
 	function getConnection(){
-		ws = new WebSocket("ws://192.168.30.127 :8001" + '<%=request.getContextPath()%>/serverStart?userSeq=<%=((UserVO) request.getSession().getAttribute("user")).getUserSeq() %>' + '&roomSeq=<%=roomSeq%>');
+		ws = new WebSocket("ws://localhost:8001" + '<%=request.getContextPath()%>/serverStart?userSeq=<%=((UserVO) request.getSession().getAttribute("user")).getUserSeq() %>' + '&roomSeq=<%=roomSeq%>');
 		//서버 시작할 때 동작
 		ws.onopen = function(event){
 			onopen(event);
@@ -96,9 +96,9 @@
 				var sendInput = $("#sendInput");
 				var txaVal = $("#txa").val();
 
-				var sendMessage = '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + '§§' + sendInput.val();
+				var sendMessage = '관리자' + '§§' + sendInput.val();
 				ws.send(sendMessage);
-				setMessage = txaVal + "\r\n" + '<%=((UserVO) request.getSession().getAttribute("user")).getUserNick() %>' + ':' + sendInput.val();
+				setMessage = txaVal + "\r\n" + '관리자' + ':' + sendInput.val();
 				$("#txa").val(setMessage);
 				sendInput.val("");
 				const top = $("#txa").prop('scrollHeight');

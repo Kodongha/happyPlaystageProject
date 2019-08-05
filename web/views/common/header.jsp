@@ -3,12 +3,6 @@
 <%
 	UserVO user = (UserVO) session.getAttribute("user");
 %>
-
-<%if(user == null){ %>
-
-<%}else if(user != null && user.getUserGradeCd() == 0) { %>
-
-<%} %>
 <!DOCTYPE html>
 	<!-- Header_Navigator -->
 	<nav class="navbar navbar-inverse">
@@ -24,7 +18,7 @@
 	        <ul class="dropdown-menu">
 	        <%if(user == null){ %>
 		          <li><a href="<%=request.getContextPath() %>/views/account/login.jsp">대관 등록하기</a></li>
-			<%}else if(user != null && user.getUserGradeCd() == 0) { %>
+			<%}else if((user != null && user.getUserGradeCd() == 0) || (user != null && user.getUserGradeCd() == 2)) { %>
 		          <li><a href="<%=request.getContextPath() %>/MoveRentEnroll.rt">대관 등록하기</a></li>
 			<%} else {%>
 		          <li><a href="<%=request.getContextPath() %>/MoveRentEnroll.rt" onclick="javascript: return false;">대관 등록하기</a></li>
@@ -113,7 +107,9 @@
 	          <li><a href="<%=request.getContextPath() %>/registList.mp">대관 등록 내역</a></li>
 	          <li><a href="<%=request.getContextPath() %>/usingInfo">대관 사용 내역</a></li>
 	          <li><a href="<%=request.getContextPath() %>/applyInfo1">대관 신청 내역</a></li>
+	          <%if(user.getUserGradeCd() != 2 && user.getUserGradeCd() != 0){ %>
 	          <li><a href="<%=request.getContextPath() %>/levelUp">등업 신청</a></li>
+	          <%} %>
 	        </ul>
 	      </li>
  			<li><a href="<%=request.getContextPath() %>/logout.acc"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>

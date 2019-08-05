@@ -60,7 +60,6 @@ public class MyPageService_mh {
 		boolean type1 = responseMyPageUserVO.getUserNm().equals(myPageUserVO.getUserNm());
 		boolean type2 = responseMyPageUserVO.getUserNick().equals(myPageUserVO.getUserNick());
 		boolean type3 = responseMyPageUserVO.getUserPhone().equals(myPageUserVO.getUserPhone());
-		boolean type4 = responseMyPageUserVO.getUserPwd().equals(myPageUserVO.getUserPwd());
 
 
 		/*변경 사항이 없을 경우 - 업데이트 안함*/

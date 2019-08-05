@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.hp.account.model.service.AccountService;
 import com.kh.hp.common.EmailUtils;
@@ -57,6 +58,8 @@ public class FindPasswordTwo extends HttpServlet {
 		} else {
 			request.setAttribute("flag", "N");
 		}
+		HttpSession session = request.getSession();
+		session.setAttribute("tempPasswordFlag", "Y");
 
 		String page = "views/account/findPassword2.jsp?email="+receiver;
 		request.getRequestDispatcher(page).forward(request, response);

@@ -110,6 +110,25 @@
   				});
   			});
 
+  			// 첨부파일 버튼 클릭
+  			$(document).on('click', '#attachPTag', function(){
+  				var propSeq = $(this).parents('tr').children().eq(0).text();
+				location.href = '<%=request.getContextPath()%>/downloadPlan.my?propSeq=' + propSeq;
+  				/*
+  				$.ajax({
+  					url : 'downloadPlan.my',
+  					data : {propSeq:propSeq},
+  					method : 'post',
+  					success : function(data){
+  						console.log(data);
+  					},
+  					error : function(){
+  						console.log("error");
+  					}
+  				});
+ 				*/
+  			});
+
   			// selectbox 변경될 때마다 값 불러오기
   			$('#sel1').change(function(){
 
@@ -124,7 +143,6 @@
 
   						$('#proposeListTable tbody').remove();
 
-
   						var proposeListTable = $('#proposeListTable');
   						var $tbody = $('<tbody/>', {align:'center'})
 
@@ -137,10 +155,12 @@
 	  						var $startDateAndEndDateTd = $('<td/>');
 	  						var $propHeadCountTd = $('<td/>');
 	  						var $propReqContentTd = $('<td/>');
-	  						var $attchTd = $('<td/>');
+	  						var $attchTd = $('<td/>', {id:'attrchTd'});
 	  						var $propDtTd = $('<td/>');
 	  						var $confirmBtnTd = $("<td/>");
 	  						var $rejectBtnTd = $("<td/>");
+
+	  						var $attachPTag = ("<p id='attachPTag'>다운로드</p>");
 
 	  						var $confirmBtn = $('<button/>', {class : 'btn btn-success', id:'confirmBtn', name:"confirmBtn", text:"수락"});
 	  						var $rejectBtn = $('<button/>', {class : 'btn btn-danger', id:'rejectBtn', name:"rejectBtn", text:"거절"});
@@ -152,7 +172,7 @@
   							$startDateAndEndDateTd.text(data[key].useStartDt + " ~ " + data[key].useEndDt);
   							$propHeadCountTd.text(data[key].propHeadCount + " 명");
   							$propReqContentTd.text(data[key].propReqContent);
-  							$attchTd.text(data[key].userSeq);
+  							$attchTd.append($attachPTag);
   							$propDtTd.text(data[key].propDt);
   							$confirmBtnTd.append($confirmBtn);
   							$rejectBtnTd.append($rejectBtn);

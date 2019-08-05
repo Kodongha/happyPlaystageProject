@@ -70,7 +70,7 @@ h4 {
 		<strong>리뷰 등록</strong></h2>
 	<br>
 
-	<form action="<%=request.getContextPath()%>/reviewInsert.acc" >
+	<form action="<%=request.getContextPath()%>/reviewInsert.acc" id="reviewWriteForm">
 	<div class="review1" id="review1">
 		<h4>리뷰를 입력해 주세요.</h4>
 		<hr>
@@ -108,15 +108,29 @@ h4 {
 
   	  return false;
   	});
+
+  	$(function(){
+  		$('#submitBtn').click(function(){
+  			var i = 0;
+  			$('.on').each(function(){
+  				i ++;
+  			});
+  			$('#ran').val(i);
+
+  			$('#reviewWriteForm').submit();
+  		});
+  	})
+
   	</script>
 
 	<input type="hidden" id="propSeq" name="propSeq" value="<%=rs.getPropSeq()%>">
 	<input type="hidden" id="rentSeq" name="rentSeq" value="<%=rs.getRentSeq()%>">
+	<input type="hidden" id="ran" name="ran" value="<%=rs.getRentSeq()%>">
 
 
 	<div class="chek1" style="margin: 50px;">
 	<button type="button" class="btn btn-danger" style="width: 49%;" onclick="location.href='../main/main.jsp'">취소</button>
-	<button type="submit" class="btn btn-success next-step" style="width: 49%; float: right;">저장</button>
+	<button type="button" id="submitBtn" class="btn btn-success next-step" style="width: 49%; float: right;">저장</button>
 	</div>
 
 	</form>

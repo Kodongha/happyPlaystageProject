@@ -47,14 +47,14 @@
 						<%if(realTimeVO.getRcvMsg() != null){ %>
 						<td class="Contents" align="center"><%=realTimeVO.getRcvMsg() %></td>
 						<%} else {%>
-						<td class="Contents" align="center"></td>
+						<td class="Contents" align="center">[ 답변 완료 ]</td>
 						<%} %>
 						<td class="Contents" align="center"><%=sdf.format(realTimeVO.getLastRcvDate()) %></td>
 						<td class="Contents" align="center">
 							<%if(realTimeVO.getStatus() == 1){ %>
 							<button type="button" class="btn btn-primary" id="searchbutton" name="searchbutton">답변대기</button>
 							<%} else { %>
-							<button type="button" class="btn" disabled="disabled">답변완료</button>
+							<button type="button" class="btn" style="background: lightgray">답변완료</button>
 							<%} %>
 							<input type="hidden" name="roomSeq" id="roomSeq" value="<%=realTimeVO.getRoomSeq() %>">
 						</td>

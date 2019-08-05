@@ -29,7 +29,7 @@ body {
 #search {
 	width: 80%;
 	height: 130px;
-	border: 3px solid #3479ba;
+	border: 3px solid #f5b342;
 	/* margin-left:10%; */
 	margin: auto;
 }

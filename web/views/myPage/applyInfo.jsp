@@ -29,15 +29,27 @@
 <title>대관 신청 내역</title>
 <style>
 	div {
-		margin:auto;
+		margin: auto;
 	}
-	#tab1{
+
+	#tab1 {
 		background-color: darkgray;
-		 border: 1px solid lightgray;
+		border: 1px solid lightgray;
 	}
+
 	#tab2 {
-	 border: 1px solid lightgray;
-  }
+		border: 1px solid lightgray;
+	}
+
+	#hallInfo tbody>tr:hover {
+		cursor: pointer;
+		background: #e6f2ff;
+	}
+
+	#hallInfo tbody>tr:active {
+		background: #cce6ff;
+	}
+
 </style>
 <SCRIPT type="text/javascript">
 
@@ -58,7 +70,6 @@
 			console.log(hallNm);
 			console.log(propSeq);
 			console.log(price);
-
 
 			BootPay.request({
 				price: '100', //실제 결제되는 가격
@@ -156,9 +167,9 @@
 		</tr>
 		<tr>
 			<td style="padding-right:3%"><input class="form-control" id="rentSeq" type="text" name="rentSeq"></td>
-			<td style="padding-right:3%"><input class="form-control" id="hallNm" type="text" name="hallNm"></td>			
+			<td style="padding-right:3%"><input class="form-control" id="hallNm" type="text" name="hallNm"></td>
 			<td style="padding-right:3%"><input class="form-control" id="cusClosedate" type="text" name="cusClosedate"></td>
-			<td style="padding-right:3%"><button type="submit" class="btn btn-warning">검색</button></td>			
+			<td style="padding-right:3%"><button type="submit" class="btn btn-warning">검색</button></td>
 		</tr>
 	</table>
 	<!-- 캘린더를 파라미터로 가져와서 split으로 자르는법
@@ -175,8 +186,7 @@
 
 	<br>
 	<div class="tab2" style="width:790px;">
-
-	<table style="width:790px; height:60px; text-align:center; margin:auto; border-collapse: collapse;">
+	<table style="width:790px; height:60px; text-align:center; margin:auto; border-collapse: collapse;" id="hallInfo">
 		<tr>
 		<td id="tab1">신청 공연장 고유번호</td>
 		<td id="tab1">신청번호</td>
@@ -198,9 +208,9 @@
 			<td id="tab2" onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getPropStatus() %></td>
 			<td id="tab2">
 			<% if(list.get(i).getPropStatus().equals("승인")){ %>
-				<button id="paymentBtn" name="paymentBtn" style="width:31pt; height:15pt; background-color:white; border:0.5px solid black; color:black; border-radius: 3px;">결제</button> <button type="submit" style="width:31pt; height:15pt; background-color:white; border:0.5px solid black; color:black; border-radius: 3px;" onclick="location.href='<%=request.getContextPath()%>/payRefund?propSeq=<%=list.get(i).getPropSeq() %>&payAmount=<%=list.get(i).getPayAmount()%>'">취소</button>
+				<button class="paymentBtn" id="paymentBtn" name="paymentBtn" style="width:31pt; height:15pt; background-color:white; border:0.5px solid black; color:black; border-radius: 3px;">결제</button> <button type="submit" style="width:31pt; height:15pt; background-color:white; border:0.5px solid black; color:black; border-radius: 3px;" onclick="location.href='<%=request.getContextPath()%>/payRefund?propSeq=<%=list.get(i).getPropSeq() %>&payAmount=<%=list.get(i).getPayAmount()%>'">취소</button>
 			<% } else if(list.get(i).getPropStatus().equals("신청")) {%>
-			<button type="submit" style="width:31pt; height:15pt; background-color:white; border:0.5px solid black; color:black; border-radius: 3px;"onclick="location.href='<%=request.getContextPath()%>/applyInfoChange?propSeq=<%=list.get(i).getPropSeq() %>'">취소</button>
+			<button class="cancleBtn" type="submit" style="width:31pt; height:15pt; background-color:white; border:0.5px solid black; color:black; border-radius: 3px;"onclick="location.href='<%=request.getContextPath()%>/applyInfoChange?propSeq=<%=list.get(i).getPropSeq() %>'">취소</button>
 			<% } %>
 			</td>
 			</tr>

@@ -4,11 +4,9 @@
 <%
  ArrayList<User> list = (ArrayList<User>) request.getAttribute("list");
 
-	
 	/* System.out.println("뷰 -searchUserList::::" + list); */
 
 User user  = new User();
-
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -55,7 +53,7 @@ User user  = new User();
 
 #area {
 	border: 1px solid gray;
-	width: 1200px;
+	width: 900px;
 	height: 150px;
 	margin-left: 50px;
 	border-top-left-radius: 8px;
@@ -73,7 +71,7 @@ User user  = new User();
 #users2 {
 	width: 100px;
 	height: 150px;
-	margin-left: 480px;
+	margin-left: 440px;
 	margin-top: -150px;
 }
 

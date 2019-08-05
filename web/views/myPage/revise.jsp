@@ -4,6 +4,7 @@
 	pageEncoding="UTF-8"%>
 <%
 	MyPageUserVO mypageInfo = (MyPageUserVO) request.getAttribute("mypageInfo");
+	System.out.println(mypageInfo.getSnsCd());
 %>
 <!DOCTYPE html>
 <html>
@@ -58,8 +59,13 @@ table {
 }
 
 #revisePwd:hover, #withdraw:hover {
-	cursor: pointer;
+	<%if(mypageInfo.getSnsCd() == 0){%>
 	text-decoration: underline;
+	cursor: pointer;
+	<%} else { %>
+	cursor: pointer;
+	text-decoration: line-through;
+	<%} %>
 }
 
 input {
@@ -187,7 +193,11 @@ input {
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td><p onclick="goRevisePwd()" id="revisePwd">변경하기</p></td>
+						<%if(mypageInfo.getSnsCd() == 0){%>
+						<td><p onclick="goRevisePwd()" id="revisePwd" >변경하기</p></td>
+						<%} else { %>
+						<td><p id="revisePwd" >변경하기</p></td>
+						<%} %>
 					</tr>
 				</table>
 			</div>

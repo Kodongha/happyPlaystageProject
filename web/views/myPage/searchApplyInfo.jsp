@@ -27,15 +27,26 @@
 <title>대관 신청 내역 검색결과</title>
 <style>
 	div {
-		margin:auto;
+		margin: auto;
 	}
-	#tab1{
+
+	#tab1 {
 		background-color: darkgray;
-		 border: 1px solid lightgray;
+		border: 1px solid lightgray;
 	}
+
 	#tab2 {
-	 border: 1px solid lightgray;
-  } 
+		border: 1px solid lightgray;
+	}
+
+	#hallInfo tbody>tr:hover {
+		cursor: pointer;
+		background: #e6f2ff;
+	}
+
+	#hallInfo tbody>tr:active {
+		background: #cce6ff;
+	}
 </style>
 </head>
 <body>
@@ -53,21 +64,21 @@
 		</tr>
 		<tr>
 			<td><input class="form-control" id="rentSeq" type="text" name="rentSeq"></td>
-			<td><input class="form-control" id="hallNm" type="text" name="hallNm"></td>			
+			<td><input class="form-control" id="hallNm" type="text" name="hallNm"></td>
 			<td><input class="form-control" id="cusClosedate" type="text" name="cusClosedate"></td>
-			<td><button type="submit" class="btn btn-warning">검색</button></td>			
+			<td><button type="submit" class="btn btn-warning">검색</button></td>
 		</tr>
 	</table>
 	</div>
 	</form>
 	<br>
-	
+
 	<hr>
-	
+
 	<br>
 	<div class="tab2" style="width:790px;">
-	
-	<table style="width:790px; height:60px; text-align:center; margin:auto; border-collapse: collapse;">
+
+	<table style="width:790px; height:60px; text-align:center; margin:auto; border-collapse: collapse;" id="hallInfo">
 		<tr>
 		<td id="tab1">신청 공연장 고유번호</td>
 		<td id="tab1">신청번호</td>
@@ -78,7 +89,7 @@
 		<td id="tab1"></td>
 		</tr>
 		<% for(int i = 0; i < list.size(); i++){
-			
+
 			%>
 			<tr>
 			<td id="tab2" onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getRentSeq() %></td>
@@ -94,9 +105,9 @@
 			<button type="submit" style="width:30pt; height:15pt; background-color:#ff4444; border:0px; color:black; border-radius: 3px;" onclick="location.href='<%=request.getContextPath()%>/applyInfoChange?propSeq=<%=list.get(i).getPropSeq() %>'">취소</button>
 			<% } %>
 			</td>
-			</tr>		
+			</tr>
 		<% } %>
-		
+
 		<%-- <tr>
 		<td id="tab2"><%= list.get(0).getRentSeq() %></td>
 		<td id="tab2"><%= list.get(0).getPropNm() %></td>
@@ -121,24 +132,24 @@
 	<% if(maxPage >= 2) { %>
 		<div class="pagingArea" align="center">
 			<button onclick="location.href='<%=request.getContextPath()%>/searchApplyInfo?currentPage=1'"><<</button>
-			
+
 			<% if(currentPage <= 1){ %>
 			<button disabled><</button>
 			<% }else { %>
 			<button onclick="location.href='<%=request.getContextPath()%>/searchApplyInfo?currentPage=<%=currentPage - 1%>'"><</button>
 			<% } %>
-			
-			<% for(int p = startPage; p <= endPage; p++){ 
+
+			<% for(int p = startPage; p <= endPage; p++){
 				if(currentPage == p){
 			%>
 					<button disabled><%= p %></button>
 			<% } else { %>
 					<button onclick="location.href='<%=request.getContextPath()%>/searchApplyInfo?currentPage=<%=p%>'"><%= p %></button>
-			<% 
+			<%
 				}
-			   } 
+			   }
 			%>
-			
+
 			<% if(currentPage >= maxPage){ %>
 			<button disabled>></button>
 			<% }else{ %>
@@ -153,4 +164,4 @@
 	</script>
 	<jsp:include page="/views/common/footer.jsp" />
 </body>
-</html> 
+</html>

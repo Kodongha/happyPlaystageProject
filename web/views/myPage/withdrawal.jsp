@@ -67,11 +67,22 @@ body {
 					<h3 name="userEmail"><b><%=mypageInfo.getUserEmail()%></b></h3>
 					</div>
 					<br>
+
 					<label for="pwd1">비밀번호</label><br>
+					<%if(mypageInfo.getSnsCd() == 0){%>
 					<input type="password" class="form-control" name="pwd1" id="pwd1" required>
+					<%} else { %>
+					<input type="password" class="form-control" name="pwd1" id="pwd1" required disabled="disabled" placeholder="SNS 이용자는 비밀번호를 따로 입력하지 않습니다.">
+					<%} %>
+
 					<br>
 					<label for="pwd2">비밀번호 확인</label><br>
+					<%if(mypageInfo.getSnsCd() == 0){%>
 					<input type="password" class="form-control" name="pwd2"id="pwd2" required>
+					<%} else { %>
+					<input type="password" class="form-control" name="pwd2"id="pwd2" required disabled="disabled">
+					<%} %>
+
 					<div id="alerts">
 						<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
 						<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>

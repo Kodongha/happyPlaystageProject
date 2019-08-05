@@ -49,20 +49,19 @@
     </form>
 
 	<div class="container" style="padding-top :5%;" id="proposeListDiv">
-		<table class="table" id="proposeListTable">
+		<table class="table" id="proposeListTable" style="text-align: center;">
 			<thead id="tt">
-			<tr>
-				<th style="width:50px;">예약 번호</th>
+			<tr  align="center">
+				<th style="width:50px;">번호</th>
 				<th style="width:60px;">예약자</th>
 				<th style="width:120px;">핸드폰 번호</th>
 				<th>이메일</th>
-				<th style="width:110px;">기간</th>
+				<th style="width:110px;">사용 기간</th>
 				<th style="width:50px;">인원</th>
 				<th>요청사항</th>
 				<th style="width:90px;">공연 계획서</th>
 				<th style="width:100px;">신청 날짜</th>
-				<th>승인여부</th>
-				<th></th>
+				<th colspan="2">승인여부</th>
 			</tr>
 			</thead>
 			<tbody></tbody>
@@ -152,7 +151,7 @@
   							$propPhoneTd.text(data[key].propPhone);
   							$propEmailTd.text(data[key].propEmail);
   							$startDateAndEndDateTd.text(data[key].useStartDt + " ~ " + data[key].useEndDt);
-  							$propHeadCountTd.text(data[key].propHeadCount);
+  							$propHeadCountTd.text(data[key].propHeadCount + " 명");
   							$propReqContentTd.text(data[key].propReqContent);
   							$attchTd.text(data[key].userSeq);
   							$propDtTd.text(data[key].propDt);

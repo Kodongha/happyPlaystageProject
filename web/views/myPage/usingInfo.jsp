@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.hp.myPage.model.vo.*, java.util.*"%>
 <%
- ArrayList<AhnUsingInfoVO> list = (ArrayList<AhnUsingInfoVO>)request.getAttribute("list"); 
+ ArrayList<AhnUsingInfoVO> list = (ArrayList<AhnUsingInfoVO>)request.getAttribute("list");
 //AhnUsingInfoVO responseUserVO = (AhnUsingInfoVO) request.getAttribute("responseUserVO");
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
 	int listCount = pi.getListCount();
@@ -27,15 +27,26 @@
 <title>대관 사용 내역</title>
 <style>
 	div {
-		margin:auto;
+		margin: auto;
 	}
-	#tab1{
+
+	#tab1 {
 		background-color: darkgray;
-		 border: 1px solid lightgray;
+		border: 1px solid lightgray;
 	}
+
 	#tab2 {
-	 border: 1px solid lightgray;
-  } 
+		border: 1px solid lightgray;
+	}
+
+	#hallInfo tbody>tr:hover {
+		cursor: pointer;
+		background: #e6f2ff;
+	}
+
+	#hallInfo tbody>tr:active {
+		background: #cce6ff;
+	}
 </style>
 </head>
 <body>
@@ -52,22 +63,22 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td><input class="form-control" id="rentSeq" type="text" name="rentSeq"></td>
-			<td><input class="form-control" id="hallNm" type="text" name="hallNm"></td>			
-			<td><input class="form-control" id="cusClosedate" type="text" name="cusClosedate"></td>
-			<td><button type="submit" class="btn btn-warning">검색</button></td>			
+			<td style="padding-right:3%"><input class="form-control" id="rentSeq" type="text" name="rentSeq"></td>
+			<td style="padding-right:3%"><input class="form-control" id="hallNm" type="text" name="hallNm"></td>
+			<td style="padding-right:3%"><input class="form-control" id="cusClosedate" type="text" name="cusClosedate"></td>
+			<td style="padding-right:3%"><button type="submit" class="btn btn-warning">검색</button></td>
 		</tr>
 	</table>
 	</div>
 	</form>
 	<br>
-	
+
 	<hr>
-	
+
 	<br>
 	<div class="tab2" style="width:790px;">
-	
-	<table style="width:790px; height:60px; text-align:center; margin:auto; border-collapse: collapse;">
+
+	<table style="width:790px; height:60px; text-align:center; margin:auto; border-collapse: collapse;" id="hallInfo">
 		<tr>
 		<td id="tab1">공연장 고유번호</td>
 		<td id="tab1">상호명</td>
@@ -80,9 +91,9 @@
 			<td id="tab2"><%= list.get(i).getCompNm() %></td>
 			<td id="tab2"><%= list.get(i).getUseStartDt() %> ~ <%= list.get(i).getUseEndDt() %></td>
 			<td id="tab2"><%= list.get(i).getHallNm() %></td>
-			</tr>		
+			</tr>
 		<% } %>
-		
+
 		<%-- <tr>
 		<td id="tab2"><%= list.get(0).getRentSeq() %></td>
 		<td id="tab2"><%= list.get(0).getPropNm() %></td>
@@ -107,24 +118,24 @@
 	<% if(maxPage >= 2) { %>
 		<div class="pagingArea" align="center">
 			<button onclick="location.href='<%=request.getContextPath()%>/usingInfo?currentPage=1'"><<</button>
-			
+
 			<% if(currentPage <= 1){ %>
 			<button disabled><</button>
 			<% }else { %>
 			<button onclick="location.href='<%=request.getContextPath()%>/usingInfo?currentPage=<%=currentPage - 1%>'"><</button>
 			<% } %>
-			
-			<% for(int p = startPage; p <= endPage; p++){ 
+
+			<% for(int p = startPage; p <= endPage; p++){
 				if(currentPage == p){
 			%>
 					<button disabled><%= p %></button>
 			<% } else { %>
 					<button onclick="location.href='<%=request.getContextPath()%>/usingInfo?currentPage=<%=p%>'"><%= p %></button>
-			<% 
+			<%
 				}
-			   } 
+			   }
 			%>
-			
+
 			<% if(currentPage >= maxPage){ %>
 			<button disabled>></button>
 			<% }else{ %>
@@ -139,4 +150,4 @@
 	</script>
 	<jsp:include page="/views/common/footer.jsp" />
 </body>
-</html> 
+</html>

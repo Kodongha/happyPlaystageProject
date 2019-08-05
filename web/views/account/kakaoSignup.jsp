@@ -20,7 +20,7 @@
 <style>
 div.form-group {
 	border: 1px solid #999;
-	height: 550px;
+	height: 400px;
 	width: 500px;
 	padding: 40px 10px 0px 130px;
 	border-radius: 10px;
@@ -98,6 +98,14 @@ table {
 }
 </style>
 <script type="text/javascript">
+$(document).ready(function() {
+	$('.check-all').click(function() {
+		$('.ab').prop('checked', this.checked);
+	});
+});
+
+</script>
+<script type="text/javascript">
 	//아이디 중복
 	$(function(){
 		$("#idCheck").click(function(){
@@ -120,6 +128,25 @@ table {
 				}
 			});
 		});
+
+		$('#signUpBtn').click(function(){
+			var userEmailVal = $('#userEmail').val();
+			var userNmVal = $('#userNm').val();
+			var userPhoneVal = $('#userPhone').val();
+			var inputdefaultVal = $('#inputdefault').val();
+
+			boolean flag = true;
+
+			if(userEmailVal){
+
+			}
+
+			if(!userNmVal){
+
+			}
+
+		});
+
 	});
 
 </script>
@@ -157,7 +184,7 @@ table {
 				</tr>
 				<tr>
 					<td><input class="form-control" id="inputdefault"
-						type="password" name="cNumber" placeholder="인증번호 6자리 숫자 입력"></td>
+						type="password" name="inputdefault" placeholder="인증번호 6자리 숫자 입력"></td>
 					<td id="inj"><input id="injbu" type="button" value="인증번호 받기"></td>
 				</tr>
 				<tr>
@@ -174,14 +201,13 @@ table {
 				</tr>
 				<tr>
 					<td>
-						<button id="signUpBtn" type="submit" class="btn btn-default btn-lg btn-block">
+						<button id="signUpBtn" type="button" class="btn btn-default btn-lg btn-block">
 							<a>회원가입</a>
 						</button>
 					</td>
 				</tr>
 			</table>
 		</div>
-
 		<input type="hidden" name="userNick" value="<%=userInfoMap.get("nickname") %>">
 		<input type="hidden" name="accessToken" value="<%=userInfoMap.get("accessToken")%>">
 		<input type="hidden" name="refreshToken" value="<%=userInfoMap.get("refreshToken")%>">

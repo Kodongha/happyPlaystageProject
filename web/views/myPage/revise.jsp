@@ -231,6 +231,11 @@ input {
 
       </script> -->
 
+	<% if(mypageInfo.getSnsCd() == 1) { %>
+	<script>
+		$("#revisePwd").attr("onclick", null);
+	</script>
+	<% } %>
 
 	<script>
 		function goRevisePwd(){

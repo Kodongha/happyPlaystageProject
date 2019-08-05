@@ -20,6 +20,10 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
+<!-- 아이콘 -->
+<link href="/happyPlaystage/css/common/all.min.css" rel="stylesheet">
+<script src="/happyPlaystage/js/common/all.min.js"></script>
+
 <style>
    #picture {
       width:100%;
@@ -38,7 +42,7 @@
       width:300px;
    }
    .ui.cards {
-    padding-left: 14%;
+    padding-left: 8%;
 }
 </style>
 
@@ -137,9 +141,11 @@
 					<div class="description"><%=mainRentVO.getAddress() %></div>
 				</div>
 				<div class="extra content">
-					<span class="right floated"><%=mainRentVO.getRentEnrollDt() %></span>
-					<span>
-						<i class="user icon"></i> <%=mainRentVO.getRentPrice() %>
+					<span class="right floated">
+						<i class="far fa-calendar-alt"></i>&nbsp;&nbsp; <%=mainRentVO.getRentEnrollDt() %>
+					</span>
+					<span  style="float:left">
+						<i class="far fa-credit-card"></i>&nbsp;&nbsp; <%=mainRentVO.getRentPrice() %> ￦ / 일
 					</span>
 				</div>
 			</div>
@@ -178,7 +184,7 @@
 				<div class="extra content">
 					<span class="rating">
 					<%for(int i=0; i<reviewMainVO.getRating(); i++) {%>
-							★
+							<span style="color:#e6bb00;">★</span>
 					<%} %>
 					</span>
 

@@ -27,7 +27,7 @@
 
 <style>
 	.ui.cards {
-    padding-left: 14%;
+    padding-left: 8%;
 	}
 	#search {
 		text-align:center;
@@ -91,7 +91,7 @@
 				<div class="extra content">
 					<span class="rating">
 					<%for(int i=0; i<reviewMainVO.getRating(); i++) {%>
-							<span style="color:#fcec03;">★</span>
+							<span style="color:#e6bb00;">★</span>
 					<%} %>
 					</span>
 

@@ -54,9 +54,10 @@ body {
 }
 
 #text3 {
-	font-size: 25px;
-	padding: 150px;
-	padding-left: 650px;
+	font-size: 23px;
+	padding: 130px;
+	padding-left: 415px;
+	padding-top:150px;
 }
 
 #text4 {

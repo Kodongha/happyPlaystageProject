@@ -4,7 +4,7 @@
 	pageEncoding="UTF-8"%>
 
 	<% ArrayList<ReviewSearchVO> ReviewSearchVO = (ArrayList<ReviewSearchVO>) request.getAttribute("ReviewSearchVO");  %>
-		
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,10 +83,10 @@
 					<input type="submit" class="btn btn-warning" id="searchbutton" value="등록">
 		</div>
 		</form>
-		
+
 		<br><br>
 		<div class="container">
-	
+
 			<table class="table table-hover">
 				<thead>
 					<tr style="background-color: #FACC2E;" align="center">
@@ -95,10 +95,10 @@
 						<td>주소</td>
 						<td>사용 날짜</td>
 					</tr>
-				
+
 				</thead>
 				<% for(int i=0; i<ReviewSearchVO.size(); i++) { %>
-				<tr align="center">
+				<tr align="center" class="listTr">
 					<td><%= ReviewSearchVO.get(i).getPropSeq()%></td>
 					<td><%= ReviewSearchVO.get(i).getHallNm() %></td>
 					<td><%= ReviewSearchVO.get(i).getAddress()%></td>
@@ -106,11 +106,18 @@
 				</tr>
 				<% } %>
 			</table>
-</div>	
-	
+</div>
 
-	
-	
+	<script type="text/javascript">
+		$('.listTr').click(function(){
+			var propSeq = $(this).children().eq(0).text();
+			$('#search').val(propSeq);
+		});
+
+	</script>
+
+
+
 	<br><br><br><br><br><br><br><br>
 	<jsp:include page="/views/common/footer.jsp" />
 </body>

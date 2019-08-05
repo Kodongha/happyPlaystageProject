@@ -47,19 +47,18 @@ h4 {
 	text-align: left;
 }
 .starR{
-	background: url("") no-repeat right 0;
+  background: url(/happyPlaystage/images/review/ico_review.png) no-repeat right 0;
   background-size: auto 100%;
   width: 30px;
   height: 30px;
   display: inline-block;
-  /* text-indent: -9999px; */
+  text-indent: -9999px;
   cursor: pointer;
 }
-.starR.on{
-	background-position:0 0;
-	color:red;
+.starR.on{background-position:0 0;}
+.starRev {
+	padding-left:420px;
 }
-
 </style>
 
 </head>
@@ -87,25 +86,32 @@ h4 {
 		<label for="이용소감">공연장 이용 소감</label> <input type="text" name="reviewContent" class="form-control" name="reviewCon" id="reviewContent">
 	</div>
 
-	<div class="starRev" align="center">
-  		<span class="starR on">★</span>
-  		<span class="starR">★</span>
-  		<span class="starR">★</span>
-  		<span class="starR">★</span>
-  		<span class="starR">★</span>
-	</div>
+	<div class="starRev">
+  		<span class="starR on">별1</span>
+ 		<span class="starR">별2</span>
+  		<span class="starR">별3</span>
+  		<span class="starR">별4</span>
+  		<span class="starR">별5</span>
+  	</div>
+
+  	<script>
+  	$('.starRev span').click(function(){
+  	  $(this).parent().children('span').removeClass('on');
+  	  $(this).addClass('on').prevAll('span').addClass('on');
+
+	  var i = 0;
+  	  $(".on").each(function(){
+  		  i ++;
+
+  	  });
+	  $('#ran').val(i);
+
+  	  return false;
+  	});
+  	</script>
 
 	<input type="hidden" id="propSeq" name="propSeq" value="<%=rs.getPropSeq()%>">
 	<input type="hidden" id="rentSeq" name="rentSeq" value="<%=rs.getRentSeq()%>">
-
-	<script>
-	$('.starRev span').click(function(){
-		  $(this).parent().children('span').removeClass('on');
-		  $(this).addClass('on').prevAll('span').addClass('on');
-		  return false;
-		});
-	</script>
-
 
 
 	<div class="chek1" style="margin: 50px;">

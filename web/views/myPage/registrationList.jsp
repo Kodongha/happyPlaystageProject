@@ -47,7 +47,6 @@
    			</select>
       	 </div>
     </form>
-
 	<div class="container" style="padding-top :5%;" id="proposeListDiv">
 		<table class="table" id="proposeListTable">
 			<thead id="tt">

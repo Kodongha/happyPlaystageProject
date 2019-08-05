@@ -201,7 +201,7 @@
 							<%} else {%>
 							<label><input type="radio" name="rentDetail"><%=rentDetVOList.get(i).getDetAddress() %></label>
 							<%} %>
-							<label style="color:blue;">&#8361; &nbsp; <%=rentDetVOList.get(i).getRentPrice() %></label> <label style="color:#c2c2c2">/ <%=rentBasicVO.getUseTimeUnit() %></label>
+							<label style="color:blue;">&#8361; &nbsp; <%=rentDetVOList.get(i).getRentPrice() %></label> <label style="color:#c2c2c2">/ 일</label>
 							<input type="hidden" id="rentPrice" name="rentPrice" value="<%=rentDetVOList.get(i).getRentPrice() %>">
 						<%} %>
 					</div>
@@ -210,8 +210,6 @@
 							<img src="<%=request.getContextPath() %>/images/profilePhotos/<%=rentImgVOList.get(0).getChangeNm() %>" alt="<%=rentImgVOList.get(0).getOriginNm() %>" style="object-fit: cover; width: 90%">
 						</div>
 							<div>
-								<hr>
-									<p class="text-muted"> ·  최소 <%=rentBasicVO.getMinRsvTm() %>시간 부터</p>
 								<hr>
 								<p class="text-muted">* 날짜 선택</p>
 								<input name="schedule" class="form-control" id="schedule" placeholder="날짜를 선택하세요.">

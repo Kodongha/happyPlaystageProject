@@ -22,6 +22,7 @@
 <link href="/happyPlaystage/css/common/all.min.css" rel="stylesheet">
 <script src="/happyPlaystage/js/common/all.min.js"></script>
 
+
 <script type="text/javascript" src="/happyPlaystage/js/common/jquery.oLoader.min.js"></script>
 <title>Insert title here</title>
 <style>
@@ -49,9 +50,11 @@
 					<div class="description"><%=rentListVO.getAddress() %></div>
 				</div>
 				<div class="extra content">
-					<span class="right floated"><%=rentListVO.getRentEnrollDt() %></span>
-					<span>
-						<i class="user icon"></i> <%=rentListVO.getRentPrice() %>
+					<span class="right floated">
+						<i class="far fa-calendar-alt"></i>&nbsp;&nbsp; <%=rentListVO.getRentEnrollDt() %>
+					</span>
+					<span style="float:left">
+						<i class="far fa-credit-card"></i>&nbsp;&nbsp; <%=rentListVO.getRentPrice() %> ￦ / 일
 					</span>
 				</div>
 			</div>

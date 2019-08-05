@@ -42,19 +42,16 @@ public class LevelUpInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("method in!");
 		if(ServletFileUpload.isMultipartContent(request)) {
-			System.out.println("in!");
 			
 			int maxSize = 1024 * 1024 * 10;
 			
 			String root = request.getSession().getServletContext().getRealPath("/");
 			
 			String savePath = root + "myPage_uploadFiles/";
-			System.out.println("savePath:::" + savePath);
+			
 			int levelUpInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
 			
-			// 저장 안됨
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy(levelUpInfo));
 			
 			ArrayList<String> saveFiles = new ArrayList<String>();
@@ -68,16 +65,10 @@ public class LevelUpInfoServlet extends HttpServlet {
 				saveFiles.add(multiRequest.getFilesystemName(name));
 				originFiles.add(multiRequest.getOriginalFileName(name));
 				
-				System.out.println("fileSystem name : " + multiRequest.getFilesystemName(name));
-				System.out.println("originFile name : " + multiRequest.getOriginalFileName(name));
-				
 			}
-			
 			
 			AhnLevelupInfoVO l = new AhnLevelupInfoVO();
 			l.setUserSeq(levelUpInfo);
-			
-			System.out.println("insert levelup : " + l);
 			
 			ArrayList<AhnAttachmentVO> fileList = new ArrayList<AhnAttachmentVO>();
 			
@@ -90,12 +81,7 @@ public class LevelUpInfoServlet extends HttpServlet {
 				fileList.add(at);
 			}
 			
-			System.out.println("controller board : " + levelUpInfo);
-			System.out.println("controller attachment list : " + fileList);
-			
-			// int result = new AhnMyPageService().insertImage(levelUpInfo, fileList);
 			int result = new AhnMyPageService().insertImage(l, fileList);
-			
 			
 			if(result > 0) {
 				response.sendRedirect("moveMain.main");
@@ -106,18 +92,14 @@ public class LevelUpInfoServlet extends HttpServlet {
 					failedFile.delete();
 				}
 				response.sendRedirect("moveMain.main");
-				
 			}
-			
 		}
-		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

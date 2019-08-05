@@ -40,21 +40,22 @@
 </head>
 <body>
 <jsp:include page="/views/common/header.jsp" />
-	<h1 align=center style="color:gray">대관 사용 내역</h1>
+	<h2 align="center"><b>대관 사용 내역</b></h2>
+	<br>
 	<form action="<%=request.getContextPath()%>/searchUsingInfo" method="post">
-	<div class="tab1" style="width:650px;border:1.5px solid black">
+	<div class="tab1" style="width:650px;">
 	<table align="center">
 		<tr>
-			<td id="rentSeq">공연장 고유번호</td>
-			<td id="hallNm">공연장 이름</td>
-			<td id="useDt">일자</td>
+			<td id="rentSeq" name="rentSeq">공연장 고유번호</td>
+			<td id="hallNm" name="hallNm">공연장 이름</td>
+			<td id="useDt" name="useDt">일자</td>
 			<td></td>
 		</tr>
 		<tr>
-			<td><input type="text" name="rentSeq"></td>
-			<td><input type="text" id="hallNm"></td>
-			<td><input name="cusClosedate" id="cusClosedate"></td>
-			<td><input type="submit" style="width:40pt; height:19pt; background-color:white; border:1px solid black; color:black; border-radius: 3px;" value="검색"></td>
+			<td><input class="form-control" id="rentSeq" type="text" name="rentSeq"></td>
+			<td><input class="form-control" id="hallNm" type="text" name="hallNm"></td>			
+			<td><input class="form-control" id="cusClosedate" type="text" name="cusClosedate"></td>
+			<td><button type="submit" class="btn btn-warning">검색</button></td>			
 		</tr>
 	</table>
 	</div>
@@ -73,9 +74,7 @@
 		<td id="tab1">사용일자</td>
 		<td id="tab1">사용공간 이름</td>
 		</tr>
-		<% for(int i = 0; i < list.size(); i++){
-			
-		%>
+		<% for(int i = 0; i < list.size(); i++){ %>
 			<tr onclick="location.href='<%=request.getContextPath()%>/usingInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>'">
 			<td id="tab2"><%= list.get(i).getRentSeq() %></td>
 			<td id="tab2"><%= list.get(i).getCompNm() %></td>

@@ -143,9 +143,10 @@
 </head>
 <body>
 <jsp:include page="/views/common/header.jsp" />
-	<h1 align=center style="color:gray">대관 신청 내역</h1>
+	<h2 align="center"><b>대관 신청 내역</b></h2>
+	<br>
 	<form action="<%=request.getContextPath() %>/searchApplyInfo" method="post">
-	<div class="tab1" style="width:650px;border:1.5px solid black">
+	<div class="tab1" style="width:650px;">
 	<table align="center">
 		<tr>
 			<td id="rentSeq">공연장 고유번호</td>
@@ -154,10 +155,10 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td><input type="text" name="rentSeq" id="rentSeq"></td>
-			<td><input type="text" id="hallNm"></td>
-			<td><input name="cusClosedate" id="cusClosedate"></td>
-			<td><input type="submit" style="width:40pt; height:19pt; background-color:white; border:1px solid black; color:black; border-radius: 3px;" value="검색"></td>
+			<td style="padding-right:3%"><input class="form-control" id="rentSeq" type="text" name="rentSeq"></td>
+			<td style="padding-right:3%"><input class="form-control" id="hallNm" type="text" name="hallNm"></td>			
+			<td style="padding-right:3%"><input class="form-control" id="cusClosedate" type="text" name="cusClosedate"></td>
+			<td style="padding-right:3%"><button type="submit" class="btn btn-warning">검색</button></td>			
 		</tr>
 	</table>
 	<!-- 캘린더를 파라미터로 가져와서 split으로 자르는법

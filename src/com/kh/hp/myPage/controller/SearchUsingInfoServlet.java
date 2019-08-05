@@ -43,14 +43,13 @@ public class SearchUsingInfoServlet extends HttpServlet {
 		String useDt = request.getParameter("cusClosedate");
 		Date useStart = null;
 		Date useEnd = null;
-		int rentSeq2 = 0;
+		Integer rentSeq2 = null;
 		
-		if(rentSeq != null) {
+		if(rentSeq != null && !rentSeq.equals("")) {
 			rentSeq2 = Integer.parseInt(request.getParameter("rentSeq"));
-		}else {
-			rentSeq2 = 0;
 		}
 		
+		System.out.println("rentSeq2 : " + rentSeq2);
 		
 		/*캘린더 설정*/
 		if(useDt != null && !useDt.equals("")) {

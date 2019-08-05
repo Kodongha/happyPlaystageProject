@@ -325,7 +325,7 @@ div {
 
 			<br>
 
-			<div id="map" style="width:500px;height:400px;"></div>
+			<div id="map" style="width:500px;height:400px; float:left"></div>
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ea861fadd8d5b486bbcd4ae127c3404d&libraries=services"></script>
 			<script type="text/javascript">
 				//지도를 미리 생성

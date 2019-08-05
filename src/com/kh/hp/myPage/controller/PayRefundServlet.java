@@ -36,11 +36,13 @@ public class PayRefundServlet extends HttpServlet {
 		System.out.println("payRefund 들어옴");
 		int userInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
 		int propSeq = Integer.parseInt(request.getParameter("propSeq"));
+		int payAmount = Integer.parseInt(request.getParameter("payAmount"));
 		
 		System.out.println("userInfo : " + userInfo);
 		System.out.println("propSeq : " + propSeq);
+		System.out.println("payAmount : " + payAmount);
 		
-		int result = new AhnMyPageService().payRefundInsert(userInfo, propSeq);
+		int result = new AhnMyPageService().payRefundInsert(userInfo, propSeq, payAmount);
 		
 		System.out.println("result : " + result);
 		

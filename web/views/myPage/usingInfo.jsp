@@ -54,7 +54,7 @@
 			<td><input type="text" name="rentSeq"></td>
 			<td><input type="text" id="hallNm"></td>
 			<td><input name="cusClosedate" id="cusClosedate"></td>
-			<td><input type="submit"></td>
+			<td><input type="submit" style="width:40pt; height:19pt; background-color:white; border:1px solid black; color:black; border-radius: 3px;" value="검색"></td>
 		</tr>
 	</table>
 	</div>

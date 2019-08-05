@@ -37,12 +37,21 @@ public class SearchUsingInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("왜 사용내역 서치가 안될까..");
 		int userInfo = ((UserVO) request.getSession().getAttribute("user")).getUserSeq();
-		int rentSeq = Integer.parseInt(request.getParameter("rentSeq"));
+		String rentSeq = request.getParameter("rentSeq");
+		//int rentSeq = Integer.parseInt(request.getParameter("rentSeq"));
 		String hallNm = request.getParameter("hallNm");
 		String useDt = request.getParameter("cusClosedate");
 		Date useStart = null;
 		Date useEnd = null;
-
+		int rentSeq2 = 0;
+		
+		if(rentSeq != null) {
+			rentSeq2 = Integer.parseInt(request.getParameter("rentSeq"));
+		}else {
+			rentSeq2 = 0;
+		}
+		
+		
 		/*캘린더 설정*/
 		if(useDt != null && !useDt.equals("")) {
 			String[] temp = useDt.split(" to ");
@@ -53,7 +62,7 @@ public class SearchUsingInfoServlet extends HttpServlet {
 		System.out.println("useStart : " + useStart);
 		System.out.println("useEnd : " + useEnd);
 		System.out.println("hallNm : " + hallNm);
-		System.out.println("rentSeq : " + rentSeq);
+		System.out.println("rentSeq2 : " + rentSeq2);
 		
 		int currentPage;		//현재 페이지를 표시할 변수
 		int limit;				//한 페이지에 보여질 게시물 수
@@ -69,7 +78,7 @@ public class SearchUsingInfoServlet extends HttpServlet {
 		
 		limit = 10;
 		
-		int listCount = new AhnMyPageService().getListCount3(userInfo, rentSeq);
+		int listCount = new AhnMyPageService().getListCount3(userInfo, rentSeq2);
 		
 		System.out.println("listCount : " + listCount);
 		
@@ -85,7 +94,7 @@ public class SearchUsingInfoServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-		ArrayList<AhnUsingInfoVO> list = new AhnMyPageService().searchCheck( userInfo, rentSeq, hallNm, useStart, useEnd, startPage, endPage);
+		ArrayList<AhnUsingInfoVO> list = new AhnMyPageService().searchCheck( userInfo, rentSeq2, hallNm, useStart, useEnd, startPage, endPage);
 		
 		String page = "";
 		

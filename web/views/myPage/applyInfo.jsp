@@ -154,10 +154,10 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td><input type="text" name="rentSeq"></td>
+			<td><input type="text" name="rentSeq" id="rentSeq"></td>
 			<td><input type="text" id="hallNm"></td>
 			<td><input name="cusClosedate" id="cusClosedate"></td>
-			<td><input type="submit"></td>
+			<td><input type="submit" style="width:40pt; height:19pt; background-color:white; border:1px solid black; color:black; border-radius: 3px;" value="검색"></td>
 		</tr>
 	</table>
 	<!-- 캘린더를 파라미터로 가져와서 split으로 자르는법
@@ -183,6 +183,7 @@
 		<td id="tab1">사용할 일자</td>
 		<td id="tab1">가격</td>
 		<td id="tab1">신청 상태</td>
+		<td id="tab1">처리</td>
 		</tr>
 		<% for(int i = 0; i < list.size(); i++){
 
@@ -193,11 +194,12 @@
 			<td id="tab2" onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getHallNm() %></td>
 			<td id="tab2" onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getUseStartDt() %> ~ <%= list.get(i).getUseEndDt() %></td>
 			<td id="tab2" onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getPayAmount() %></td>
-			<td id="tab2"><%= list.get(i).getPropStatus() %>
+			<td id="tab2" onclick="location.href='<%=request.getContextPath()%>/applyInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>&propStatus=<%=list.get(i).getPropStatus()%>'"><%= list.get(i).getPropStatus() %></td>
+			<td id="tab2">
 			<% if(list.get(i).getPropStatus().equals("승인")){ %>
-				<button id="paymentBtn" name="paymentBtn">결제</button><button type="submit" onclick="location.href='<%=request.getContextPath()%>/payRefund?propSeq=<%=list.get(i).getPropSeq() %>'">취소</button>
+				<button id="paymentBtn" name="paymentBtn" style="width:31pt; height:15pt; background-color:white; border:0.5px solid black; color:black; border-radius: 3px;">결제</button> <button type="submit" style="width:31pt; height:15pt; background-color:white; border:0.5px solid black; color:black; border-radius: 3px;" onclick="location.href='<%=request.getContextPath()%>/payRefund?propSeq=<%=list.get(i).getPropSeq() %>&payAmount=<%=list.get(i).getPayAmount()%>'">취소</button>
 			<% } else if(list.get(i).getPropStatus().equals("신청")) {%>
-			<button type="submit" onclick="location.href='<%=request.getContextPath()%>/applyInfoChange?propSeq=<%=list.get(i).getPropSeq() %>'">취소</button>
+			<button type="submit" style="width:31pt; height:15pt; background-color:white; border:0.5px solid black; color:black; border-radius: 3px;"onclick="location.href='<%=request.getContextPath()%>/applyInfoChange?propSeq=<%=list.get(i).getPropSeq() %>'">취소</button>
 			<% } %>
 			</td>
 			</tr>

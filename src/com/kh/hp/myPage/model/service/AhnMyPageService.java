@@ -82,10 +82,10 @@ public class AhnMyPageService {
 	}
 
 	//검색후 신청내역 페이징카운트에 대한 서비스메소드
-	public int getListCount2(int userInfo, int rentSeq) {
+	public int getListCount2(int userInfo, int rentSeq2) {
 		Connection con = getConnection();
 
-		int listCount = new AhnMyPageDao().getListCount2(con, userInfo, rentSeq);
+		int listCount = new AhnMyPageDao().getListCount2(con, userInfo, rentSeq2);
 
 		System.out.println("Service listCount : " + listCount);
 
@@ -95,10 +95,10 @@ public class AhnMyPageService {
 	}
 
 	//검색후 사용내역 페이징카운트에 대한 서비스메소드
-	public int getListCount3(int userInfo, int rentSeq) {
+	public int getListCount3(int userInfo, int rentSeq2) {
 		Connection con = getConnection();
 
-		int listCount = new AhnMyPageDao().getListCount3(con, userInfo, rentSeq);
+		int listCount = new AhnMyPageDao().getListCount3(con, userInfo, rentSeq2);
 
 		System.out.println("Service listCount : " + listCount);
 
@@ -136,16 +136,16 @@ public class AhnMyPageService {
 	}
 
 	//검색후 사용내역에 대한 서비스메소드
-	public ArrayList<AhnUsingInfoVO> searchCheck(int userInfo, int rentSeq, String hallNm, Date useStart, Date useEnd, int currentPage, int limit) {
+	public ArrayList<AhnUsingInfoVO> searchCheck(int userInfo, int rentSeq2, String hallNm, Date useStart, Date useEnd, int currentPage, int limit) {
 		Connection con = getConnection();
 		System.out.println("service in!!");
 		ArrayList<AhnUsingInfoVO> list = null;
 
-		String rentSeq1 = String.valueOf(rentSeq);
+		String rentSeq1 = String.valueOf(rentSeq2);
 
 		if(rentSeq1 != null && hallNm != null && useStart != null && useEnd != null) {
 			System.out.println("ooooin1");
-			list = new AhnMyPageDao().searchCheck1(con, userInfo, rentSeq, hallNm, useStart, useEnd, currentPage, limit);
+			list = new AhnMyPageDao().searchCheck1(con, userInfo, rentSeq2, hallNm, useStart, useEnd, currentPage, limit);
 
 		}else if(rentSeq1 == null && hallNm != null && useStart != null && useEnd != null) {
 			System.out.println("ooooin2");
@@ -153,15 +153,15 @@ public class AhnMyPageService {
 
 		}else if(rentSeq1 != null && hallNm == null && useStart != null && useEnd != null) {
 			System.out.println("ooooin3");
-			list = new AhnMyPageDao().searchCheck3(con, userInfo, rentSeq, useStart, useEnd, currentPage, limit);
+			list = new AhnMyPageDao().searchCheck3(con, userInfo, rentSeq2, useStart, useEnd, currentPage, limit);
 
 		}else if(rentSeq1 != null && hallNm != null && useStart == null && useEnd == null) {
 			System.out.println("ooooin4");
-			list = new AhnMyPageDao().searchCheck4(con, userInfo, rentSeq, hallNm, currentPage, limit);
+			list = new AhnMyPageDao().searchCheck4(con, userInfo, rentSeq2, hallNm, currentPage, limit);
 
 		}else if(rentSeq1 != null && hallNm == null && useStart == null && useEnd == null) {
 			System.out.println("ooooin5");
-			list = new AhnMyPageDao().searchCheck5(con, userInfo, rentSeq, currentPage, limit);
+			list = new AhnMyPageDao().searchCheck5(con, userInfo, rentSeq2, currentPage, limit);
 
 		}else if(rentSeq1 == null && hallNm != null && useStart == null && useEnd == null) {
 			System.out.println("ooooin6");
@@ -185,17 +185,17 @@ public class AhnMyPageService {
 	}
 
 	//검색후 신청내역에 대한 서비스메소드
-	public ArrayList<AhnApplyInfoVO> searchApplyCheck(int userInfo, int rentSeq, String hallNm, Date useStart,
+	public ArrayList<AhnApplyInfoVO> searchApplyCheck(int userInfo, int rentSeq2, String hallNm, Date useStart,
 			Date useEnd, int currentPage, int limit) {
 		Connection con = getConnection();
 		System.out.println("service in!!");
 		ArrayList<AhnApplyInfoVO> list = null;
 
-		String rentSeq1 = String.valueOf(rentSeq);
+		String rentSeq1 = String.valueOf(rentSeq2);
 
 		if(rentSeq1 != null && hallNm != null && useStart != null && useEnd != null) {
 			System.out.println("ooooin1");
-			list = new AhnMyPageDao().searchApplyCheck1(con, userInfo, rentSeq, hallNm, useStart, useEnd, currentPage, limit);
+			list = new AhnMyPageDao().searchApplyCheck1(con, userInfo, rentSeq2, hallNm, useStart, useEnd, currentPage, limit);
 
 		}else if(rentSeq1 == null && hallNm != null && useStart != null && useEnd != null) {
 			System.out.println("ooooin2");
@@ -203,15 +203,15 @@ public class AhnMyPageService {
 
 		}else if(rentSeq1 != null && hallNm == null && useStart != null && useEnd != null) {
 			System.out.println("ooooin3");
-			list = new AhnMyPageDao().searchApplyCheck3(con, userInfo, rentSeq, useStart, useEnd, currentPage, limit);
+			list = new AhnMyPageDao().searchApplyCheck3(con, userInfo, rentSeq2, useStart, useEnd, currentPage, limit);
 
 		}else if(rentSeq1 != null && hallNm != null && useStart == null && useEnd == null) {
 			System.out.println("ooooin4");
-			list = new AhnMyPageDao().searchApplyCheck4(con, userInfo, rentSeq, hallNm, currentPage, limit);
+			list = new AhnMyPageDao().searchApplyCheck4(con, userInfo, rentSeq2, hallNm, currentPage, limit);
 
 		}else if(rentSeq1 != null && hallNm == null && useStart == null && useEnd == null) {
 			System.out.println("ooooin5");
-			list = new AhnMyPageDao().searchApplyCheck5(con, userInfo, rentSeq, currentPage, limit);
+			list = new AhnMyPageDao().searchApplyCheck5(con, userInfo, rentSeq2, currentPage, limit);
 
 		}else if(rentSeq1 == null && hallNm != null && useStart == null && useEnd == null) {
 			System.out.println("ooooin6");
@@ -316,12 +316,12 @@ public class AhnMyPageService {
 		return list;
 	}
 
-	public int payRefundInsert(int userInfo, int propSeq) {
+	public int payRefundInsert(int userInfo, int propSeq, int payAmount) {
 		Connection con = getConnection();
 		System.out.println("insertImage in!!!");
 		int result = 0;
 
-		int result1 = new AhnMyPageDao().payRefundInsert(con, userInfo, propSeq);
+		int result1 = new AhnMyPageDao().payRefundInsert(con, userInfo, propSeq, payAmount);
 
 		if(result1 > 0) {
 			commit(con);

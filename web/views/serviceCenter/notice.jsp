@@ -68,6 +68,9 @@ body {
 #noticeLabel {
 	padding-left: 45px;
 }
+.pagination > li > a{
+	font-weight:bold;
+}
 </style>
 
 </head>
@@ -119,29 +122,28 @@ body {
 		%>
 	</div>
 	<br>
+
 	<%-- 페이징처리 --%>
 	<div class="pagingArea" align="center">
+	<div class="container">
+		<ul class="pagination">
 		<!-- 가장 첫 페이지로 이동 -->
-		<button
-			onclick="location.href='<%=request.getContextPath()%>/notice.sc?currentPage=1'"><<</button>
+		<li><a href="<%=request.getContextPath()%>/notice.sc?currentPage=1"><<</a></li>
 
 		<!-- 이전페이지 -->
 		<%
 			if (currentPage <= 1) {
 		%>
-		<button disabled><</button>
+		<li><a><</a></li>
 		<%
 			} else {
 		%>
-		<button
-			onclick="location.href='<%=request.getContextPath()%>/notice.sc?currentPage=<%=currentPage - 1%>'"><</button>
+		<li><a href="<%=request.getContextPath()%>/notice.sc?currentPage=<%=currentPage - 1%>"><</a></li>
 		<%
 			}
 		%>
 
 		<!-- 숫자 버튼 -->
-		<div class="container">
-			<ul class="pagination">
 				<%
 					for (int p = startPage; p <= endPage; p++) {
 						if (currentPage == p) {
@@ -155,29 +157,25 @@ body {
 					}
 					}
 				%>
-			</ul>
-		</div>
 
 		<!-- 다음 페이지 -->
 		<%
 			if (currentPage >= maxPage) {
 		%>
-		<button disabled>></button>
+		<li><a>></a></li>
 		<%
 			} else {
 		%>
-		<button
-			onclick="location.href='<%=request.getContextPath()%>/notice.sc?currentPage=<%=currentPage + 1%>'">></button>
+		<li><a href="<%=request.getContextPath()%>/notice.sc?currentPage=<%=currentPage + 1%>">></a></li>
 		<%
 			}
 		%>
 
 		<!-- 가장 마지막 페이지로 이동 -->
-		<button
-			onclick="location.href='<%=request.getContextPath()%>/notice.sc?currentPage=<%=maxPage%>'">>></button>
-
+		<li><a href="<%=request.getContextPath()%>/notice.sc?currentPage=<%=maxPage%>">>></a></li>
+	</ul>
 	</div>
-
+	</div>
 
 	<jsp:include page="/views/common/footer.jsp" />
 </body>

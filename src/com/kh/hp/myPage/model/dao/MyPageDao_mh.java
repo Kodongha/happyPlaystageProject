@@ -8,7 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Properties;
 
 import com.kh.hp.account.model.vo.UserVO;
@@ -424,10 +426,10 @@ public class MyPageDao_mh {
 				rentPropAndAttachmentVO.setPropPhone(rset.getString("PROP_PHONE"));
 				rentPropAndAttachmentVO.setPropEmail(rset.getString("PROP_EMAIL"));
 				rentPropAndAttachmentVO.setPropReqContent(rset.getString("PROP_REQ_CONTENT"));
-				rentPropAndAttachmentVO.setPropDt(rset.getDate("PROP_DT"));
+				rentPropAndAttachmentVO.setPropDt(rset.getString("PROP_DT"));
 				rentPropAndAttachmentVO.setPropStatus(rset.getString("PROP_STATUS"));
-				rentPropAndAttachmentVO.setUseStartDt(rset.getDate("USE_START_DT"));
-				rentPropAndAttachmentVO.setUseEndDt(rset.getDate("USE_END_DT"));
+				rentPropAndAttachmentVO.setUseStartDt(rset.getString("USE_START_DT"));
+				rentPropAndAttachmentVO.setUseEndDt(rset.getString("USE_END_DT"));
 				rentPropAndAttachmentVO.setUseStartTm(rset.getInt("USE_START_TM"));
 				rentPropAndAttachmentVO.setUseEndTm(rset.getInt("USE_END_TM"));
 				rentPropAndAttachmentVO.setPayAmount(rset.getInt("PAY_AMOUNT"));
@@ -436,6 +438,14 @@ public class MyPageDao_mh {
 				rentPropAndAttachmentVO.setOriginNm(rset.getString("ORIGIN_NM"));
 				rentPropAndAttachmentVO.setChangeNm(rset.getString("CHANGE_NM"));
 				rentPropAndAttachmentVO.setFilePath(rset.getString("FILE_PATH"));
+
+				//date 형식 string으로 변환
+/*				Date startDt = new Date();
+				startDt = rentPropAndAttachmentVO.getUseStartDt();
+				SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+				String startDate = transFormat.format(startDt);
+
+				rentPropAndAttachmentVO.setUseStartDt(startDate);*/
 
 				proposeUserList.add(rentPropAndAttachmentVO);
 			}

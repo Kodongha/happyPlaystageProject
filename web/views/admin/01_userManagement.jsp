@@ -26,140 +26,138 @@ User user  = new User();
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
 <title>Insert title here</title>
-
 
 <style>
 #center {
-	/*    border: 1px solid black; */
-	width: 1300px;
-	height: 800px;
-	margin: auto;
+   /*    border: 1px solid black; */
+   width: 1024px;
+   height: 768px;
+   margin: auto;
 }
 
 #line {
-	border: 0.5px solid gray;
-	width: 1300px;
-	margin: auto;
+   border: 0.5px solid gray;
+   width: 1024px;
+   margin: auto;
 }
 
 <!--
 회원관리내역-->#text1 {
-	width: 180px;
-	height: 30px;
-	margin-left: 70px;
+   width: 180px;
+   height: 30px;
+   margin-left: 70px;
 }
 
 #area {
-	border: 1px solid gray;
-	width: 900px;
-	height: 150px;
-	margin-left: 50px;
-	border-top-left-radius: 8px;
-	border-top-right-radius: 8px;
-	border-bottom-left-radius: 8px;
-	border-bottom-right-radius: 8px;
+   border: 1px solid gray;
+   width: 900px;
+   height: 150px;
+   margin-left: 50px;
+   border-top-left-radius: 8px;
+   border-top-right-radius: 8px;
+   border-bottom-left-radius: 8px;
+   border-bottom-right-radius: 8px;
 }
 
 #users1 {
-	width: 500px;
-	height: 150px;
-	margin-left: 50px;
+   width: 500px;
+   height: 150px;
+   margin-left: 50px;
 }
 
 #users2 {
-	width: 100px;
-	height: 150px;
-	margin-left: 440px;
-	margin-top: -150px;
+   width: 100px;
+   height: 150px;
+   margin-left: 440px;
+   margin-top: -150px;
 }
 
 #users3 {
-	width: 100px;
-	height: 150px;
-	margin-left: 570px;
-	margin-top: -150px;
+   width: 100px;
+   height: 150px;
+   margin-left: 570px;
+   margin-top: -150px;
 }
 
 #users4 {
-	width: 100px;
-	height: 150px;
-	margin-left: 150px;
-	margin-top: -150px;
+   width: 100px;
+   height: 150px;
+   margin-left: 150px;
+   margin-top: -150px;
 }
 
 #users5 {
-	width: 100px;
-	height: 150px;
-	margin-left: 200px;
-	margin-top: -150px;
+   width: 100px;
+   height: 150px;
+   margin-left: 200px;
+   margin-top: -150px;
 }
 
 #userno {
-	width: 100px;
-	margin-left: 10px;
-	margin-top: 30px;
+   width: 100px;
+   margin-left: 10px;
+   margin-top: 30px;
 }
 
 #input {
-	width: 110px;
-	margin-left: 100px;
-	margin-top: -32px;
+   width: 110px;
+   margin-left: 100px;
+   margin-top: -32px;
 }
 
 #input1 {
-	width: 110px;
-	margin-left: 250px;
-	margin-top: -26px;
+   width: 110px;
+   margin-left: 250px;
+   margin-top: -26px;
 }
 
 #wave {
-	width: 10px;
-	margin-left: 220px;
-	margin-top: -28px;
+   width: 10px;
+   margin-left: 220px;
+   margin-top: -28px;
 }
 
 #assent {
-	background: red;
-	width: 100px;
-	margin-left: 0px;
-	margin-bottom: 30px;
+   background: red;
+   width: 100px;
+   margin-left: 0px;
+   margin-bottom: 30px;
 }
 
 #leave {
-	width: 100px;
-	margin-left: 100px;
-	margin-top: -30px;
+   width: 100px;
+   margin-left: 100px;
+   margin-top: -30px;
 }
 
 .col-sm-2 {
-	width: 100px;
-	margin-top: 25px;
+   width: 100px;
+   margin-top: 25px;
 }
 
 #select {
-	width: 100px;
-	margin-left: -15px;
-	margin-top: 25px;
+   width: 100px;
+   margin-left: -15px;
+   margin-top: 25px;
 }
 
 #searchbutton {
-	margin-left: 330px;
-	margin-top: 40px;
+   margin-left: 50px;
+   margin-top: 40px;
 }
 
 .pagingArea {
-	margin-top: -100px;
-	margin-left: 600px;
+   margin-top: -100px;
+   margin-left: 450px;
 }
 
 tbody>tr:hover {
-	background: #e6f2ff;
+   background: #e6f2ff;
 }
 
 tboydy>tr:active {
-	background: #cce6ff;
+   background: #cce6ff;
 }
 </style>
 
@@ -276,14 +274,12 @@ tboydy>tr:active {
 					</div>
 				</div>
 				<div class="pagingArea">
-					<button
-						onclick="location.href='<%=request.getContextPath()%>/searchUser.ad?currentPage=1'"><<</button>
+					<button id="minBtn"><<</button>
 
 					<% if(currentPage <= 1){ %>
 					<button disabled><</button>
 					<% }else { %>
-					<button
-						onclick="location.href='<%=request.getContextPath()%>/searchUser.ad?currentPage=<%=currentPage - 1%>'"><</button>
+					<button id="minusBtn"><</button>
 					<% } %>
 
 					<% for(int p = startPage; p <= endPage; p++){
@@ -291,8 +287,7 @@ tboydy>tr:active {
 			%>
 					<button disabled><%= p %></button>
 					<% } else { %>
-					<button
-						onclick="location.href='<%=request.getContextPath()%>/searchUser.ad?currentPage=<%=p%>'"><%= p %></button>
+					<button id="pBtn" class="pBtn"><%= p %></button>
 					<%
 				}
 			   }
@@ -301,20 +296,85 @@ tboydy>tr:active {
 					<% if(currentPage >= maxPage){ %>
 					<button disabled>></button>
 					<% }else{ %>
-					<button
-						onclick="location.href='<%=request.getContextPath()%>/searchUser.ad?currentPage=<%=currentPage + 1%>'">></button>
+					<button id="plusBtn">></button>
 					<% } %>
 
-					<button
-						onclick="location.href='<%=request.getContextPath()%>/searchUser.ad?currentPage=<%=maxPage%>'">>></button>
+					<button id="maxBtn">>></button>
 				</div>
 
 
-
-
-
-
-
 				<jsp:include page="/views/common/footer.jsp" />
+
+
+<script type="text/javascript">
+	$(function(){
+		<%-- onclick="location.href='<%=request.getContextPath()%>/searchUser.ad?userSeq1=<%= %>&userSeq2=&userNm=하민희&userGradeCd=선택&leaveTf=선택&currentPage=1'" --%>
+		$('#minBtn').click(function(){
+			var userSeq1 = '<%=request.getParameter("userSeq1")%>';
+			var userSeq2 = '<%=request.getParameter("userSeq2")%>';
+			var userNm = '<%=request.getParameter("userNm")%>';
+			var userGradeCd = '<%=request.getParameter("userGradeCd")%>';
+			var leaveTf = '<%=request.getParameter("leaveTf")%>';
+
+			var url = '<%=request.getContextPath()%>/searchUser.ad?userSeq1=' + userSeq1 + '&userSeq2=' + userSeq2 + '&userNm=' + userNm + '&userGradeCd=' + userGradeCd + '&leaveTf=' + leaveTf + '&currentPage=1';
+			console.log(url);
+			location.href=url;
+		});
+
+		$('#maxBtn').click(function(){
+			var userSeq1 = '<%=request.getParameter("userSeq1")%>';
+			var userSeq2 = '<%=request.getParameter("userSeq2")%>';
+			var userNm = '<%=request.getParameter("userNm")%>';
+			var userGradeCd = '<%=request.getParameter("userGradeCd")%>';
+			var leaveTf = '<%=request.getParameter("leaveTf")%>';
+
+			var url = '<%=request.getContextPath()%>/searchUser.ad?userSeq1=' + userSeq1 + '&userSeq2=' + userSeq2 + '&userNm=' + userNm + '&userGradeCd=' + userGradeCd + '&leaveTf=' + leaveTf + '&currentPage=<%=maxPage%>';
+			console.log(url);
+			location.href=url;
+		});
+
+		$('#minusBtn').click(function(){
+			var userSeq1 = '<%=request.getParameter("userSeq1")%>';
+			var userSeq2 = '<%=request.getParameter("userSeq2")%>';
+			var userNm = '<%=request.getParameter("userNm")%>';
+			var userGradeCd = '<%=request.getParameter("userGradeCd")%>';
+			var leaveTf = '<%=request.getParameter("leaveTf")%>';
+
+			var url = '<%=request.getContextPath()%>/searchUser.ad?userSeq1=' + userSeq1 + '&userSeq2=' + userSeq2 + '&userNm=' + userNm + '&userGradeCd=' + userGradeCd + '&leaveTf=' + leaveTf + '&currentPage=<%=currentPage - 1%>';
+			console.log(url);
+			location.href=url;
+		});
+
+		$('#plusBtn').click(function(){
+			var userSeq1 = '<%=request.getParameter("userSeq1")%>';
+			var userSeq2 = '<%=request.getParameter("userSeq2")%>';
+			var userNm = '<%=request.getParameter("userNm")%>';
+			var userGradeCd = '<%=request.getParameter("userGradeCd")%>';
+			var leaveTf = '<%=request.getParameter("leaveTf")%>';
+
+			var url = '<%=request.getContextPath()%>/searchUser.ad?userSeq1=' + userSeq1 + '&userSeq2=' + userSeq2 + '&userNm=' + userNm + '&userGradeCd=' + userGradeCd + '&leaveTf=' + leaveTf + '&currentPage=<%=currentPage + 1%>';
+			console.log(url);
+			location.href=url;
+		});
+
+		$('.pBtn').click(function(){
+			var userSeq1 = '<%=request.getParameter("userSeq1")%>';
+			var userSeq2 = '<%=request.getParameter("userSeq2")%>';
+			var userNm = '<%=request.getParameter("userNm")%>';
+			var userGradeCd = '<%=request.getParameter("userGradeCd")%>';
+			var leaveTf = '<%=request.getParameter("leaveTf")%>';
+			var currentPage = $(this).text();
+
+			console.log("currentPage:::" + currentPage);
+
+			var url = '<%=request.getContextPath()%>/searchUser.ad?userSeq1=' + userSeq1 + '&userSeq2=' + userSeq2 + '&userNm=' + userNm + '&userGradeCd=' + userGradeCd + '&leaveTf=' + leaveTf + '&currentPage=' + currentPage;
+			console.log(url);
+			location.href=url;
+		});
+	});
+
+
+</script>
+
 </body>
 </html>

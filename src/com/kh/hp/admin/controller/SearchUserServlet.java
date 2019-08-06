@@ -41,6 +41,14 @@ public class SearchUserServlet extends HttpServlet {
 		String userGradeCd = request.getParameter("userGradeCd");
 		String leaveTf = request.getParameter("leaveTf");
 
+		if(userGradeCd.equals("??")) {
+			userGradeCd = "선택";
+		}
+
+		if(leaveTf.equals("??")) {
+			leaveTf = "선택";
+		}
+
 		System.out.println("userSeq1::" + userSeq1);
 		System.out.println("userSeq2::" + userSeq2);
 		System.out.println("userNm::" + userNm);
@@ -66,8 +74,8 @@ public class SearchUserServlet extends HttpServlet {
 
 		//한 페이지에 보여질 목록 갯수
 		limit = 10;
-		
-		
+
+
 		boolean userSeq1Tf = false;
 		boolean userSeq2Tf = false;
 		boolean userNmTf = false;
@@ -84,74 +92,83 @@ public class SearchUserServlet extends HttpServlet {
 		if(userNm != null && !userNm.equals("")) {
 			userNmTf = true;
 		}
-		if(!leaveTf.equals("선택")) {
+		if(!leaveTf.equals("선택") && !leaveTf.equals("")) {
 			leaveTfTf = true;
 		}
-		if(!userGradeCd.equals("선택")) {
+		if(!userGradeCd.equals("선택") && !userGradeCd.equals("")) {
 			userGradeCdTf = true;
 		}
 
 
 		int listCount = 0;
 
-		//전체검색시 
-		if((!userSeq1Tf && userSeq2Tf) && !userNmTf && !userGradeCdTf && !leaveTfTf ) {
+		//전체검색시
+		if(!(userSeq1Tf && userSeq2Tf) && !userNmTf && !userGradeCdTf && !leaveTfTf ) {
+			System.out.println("전체 검색 in");
 			listCount = new SearchUserService().getListCountforAll();
-			
-			
+
+
 			//이름만검색시
 		}else if(!(userSeq1Tf && userSeq2Tf) && userNmTf && !userGradeCdTf && !leaveTfTf) {
-		
+			System.out.println("이름 검색 in");
 			listCount = new SearchUserService().getListCountforName(userNm);
-			
-			
+
+
 			//회원번호로만 검색
 		}else if((userSeq1Tf && userSeq2Tf) && !userNmTf && !userGradeCdTf && !leaveTfTf ) {
-			
+			System.out.println("회원번호 검색 in");
 			listCount = new SearchUserService().getListCountforSeq(userSeq1, userSeq2);
-			
-			
+
+
 			//대관등록승인으로만 검색
 		}else if(!(userSeq1Tf && userSeq2Tf) && !userNmTf && userGradeCdTf && !leaveTfTf ) {
+			System.out.println("대관등록승인 검색 in");
 			listCount = new SearchUserService().getListCountforCd(userGradeCd);
-			
-			
+
+
 			//탈퇴로만 검색
 		}else if(!(userSeq1Tf && userSeq2Tf) && !userNmTf && !userGradeCdTf && leaveTfTf ) {
+			System.out.println("탈퇴로만 검색 in");
 			listCount = new SearchUserService().getListCountforleave(leaveTf);
-		
 
-			//회원번호,회원명으로만 검색 
+
+			//회원번호,회원명으로만 검색
 		}else if((userSeq1Tf && userSeq2Tf) && userNmTf && !userGradeCdTf && !leaveTfTf ) {
+			System.out.println("회원번호, 회원명으로 검색 in");
 			listCount = new SearchUserService().getListCountforSeqNm(userSeq1, userSeq2, userNm);
-			
-			
+
+
 			//회원번호,대관등록승인으로만 검색
 		}else if((userSeq1Tf && userSeq2Tf) && !userNmTf && userGradeCdTf && !leaveTfTf ) {
+			System.out.println("회원번호, 대관등록승인 검색 in");
 			listCount = new SearchUserService().getListCountforSeqCd(userSeq1, userSeq2, userGradeCd);
 
 			//회원번호,탈퇴여부로만 검색
 		}else if((userSeq1Tf && userSeq2Tf) && !userNmTf && !userGradeCdTf && leaveTfTf ) {
+			System.out.println("회원번호, 탈퇴여부 검색 in");
 			listCount = new SearchUserService().getListCountforSeqleave(userSeq1, userSeq2, leaveTf);
 
 			//회원명, 대관등록승인으로 검색
 		}else if(!(userSeq1Tf && userSeq2Tf) && userNmTf && userGradeCdTf && !leaveTfTf ) {
+			System.out.println("회원명, 대관등록승인 검색 in");
 			listCount = new SearchUserService().getListCountforNmCd(userNm, userGradeCd);
 
 			//회원명, 탈퇴여부로 검색
 		}else if(!(userSeq1Tf && userSeq2Tf) && userNmTf && !userGradeCdTf && leaveTfTf ) {
+			System.out.println("회원명, 탈퇴여부 검색 in");
 			listCount = new SearchUserService().getListCountforNmleave(userNm,  leaveTf);
 
 
 			//대관등록승인, 탈퇴여부로 검색
 		}else if(!(userSeq1Tf && userSeq2Tf) && !userNmTf && userGradeCdTf && leaveTfTf ) {
+			System.out.println("대관등록승인, 탈퇴여부 검색 in");
 			listCount = new SearchUserService().getListCountforCdleave(userGradeCd,  leaveTf);
-		
+
 		}
-			
-		
-		
-		
+
+
+
+
 
 		//전체 목록 갯수를 리턴받음
 		/*listCount = new UserService().getListCount();
@@ -176,15 +193,15 @@ public class SearchUserServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 
-		PageInfo pi = 
+		PageInfo pi =
 				new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
 
 
 		ArrayList<User> searchUserList = new SearchUserService().searchUserList(userSeq1 ,userSeq2, userNm ,userGradeCd, leaveTf,currentPage, limit);
 
+		System.out.println("searchUserList:::::" + searchUserList);
 
-		
 
 
 
@@ -193,14 +210,15 @@ public class SearchUserServlet extends HttpServlet {
 		String page = "";
 
 		if(searchUserList != null) {
-			
+
 			request.setAttribute("list", searchUserList);
 			request.setAttribute("pi", pi);
 			page = "views/admin/01_userManagement.jsp";
-			
+
 			request.getRequestDispatcher(page).forward(request, response);
-			
+
 		} else {
+			System.out.println("에러!!!!!!!!!!!!!!");
 			page = request.getContextPath() + "/searchUser.ad?userSeq1=&userSeq2=&userNm=&userGradeCd=선택&leaveTf=선택";
 			response.sendRedirect(page);
 		}

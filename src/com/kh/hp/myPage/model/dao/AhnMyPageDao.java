@@ -287,24 +287,24 @@ public class AhnMyPageDao {
 		}
 
 		return listCount;
-
+		
+		
+		
 	}
 
 	//검색후 사용내역 페이징카운트에 대한 DAO메소드
-	public int getListCount3(Connection con, int userInfo, int rentSeq2) {
+	public int getListCount3(Connection con, int userInfo) {
 		PreparedStatement pstmt = null;
 		int listCount = 0;
 		ResultSet rset = null;
 
-		String query = prop.getProperty("selectListCount3");
+		String query = prop.getProperty("selectListCount1");
 		System.out.println("userInfo : " + userInfo);
-		System.out.println("rentSeq : " + rentSeq2);
 
 		try {
 			pstmt = con.prepareStatement(query);
 
-			pstmt.setInt(1, rentSeq2);
-			pstmt.setInt(2, userInfo);
+			pstmt.setInt(1, userInfo);
 
 			rset = pstmt.executeQuery();
 
@@ -666,7 +666,10 @@ public class AhnMyPageDao {
 		ArrayList<AhnUsingInfoVO> list = null;
 
 		String query = prop.getProperty("searchCheck6");
-
+		System.out.println("userInfo : " + userInfo);
+		System.out.println("hallNm : " + hallNm);
+		System.out.println("currentPage : " + currentPage);
+		System.out.println("limit : " + limit);
 		try {
 			pstmt = con.prepareStatement(query);
 
@@ -684,6 +687,7 @@ public class AhnMyPageDao {
 			list = new ArrayList<AhnUsingInfoVO>();
 
 			while(rset.next()) {
+				System.out.println("while!!!!");
 				AhnUsingInfoVO b = new AhnUsingInfoVO();
 
 				b.setHallNm(rset.getString("HALL_NM"));
@@ -696,7 +700,7 @@ public class AhnMyPageDao {
 				b.setPropStatus(rset.getString("PROP_STATUS"));
 				b.setUseStartDt(rset.getDate("USE_START_DT"));
 				b.setUseEndDt(rset.getDate("USE_END_DT"));
-
+				
 				list.add(b);
 			}
 

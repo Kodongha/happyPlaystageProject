@@ -77,7 +77,7 @@ public class SearchUsingInfoServlet extends HttpServlet {
 		
 		limit = 10;
 		
-		int listCount = new AhnMyPageService().getListCount3(userInfo, rentSeq2);
+		int listCount = new AhnMyPageService().getListCount3(userInfo);
 		
 		System.out.println("listCount : " + listCount);
 		

@@ -93,13 +93,15 @@ public class AhnMyPageService {
 		close(con);
 
 		return listCount;
+		
+		
 	}
 
 	//검색후 사용내역 페이징카운트에 대한 서비스메소드
-	public int getListCount3(int userInfo, int rentSeq2) {
+	public int getListCount3(int userInfo) {
 		Connection con = getConnection();
 
-		int listCount = new AhnMyPageDao().getListCount3(con, userInfo, rentSeq2);
+		int listCount = new AhnMyPageDao().getListCount3(con, userInfo);
 
 		System.out.println("Service listCount : " + listCount);
 

@@ -2,22 +2,22 @@
 	pageEncoding="UTF-8" import="java.util.*, com.kh.hp.admin.model.vo.*"%>
 
 <%
-	ArrayList<User> list = (ArrayList<User>) request.getAttribute("list");
-	User oneUser = (User) request.getAttribute("oneUser");
+   ArrayList<User> list = (ArrayList<User>) request.getAttribute("list");
+   User oneUser = (User) request.getAttribute("oneUser");
 
-	ArrayList<UseHistoryVO> UseHistoryVOlist = (ArrayList<UseHistoryVO>) request
-			.getAttribute("UseHistoryVOlist");
+   ArrayList<UseHistoryVO> UseHistoryVOlist = (ArrayList<UseHistoryVO>) request
+         .getAttribute("UseHistoryVOlist");
 
-	ArrayList<EnrollHistoryVO> EnrollHistoryVOlist = (ArrayList<EnrollHistoryVO>) request
-			.getAttribute("EnrollHistoryVOlist");
+   ArrayList<EnrollHistoryVO> EnrollHistoryVOlist = (ArrayList<EnrollHistoryVO>) request
+         .getAttribute("EnrollHistoryVOlist");
 
 
-	PageInfo pi = (PageInfo) request.getAttribute("pi");
-	int listCount = pi.getListCount();
-	int currentPage = pi.getCurrentPage();
-	int maxPage = pi.getMaxPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
+   PageInfo pi = (PageInfo) request.getAttribute("pi");
+   int listCount = pi.getListCount();
+   int currentPage = pi.getCurrentPage();
+   int maxPage = pi.getMaxPage();
+   int startPage = pi.getStartPage();
+   int endPage = pi.getEndPage();
 
 %>
 
@@ -38,7 +38,7 @@
 <style>
 #line {
 	border: 0.5px solid gray;
-	width: 1300px;
+	width: 1024px;
 	margin: auto;
 }
 
@@ -46,12 +46,6 @@
 	width: 500px;
 	height: 30px;
 	margin-left: 70px;
-}
-
-#inner {
-	width: 1000px;
-	height: 700px;
-	margin: auto;
 }
 
 #Enrollment {
@@ -62,15 +56,16 @@
 }
 
 #revisebutton {
-	margin-left: 1180px;
-	margin-top: 700px;
+	margin-left: 800px;
+	margin-top: 300px;
 }
 
 #resetbutton {
-margin-left: 1250px;
-margin-top:-55px;
-
+	margin-left: 870px;
+	margin-top: -55px;
 }
+
+
 </style>
 
 </head>
@@ -90,7 +85,9 @@ margin-top:-55px;
 
 
 			<div class="Membership">
-				<form class="form-horizontal" action="<%=request.getContextPath()%>/updateOneUser.ad?" method="post" encType="multipart/form-data">
+				<form class="form-horizontal"
+					action="<%=request.getContextPath()%>/updateOneUser.ad?"
+					method="post" encType="multipart/form-data">
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="userId" id="userseq">회원번호</label>
 						<div class="col-sm-10">
@@ -103,8 +100,9 @@ margin-top:-55px;
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="nikName">이메일</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="userEmail" name="userEmail"
-								style="width: 500px;" value="<%=oneUser.getUserEmail()%>" readonly="">
+							<input type="text" class="form-control" id="userEmail"
+								name="userEmail" style="width: 500px;"
+								value="<%=oneUser.getUserEmail()%>" readonly="readonly">
 						</div>
 					</div>
 					<div class="form-group">
@@ -127,8 +125,8 @@ margin-top:-55px;
 						<label class="control-label col-sm-2" for="phone">연락처</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control"
-								value="<%=oneUser.getUserPhone()%>" id="userPhone" name="userPhone"
-								style="width: 500px;">
+								value="<%=oneUser.getUserPhone()%>" id="userPhone"
+								name="userPhone" style="width: 500px;">
 						</div>
 					</div>
 					<div class="form-group">
@@ -168,247 +166,242 @@ margin-top:-55px;
 					</div>
 					<%} else {%>
 
-							<input type="hidden" class="form-control" id="leaveDt" name="leaveDt" style="width: 500px;" readonly="readonly">
+					<input type="hidden" class="form-control" id="leaveDt"
+						name="leaveDt" style="width: 500px;" readonly="readonly">
 					<%} %>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="cd" >대관등록승인</label>
+						<label class="control-label col-sm-2" for="cd">대관등록승인</label>
 						<div class="col-sm-10">
 							<div class="col-sm-2" id="select" style="width: 100px;">
 								<select class="form-control" id="userGradeCd" name="userGradeCd">
 									<%
-										if (oneUser.getUserGradeCd() == 1) {
-									%>
+                              if (oneUser.getUserGradeCd() == 1) {
+                           %>
 									<option>Y</option>
 									<option selected="selected">N</option>
 									<%
-										} else {
-									%>
+                              } else {
+                           %>
 									<option selected="selected">Y</option>
 									<option>N</option>
 									<%
-										}
-									%>
+                              }
+                           %>
 								</select>
 							</div>
 						</div>
 						<br>
 					</div>
-					</form>
-					<br> <br> <br> <br>
-					<div align="center">
-						<label>대관등록내역</label>
-					</div>
-					<br>
-					<div class="container">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>공연장 고유번호</th>
-									<th>공연장명</th>
-									<th>상호명</th>
-									<th>주소</th>
-									<th>등록일</th>
-									<th>대관등록진행상태</th>
-									<th>작성자</th>
+				</form>
+				<br> <br> <br> <br>
+				<div align="center">
+					<label>대관등록내역</label>
+				
+				<br>
+				<div class="container">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>고유번호</th>
+								<th>공연장명</th>
+								<th>상호명</th>
+								<th>주소</th>
+								<th>등록일</th>
+								<th>진행상태</th>
+								<th>작성자</th>
 
-								</tr>
-							 	<%
-									for (EnrollHistoryVO EnrollHistory : EnrollHistoryVOlist) {
-								%>
-
-
-							</thead>
-							<tbody>
-
-								<tr>
-									<th><%=EnrollHistory.getRentSeq()%></th>
-									<th><%=EnrollHistory.getHallNm()%></th>
-									<th><%=EnrollHistory.getCompNm()%></th>
-									<th><%=EnrollHistory.getAddress()%></th>
-									<th><%=EnrollHistory.getRentEnrollDt()%></th>
-									<th><%=EnrollHistory.getRentEnrollStatus()%></th>
-									<th><%=EnrollHistory.getUserNm() %></th>
-								</tr>
-							</tbody>
+							</tr>
 							<%
-								}
-							%>
-						</table>
-					</div>
+                           for (EnrollHistoryVO EnrollHistory : EnrollHistoryVOlist) {
+                        %>
+
+
+						</thead>
+						<tbody>
+
+							<tr>
+								<th><%=EnrollHistory.getRentSeq()%></th>
+								<th><%=EnrollHistory.getHallNm()%></th>
+								<th><%=EnrollHistory.getCompNm()%></th>
+								<th><%=EnrollHistory.getAddress()%></th>
+								<th><%=EnrollHistory.getRentEnrollDt()%></th>
+								<th><%=EnrollHistory.getRentEnrollStatus()%></th>
+								<th><%=EnrollHistory.getUserNm() %></th>
+							</tr>
+						</tbody>
+						<%
+                        }
+                     %>
+					</table>
+				</div>
 
 				<%-- 페이징처리 --%>
-		<div class="pagingArea" align="center">
-			<button
-				onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq()%>&currentPage=1'"><<</button>
+				<div class="pagingArea" align="center">
+					<button
+						onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq()%>&currentPage=1'"><<</button>
 
-			<%
-				if (currentPage <= 1) {
-			%>
-			<button disabled><</button>
-			<%
-				} else {
-			%>
-			<button
-				onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq()%>&currentPage=<%=currentPage - 1%>'"></button>
-			<%
-				}
-			%>
+					<%
+            if (currentPage <= 1) {
+         %>
+					<button disabled><</button>
+					<%
+            } else {
+         %>
+					<button
+						onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq()%>&currentPage=<%=currentPage - 1%>'"></button>
+					<%
+            }
+         %>
 
-			<%
-				for (int p = startPage; p <= endPage; p++) {
-					if (currentPage == p) {
-			%>
-			<button disabled><%=p%></button>
-			<%
-				} else {
-			%>
-			<button
-				onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>&currentPage=<%=p%>'"><%=p%></button>
-			<%
-				}
-				}
-			%>
+					<%
+            for (int p = startPage; p <= endPage; p++) {
+               if (currentPage == p) {
+         %>
+					<button disabled><%=p%></button>
+					<%
+            } else {
+         %>
+					<button
+						onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>&currentPage=<%=p%>'"><%=p%></button>
+					<%
+            }
+            }
+         %>
 
-			<%
-				if (currentPage >= maxPage) {
-			%>
-			<button disabled>></button>
-			<%
-				} else {
-			%>
-			<button
-				onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>&currentPage=<%=currentPage + 1%>'">></button>
-			<%
-				}
-			%>
+					<%
+            if (currentPage >= maxPage) {
+         %>
+					<button disabled>></button>
+					<%
+            } else {
+         %>
+					<button
+						onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>&currentPage=<%=currentPage + 1%>'">></button>
+					<%
+            }
+         %>
 
-			<button
-				onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>&currentPage=<%=maxPage%>'">>></button>
+					<button
+						onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>&currentPage=<%=maxPage%>'">>></button>
 
+				</div>
 			</div>
-		</div>
-		<br><br><br><br>
+			<br>
+			<br>
+			<br>
+			<br>
 
-					<div align="center">
-						<label>대관사용내역</label>
-					</div>
-					<br>
-					<div class="container">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>공연장 고유번호</th>
-									<th>상호명</th>
-									<th>사용일자</th>
-									<th>사용공간 이름</th>
-									<th>상태</th>
-								</tr>
-								<%
-									for (UseHistoryVO useHistory : UseHistoryVOlist) {
-								%>
-							</thead>
-							<tbody>
-
-								<tr>
-									<th><%=useHistory.getRentSeq()%></th>
-									<th><%=useHistory.getCompNm()%></th>
-									<th><%=useHistory.getUseStartDt()%> ~ <%=useHistory.getUseEndDt() %></th>
-									<th><%=useHistory.getHallNm()%></th>
-									<th><%=useHistory.getGetpropStatus()%></th>
-								</tr>
-							</tbody>
+			<div align="center">
+				<label>대관사용내역</label> <br>
+				<div class="container">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>고유번호</th>
+								<th>상호명</th>
+								<th>사용일자</th>
+								<th>사용공간 이름</th>
+								<th>상태</th>
+							</tr>
 							<%
-								}
-							%>
-						</table>
-					</div>
+                           for (UseHistoryVO useHistory : UseHistoryVOlist) {
+                        %>
+						</thead>
+						<tbody>
+
+							<tr>
+								<th><%=useHistory.getRentSeq()%></th>
+								<th><%=useHistory.getCompNm()%></th>
+								<th><%=useHistory.getUseStartDt()%> ~ <%=useHistory.getUseEndDt() %></th>
+								<th><%=useHistory.getHallNm()%></th>
+								<th><%=useHistory.getGetpropStatus()%></th>
+							</tr>
+						</tbody>
+						<%
+                        }
+                     %>
+					</table>
+				</div>
 
 
 				<br>
 				<%-- 페이징처리 --%>
-		<div class="pagingArea" align="center">
-			<button
-				onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq()%>&currentPage=1'"><<</button>
+				<div class="pagingArea" align="center">
+					<button
+						onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq()%>&currentPage=1'"><<</button>
 
-			<%
-				if (currentPage <= 1) {
-			%>
-			<button disabled><</button>
-			<%
-				} else {
-			%>
-			<button
-				onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq()%>&currentPage=<%=currentPage - 1%>'"></button>
-			<%
-				}
-			%>
+					<%
+            if (currentPage <= 1) {
+         %>
+					<button disabled><</button>
+					<%
+            } else {
+         %>
+					<button
+						onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq()%>&currentPage=<%=currentPage - 1%>'"></button>
+					<%
+            }
+         %>
 
-			<%
-				for (int p = startPage; p <= endPage; p++) {
-					if (currentPage == p) {
-			%>
-			<button disabled><%=p%></button>
-			<%
-				} else {
-			%>
-			<button
-				onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>&currentPage=<%=p%>'"><%=p%></button>
-			<%
-				}
-				}
-			%>
+					<%
+            for (int p = startPage; p <= endPage; p++) {
+               if (currentPage == p) {
+         %>
+					<button disabled><%=p%></button>
+					<%
+            } else {
+         %>
+					<button
+						onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>&currentPage=<%=p%>'"><%=p%></button>
+					<%
+            }
+            }
+         %>
 
-			<%
-				if (currentPage >= maxPage) {
-			%>
-			<button disabled>></button>
-			<%
-				} else {
-			%>
-			<button
-				onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>&currentPage=<%=currentPage + 1%>'">></button>
-			<%
-				}
-			%>
+					<%
+            if (currentPage >= maxPage) {
+         %>
+					<button disabled>></button>
+					<%
+            } else {
+         %>
+					<button
+						onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>&currentPage=<%=currentPage + 1%>'">></button>
+					<%
+            }
+         %>
 
-			<button
-				onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>&currentPage=<%=maxPage%>'">>></button>
+					<button
+						onclick="location.href='<%=request.getContextPath()%>/selectOneUser.ad?userSeq=<%=oneUser.getUserSeq() %>&currentPage=<%=maxPage%>'">>></button>
 
+				</div>
 			</div>
+
+
+
+			<button class="btn btn-warning" id="revisebutton">수정</button>
+
+			<script type="text/javascript">
+         $(function(){
+            $("#revisebutton").click(function(){
+               $("form").submit();
+            });
+         });
+      </script>
+
+
+
+			<button type="reset" class="btn btn-warning" id="resetbutton"
+				onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad'">취소</button>
+
+
 		</div>
-
-
-
-		</div>
-		<button class="btn btn-warning" id="revisebutton">수정</button>
-	
-		<script type="text/javascript">
-			$(function(){
-				$("#revisebutton").click(function(){
-					$("form").submit();
-				});
-			});
-		</script>
-
-
-
-		<button type="reset" class="btn btn-warning" id="resetbutton"
-		onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad'">취소</button>
+		<br> <br> <br> <br> <br>
 
 
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-
-
-
-
 	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>
-
 
 

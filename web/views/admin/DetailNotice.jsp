@@ -41,14 +41,14 @@
 <style>
 #center {
 	/* 	border: 1px solid black; */
-	width: 1300px;
+	width: 1024px;
 	height: 800px;
 	margin: auto;
 }
 
 #line {
 	border: 0.5px solid gray;
-	width: 1300px;
+	width: 1024px;
 	margin: auto;
 }
 
@@ -67,13 +67,18 @@
 }
 
 #Modifiedbutton {
-	margin-left: 1090px;
+	margin-left: 900px;
 }
 #cancelbutton {
-	margin-left: 1150px;
-	margin-top:-55px;
+	margin-left:820px;
+	margin-top:-190px;
 }
 
+.container{
+width: 500px;
+margin-left: -10px;
+
+}
 
 </style>
 
@@ -91,9 +96,11 @@
 		<div id="line"></div>
 
 		<br> <br>
+	
 		<form action="<%=request.getContextPath()%>/updateNotice.ad"
 			method="get">
 			<div class="container">
+			
 				<table class="table table-bordered">
 					<thead>
 						<tr>
@@ -131,10 +138,11 @@
 
 			<button type="submit" class="btn btn-warning" id="Modifiedbutton">수정</button>
 			</form>
+			</div>
 			
 			<button type="button" class="btn btn-warning" id="cancelbutton"
 			onclick="location.href='<%=request.getContextPath()%>/SelectNotice'">취소</button>
-	</div>
+	
 
 	<jsp:include page="/views/common/footer.jsp" />
 </body>

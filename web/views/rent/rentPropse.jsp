@@ -30,6 +30,8 @@
 	long diff = rentPropVO.getUseEndDt().getTime() - rentPropVO.getUseStartDt().getTime();
 	long diffDay = diff / 1000 / 60 / 60 / 24;
 
+	String address = rentBasicVO.getCorpAddress().replace("§§", " ");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -206,7 +208,7 @@
 				</tr>
 				<tr>
 					<td><h4 style="display:inline;">소재지</h4></td>
-					<td><p class="text-muted" style="display:inline; padding-left: 5%;"><%=rentBasicVO.getCorpAddress() %></p></td>
+					<td><p class="text-muted" style="display:inline; padding-left: 5%;"><%=address %></p></td>
 				</tr>
 				<tr>
 					<td><h4 style="display:inline;">사업자 번호</h4></td>

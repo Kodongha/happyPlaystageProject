@@ -84,10 +84,12 @@
 	          <li><a href="<%=request.getContextPath() %>/searchUser.ad?userSeq1=&userSeq2=&userNm=&userGradeCd=선택&leaveTf=선택">회원 관리</a></li>
 	          <li><a href="<%=request.getContextPath() %>/SetRegPermissions.ad">대관등록 권한설정</a></li>
 	          <li><a href="<%=request.getContextPath() %>/inspectionList.ad">대관등록 검수</a></li>
+	          <%--
 	          <li><a href="<%=request.getContextPath() %>/views/admin/06_salesStatus.jsp">매출 통계</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/admin/07_statistics.jsp">회원 수 통계</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/admin/08_calculate.jsp">매출 정산</a></li>
 	          <li><a href="<%=request.getContextPath() %>/views/admin/09_refund.jsp">환불 정산</a></li>
+	           --%>
 	          <li><a href="<%=request.getContextPath() %>/SelectNotice">공지사항-관리자</a></li>
 	          <li><a href="<%=request.getContextPath() %>/moveRealTimeAdmin.ad">1:1 문의 관리</a></li>
 	        </ul>

@@ -31,6 +31,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<link href="/happyPlaystage/css/common/all.min.css" rel="stylesheet">
+<script src="/happyPlaystage/js/common/all.min.js"></script>
+
 <script type="text/javascript">
 
 	function getConnection(){
@@ -107,18 +111,27 @@
 		});
 	});
 
+	$(function(){
+		$("#sendInput").focus();
+	});
+
 </script>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-
-	<div class="container">
-		<textarea rows="30" cols="50" id="txa" ><%=textValue%></textarea>
-		<br>
-		<input size="40" id="sendInput">
-		<button id="sendBtn">보내기</button>
+	<br><h2 align="center"><b>1:1 문의</b></h2><br>
+	<hr style="width:90%">
+	<div class="container" align="center">
+		<div style="margin-right: 5%; float:left; width:45%;" id="span1">
+				<img src="<%=request.getContextPath()%>/images/serviceCenter/qna.png" style="width: 350px; height: 300px; padding-top:15px;">
+		</div>
+		<div id="span2" style="width:45%; float:left;">
+			<textarea class="form-control" rows="17" cols="20" id="txa" style="resize: none; width: 400px; margin-bottom: 1%; background:#a2c9db"><%=textValue%></textarea>
+			<input size="40" id="sendInput" class="form-control" style="width: 330px; display: inline-block;" placeholder="답변 입력.">
+			<button id="sendBtn" class="btn btn-default" style="background:#ffe600;">보내기</button>
+		</div>
 	</div>
-
+	<br><br>
 	<jsp:include page="/views/common/footer.jsp"/>
 </body>
 </html>

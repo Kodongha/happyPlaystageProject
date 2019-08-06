@@ -28,15 +28,19 @@ System.out.println("list:::::::::::::::::::::::::"+list);
 <title>대관 사용 내역 검색결과</title>
 <style>
 	div {
-		margin:auto;
+		margin: auto;
 	}
-	#tab1{
-		background-color: darkgray;
-		 border: 1px solid lightgray;
+	#hallInfo tbody > tr:hover {
+		cursor: pointer;
+		background: #e6f2ff;
 	}
-	#tab2 {
-	 border: 1px solid lightgray;
-  } 
+
+	#hallInfo tbody > tr:active {
+		background: #cce6ff;
+	}
+	th {
+		text-align: center;
+	}
 </style>
 </head>
 <body>
@@ -46,18 +50,22 @@ System.out.println("list:::::::::::::::::::::::::"+list);
 	<form action="<%=request.getContextPath() %>/searchUsingInfo" method="post">
 	<div class="tab1" style="width:650px;">
 	<table align="center">
+		<thead>
 		<tr>
-			<td id="rentSeq" name="rentSeq">공연장 고유번호</td>
-			<td id="hallNm" name="hallNm">공연장 이름</td>
-			<td id="useDt" name="useDt">일자</td>
-			<td></td>
+			<th id="rentSeq" name="rentSeq" style="text-align:left">공연장 고유번호</th>
+			<th id="hallNm" name="hallNm" style="text-align:left">공연장 이름</th>
+			<th id="useDt" name="useDt" style="text-align:left">일자</th>
+			<th></th>
 		</tr>
+		</thead>
+		<tbody>
 		<tr>
-			<td><input class="form-control" id="rentSeq" type="text" name="rentSeq"></td>
-			<td><input class="form-control" id="hallNm" type="text" name="hallNm"></td>			
-			<td><input class="form-control" id="cusClosedate" type="text" name="cusClosedate"></td>
-			<td><button type="submit" class="btn btn-warning">검색</button></td>			
+			<td style="padding-right:3%"><input class="form-control" id="rentSeq" type="text" name="rentSeq"></td>
+			<td style="padding-right:3%"><input class="form-control" id="hallNm" type="text" name="hallNm"></td>			
+			<td style="padding-right:3%"><input class="form-control" id="cusClosedate" type="text" name="cusClosedate"></td>
+			<td style="padding-right:3%"><button type="submit" class="btn btn-warning">검색</button></td>			
 		</tr>
+		</tbody>
 	</table>
 	</div>
 	</form>
@@ -67,14 +75,17 @@ System.out.println("list:::::::::::::::::::::::::"+list);
 	
 	<br>
 	<div class="tab2" style="width:790px;">
-	
-	<table style="width:790px; height:60px; text-align:center; margin:auto; border-collapse: collapse;">
+	<!-- <table style="width:790px; height:60px; text-align:center; margin:auto; border-collapse: collapse;"> -->
+	<table id="hallInfo" class="table" style="text-align: center">
+		<thead>
 		<tr>
-		<td id="tab1">공연장 고유번호</td>
-		<td id="tab1">상호명</td>
-		<td id="tab1">사용일자</td>
-		<td id="tab1">사용공간 이름</td>
+		<th id="tab1">공연장 고유번호</th>
+		<th id="tab1">상호명</th>
+		<th id="tab1">사용일자</th>
+		<th id="tab1">사용공간 이름</th>
 		</tr>
+		</thead>
+		<tbody>
 		<% for(int i = 0; i < list.size(); i++){
 			%>
 			<tr onclick="location.href='<%=request.getContextPath()%>/usingInfoDetail?rentSeq=<%=list.get(i).getRentSeq() %>&hallNm=<%=list.get(i).getHallNm()%>&useStart=<%=list.get(i).getUseStartDt()%>&useEnd=<%=list.get(i).getUseEndDt()%>'">
@@ -103,6 +114,7 @@ System.out.println("list:::::::::::::::::::::::::"+list);
 		<td id="tab2"></td>
 		<td id="tab2"></td>
 		</tr> --%>
+	</tbody>
 	</table>
 	</div>
 	<%-- 페이징처리 --%>

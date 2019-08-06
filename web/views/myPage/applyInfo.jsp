@@ -31,7 +31,6 @@
 	div {
 		margin: auto;
 	}
-
 	#hallInfo tbody > tr:hover {
 		cursor: pointer;
 		background: #e6f2ff;
@@ -40,7 +39,9 @@
 	#hallInfo tbody > tr:active {
 		background: #cce6ff;
 	}
-
+	th {
+		text-align: center;
+	}
 </style>
 <SCRIPT type="text/javascript">
 

@@ -38,6 +38,8 @@ public class ApplyInfoChangeServlet extends HttpServlet {
 		
 		int result = new AhnMyPageService().applyInfoChangeInsert(userInfo, propSeq);
 		
+		int result2 = new AhnMyPageService().applyInfoChangeDelete(userInfo, propSeq);
+		
 		System.out.println("result : " + result);
 		
 		if(result > 0) {

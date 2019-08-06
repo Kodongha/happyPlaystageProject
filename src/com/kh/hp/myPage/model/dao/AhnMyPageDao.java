@@ -1663,4 +1663,26 @@ public class AhnMyPageDao {
 		return rentPropAndAttachmentVO;
 	}
 
+	public int applyDelete(Connection con, int userInfo, int propSeq) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("ApplyDelete");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, propSeq);
+			pstmt.setInt(2, userInfo);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
 }

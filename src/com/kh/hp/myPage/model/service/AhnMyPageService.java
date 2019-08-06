@@ -401,6 +401,23 @@ public class AhnMyPageService {
 		return rentPropAndAttachmentVO;
 	}
 
+	public int applyInfoChangeDelete(int userInfo, int propSeq) {
+		Connection con = getConnection();
+		System.out.println("insertImage in!!!");
+		int result = 0;
+
+		int result2 = new AhnMyPageDao().applyDelete(con, userInfo, propSeq);
+
+		if(result2 > 0) {
+			commit(con);
+			result = 1;
+		}else {
+			rollback(con);
+		}
+
+		return result;
+	}
+	}
 
 
-}
+

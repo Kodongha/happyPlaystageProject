@@ -143,19 +143,19 @@
 
     <div class="form-group" style="width: 50%; display: inline; float: right;">
       <label class="necessary">*</label><label for="accNo">계좌번호</label> <br><br>
-      <input name="accNo" id="accNo" type="text" class="form-control" placeholder="계좌번호" style="width: 400px" value="1234567890123456">
+      <input name="accNo" id="accNo" type="text" class="form-control" placeholder="계좌번호" style="width: 400px">
     </div>
 
    <br clear="all"><br><br>
 
     <div class="form-group" style="width: 50%; display: inline; float: left;">
       <label class="necessary">*</label><label for="accHolder">예금주</label> <br><br>
-      <input id="accHolder" type="text" class="form-control" name="accHolder" placeholder="예금주" style="width: 400px" value="고동하">
+      <input id="accHolder" type="text" class="form-control" name="accHolder" placeholder="예금주" style="width: 400px">
     </div>
 
     <div class="form-group" style="width: 50%; display: inline; float: right;">
       <label class="necessary">*</label><label for="accBirth">생년월일</label> <br><br>
-      <input id="accBirth" type="text" class="form-control" name="accBirth" placeholder="생년월일" style="width: 400px" value="910315">
+      <input id="accBirth" type="text" class="form-control" name="accBirth" placeholder="생년월일" style="width: 400px">
       <h5>* 계좌 인증을 위해 생년월일을 입력 받고 있습니다.</h5>
     </div>
 

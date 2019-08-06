@@ -29,7 +29,7 @@
 	<div class="form-group facInfo">
 		<label class="necessary">*</label><label for="facInfoContent">시설 안내</label><br><br>
 		<div class="form-group">
-			<input type="text" class="col-sm-10 col-xs-10 form-control" name="facInfoContent" id="facInfoContent" placeholder="공연장 한 줄 소개를 입력해주세요." style="width: 80%">
+			<input type="text" class="col-sm-10 col-xs-10 form-control" name="facInfoContent" id="facInfoContent" placeholder="공연장의 시설을 입력해주세요." style="width: 80%">
 			<button type="button" id="facInfoContentAddBtn" class="col-sm-2 col-xs-2 btn btn btn-primary" style="width: 15%; float: right;">추가</button>
 		</div>
 	</div>

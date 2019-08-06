@@ -37,7 +37,7 @@
 
 #line {
 	border: 0.5px solid gray;
-	width: 1300px;
+	width: 1024px;
 	margin: auto;
 }
 
@@ -48,11 +48,11 @@
 }
 
 .btn-default {
-	margin-left: 800px;
+	margin-left: 600px;
 }
 
 .btn-default1 {
-	margin-left: 900px;
+	margin-left: 700px;
 	margin-top: -55px;
 }
 </style>

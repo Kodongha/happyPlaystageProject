@@ -23,28 +23,28 @@
 <style>
 #center {
 	/* 	border: 1px solid black; */
-	width: 1300px;
+	width: 1024px;
 	height: 800px;
 	margin: auto;
 }
 
 #line {
 	border: 0.5px solid gray;
-	width: 1300px;
+	width: 1024px;
 	margin: auto;
 }
 
 #text1 {
 	width: 180px;
 	height: 30px;
-	margin-left: 70px;
+	margin-left: 20px;
 }
 
 #search {
 	border: 1px solid gray;
-	width: 1200px;
+	width: 1000px;
 	height: 150px;
-	margin-left: 50px;
+	margin-left:5px;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
 	border-bottom-left-radius: 8px;
@@ -56,6 +56,7 @@
 	margin-left: 10px;
 	margin-top: 30px;
 }
+
 
 #input {
 	width: 110px;
@@ -95,12 +96,12 @@
 
 #selects {
 	width: 100px;
-	margin-left: 319px;
+	margin-left: 370px;
 	margin-top: -10px;
 }
 
 #searchbutton {
-	margin-left: 1100px;
+	margin-left: 920px;
 	margin-top: -10px;
 }
 
@@ -119,9 +120,17 @@
 
 #condition {
 	width: 400px;
-	margin-left: 551px;
+	margin-left: 510px;
 	margin-top: -100px;
 }
+#condition1 {
+	width: 400px;
+	margin-left: 510px;
+	margin-top: -50px;
+}
+
+
+
 .tables{
 margin-top: 70px;
 
@@ -178,8 +187,8 @@ margin-top: 70px;
 			</div>
 		</div>
 
-		<div id="condition">
-			<label id="userno">처리상태</label>
+		<div id="condition1">
+			<label id="userno9">처리상태</label>
 		</div>
 		<div class="col-sm-2" id="selects">
 			<select class="form-control" id="selects">

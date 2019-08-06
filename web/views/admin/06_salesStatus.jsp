@@ -13,14 +13,14 @@
 <style>
 #center {
 	/* 	border: 1px solid black; */
-	width: 1300px;
+	width: 1024px;
 	height: 450px;
 	margin: auto;
 }
 
 #line {
 	border: 0.5px solid gray;
-	width: 1300px;
+	width: 1024px;
 	margin: auto;
 }
 #text1 {
@@ -30,15 +30,15 @@
 }
 
 #unit {
-	margin-left: 1130px;
+	margin-left: 900px;
 	margin-top:20px;
 }
 
 #search {
 	border: 1px solid gray;
-	width: 1200px;
+	width: 1000px;
 	height: 80px;
-	margin-left: 50px;
+	margin-left: 5px;
 	margin-top: 30px;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
@@ -79,7 +79,7 @@
 }
 
 #searchbutton {
-	margin-left: 1100px;
+	margin-left: 900px;
 	margin-top: -300px;
 }
 

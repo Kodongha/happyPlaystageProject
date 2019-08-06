@@ -24,14 +24,14 @@
 <style>
 #center {
 	/*    border: 1px solid black; */
-	width: 1300px;
+	width: 1024px;
 	height: 800px;
 	margin: auto;
 }
 
 #line {
 	border: 0.5px solid gray;
-	width: 1300px;
+	width: 1024px;
 	margin: auto;
 }
 
@@ -44,9 +44,9 @@
 
 #area {
 	border: 1px solid gray;
-	width: 1200px;
+	width: 1000px;
 	height: 150px;
-	margin-left: 50px;
+	margin-left: 5px;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
 	border-bottom-left-radius: 8px;
@@ -142,7 +142,7 @@
 }
 
 #searchbutton {
-	margin-left: 330px;
+	margin-left: 150px;
 	margin-top: 40px;
 }
 

@@ -4,11 +4,33 @@
 	UserVO user = (UserVO) session.getAttribute("user");
 %>
 <!DOCTYPE html>
+<!-- 아이콘 -->
+<link href="/happyPlaystage/css/common/all.min.css" rel="stylesheet">
+<script src="/happyPlaystage/js/common/all.min.js"></script>
+
+<style>
+.navbar-inverse {
+	background-color: white;
+    border-color: white;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #303030;
+    font-size:15px;
+}
+.navbar-inverse .navbar-nav>li>a:hover {
+    color:black;
+}
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    color: black;
+    background-color: gold;
+}
+</style>
+
 	<!-- Header_Navigator -->
 	<nav class="navbar navbar-inverse">
-	  <div class="container-fluid">
+	  <div class="container-fluid" style="background-color:white; border:0px solid; border-bottom:0.5px solid lightgray">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" href="<%=request.getContextPath() %>/moveMain.main">Happay PlayStage</a>
+	      <a class="navbar-brand" href="<%=request.getContextPath() %>/moveMain.main" style="padding-left:30px;"><i class="fas fa-home" style="color:black;"></i></a>
 	    </div>
 
 	    <ul class="nav navbar-nav">
@@ -79,10 +101,10 @@
 			<li>
 				<form class="navbar-form navbar-left" action="<%=request.getContextPath() %>/moveRentList.rt">
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Search" name="searchString">
+						<input type="text" class="form-control" name="searchString" style="background:#ffbf00; border:0.5px solid #ffbf00;">
 						<div class="input-group-btn">
-							<button class="btn btn-default" type="submit">
-								<i class="glyphicon glyphicon-search"></i>
+							<button class="btn btn-default" type="submit" style="background:#ffbf00; border:1px solid #ffbf00;">
+								<i class="glyphicon glyphicon-search" style="color:white"></i>
 							</button>
 						</div>
 					</div>

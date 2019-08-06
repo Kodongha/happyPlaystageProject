@@ -261,7 +261,6 @@
 															<%if(i == rentCloseVOList.get(0).getDiffDate() - 1){%>
 															<%}else{%>
 															||
-
 															<%}%>
 															<%}%>
 														<%}%>

@@ -51,7 +51,7 @@
 
 		<br><br><br><br><br><br><br><br>
 		<!-- 사용 시간 단위 -->
-		<div class="form-group" style="display: inline-block;">
+		<div class="form-group" style="display: none">
 			<label class="necessary">*</label><label for="availStartTm">사용 시간 단위</label>
 			<br><br>
 			<select class="form-control" name="useTimeUnit" id="useTimeUnit" style="width: 200px; min-width: 200px; display:inline; margin: 0 2% 0 0">
@@ -148,9 +148,6 @@
 		<div class="form-group" id="regHolidayForm">
 			<label class="necessary">*</label><label for="regHoliday">정기 휴무</label>
 			<br>
-			<div class="ui checkbox">
-				<input type="checkbox" name="example" style="margin:0px !important;"><label>공휴일 휴무</label>
-			</div>
 			<br>
 			<select class="form-control" name="regCloseCd" id=regCloseCd style="width: 200px; min-width: 200px;">
 				<option value="1">휴무 없음</option>
@@ -196,6 +193,7 @@
 							<input name="cusClosedate" class="form-control" id="cusClosedate" placeholder="휴무일자를 선택하세요.">
 							<script type="text/javascript">
 								$('#cusClosedate').dateRangePicker({
+									startDate: new Date(),
 									inline:true,
 									container: '.modal-body',
 									alwaysOpen:true

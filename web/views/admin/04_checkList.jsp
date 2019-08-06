@@ -195,7 +195,7 @@ tbody>tr:active {
 </style>
 
 <script type="text/javascript">
-	
+
 </script>
 
 </head>
@@ -220,18 +220,15 @@ tbody>tr:active {
 						style="width: 250px;">
 				</div>
 
-
 				<label id="searchtitle">회원명</label>
 				<div id="input">
 					<input class="form-control" id="ex1" type="text"
 						style="width: 250px;">
 				</div>
-
 			</div>
 
 			<div id="users2">
 				<label id="condition" style="width: 100px">검수상태</label>
-
 			</div>
 
 			<div id="users3">
@@ -244,19 +241,13 @@ tbody>tr:active {
 					</select>
 				</div>
 
-
-
 				<div id="users4">
-
-
 					<button type="button" class="btn btn-warning" id="searchbutton">검색</button>
-
 				</div>
 			</div>
 
 			<br> <br>
 			<div class="container">
-
 				<table class="table">
 					<thead>
 						<tr>
@@ -264,12 +255,9 @@ tbody>tr:active {
 							<th>공연장명</th>
 							<th>이메일</th>
 							<th>연락처</th>
-							<th>공연장등록증첨부파일</th>
 							<th>검수상태</th>
 						</tr>
-						<%
-									for (InspectionListVO  InspectionList : InspectionListVOList) {
-								%>
+						<%for (InspectionListVO  InspectionList : InspectionListVOList) {%>
 					</thead>
 					<tbody>
 						<tr>
@@ -279,7 +267,6 @@ tbody>tr:active {
 							<td><%=InspectionList.getHallNm() %></td>
 							<td><%=InspectionList.getRentEmail() %></td>
 							<td><%=InspectionList.getRentMainTel() %></td>
-							<td id="attachTd"><%=InspectionList.getOriginNm() %></td>
 
 							<% if(InspectionList.getInspTf().equals("Y")){%>
 							<td>검수완료</td>
@@ -324,9 +311,6 @@ tbody>tr:active {
 
 		<button id="maxBtn">>></button>
 	</div>
-
-
-	
 
 
 	<script type="text/javascript">

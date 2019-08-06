@@ -172,7 +172,7 @@ div {
 			</tr>
 			<tr>
 				<td>가격</td>
-				<td id="tab2"><%=list.get(0).getPayAmount()%></td>
+				<td id="tab2"><%=list.get(0).getPayAmount()%> ￦</td>
 			</tr>
 		</table>
 	</div>

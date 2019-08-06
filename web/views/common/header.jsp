@@ -25,7 +25,6 @@
     background-color: gold;
 }
 </style>
-
 	<!-- Header_Navigator -->
 	<nav class="navbar navbar-inverse">
 	  <div class="container-fluid" style="background-color:white; border:0px solid; border-bottom:0.5px solid lightgray">
@@ -43,7 +42,7 @@
 			<%}else if((user != null && user.getUserGradeCd() == 0) || (user != null && user.getUserGradeCd() == 2)) { %>
 		          <li><a href="<%=request.getContextPath() %>/MoveRentEnroll.rt">대관 등록하기</a></li>
 			<%} else {%>
-		          <li><a href="<%=request.getContextPath() %>/MoveRentEnroll.rt" onclick="javascript: return false;">대관 등록하기</a></li>
+		          <li><a href="<%=request.getContextPath() %>/levelUp">대관 등록하기</a></li>
           	<%} %>
 
 	          <li><a href="<%=request.getContextPath() %>/moveRentList.rt">대관 신청하기</a></li>

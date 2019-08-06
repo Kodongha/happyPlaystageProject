@@ -177,7 +177,7 @@ int endPage = pi.getEndPage();
 
 .pagingArea {
 	margin-top: -100px;
-	margin-left: 600px;
+	margin-left: 400px;
 }
 
 #attachTd:hover {
@@ -296,15 +296,13 @@ tbody>tr:active {
 		</div>
 
 	</div>
-	<%-- <div class="pagingArea">
-		<button
-			onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=1'"><<</button>
+	<div class="pagingArea">
+		<button id="minBtn"><<</button>
 
 		<% if(currentPage <= 1){ %>
 		<button disabled><</button>
 		<% }else { %>
-		<button
-			onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=<%=currentPage - 1%>'"><</button>
+		<button id="minusBtn"><</button>
 		<% } %>
 
 		<% for(int p = startPage; p <= endPage; p++){
@@ -312,8 +310,7 @@ tbody>tr:active {
 			%>
 		<button disabled><%= p %></button>
 		<% } else { %>
-		<button
-			onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=<%=p%>'"><%= p %></button>
+		<button id="pBtn" class="pBtn"><%= p %></button>
 		<%
 				}
 			   }
@@ -322,13 +319,85 @@ tbody>tr:active {
 		<% if(currentPage >= maxPage){ %>
 		<button disabled>></button>
 		<% }else{ %>
-		<button
-			onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=<%=currentPage + 1%>'">></button>
+		<button id="plusBtn">></button>
 		<% } %>
 
-		<button
-			onclick="location.href='<%=request.getContextPath()%>/inspectionList.ad?currentPage=<%=maxPage%>'">>></button>
-	</div> --%>
+		<button id="maxBtn">>></button>
+	</div>
+
+
+	
+
+
+	<script type="text/javascript">
+	$(function(){
+		<%-- onclick="location.href='<%=request.getContextPath()%>/searchUser.ad?userSeq1=<%= %>&userSeq2=&userNm=하민희&userGradeCd=선택&leaveTf=선택&currentPage=1'" --%>
+		$('#minBtn').click(function(){
+			var userSeq1 = '<%=request.getParameter("userSeq1")%>';
+			var userSeq2 = '<%=request.getParameter("userSeq2")%>';
+			var userNm = '<%=request.getParameter("userNm")%>';
+			var userGradeCd = '<%=request.getParameter("userGradeCd")%>';
+			var leaveTf = '<%=request.getParameter("leaveTf")%>';
+
+			var url = '<%=request.getContextPath()%>/inspectionList.ad?currentPage=1';
+			console.log(url);
+			location.href=url;
+		});
+
+		$('#maxBtn').click(function(){
+			var userSeq1 = '<%=request.getParameter("userSeq1")%>';
+			var userSeq2 = '<%=request.getParameter("userSeq2")%>';
+			var userNm = '<%=request.getParameter("userNm")%>';
+			var userGradeCd = '<%=request.getParameter("userGradeCd")%>';
+			var leaveTf = '<%=request.getParameter("leaveTf")%>';
+
+			var url = '<%=request.getContextPath()%>/inspectionList.ad?currentPage=<%=maxPage%>';
+			console.log(url);
+			location.href=url;
+		});
+
+		$('#minusBtn').click(function(){
+			var userSeq1 = '<%=request.getParameter("userSeq1")%>';
+			var userSeq2 = '<%=request.getParameter("userSeq2")%>';
+			var userNm = '<%=request.getParameter("userNm")%>';
+			var userGradeCd = '<%=request.getParameter("userGradeCd")%>';
+			var leaveTf = '<%=request.getParameter("leaveTf")%>';
+
+			var url = '<%=request.getContextPath()%>/inspectionList.ad?currentPage=<%=currentPage - 1%>';
+			console.log(url);
+			location.href=url;
+		});
+
+		$('#plusBtn').click(function(){
+			var userSeq1 = '<%=request.getParameter("userSeq1")%>';
+			var userSeq2 = '<%=request.getParameter("userSeq2")%>';
+			var userNm = '<%=request.getParameter("userNm")%>';
+			var userGradeCd = '<%=request.getParameter("userGradeCd")%>';
+			var leaveTf = '<%=request.getParameter("leaveTf")%>';
+
+			var url = '<%=request.getContextPath()%>/inspectionList.ad?currentPage=<%=currentPage + 1%>';
+			console.log(url);
+			location.href=url;
+		});
+
+		$('.pBtn').click(function(){
+			var userSeq1 = '<%=request.getParameter("userSeq1")%>';
+			var userSeq2 = '<%=request.getParameter("userSeq2")%>';
+			var userNm = '<%=request.getParameter("userNm")%>';
+			var userGradeCd = '<%=request.getParameter("userGradeCd")%>';
+			var leaveTf = '<%=request.getParameter("leaveTf")%>';
+			var currentPage = $(this).text();
+
+			console.log("currentPage:::" + currentPage);
+
+			var url = '<%=request.getContextPath()%>/inspectionList.ad?currentPage=' + currentPage;
+			console.log(url);
+			location.href=url;
+		});
+	});
+
+
+</script>
 	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

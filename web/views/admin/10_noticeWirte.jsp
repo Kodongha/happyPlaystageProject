@@ -40,15 +40,15 @@
 
 <style>
 #center {
-	/* 	border: 1px solid black; */
-	width: 1300px;
-	height: 800px;
+
+	width: 1024px;
+	height: 768px;
 	margin: auto;
 }
 
 #line {
 	border: 0.5px solid gray;
-	width: 1300px;
+	width: 1024px;
 	margin: auto;
 }
 
@@ -67,7 +67,11 @@
 }
 
 #searchbutton {
-	margin-left: 1150px;
+	margin-left: 950px;
+}
+#area1{
+margin-left:-10px;
+
 }
 </style>
 
@@ -86,11 +90,11 @@
 
 		<br> <br>
 			<form action="<%= request.getContextPath() %>/noticeWirte.ad" method="get">
-		<div class="container">
+		<div class="container" id=area1>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th width="100px" class="name" >공지구분</th>
+						<th width="100px" class="name" ></th>
 						<th width="180px"><select class="form-control" id="option1" name = "noticeCate">
 								<option>선택</option>
 								<option>안내</option>
@@ -106,7 +110,7 @@
 						<td colspan="3" height="450px">
 
 							<div class="form-group">
-								<textarea class="form-control" rows="25" id="content" name = "noticeContent" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"
+								<textarea class="form-control" cols="10" rows="25" id="content" name = "noticeContent" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"
 > </textarea>
 							</div>
 

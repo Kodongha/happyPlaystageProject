@@ -52,7 +52,10 @@ public class InspectionListVOListDao {
 
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
-
+			
+			System.out.println("startRow" +startRow);
+			System.out.println("endRow" +endRow);
+			
 			rset = pstmt.executeQuery();
 
 			InspectionListVOList = new ArrayList<InspectionListVO> ();

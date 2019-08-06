@@ -55,8 +55,8 @@ public class SetRegPermissionsDao {
 			System.out.println("startRow::"+startRow);
 			System.out.println("endRow::"+endRow);
 
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			/*pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);*/
 
 			rset = pstmt.executeQuery();
 

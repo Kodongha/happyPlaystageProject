@@ -54,8 +54,8 @@ public class RentBasicInfoServlet extends HttpServlet {
 		if(ServletFileUpload.isMultipartContent(request)) {
 
 			/*#################################### S T E P - 1 ####################################*/
-//			int userSeq = ((UserVO)request.getSession().getAttribute("user")).getUserSeq(); // 작성자 회원번호
-			int userSeq = 2;
+			int userSeq = ((UserVO)request.getSession().getAttribute("user")).getUserSeq(); // 작성자 회원번호
+//			int userSeq = 2;
 			int maxSize = 1024 * 1024 * 50; // 제한 MB
 
 			String rootPath = request.getSession().getServletContext().getRealPath("/");

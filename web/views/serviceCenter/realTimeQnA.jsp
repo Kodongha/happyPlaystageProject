@@ -37,7 +37,7 @@
 <script type="text/javascript">
 
 	function getConnection(){
-		ws = new WebSocket("ws://localhost:8001" + '<%=request.getContextPath()%>/serverStart?userSeq=<%=((UserVO) request.getSession().getAttribute("user")).getUserSeq() %>');
+		ws = new WebSocket("ws://172.30.1.60:8001" + '<%=request.getContextPath()%>/serverStart?userSeq=<%=((UserVO) request.getSession().getAttribute("user")).getUserSeq() %>');
 		//서버 시작할 때 동작
 		ws.onopen = function(event){
 			onopen(event);

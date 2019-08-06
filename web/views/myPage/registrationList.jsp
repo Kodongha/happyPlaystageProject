@@ -17,13 +17,21 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+<!-- 아이콘 -->
+<link href="/happyPlaystage/css/common/all.min.css" rel="stylesheet">
+<script src="/happyPlaystage/js/common/all.min.js"></script>
+
 <title>Insert title here</title>
 <style>
  #sel1 {
  	width: 90%;
  }
- #tt {
+ th {
  	text-align:center;
+ }
+ #attachPTag:hover {
+ 	cursor:pointer;
+ 	color:
  }
 </style>
 
@@ -50,7 +58,7 @@
 	<div class="container" style="padding-top :5%;" id="proposeListDiv">
 		<table class="table" id="proposeListTable" style="text-align: center;">
 			<thead id="tt">
-			<tr  align="center">
+			<tr>
 				<th style="width:50px;">번호</th>
 				<th style="width:60px;">예약자</th>
 				<th style="width:120px;">핸드폰 번호</th>
@@ -160,7 +168,7 @@
 	  						var $confirmBtnTd = $("<td/>");
 	  						var $rejectBtnTd = $("<td/>");
 
-	  						var $attachPTag = ("<p id='attachPTag'>다운로드</p>");
+	  						var $attachPTag = ("<i class='fas fa-file-download' id='attachPTag' title='다운로드'></i>");
 
 	  						var $confirmBtn = $('<button/>', {class : 'btn btn-success', id:'confirmBtn', name:"confirmBtn", text:"수락"});
 	  						var $rejectBtn = $('<button/>', {class : 'btn btn-danger', id:'rejectBtn', name:"rejectBtn", text:"거절"});
@@ -201,7 +209,6 @@
   			});
   		});
 	</script>
-
 
  	<br><br>
 	<jsp:include page="/views/common/footer.jsp" />

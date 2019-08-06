@@ -107,21 +107,27 @@
 		});
 	});
 </script>
+<style>
+	#span1, #span2 {
+		display:inline;
+	}
+</style>
+
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-
+	<br><h2 align="center"><b>1:1 문의</b></h2><br>
 	<div class="container" align="center">
-		<span style="margin-right: 5%">
-				<i class="fas fa-question-circle" style="width: 200px; height: 200px;"></i>
-		</span>
-		<span>
-			<textarea class="form-control" rows="10" cols="20" id="txa" style="resize: none; width: 400px; margin-bottom: 1%"><%=textValue%></textarea>
-			<input size="40" id="sendInput" class="form-control" style="width: 350px; display: inline-block;">
-			<button id="sendBtn" class="btn btn-default" style="display: ">보내기</button>
-		</span>
+		<div style="margin-right: 5%; float:left; width:45%;" id="span1">
+				<i class="fas fa-question-circle" style="width: 350px; height: 350px;"></i>
+		</div>
+		<div id="span2" style="float:left; width:45%";>
+			<textarea class="form-control" rows="17" cols="20" id="txa" style="resize: none; width: 400px; margin-bottom: 1%; background:#a2c9db"><%=textValue%></textarea>
+			<input size="40" id="sendInput" class="form-control" style="width: 330px; display: inline-block;" placeholder="문의 사항을 입력해주세요">
+			<button id="sendBtn" class="btn btn-default" style="background:#ffe600;">보내기</button>
+		</div>
 	</div>
-
+	<br><br><br>
 	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

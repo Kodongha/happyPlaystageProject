@@ -5,12 +5,6 @@
 	ArrayList<SetRegPermissionsVO> SetRegPermissionsVOList = (ArrayList<SetRegPermissionsVO>) request
 			.getAttribute("SetRegPermissionsVOList");
 
-	PageInfo pi = (PageInfo) request.getAttribute("pi");
-	int listCount = pi.getListCount();
-	int currentPage = pi.getCurrentPage();
-	int maxPage = pi.getMaxPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -278,54 +272,7 @@ tbody>tr:active {
 		</div>
 
 	</div>
-	<%-- <div class="pagingArea">
-		<button
-			onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=1'"><<</button>
-
-		<%
-			if (currentPage <= 1) {
-		%>
-		<button disabled><</button>
-		<%
-			} else {
-		%>
-		<button
-			onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=currentPage - 1%>'"><</button>
-		<%
-			}
-		%>
-
-		<%
-			for (int p = startPage; p <= endPage; p++) {
-				if (currentPage == p) {
-		%>
-		<button disabled><%=p%></button>
-		<%
-			} else {
-		%>
-		<button
-			onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=p%>'"><%=p%></button>
-		<%
-			}
-			}
-		%>
-
-		<%
-			if (currentPage >= maxPage) {
-		%>
-		<button disabled>></button>
-		<%
-			} else {
-		%>
-		<button
-			onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=currentPage + 1%>'">></button>
-		<%
-			}
-		%>
-
-		<button
-			onclick="location.href='<%=request.getContextPath()%>/selectAllUser.ad?currentPage=<%=maxPage%>'">>></button>
-	</div> --%>
+	
 	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

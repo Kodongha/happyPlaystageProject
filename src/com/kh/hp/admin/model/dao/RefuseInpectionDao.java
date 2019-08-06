@@ -54,6 +54,7 @@ public class RefuseInpectionDao {
 
 	//rent_basic update  -> 거절을 했으나 검수는 했으므로 검수유무는 y가 되야함
 	public int RefuseInpection1(Connection con, int rentSeq) {
+		System.out.println("거절이고 F?");
 		PreparedStatement pstmt = null;
 		int result2 = 0;
 
@@ -62,6 +63,7 @@ public class RefuseInpectionDao {
 			pstmt = con.prepareStatement(query);
 
 			pstmt.setInt(1, rentSeq);
+
 
 			result2 = pstmt.executeUpdate();
 

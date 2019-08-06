@@ -67,10 +67,10 @@
 }
 
 #Modifiedbutton {
-	margin-left: 900px;
+	margin-left: 930px;
 }
 #cancelbutton {
-	margin-left:820px;
+	margin-left:850px;
 	margin-top:-190px;
 }
 

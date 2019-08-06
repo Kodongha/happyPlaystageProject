@@ -58,7 +58,7 @@ public class NoticeWirteServlet extends HttpServlet {
 		
 		if(result > 0) {
 			
-			request.getRequestDispatcher("/notice.sc").forward(request, response);
+			request.getRequestDispatcher("/SelectNotice").forward(request, response);
 		
 		}else {
 		

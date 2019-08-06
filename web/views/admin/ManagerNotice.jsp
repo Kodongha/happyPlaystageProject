@@ -160,7 +160,7 @@ tboydy>tr:active {
 }
 
 #writebutton {
-	margin-left: 1080px;
+	margin-left: 930px;
 }
 </style>
 

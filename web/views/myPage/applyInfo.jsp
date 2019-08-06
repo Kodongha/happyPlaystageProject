@@ -153,9 +153,9 @@
 	<table align="center">
 		<thead>
 		<tr>
-			<th id="rentSeq">공연장 고유번호</th>
-			<th id="hallNm">공연장 이름</th>
-			<th id="useDt">일자</th>
+			<th id="rentSeq" style="text-align:left">공연장 고유번호</th>
+			<th id="hallNm" style="text-align:left">공연장 이름</th>
+			<th id="useDt" style="text-align:left">일자</th>
 			<th></th>
 		</tr>
 		</thead>
